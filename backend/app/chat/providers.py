@@ -38,7 +38,7 @@ def settings():
         return (
             provider,
             os.getenv("ELICE_API_KEY", ""),
-            os.getenv("ELICE_CHAT_MODEL", ""),
+            os.getenv("ELICE_CHAT_MODEL") or os.getenv("ELICE_MODEL", ""),
             url,
         )
     raise ValueError("Unknown chat provider")

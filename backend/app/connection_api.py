@@ -15,6 +15,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from .connection_repository import SOURCES, Snapshot, load_snapshot
+from .db import DatabaseConfigurationError
 from .models import (CategoriesResponse, Category, CategoryInfo, ErrorResponse, FeedMeta,
                      FeedResponse, FeedbackRequest, FeedbackResponse, Mode, StoryResponse)
 from .recommendation import cursor_key, decode_cursor, encode_cursor, rank
@@ -22,7 +23,7 @@ from .recommendation import cursor_key, decode_cursor, encode_cursor, rank
 logger = logging.getLogger("prism.connection")
 source = os.getenv("PRISM_DATA_SOURCE", "fixture")
 if source not in SOURCES:
-    raise RuntimeError("PRISM_DATA_SOURCE must be fixture, rss-fixture, db-demo or rss-reader")
+    raise RuntimeError("PRISM_DATA_SOURCE must be fixture, rss-fixture, db-demo or rss-reader or supabase")
 app = FastAPI(title="Prism connection API (development)", version="1.0.0",
               responses={code: {"model": ErrorResponse} for code in (404, 422, 500, 503)})
 origins = [value.strip() for value in os.getenv("CORS_ORIGINS", "http://127.0.0.1:5173,http://localhost:5173").split(",") if value.strip()]
@@ -53,6 +54,11 @@ async def request_id(request: Request, call_next):
         response.headers["Access-Control-Expose-Headers"] = "X-Request-ID, X-Prism-Data-Source"
         response.headers.add_vary_header("Origin")
     return response
+
+
+@app.exception_handler(DatabaseConfigurationError)
+def database_configuration_error(request, exc):
+    return failure(request, 503, "DATABASE_NOT_CONFIGURED", "DB 연결 설정을 확인해주세요.")
 
 
 @app.exception_handler(HTTPException)

@@ -24,7 +24,7 @@ flowchart LR
 
 TanStack Query는 목록 페이지와 상세 조회를 관리합니다. `useNewsWorkspace`는 탐색 조건과 북마크를, `useSocialWorkspace`는 댓글과 뉴스별 대화를 관리합니다. localStorage는 브라우저 단위 저장이며 계정 동기화를 제공하지 않습니다.
 
-`connection_repository.py`는 데이터 소스를 화면용 Story로 변환합니다. 기본 `fixture`는 가상 데이터를 반환합니다. `rss-fixture`는 포함된 공통 RSS 예시를 검증합니다. `db-demo`와 `rss-reader`는 별도 DB reader 모듈을 요구하는 확장 지점으로 현재 저장소만으로 사용할 수 없습니다. 연결 실패를 가상 데이터로 자동 대체하지 않습니다.
+`connection_repository.py`는 데이터 소스를 화면용 Story로 변환합니다. 기본 `fixture`는 가상 데이터를 반환합니다. `rss-fixture`는 포함된 공통 RSS 예시를 검증합니다. `supabase`는 게시된 DB 사건을, `db-demo`는 특정 가상 사건을, `rss-reader`는 저장된 RSS 입력을 조회합니다. [DB 설정](DATABASE.md)이 필요합니다. 연결 실패를 가상 데이터로 자동 대체하지 않습니다.
 
 `rss_preview.py`는 발행일·공개 조건을 확인하고 RSS 설명을 AI 요약으로 표시하지 않습니다. `database/schema.draft.sql`은 설계 참고용 초안이며 자동 설치 migration이 아닙니다.
 
@@ -35,7 +35,7 @@ TanStack Query는 목록 페이지와 상세 조회를 관리합니다. `useNews
 3. 제공자 어댑터가 서버 전용 키로 모델을 호출합니다.
 4. 응답 JSON과 기사 ID를 검증한 뒤 답변을 반환합니다.
 
-기사·대화 기록은 참고 자료로 처리하며 시스템 지시로 사용하지 않습니다. 현재 본문 전문은 포함되지 않습니다. API 키는 프론트 환경 변수나 공개 응답에 전달하지 않습니다.
+기사·대화 기록은 참고 자료로 처리하며 시스템 지시로 사용하지 않습니다. DB 모드에서는 처리 허용된 본문을 조회하며 기사별 최대 12,000자·전체 최대 24,000자의 문맥을 제공합니다. 잘린 본문은 발췌로 표시합니다. 본문이 없으면 제목·요약·관련 기사만 사용합니다. API 키는 프론트 환경 변수나 공개 응답에 전달하지 않습니다.
 
 ## 모듈 경계
 
@@ -50,3 +50,9 @@ TanStack Query는 목록 페이지와 상세 조회를 관리합니다. `useNews
 | 계약·fixture | contracts |
 
 기본 실행은 `app.api:app`입니다. `social_api.py`는 기존 명령 호환용, `main.py`는 독립 가상 API 진입점입니다. 새 기능은 기본 진입점의 router 또는 데이터 조회 경계를 통해 연결합니다.
+
+## AI 서비스와 확장
+
+HTTP 대화는 chat/router, 모델 호출은 chat/providers와 llm, 본문·요약 저장은 services가 담당합니다. 피드 조회는 모델을 호출하지 않습니다. worker CLI가 입력·초안 생성·승인을 실행합니다.
+
+services의 기능 경계에 5W·쉬운 설명·표현 분석을 추가할 수 있습니다. LangChain의 모델/구조화 출력 어댑터 또는 LangGraph의 분기·검증·검토 흐름으로 내부 실행을 교체해도 기존 UI와 API 계약을 유지하는 것을 기준으로 합니다. 현재 이 프레임워크들은 의존성에 포함하지 않습니다.
