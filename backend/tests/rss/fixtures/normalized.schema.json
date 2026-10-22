@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Proposed internal RSS record v1; not a public Story API change",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "id", "feed_id", "publisher_id", "publisher_name", "item_key", "source_item_id", "original_url", "canonical_url", "title", "category", "author", "source_category", "rss_description", "published_at", "collected_at", "parse_status", "body_status", "rights", "is_demo"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "id": {"type": "string", "minLength": 1},
+    "feed_id": {"type": "string", "minLength": 1},
+    "publisher_id": {"type": "string", "minLength": 1},
+    "publisher_name": {"type": "string", "minLength": 1},
+    "item_key": {"type": "string", "minLength": 1},
+    "source_item_id": {"type": ["string", "null"]},
+    "original_url": {"type": "string", "format": "uri", "pattern": "^https?://"},
+    "canonical_url": {"type": "string", "format": "uri", "pattern": "^https?://"},
+    "title": {"type": "string", "minLength": 1},
+    "category": {"enum": ["politics", "economy", "society", "technology"]},
+    "author": {"type": ["string", "null"]},
+    "source_category": {"type": ["string", "null"]},
+    "rss_description": {"type": ["string", "null"]},
+    "published_at": {"type": ["string", "null"], "format": "date-time"},
+    "collected_at": {"type": "string", "format": "date-time"},
+    "parse_status": {"enum": ["parsed", "partial"]},
+    "body_status": {"enum": ["not_provided", "rss_excerpt", "content_available", "blocked"]},
+    "is_demo": {"type": "boolean"},
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["collect", "store", "summarize", "publish_summary", "display_image"],
+      "properties": {
+        "collect": {"$ref": "#/$defs/right"},
+        "store": {"$ref": "#/$defs/right"},
+        "summarize": {"$ref": "#/$defs/right"},
+        "publish_summary": {"$ref": "#/$defs/right"},
+        "display_image": {"$ref": "#/$defs/right"}
+      }
+    }
+  },
+  "$defs": {"right": {"enum": ["allowed", "unknown", "denied"]}}
+}

@@ -15,19 +15,16 @@ def candidates():
 
 
 def local_secrets():
-    path = ROOT / "backend/.env.chat.local"
-    if not path.exists():
-        return []
+    from dotenv import dotenv_values
     values = []
-    for line in path.read_text(encoding="utf-8-sig").splitlines():
-        if not line.strip() or line.strip().startswith("#") or "=" not in line:
+    for path in [ROOT / ".env", ROOT / "backend/.env.chat.local"]:
+        if not path.exists():
             continue
-        key, value = line.split("=", 1)
-        if key.strip() not in {"ELICE_API_KEY", "OPENAI_API_KEY"}:
-            continue
-        value = value.strip().strip("\"'")
-        if len(value) >= 8:
-            values.append(value.encode("utf-8"))
+        settings = dotenv_values(path, interpolate=False, encoding="utf-8-sig")
+        for name in ("ELICE_API_KEY", "OPENAI_API_KEY", "DB_PASSWORD"):
+            value = settings.get(name)
+            if value and len(value) >= 8:
+                values.append(value.encode("utf-8"))
     return values
 
 

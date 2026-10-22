@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title>가상 산업신문</title><link>https://example.com/demo</link><description>직접 작성한 파서 테스트 자료</description><item><no>demo-003</no><title>[가상] 기업 연구 지원 사업 안내</title><link>https://example.com/demo/rss-003</link><category>산업</category><author>가상 기자</author><pubDate>Thu, 22 Oct 2026 09:05:00 +0900</pubDate><description>직접 작성한 RSS 설명문입니다.</description><media:content url="https://example.com/demo/image-003.jpg" type="image/jpeg" /></item></channel></rss>

@@ -19,6 +19,17 @@ create table public.stories (
   dek text not null default '',
   category text not null check (category in ('politics','economy','society','technology')),
   keywords text[] not null default '{}',
+
+  -- 기존 API 응답을 유지하기 위해 추가하는 저장 항목입니다.
+  -- visual은 이미지 URL이 아니라 화면 일러스트 종류입니다.
+  visual text not null,
+
+  -- 실제 평가 결과가 아닌 데모 정렬 실험용 점수입니다.
+  public_interest double precision not null default 0,
+
+  -- 가상 데이터 입력 시 명시적으로 true를 저장합니다.
+  is_demo boolean not null default false,
+
   summary_status text not null default 'pending'
     check (summary_status in ('pending','ready','insufficient_sources','failed')),
   summary jsonb not null default '{"bullets":[],"unknowns":[]}',
@@ -38,6 +49,10 @@ create table public.articles (
   title text not null,
   framing text,
   published_at timestamptz not null,
+
+  -- 사건과 별도로 각 기사도 가상 데이터인지 표시합니다.
+  is_demo boolean not null default false,
+
   publish_allowed boolean not null default false
   -- Public metadata only. Raw text, rights evidence, processing logs remain private.
 );

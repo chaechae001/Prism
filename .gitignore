@@ -33,3 +33,6 @@ docs/worklogs/*
 
 # Local reference materials; not part of the application
 .local-archive/
+
+# Generated private workflow exports
+work/
