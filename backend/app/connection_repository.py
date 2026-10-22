@@ -67,7 +67,11 @@ def load_snapshot(source: str | None = None) -> Snapshot:
             record = RssRecord.model_validate(row)
             if source == "rss-fixture" and not record.is_demo:
                 raise ValueError("RSS fixture must be synthetic")
-            story, reason = rss_to_story(record, article_id=article_links.get(str(record.canonical_url)))
+            article_id = article_links.get(str(record.canonical_url))
+            if source == "rss-reader" and not article_id:
+                story, reason = None, "unlinked_database_article"
+            else:
+                story, reason = rss_to_story(record, article_id=article_id)
         except ValidationError:
             story, reason = None, "invalid_record"
         if story is None:

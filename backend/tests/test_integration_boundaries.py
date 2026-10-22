@@ -1,6 +1,9 @@
 """Configuration, publication boundaries, and provider-free chat context tests."""
 
 import os
+import json
+from pathlib import Path
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 from fastapi.testclient import TestClient
@@ -88,6 +91,45 @@ class IntegrationBoundaryTests(unittest.TestCase):
         ):
             config = EliceSettings.from_env()
         self.assertEqual(config.model, "openai/gpt-5-mini")
+
+    def test_rss_preview_keeps_database_article_id(self):
+        rows = json.loads(
+            (
+                Path(__file__).resolve().parents[2]
+                / "docs/architecture/rss-record-v1.examples.json"
+            ).read_text(encoding="utf-8")
+        )[:1]
+        reader = SimpleNamespace(
+            list_rss_records=lambda **kwargs: rows,
+            list_rss_article_links=lambda **kwargs: {
+                rows[0]["canonical_url"]: "db-article-id"
+            },
+        )
+        with patch(
+            "backend.app.connection_repository.importlib.import_module",
+            return_value=reader,
+        ):
+            snapshot = load_snapshot("rss-reader")
+        self.assertEqual(snapshot.stories[0].articles[0].id, "db-article-id")
+
+    def test_rss_without_database_article_mapping_is_held(self):
+        rows = json.loads(
+            (
+                Path(__file__).resolve().parents[2]
+                / "docs/architecture/rss-record-v1.examples.json"
+            ).read_text(encoding="utf-8")
+        )[:1]
+        reader = SimpleNamespace(
+            list_rss_records=lambda **kwargs: rows,
+            list_rss_article_links=lambda **kwargs: {},
+        )
+        with patch(
+            "backend.app.connection_repository.importlib.import_module",
+            return_value=reader,
+        ):
+            snapshot = load_snapshot("rss-reader")
+        self.assertEqual(snapshot.stories, [])
+        self.assertIn("unlinked_database_article", " ".join(snapshot.notes))
 
 
 if __name__ == "__main__":
