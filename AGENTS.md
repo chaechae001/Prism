@@ -1,23 +1,7 @@
-# 병렬 협업과 작업 로그
+# Repository conventions
 
-이 프로젝트는 개발자 2명이 병렬 작업 중입니다.
-
-- UI/프론트엔드 담당 채팅: `frontend/`의 UI·UX·프론트엔드.
-- DB/API 담당 채팅: `backend/`, `database/`의 FastAPI·Supabase·데이터 조회.
-- 현재 사용자가 지정한 역할과 범위를 기준으로 담당을 판단합니다. 모든 채팅에 프론트엔드 역할을 강제하는 규칙이 아닙니다.
-- `contracts/`와 `frontend/src/api/schema.d.ts`는 공유 API 계약입니다. 화면 편의로 응답 필드를 임의 변경하거나 재생성하지 마세요. 필요한 변경은 이유와 호환성 계획을 문서로 전달합니다.
-- 상대 담당 파일은 기본적으로 읽기만 합니다. 사용자의 명시적인 범위 변경이나 합의된 계약 변경이 있을 때 수정합니다.
-- RSS 관련 검토는 실제 관측과 제안·미확인을 구분합니다. 데이터가 존재한다는 사실을 AI 처리·저장·이미지 재표시 허락으로 간주하지 않습니다.
-
-## 작업 완료 때 반드시 남길 기록
-
-`docs/worklogs/`에 작업별 Markdown 로그를 새로 추가합니다. 동시 편집 충돌을 피하려고 다른 작업의 로그를 덮어쓰지 않습니다.
-
-1. 담당과 작업 목적.
-2. 추가·수정·삭제한 정확한 상대 경로와 파일별 변경 이유.
-3. 사용자가 이해할 수 있는 구현 기능 요약.
-4. 실제 실행한 검증과 결과, 확인하지 않은 영역.
-5. API/DB 변경 여부 및 상대 개발자에게 필요한 다음 작업.
-6. 스크린샷이 있다면 해당 작업의 고유 파일 경로.
-
-최종 채팅에도 기능 요약, 변경 폴더/주요 파일, 로그 링크, 필요한 인계 사항을 간단하게 알려주세요. 과거 로그·실행한 적 없는 검사 결과를 현재 작업의 성과로 합산하지 않습니다.
+- Preserve the public API contract in contracts and generated frontend types. Explain compatibility when changing a response.
+- Keep UI, state, data-source adapters and model providers in their respective modules.
+- Do not commit environment files, credentials, generated output or local reference materials.
+- Run the relevant backend tests, frontend tests and build for implementation changes.
+- Record implementation details and validation in a new local docs/worklogs entry. Keep private process notes outside public documentation.

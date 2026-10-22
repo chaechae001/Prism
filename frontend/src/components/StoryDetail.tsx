@@ -14,7 +14,7 @@ import {
 import { api, ApiError } from "../api/client";
 import type { FeedbackRequest, Story } from "../api/types";
 import type { DetailTab } from "../presentation/timeline";
-import { AnalysisPanel, ArticleBody } from "./AnalysisPanel";
+import { AnalysisPanel } from "./AnalysisPanel";
 
 const categoryNames = {
   politics: "정치",
@@ -200,7 +200,7 @@ export function StoryDetail({
                       className="detail-panel"
                       key={mode}
                     >
-                      <AnalysisPanel story={story} mode={mode} onCite={cited} />
+                      <AnalysisPanel mode={mode} />
                     </Tabs.Content>
                   ))}
                   <Tabs.Content value="perspectives" className="detail-panel">
@@ -272,13 +272,7 @@ export function StoryDetail({
                         <ArrowUpRight size={18} />
                       </a>
                     ))}
-                    {story.articles.map((article) => (
-                      <ArticleBody
-                        key={article.id}
-                        storyId={story.id}
-                        article={article}
-                      />
-                    ))}
+
                   </Tabs.Content>
                 </Tabs.Root>
                 <div className="feedback">

@@ -1,4 +1,4 @@
-"""정채은's connection entry point, portable to the shared backend checkout.
+"""News API with swappable data sources.
 
 python -m uvicorn app.connection_api:app --app-dir backend --host 127.0.0.1 --port 8000
 """

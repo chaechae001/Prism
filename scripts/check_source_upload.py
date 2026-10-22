@@ -62,10 +62,10 @@ def main():
         if len(blob) > 30_000_000:
             issues.append({"path": name, "rule": "large_file_requires_review"})
         rows.append({"path": name, "bytes": len(blob), "sha256": hashlib.sha256(blob).hexdigest()})
-    manifest = {"remote": "https://github.com/chaechae001/Prism.git", "visibility": "public",
+    manifest = {"scope_name": "source upload preflight",
                 "scope": "current upload candidates; not a push receipt", "file_count": len(rows),
                 "total_bytes": sum(r["bytes"] for r in rows), "issues": issues, "files": rows}
-    out = ROOT / "docs/release/personal-upload-manifest.json"
+    out = ROOT / "docs/release/upload-manifest.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({k: v for k, v in manifest.items() if k != "files"}, ensure_ascii=False))

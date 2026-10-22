@@ -6,34 +6,17 @@ afterEach(() => {
   vi.resetModules();
 });
 describe("API failure boundaries", () => {
-  it("sends v2 date filters to the server without Mock headers", async () => {
-    vi.stubEnv("VITE_NEWS_API_VERSION", "v2");
-    vi.resetModules();
-    const fetcher = vi
-      .fn()
-      .mockResolvedValue(
-        new Response(
-          JSON.stringify({ items: [], total: 0, next_cursor: null }),
-        ),
-      );
-    vi.stubGlobal("fetch", fetcher);
-    const { api: v2 } = await import("./client");
-    await v2.feed(
-      {
-        q: "버스",
-        category: "society",
-        mode: "balanced",
-        diversity: 70,
-        scenario: "normal",
-        date: "2026-10-22",
-      },
-      null,
+  it("sends feed filters through the supported news API", async () => {
+    const fetcher = vi.fn().mockResolvedValue(
+      new Response(JSON.stringify({ items: [], total: 0, next_cursor: null })),
     );
+    vi.stubGlobal("fetch", fetcher);
+    await api.feed({ q: "버스", category: "society", mode: "balanced", diversity: 70, scenario: "normal" }, null);
     const [path, options] = fetcher.mock.calls[0];
-    expect(String(path)).toContain("/api/v2/stories?");
-    expect(String(path)).toContain("date=2026-10-22");
-    expect(String(path)).not.toContain("diversity");
-    expect(options.headers).toBeUndefined();
+    expect(String(path)).toContain("/api/v1/stories?");
+    expect(String(path)).toContain("category=society");
+    expect(String(path)).toContain("diversity=70");
+    expect(options.headers).toEqual({ "X-Mock-Scenario": "normal" });
   });
   it("keeps the request ID when the server returns HTML", async () => {
     vi.stubGlobal(

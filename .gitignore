@@ -30,5 +30,6 @@ docs/architecture/*-validation.json
 docs/reviews/*.json
 docs/frontend/*observations.json
 docs/worklogs/*
-!docs/worklogs/README.md
-!docs/worklogs/2026-10-22-personal-structure-and-push.md
+
+# Local reference materials; not part of the application
+.local-archive/

@@ -1,4 +1,4 @@
-"""Display adapter owned by 정채은. This does not collect RSS or cluster articles."""
+"""RSS display adapter. This does not collect RSS or cluster articles."""
 from datetime import datetime, timezone
 from hashlib import sha256
 from html.parser import HTMLParser

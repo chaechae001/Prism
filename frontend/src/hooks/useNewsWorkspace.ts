@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import { api, apiVersion } from "../api/client";
+import { api } from "../api/client";
 import type { Category, FeedFilters, Mode, Scenario } from "../api/types";
 import {
   visibleItems,
@@ -100,9 +100,6 @@ export function useNewsWorkspace() {
     mode,
     diversity,
     scenario,
-    ...(apiVersion === "v2"
-      ? { date: day || undefined, from: from || undefined, to: to || undefined }
-      : {}),
   };
   const feed = useInfiniteQuery({
     queryKey: ["feed", filters],
@@ -150,7 +147,7 @@ export function useNewsWorkspace() {
     [view, savedQuery.data, feed.data],
   );
   const displayed = useMemo(
-    () => (apiVersion === "v2" ? items : visibleItems(items, day, from, to)),
+    () => visibleItems(items, day, from, to),
     [items, day, from, to],
   );
   const loading = view === "mypage" ? savedQuery.isPending : feed.isPending;

@@ -40,7 +40,7 @@ def load_snapshot(source: str | None = None) -> Snapshot:
         repo = FixtureRepository()
         return Snapshot(repo.all(), repo.dataset_version, True, source, ["가상 사건·기사로 검증하는 HTTP 연결입니다."])
     if source == "db-demo":
-        # Available in 최민준's checkout. Never fallback to fixture if import/DB fails.
+        # Optional DB reader. Import or DB failures must not fall back to fixtures.
         reader = importlib.import_module(".news_repository", __package__)
         row = reader.get_news_from_db("story-001")
         stories = [Story.model_validate(row)] if row is not None else []

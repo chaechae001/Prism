@@ -1,63 +1,92 @@
-# PRISM · 여러 시선이 만나는 뉴스
+# PRISM
 
-뉴스를 사건별로 읽고 출처를 비교하는 모바일 우선 웹앱입니다. 인스타그램 방식의 사진 피드·날짜별 스토리·북마크와 기사별 AI 대화를 제공합니다.
+**여러 시선이 만나는 뉴스.**
 
-현재는 **가상 뉴스로 UI·API를 검증하는 개인 개발 버전**입니다. 뉴스 전체가 실제 수집·군집·LLM 요약 자동화로 게시되는 운영 서비스는 아닙니다. 엘리스 GPT-5 mini를 이용한 기사별 DM의 실제 요약과 후속 질문 답변은 확인했습니다.
+사건별 뉴스와 출처를 함께 살펴보고, 뉴스별 AI 대화로 내용을 이해하는 모바일 우선 웹앱입니다. 사진 중심 피드에 날짜별 스토리, 카테고리 탐색, 북마크를 결합했습니다.
 
-## 현재 기능
+## 주요 기능
 
-- 사진 피드, 기사 제목·제공된 요약/미리보기, 원문·관련 기사·관점 비교
-- 날짜별 뉴스 스토리, 정치·경제·사회·기술 카테고리, 사진 검색
-- 라이트/다크 전환, 브라우저 북마크·댓글·뉴스별 DM 기록
-- 게시물의 DM을 눌러야 생성되는 뉴스 전용 대화방
-- 기사 ID를 서버에서 다시 조회하고 선택 사건의 출처 ID를 검증하는 AI 답변
+| 기능 | 동작 |
+|---|---|
+| 뉴스 피드 | 제목·요약·관련 기사와 원문 링크를 카드로 표시 |
+| 날짜별 스토리 | 불러온 뉴스를 한국 시간 기준 날짜별로 탐색 |
+| 카테고리·사진 탐색 | 정치·경제·사회·기술 필터와 이미지 그리드 |
+| 뉴스 DM | 게시물에서 연 대화방에 한해 요약·쉬운 설명·질의응답 제공 |
+| 출처 확인 | AI 답변의 기사 ID를 서버에서 검증 |
+| 개인화 UI | 라이트·다크 모드, 북마크와 댓글·대화 기록의 브라우저 저장 |
 
-사진은 가상 뉴스의 예시이며 실제 사건 사진이 아닙니다. 현재 API에 전문이 없어 DM은 제목·제공된 요약·관련 기사 정보를 참고합니다. 댓글·대화 기록은 이 브라우저에만 저장됩니다.
+현재 피드는 가상 데이터 기반이며 AI 대화는 서버에 제공자 설정을 추가하면 실제 호출합니다. 뉴스 자동 수집·군집 분석·정치적 편향 평가는 연결되어 있지 않습니다. 댓글과 대화 기록은 같은 브라우저에서만 유지됩니다. 5W·쉬운 설명·감정 분석의 별도 탭은 준비 중이며, 요약과 쉬운 설명은 뉴스 DM에서 요청할 수 있습니다.
 
-## 로컬 실행
+## 기술 구성
 
-요구 사항: Python, Node.js/npm. 개발 검증 환경은 Python 3.13 / Node.js 24입니다.
+- **Frontend:** React 19, TypeScript, Vite, TanStack Query, Radix UI, Lucide
+- **Backend:** FastAPI, Pydantic, HTTPX
+- **AI:** Elice GPT-5 mini 어댑터, JSON Schema 응답과 출처 ID 검증
+- **계약·검증:** OpenAPI 기반 타입, MSW, Vitest, Python unittest, GitHub Actions
 
-프로젝트 루트의 터미널 1:
+## 빠른 시작
+
+검증 환경은 Python 3.13과 Node.js 24입니다.
+
+프로젝트 루트에서 API 서버를 실행합니다.
 
 ```powershell
 python -m pip install -r backend/requirements.txt
+$env:CORS_ORIGINS='http://127.0.0.1:5183,http://localhost:5183'
 python -m uvicorn app.api:app --app-dir backend --host 127.0.0.1 --port 8004
 ```
 
-터미널 2:
+다른 터미널에서 프론트를 실행합니다.
 
 ```powershell
 cd frontend
 npm.cmd ci
-$env:VITE_API_MODE='mock'
-$env:VITE_NEWS_API_VERSION='v1'
 npm.cmd run dev -- --port 5183
 ```
 
-http://127.0.0.1:5183/ 에 접속합니다. 키 없이도 뉴스 화면을 확인할 수 있고 AI 대화는 연결 안내가 표시됩니다. 기존 서버가 실행 중이면 같은 포트로 중복 실행하지 않습니다.
+[http://127.0.0.1:5183](http://127.0.0.1:5183)에서 확인합니다. 기본 피드는 MSW가 제공하므로 키 없이 실행할 수 있습니다. DM 요청은 Vite 프록시를 통해 API 서버로 전달됩니다.
 
-실제 AI 대화를 쓰려면 `backend/.env.chat.example`을 `backend/.env.chat.local`로 복사하고 엘리스 키·전용 URL을 입력한 뒤 `PRISM_CHAT_ENABLED=1`로 설정하고 API 서버를 재시작합니다. **기존 로컬 설정 파일이 있으면 덮어쓰지 않습니다.** [엘리스 연결 안내](docs/ELICE_NEWS_DM.md)를 확인하세요. 키는 브라우저·GitHub에 넣지 않습니다.
+FastAPI를 통한 뉴스 조회까지 확인하려면 프론트 실행 명령을 다음으로 바꿉니다.
 
-## 구조와 협업
-
-개인 저장소의 `main`은 비교 기준, `dev`는 다음 개발 통합용입니다. 기능별 폴더와 작업 흐름은 [저장소 구조](docs/REPOSITORY_STRUCTURE.md)에 정리했습니다.
-
-```text
-frontend/          React + TypeScript + Vite, Radix UI, TanStack Query, Lucide
-backend/app/       FastAPI, 뉴스 조회 경계, 엘리스/OpenAI 어댑터
-backend/tests/     뉴스·API·제공자 검증
-contracts/         뉴스 v1·DM 계약, 가상 데이터, 별도 v2 실험 계약
-database/          설계/마이그레이션 기록 — 새 설치용 자동 실행 명령 아님
-docs/              실행·협업·변경 이력
-scripts/           검증·샘플 데이터 도구
+```powershell
+$env:VITE_API_BASE_URL='http://127.0.0.1:8004'
+npm.cmd run dev:http -- --port 5183
 ```
 
-활성 개발 API는 `app.api:app`입니다. 기존 `main.py`는 Mock, `connection_api.py`는 v1 연결 기반입니다. `news_api.py`와 `news/`는 **중단한 네이버 v2 실험 기록**으로 현재 기본 실행에 필요하지 않습니다. 기존 Supabase에 적용한 v2 migration을 다시 실행하지 않습니다.
+AI 대화는 `backend/.env.chat.example`을 `backend/.env.chat.local`로 복사해 설정합니다. 기존 로컬 파일이 있으면 유지합니다. [AI 연결 안내](docs/AI_CHAT.md)에 설정과 API 흐름을 정리했습니다.
 
-개인 Prism과 팀 filter-bubble은 별도 저장소입니다. 팀의 비공개 최신 코드를 읽고 계약을 비교한 후 기능 브랜치로 이식할 계획이며, 아직 팀 원격에 반영하지 않았습니다. [팀 통합 계획](docs/TEAM_INTEGRATION_PLAN.md)에 브랜치·폴더 제안과 검토 항목을 정리했습니다.
+## 프로젝트 구조
 
-## 검증
+```text
+frontend/src/
+  components/          피드·스토리·탐색·상세 화면
+  features/            뉴스 DM·댓글
+  hooks/               조회·브라우저 저장·테마 상태
+  api/                 HTTP 클라이언트·생성 타입
+  mocks/               가상 뉴스 API
+backend/
+  app/api.py           FastAPI 기본 진입점
+  app/chat/            대화 경로·설정·제공자 어댑터
+  app/connection_*      뉴스 API·데이터 조회 경계
+  tests/               API·RSS 변환·AI 응답 검증
+contracts/             OpenAPI·JSON Schema·가상 데이터
+database/             DB 설계 초안
+docs/                 구조·API·데이터 계약·실행 문서
+scripts/              계약 생성·데이터 검증 도구
+.github/workflows/     테스트·빌드 자동화
+```
+
+## 설계 포인트
+
+- 화면과 데이터 소스를 분리해 가상 API와 실제 HTTP API를 같은 컴포넌트에서 사용합니다.
+- `Story` 계약을 중심으로 목록·상세·출처를 일관되게 표현합니다.
+- 뉴스 DM은 브라우저가 보낸 기사 본문을 신뢰하지 않고 서버에서 사건 ID를 조회합니다.
+- 모델 응답의 JSON 형식과 출처 ID를 확인하고, 실패를 생성된 답변처럼 표시하지 않습니다.
+- 가상 뉴스·AI 생성 결과·검토되지 않은 분석을 구분해 표시합니다.
+
+[아키텍처](docs/ARCHITECTURE.md) · [API 계약](docs/API_CONTRACT.md) · [데이터 계약](docs/DATA_HANDOFF.md) · [기여 방법](CONTRIBUTING.md)
+
+## 테스트
 
 ```powershell
 python -m unittest backend.tests.test_api backend.tests.test_connection backend.tests.test_social_chat -q
@@ -66,16 +95,10 @@ npm.cmd test
 npm.cmd run build
 ```
 
-현재 백엔드 선택 회귀 테스트 50개, 프론트 테스트 46개가 통과했습니다. 브라우저에서 엘리스 실제 요약·후속 설명 답변 2건을 확인했습니다. DB가 필요한 별도 v2 테스트와 실제 수집·군집·자동 게시 전체를 검증했다는 뜻은 아닙니다.
+GitHub Actions는 `main`·`dev`의 push와 PR에서 백엔드 테스트, 프론트 테스트와 빌드를 실행합니다. CI에는 실제 AI 키나 DB 연결이 필요하지 않습니다.
 
-DM API는 현재 로컬 개발용입니다. 공개 서비스로 배포할 때에는 사용자 인증, 사용자별 사용 한도, 댓글·대화 동기화를 추가해야 합니다.
+## 실행 범위
 
-## 문서
+AI 대화는 제목·제공된 요약·관련 기사 메타데이터를 참고하며 원문 전문은 아직 연결되지 않았습니다. 서버의 대화 API는 로컬 개발용 접근 제한과 간단한 요청 한도를 적용합니다. 공개 배포에는 사용자 인증, 사용자별 한도와 영속 저장이 필요합니다.
 
-- [엘리스 뉴스 DM 연결](docs/ELICE_NEWS_DM.md)
-- [DM·댓글·테마 구조와 실행](docs/NEWS_DM_SETUP.md)
-- [팀 코드 비교·통합 계획](docs/TEAM_INTEGRATION_PLAN.md)
-- [처음부터 배포까지 개발 지도](docs/PROJECT_ROADMAP.md) — 이전 단계 이력 포함
-- [작업 로그](docs/worklogs/README.md)
-
-이전 전달 ZIP·스크린샷·로컬 분석 데이터·환경 파일은 Git 대상에서 제외합니다. 사용 중인 Pretendard 폰트 라이선스는 `frontend/public/fonts/Pretendard-LICENSE.txt`에 있습니다.
+사진은 데모용 예시이며 실제 사건 사진을 의미하지 않습니다. Pretendard 폰트의 라이선스는 [폰트 라이선스](frontend/public/fonts/Pretendard-LICENSE.txt)에서 확인할 수 있습니다.

@@ -6,15 +6,8 @@ import type {
   FeedbackResponse,
   StoryResponse,
 } from "./types";
-import type {
-  AnalysisMode,
-  AnalysisResponse,
-  ArticleContent,
-  NewsFeedResponse,
-} from "./newsTypes";
 export const apiMode = import.meta.env.VITE_API_MODE || "mock";
-export const apiVersion =
-  import.meta.env.VITE_NEWS_API_VERSION === "v2" ? "v2" : "v1";
+export const apiVersion = "v1";
 export const apiOrigin =
   apiMode === "http"
     ? import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000"
@@ -70,29 +63,17 @@ export const api = {
   categories: (signal?: AbortSignal) =>
     request<CategoriesResponse>("/categories", { signal }),
   feed: (filters: FeedFilters, cursor: string | null, signal?: AbortSignal) => {
-    const params = new URLSearchParams(
-      apiVersion === "v2"
-        ? { q: filters.q, limit: "6" }
-        : {
-            q: filters.q,
-            mode: filters.mode,
-            diversity: String(filters.diversity),
-            limit: "6",
-          },
-    );
+    const params = new URLSearchParams({
+      q: filters.q,
+      mode: filters.mode,
+      diversity: String(filters.diversity),
+      limit: "6",
+    });
     if (filters.category) params.set("category", filters.category);
     if (cursor) params.set("cursor", cursor);
-    if (apiVersion === "v2") {
-      if (filters.date) params.set("date", filters.date);
-      if (filters.from) params.set("from", filters.from);
-      if (filters.to) params.set("to", filters.to);
-    }
-    return request<FeedResponse | NewsFeedResponse>(`/stories?${params}`, {
+    return request<FeedResponse>(`/stories?${params}`, {
       signal,
-      headers:
-        apiVersion === "v2"
-          ? undefined
-          : { "X-Mock-Scenario": filters.scenario },
+      headers: { "X-Mock-Scenario": filters.scenario },
     });
   },
   story: (id: string, signal?: AbortSignal) =>
@@ -103,14 +84,4 @@ export const api = {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     }),
-  analysis: (id: string, mode: AnalysisMode, signal?: AbortSignal) =>
-    request<AnalysisResponse>(
-      `/stories/${encodeURIComponent(id)}/analyses/${mode}`,
-      { signal },
-    ),
-  articleContent: (id: string, articleId: string, signal?: AbortSignal) =>
-    request<ArticleContent>(
-      `/stories/${encodeURIComponent(id)}/articles/${encodeURIComponent(articleId)}/content`,
-      { signal },
-    ),
 };
