@@ -1,0 +1,56 @@
+erDiagram
+    AUTH_USERS ||--o| PROFILES : "optional profile"
+    AUTH_USERS ||--o| USER_PREFERENCES : "settings"
+    AUTH_USERS ||--o{ BOOKMARKS : "saves"
+    STORIES ||--o{ BOOKMARKS : "saved story"
+    AUTH_USERS ||--o{ READING_HISTORY : "daily reads"
+    STORIES ||--o{ READING_HISTORY : "read story"
+    AUTH_USERS ||--o{ FEEDBACK : "submits"
+    STORIES ||--o{ FEEDBACK : "about story"
+    AUTH_USERS ||--o{ BALANCE_ASSESSMENTS : "later validated model"
+
+    AUTH_USERS {
+        uuid id PK "Supabase managed auth.users"
+    }
+    PROFILES {
+        uuid user_id PK,FK "PROPOSED phase 2"
+        text display_name
+        timestamptz updated_at
+    }
+    USER_PREFERENCES {
+        uuid user_id PK,FK "existing"
+        smallint diversity
+        boolean tracking_enabled "PROPOSED phase 2"
+    }
+    BOOKMARKS {
+        uuid user_id PK,FK "existing"
+        text story_id PK,FK
+        timestamptz created_at
+    }
+    READING_HISTORY {
+        uuid user_id PK,FK "PROPOSED phase 2"
+        text story_id PK,FK
+        date read_day_kst PK
+        timestamptz first_opened_at
+    }
+    FEEDBACK {
+        uuid id PK "existing"
+        uuid user_id FK
+        text story_id FK
+        text kind
+        text comment
+    }
+    BALANCE_ASSESSMENTS {
+        uuid id PK "PROPOSED private phase 3"
+        uuid user_id FK
+        timestamptz window_start
+        timestamptz window_end
+        text metric_type
+        text method_version
+        text status
+        numeric score "nullable until valid evaluation"
+        int sample_size
+    }
+    STORIES {
+        text id PK
+    }

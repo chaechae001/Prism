@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "id": "politics",
+      "label": "정치",
+      "count": 3
+    },
+    {
+      "id": "economy",
+      "label": "경제",
+      "count": 3
+    },
+    {
+      "id": "society",
+      "label": "사회",
+      "count": 3
+    },
+    {
+      "id": "technology",
+      "label": "기술",
+      "count": 3
+    }
+  ]
+}

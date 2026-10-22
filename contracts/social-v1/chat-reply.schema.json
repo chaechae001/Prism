@@ -1,0 +1,35 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "answer": {
+      "maxLength": 10000,
+      "minLength": 1,
+      "title": "Answer",
+      "type": "string"
+    },
+    "article_ids": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 50,
+      "title": "Article Ids",
+      "type": "array"
+    },
+    "model": {
+      "title": "Model",
+      "type": "string"
+    },
+    "context_notice": {
+      "title": "Context Notice",
+      "type": "string"
+    }
+  },
+  "required": [
+    "answer",
+    "article_ids",
+    "model",
+    "context_notice"
+  ],
+  "title": "ChatReply",
+  "type": "object"
+}

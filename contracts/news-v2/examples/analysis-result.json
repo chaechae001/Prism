@@ -1,0 +1,178 @@
+{
+  "schema_version": "2.0",
+  "run_id": "75452fb0-e679-4caf-80c2-818335c3ca03",
+  "input_hash": "115a74b92c62466ebdafccf7a330f6149a889c7cc3794efe2219b11ca1579d52",
+  "cluster_model_version": "demo-manual-grouping-v1",
+  "clusters": [
+    {
+      "event_key": "demo:night-bus:2026-10-22",
+      "article_ids": [
+        "3179634c-dffa-5fac-8f92-98f93cbc0c19",
+        "07e91a73-60ac-5b72-86e7-f3b8b24dc68e",
+        "43eb738d-455b-5689-a226-39fbc8a234ff"
+      ],
+      "same_event_verified": true,
+      "category": "society",
+      "outputs": [
+        {
+          "mode": "summary",
+          "status": "ready",
+          "model_version": "demo-no-model-v1",
+          "prompt_version": "demo-no-prompt-v1",
+          "payload": {
+            "title": "[가상] 야간 버스 시범 운행, 이동 선택지와 운영 과제",
+            "bullets": [
+              {
+                "text": "가상도시가 야간 버스 시범 운행을 시작합니다.",
+                "article_ids": [
+                  "3179634c-dffa-5fac-8f92-98f93cbc0c19",
+                  "07e91a73-60ac-5b72-86e7-f3b8b24dc68e"
+                ]
+              },
+              {
+                "text": "실제 이용 수요와 운영 비용은 추가 확인이 필요합니다.",
+                "article_ids": [
+                  "3179634c-dffa-5fac-8f92-98f93cbc0c19",
+                  "07e91a73-60ac-5b72-86e7-f3b8b24dc68e"
+                ]
+              }
+            ],
+            "perspectives": [
+              {
+                "label": "이동 선택지",
+                "text": "야간 이동 기회를 늘리는 데 주목합니다.",
+                "article_ids": [
+                  "3179634c-dffa-5fac-8f92-98f93cbc0c19",
+                  "07e91a73-60ac-5b72-86e7-f3b8b24dc68e"
+                ]
+              },
+              {
+                "label": "운영 과제",
+                "text": "비용과 수요를 확인할 필요가 있습니다.",
+                "article_ids": [
+                  "07e91a73-60ac-5b72-86e7-f3b8b24dc68e",
+                  "43eb738d-455b-5689-a226-39fbc8a234ff"
+                ]
+              }
+            ],
+            "unknowns": [
+              "실제 보도가 아닌 직접 작성한 가상 자료입니다."
+            ]
+          }
+        },
+        {
+          "mode": "five_w",
+          "status": "ready",
+          "model_version": "demo-no-model-v1",
+          "prompt_version": "demo-no-prompt-v1",
+          "payload": {
+            "who": {
+              "text": "가상도시",
+              "article_ids": [
+                "3179634c-dffa-5fac-8f92-98f93cbc0c19",
+                "07e91a73-60ac-5b72-86e7-f3b8b24dc68e"
+              ]
+            },
+            "what": {
+              "text": "야간 버스 시범 운행",
+              "article_ids": [
+                "3179634c-dffa-5fac-8f92-98f93cbc0c19",
+                "07e91a73-60ac-5b72-86e7-f3b8b24dc68e"
+              ]
+            },
+            "when": {
+              "text": "2026년 10월 22일",
+              "article_ids": [
+                "3179634c-dffa-5fac-8f92-98f93cbc0c19",
+                "07e91a73-60ac-5b72-86e7-f3b8b24dc68e"
+              ]
+            },
+            "where": {
+              "text": "가상도시",
+              "article_ids": [
+                "3179634c-dffa-5fac-8f92-98f93cbc0c19",
+                "07e91a73-60ac-5b72-86e7-f3b8b24dc68e"
+              ]
+            },
+            "why": {
+              "text": "야간 이동 선택지를 늘리기 위해",
+              "article_ids": [
+                "3179634c-dffa-5fac-8f92-98f93cbc0c19",
+                "07e91a73-60ac-5b72-86e7-f3b8b24dc68e"
+              ]
+            },
+            "unknowns": [
+              "시범 운행의 실제 효과는 아직 확인되지 않았습니다."
+            ]
+          }
+        },
+        {
+          "mode": "easy",
+          "status": "ready",
+          "model_version": "demo-no-model-v1",
+          "prompt_version": "demo-no-prompt-v1",
+          "payload": {
+            "paragraphs": [
+              {
+                "text": "밤늦게 집에 돌아갈 때 탈 수 있는 버스를 시험해 보는 이야기예요.",
+                "article_ids": [
+                  "3179634c-dffa-5fac-8f92-98f93cbc0c19",
+                  "07e91a73-60ac-5b72-86e7-f3b8b24dc68e"
+                ]
+              },
+              {
+                "text": "사람들이 얼마나 타는지, 돈이 얼마나 드는지는 더 알아봐야 해요.",
+                "article_ids": [
+                  "3179634c-dffa-5fac-8f92-98f93cbc0c19",
+                  "07e91a73-60ac-5b72-86e7-f3b8b24dc68e"
+                ]
+              }
+            ],
+            "glossary": [
+              {
+                "text": "시범 운행: 정식으로 시작하기 전에 시험 삼아 운영하는 것",
+                "article_ids": [
+                  "3179634c-dffa-5fac-8f92-98f93cbc0c19",
+                  "07e91a73-60ac-5b72-86e7-f3b8b24dc68e"
+                ]
+              }
+            ],
+            "unknowns": [
+              "직접 작성한 가상 설명입니다."
+            ]
+          }
+        },
+        {
+          "mode": "sentiment",
+          "status": "ready",
+          "model_version": "demo-no-model-v1",
+          "prompt_version": "demo-no-prompt-v1",
+          "payload": {
+            "scope": "article_language",
+            "observations": [
+              {
+                "article_id": "3179634c-dffa-5fac-8f92-98f93cbc0c19",
+                "label": "neutral",
+                "confidence": null,
+                "evidence": "구체적인 효과는 아직 확인되지 않았습니다."
+              },
+              {
+                "article_id": "07e91a73-60ac-5b72-86e7-f3b8b24dc68e",
+                "label": "neutral",
+                "confidence": null,
+                "evidence": "구체적인 효과는 아직 확인되지 않았습니다."
+              },
+              {
+                "article_id": "43eb738d-455b-5689-a226-39fbc8a234ff",
+                "label": "neutral",
+                "confidence": null,
+                "evidence": "구체적인 효과는 아직 확인되지 않았습니다."
+              }
+            ],
+            "note": "화면 개발용 가상 결과입니다. 감정 모델을 실행한 결과가 아닙니다."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": "2.0",
+  "items": [
+    {
+      "article_id": "3179634c-dffa-5fac-8f92-98f93cbc0c19",
+      "content_kind": "full_text",
+      "text": "이 기사는 직접 작성한 개발용 가상 자료입니다. 가상도시는 야간 버스 시범 운행을 발표했습니다. 시범 운행은 2026년 10월 22일 가상도시에서 시작합니다. 야간 이동 선택지를 늘리기 위한 계획입니다. 운영 비용과 실제 이용 수요는 시범 기간에 조사할 예정입니다. 구체적인 효과는 아직 확인되지 않았습니다. 이 기사는 직접 작성한 개발용 가상 자료입니다. 가상도시는 야간 버스 시범 운행을 발표했습니다. 시범 운행은 2026년 10월 22일 가상도시에서 시작합니다. 야간 이동 선택지를 늘리기 위한 계획입니다. 운영 비용과 실제 이용 수요는 시범 기간에 조사할 예정입니다. 구체적인 효과는 아직 확인되지 않았습니다. ",
+      "source_kind": "demo",
+      "source_url": "https://paper1.example.com/bus-night",
+      "acquired_at": "2026-10-22T06:30:59.773084Z",
+      "publisher_published_at": null,
+      "extractor_version": "demo-v1",
+      "rights": {
+        "store": true,
+        "cluster": true,
+        "summarize": true,
+        "analyze": true,
+        "publish_summary": true,
+        "display_full_text": true,
+        "evidence": "직접 작성한 가상 텍스트, 개발 검증용"
+      }
+    },
+    {
+      "article_id": "07e91a73-60ac-5b72-86e7-f3b8b24dc68e",
+      "content_kind": "full_text",
+      "text": "이 기사는 직접 작성한 개발용 가상 자료입니다. 가상도시는 야간 버스 시범 운행을 발표했습니다. 시범 운행은 2026년 10월 22일 가상도시에서 시작합니다. 야간 이동 선택지를 늘리기 위한 계획입니다. 운영 비용과 실제 이용 수요는 시범 기간에 조사할 예정입니다. 구체적인 효과는 아직 확인되지 않았습니다. 이 기사는 직접 작성한 개발용 가상 자료입니다. 가상도시는 야간 버스 시범 운행을 발표했습니다. 시범 운행은 2026년 10월 22일 가상도시에서 시작합니다. 야간 이동 선택지를 늘리기 위한 계획입니다. 운영 비용과 실제 이용 수요는 시범 기간에 조사할 예정입니다. 구체적인 효과는 아직 확인되지 않았습니다. ",
+      "source_kind": "demo",
+      "source_url": "https://paper2.example.com/bus-night",
+      "acquired_at": "2026-10-22T06:30:59.792168Z",
+      "publisher_published_at": null,
+      "extractor_version": "demo-v1",
+      "rights": {
+        "store": true,
+        "cluster": true,
+        "summarize": true,
+        "analyze": true,
+        "publish_summary": true,
+        "display_full_text": false,
+        "evidence": "직접 작성한 가상 텍스트, 개발 검증용"
+      }
+    },
+    {
+      "article_id": "43eb738d-455b-5689-a226-39fbc8a234ff",
+      "content_kind": "full_text",
+      "text": "이 기사는 직접 작성한 개발용 가상 자료입니다. 가상도시는 야간 버스 시범 운행을 발표했습니다. 시범 운행은 2026년 10월 22일 가상도시에서 시작합니다. 야간 이동 선택지를 늘리기 위한 계획입니다. 운영 비용과 실제 이용 수요는 시범 기간에 조사할 예정입니다. 구체적인 효과는 아직 확인되지 않았습니다. 이 기사는 직접 작성한 개발용 가상 자료입니다. 가상도시는 야간 버스 시범 운행을 발표했습니다. 시범 운행은 2026년 10월 22일 가상도시에서 시작합니다. 야간 이동 선택지를 늘리기 위한 계획입니다. 운영 비용과 실제 이용 수요는 시범 기간에 조사할 예정입니다. 구체적인 효과는 아직 확인되지 않았습니다. ",
+      "source_kind": "demo",
+      "source_url": "https://paper3.example.com/bus-night",
+      "acquired_at": "2026-10-22T06:30:59.802638Z",
+      "publisher_published_at": null,
+      "extractor_version": "demo-v1",
+      "rights": {
+        "store": true,
+        "cluster": true,
+        "summarize": true,
+        "analyze": true,
+        "publish_summary": true,
+        "display_full_text": false,
+        "evidence": "직접 작성한 가상 텍스트, 개발 검증용"
+      }
+    }
+  ]
+}

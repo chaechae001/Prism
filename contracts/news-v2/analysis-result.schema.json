@@ -1,0 +1,153 @@
+{
+  "$defs": {
+    "AnalysisOutput": {
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "enum": [
+            "summary",
+            "five_w",
+            "easy",
+            "sentiment"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "ready",
+            "failed",
+            "insufficient_sources"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "model_version": {
+          "minLength": 1,
+          "title": "Model Version",
+          "type": "string"
+        },
+        "prompt_version": {
+          "minLength": 1,
+          "title": "Prompt Version",
+          "type": "string"
+        },
+        "payload": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Payload"
+        }
+      },
+      "required": [
+        "mode",
+        "status",
+        "model_version",
+        "prompt_version",
+        "payload"
+      ],
+      "title": "AnalysisOutput",
+      "type": "object"
+    },
+    "ClusterOutput": {
+      "additionalProperties": false,
+      "properties": {
+        "event_key": {
+          "minLength": 1,
+          "title": "Event Key",
+          "type": "string"
+        },
+        "article_ids": {
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Article Ids",
+          "type": "array"
+        },
+        "same_event_verified": {
+          "default": false,
+          "title": "Same Event Verified",
+          "type": "boolean"
+        },
+        "category": {
+          "anyOf": [
+            {
+              "enum": [
+                "politics",
+                "economy",
+                "society",
+                "technology"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Category"
+        },
+        "outputs": {
+          "items": {
+            "$ref": "#/$defs/AnalysisOutput"
+          },
+          "title": "Outputs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "event_key",
+        "article_ids"
+      ],
+      "title": "ClusterOutput",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "2.0",
+      "default": "2.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "run_id": {
+      "format": "uuid",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "input_hash": {
+      "title": "Input Hash",
+      "type": "string"
+    },
+    "cluster_model_version": {
+      "minLength": 1,
+      "title": "Cluster Model Version",
+      "type": "string"
+    },
+    "clusters": {
+      "items": {
+        "$ref": "#/$defs/ClusterOutput"
+      },
+      "minItems": 1,
+      "title": "Clusters",
+      "type": "array"
+    }
+  },
+  "required": [
+    "run_id",
+    "input_hash",
+    "cluster_model_version",
+    "clusters"
+  ],
+  "title": "ResultBatch",
+  "type": "object"
+}

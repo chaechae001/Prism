@@ -1,0 +1,901 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "PRISM article-scoped local DM",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/social/chat/status": {
+      "get": {
+        "tags": [
+          "news-dm"
+        ],
+        "summary": "Status",
+        "operationId": "status_api_social_chat_status_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatStatus"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/social/stories/{story_id}/chat": {
+      "post": {
+        "tags": [
+          "news-dm"
+        ],
+        "summary": "Chat",
+        "operationId": "chat_api_social_stories__story_id__chat_post",
+        "parameters": [
+          {
+            "name": "story_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Story Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatReply"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Article": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "publisher_id": {
+            "type": "string",
+            "title": "Publisher Id"
+          },
+          "publisher_name": {
+            "type": "string",
+            "title": "Publisher Name"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "url": {
+            "type": "string",
+            "maxLength": 2083,
+            "minLength": 1,
+            "format": "uri",
+            "title": "Url"
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Published At"
+          },
+          "framing": {
+            "type": "string",
+            "title": "Framing"
+          },
+          "is_demo": {
+            "type": "boolean",
+            "title": "Is Demo",
+            "default": true
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "publisher_id",
+          "publisher_name",
+          "title",
+          "url",
+          "published_at",
+          "framing"
+        ],
+        "title": "Article"
+      },
+      "CategoriesResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/CategoryInfo"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "title": "CategoriesResponse"
+      },
+      "CategoryInfo": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "enum": [
+              "politics",
+              "economy",
+              "society",
+              "technology"
+            ],
+            "title": "Id"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "count"
+        ],
+        "title": "CategoryInfo"
+      },
+      "ChatReply": {
+        "properties": {
+          "answer": {
+            "type": "string",
+            "maxLength": 10000,
+            "minLength": 1,
+            "title": "Answer"
+          },
+          "article_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 50,
+            "title": "Article Ids"
+          },
+          "model": {
+            "type": "string",
+            "title": "Model"
+          },
+          "context_notice": {
+            "type": "string",
+            "title": "Context Notice"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "answer",
+          "article_ids",
+          "model",
+          "context_notice"
+        ],
+        "title": "ChatReply"
+      },
+      "ChatRequest": {
+        "properties": {
+          "question": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "Question"
+          },
+          "history": {
+            "items": {
+              "$ref": "#/components/schemas/Message"
+            },
+            "type": "array",
+            "maxItems": 10,
+            "title": "History"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "question"
+        ],
+        "title": "ChatRequest"
+      },
+      "ChatStatus": {
+        "properties": {
+          "configured": {
+            "type": "boolean",
+            "title": "Configured"
+          },
+          "notice": {
+            "type": "string",
+            "title": "Notice"
+          },
+          "context_notice": {
+            "type": "string",
+            "title": "Context Notice"
+          }
+        },
+        "type": "object",
+        "required": [
+          "configured",
+          "notice",
+          "context_notice"
+        ],
+        "title": "ChatStatus"
+      },
+      "Citation": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "article_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Article Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "text",
+          "article_ids"
+        ],
+        "title": "Citation"
+      },
+      "Coverage": {
+        "properties": {
+          "publisher_count": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Publisher Count"
+          },
+          "article_count": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Article Count"
+          },
+          "perspective_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Perspective Count"
+          },
+          "label_status": {
+            "type": "string",
+            "enum": [
+              "demo",
+              "reviewed",
+              "unverified"
+            ],
+            "title": "Label Status"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "publisher_count",
+          "article_count",
+          "perspective_count",
+          "label_status"
+        ],
+        "title": "Coverage"
+      },
+      "ErrorBody": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "details": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Details"
+          },
+          "request_id": {
+            "type": "string",
+            "title": "Request Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "code",
+          "message",
+          "request_id"
+        ],
+        "title": "ErrorBody"
+      },
+      "ErrorResponse": {
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/ErrorBody"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "title": "ErrorResponse"
+      },
+      "FeedItem": {
+        "properties": {
+          "story": {
+            "$ref": "#/components/schemas/Story"
+          },
+          "reason": {
+            "$ref": "#/components/schemas/Reason"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "story",
+          "reason"
+        ],
+        "title": "FeedItem"
+      },
+      "FeedMeta": {
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "title": "Request Id"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "dataset_version": {
+            "type": "string",
+            "title": "Dataset Version"
+          },
+          "is_mock": {
+            "type": "boolean",
+            "title": "Is Mock",
+            "default": true
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "balanced",
+              "latest",
+              "explore"
+            ],
+            "title": "Mode"
+          },
+          "diversity": {
+            "type": "integer",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Diversity"
+          },
+          "policy_version": {
+            "type": "string",
+            "title": "Policy Version",
+            "default": "mock-v1"
+          },
+          "policy_notes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Policy Notes"
+          },
+          "returned_categories": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "politics",
+                "economy",
+                "society",
+                "technology"
+              ]
+            },
+            "type": "array",
+            "title": "Returned Categories"
+          },
+          "source_cap_relaxed": {
+            "type": "boolean",
+            "title": "Source Cap Relaxed"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "request_id",
+          "generated_at",
+          "dataset_version",
+          "mode",
+          "diversity",
+          "policy_notes",
+          "returned_categories",
+          "source_cap_relaxed"
+        ],
+        "title": "FeedMeta"
+      },
+      "FeedResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/FeedItem"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "total": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Total"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/FeedMeta"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "items",
+          "total",
+          "next_cursor",
+          "meta"
+        ],
+        "title": "FeedResponse"
+      },
+      "FeedbackRequest": {
+        "properties": {
+          "story_id": {
+            "type": "string",
+            "title": "Story Id"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "useful",
+              "more_perspectives",
+              "report_error"
+            ],
+            "title": "Kind"
+          },
+          "comment": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Comment"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "story_id",
+          "kind"
+        ],
+        "title": "FeedbackRequest"
+      },
+      "FeedbackResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "status": {
+            "type": "string",
+            "const": "accepted",
+            "title": "Status",
+            "default": "accepted"
+          },
+          "persisted": {
+            "type": "boolean",
+            "title": "Persisted",
+            "default": false
+          },
+          "request_id": {
+            "type": "string",
+            "title": "Request Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "request_id"
+        ],
+        "title": "FeedbackResponse"
+      },
+      "Message": {
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": [
+              "user",
+              "assistant"
+            ],
+            "title": "Role"
+          },
+          "content": {
+            "type": "string",
+            "maxLength": 5000,
+            "minLength": 1,
+            "title": "Content"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "role",
+          "content"
+        ],
+        "title": "Message"
+      },
+      "Perspective": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "article_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Article Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "label",
+          "text",
+          "article_ids"
+        ],
+        "title": "Perspective"
+      },
+      "Reason": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "public_interest",
+              "source_diversity",
+              "discovery",
+              "latest"
+            ],
+            "title": "Code"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "code",
+          "label"
+        ],
+        "title": "Reason"
+      },
+      "Story": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "politics",
+              "economy",
+              "society",
+              "technology"
+            ],
+            "title": "Category"
+          },
+          "dek": {
+            "type": "string",
+            "title": "Dek"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          },
+          "keywords": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Keywords"
+          },
+          "visual": {
+            "type": "string",
+            "enum": [
+              "city",
+              "chip",
+              "energy",
+              "school",
+              "market",
+              "assembly",
+              "work",
+              "research"
+            ],
+            "title": "Visual"
+          },
+          "coverage": {
+            "$ref": "#/components/schemas/Coverage"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/Summary"
+          },
+          "perspectives": {
+            "items": {
+              "$ref": "#/components/schemas/Perspective"
+            },
+            "type": "array",
+            "title": "Perspectives"
+          },
+          "articles": {
+            "items": {
+              "$ref": "#/components/schemas/Article"
+            },
+            "type": "array",
+            "title": "Articles"
+          },
+          "public_interest": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Public Interest"
+          },
+          "is_demo": {
+            "type": "boolean",
+            "title": "Is Demo",
+            "default": true
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "category",
+          "dek",
+          "updated_at",
+          "keywords",
+          "visual",
+          "coverage",
+          "summary",
+          "perspectives",
+          "articles",
+          "public_interest"
+        ],
+        "title": "Story"
+      },
+      "StoryResponse": {
+        "properties": {
+          "story": {
+            "$ref": "#/components/schemas/Story"
+          },
+          "request_id": {
+            "type": "string",
+            "title": "Request Id"
+          },
+          "is_mock": {
+            "type": "boolean",
+            "title": "Is Mock",
+            "default": true
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "story",
+          "request_id"
+        ],
+        "title": "StoryResponse"
+      },
+      "Summary": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "ready",
+              "pending",
+              "insufficient_sources",
+              "failed"
+            ],
+            "title": "Status"
+          },
+          "bullets": {
+            "items": {
+              "$ref": "#/components/schemas/Citation"
+            },
+            "type": "array",
+            "title": "Bullets"
+          },
+          "unknowns": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Unknowns"
+          },
+          "model_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model Version"
+          },
+          "prompt_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prompt Version"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "status",
+          "bullets",
+          "unknowns"
+        ],
+        "title": "Summary"
+      }
+    }
+  }
+}

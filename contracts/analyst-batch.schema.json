@@ -1,0 +1,126 @@
+{
+  "$defs": {
+    "ArticleInput": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "canonical_url": {
+          "format": "uri",
+          "maxLength": 2083,
+          "minLength": 1,
+          "title": "Canonical Url",
+          "type": "string"
+        },
+        "publisher_id": {
+          "title": "Publisher Id",
+          "type": "string"
+        },
+        "publisher_group_id": {
+          "title": "Publisher Group Id",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "published_at": {
+          "format": "date-time",
+          "title": "Published At",
+          "type": "string"
+        },
+        "collected_at": {
+          "format": "date-time",
+          "title": "Collected At",
+          "type": "string"
+        },
+        "category": {
+          "enum": [
+            "politics",
+            "economy",
+            "society",
+            "technology"
+          ],
+          "title": "Category",
+          "type": "string"
+        },
+        "content_hash": {
+          "title": "Content Hash",
+          "type": "string"
+        },
+        "license_status": {
+          "enum": [
+            "allowed",
+            "unknown",
+            "denied"
+          ],
+          "title": "License Status",
+          "type": "string"
+        },
+        "allowed_uses": {
+          "items": {
+            "enum": [
+              "collect",
+              "store",
+              "summarize",
+              "publish_summary"
+            ],
+            "type": "string"
+          },
+          "title": "Allowed Uses",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "canonical_url",
+        "publisher_id",
+        "publisher_group_id",
+        "title",
+        "text",
+        "published_at",
+        "collected_at",
+        "category",
+        "content_hash",
+        "license_status",
+        "allowed_uses"
+      ],
+      "title": "ArticleInput",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "batch_id": {
+      "title": "Batch Id",
+      "type": "string"
+    },
+    "articles": {
+      "items": {
+        "$ref": "#/$defs/ArticleInput"
+      },
+      "minItems": 1,
+      "title": "Articles",
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "batch_id",
+    "articles"
+  ],
+  "title": "AnalystBatch",
+  "type": "object"
+}

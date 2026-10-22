@@ -1,0 +1,30 @@
+{
+  "is_demo": true,
+  "lastBuildDate": "Thu, 22 Oct 2026 03:30:00 +0900",
+  "total": 3,
+  "start": 1,
+  "display": 3,
+  "items": [
+    {
+      "title": "[가상] 야간 버스 시범 운행 소식 1",
+      "originallink": "https://paper1.example.com/bus-night",
+      "link": "https://example.com/naver-demo-1",
+      "description": "검색용 짧은 설명입니다. 이 필드는 기사 전문이 아닙니다.",
+      "pubDate": "Thu, 22 Oct 2026 01:00:00 +0900"
+    },
+    {
+      "title": "[가상] 야간 버스 시범 운행 소식 2",
+      "originallink": "https://paper2.example.com/bus-night",
+      "link": "https://example.com/naver-demo-2",
+      "description": "검색용 짧은 설명입니다. 이 필드는 기사 전문이 아닙니다.",
+      "pubDate": "Thu, 22 Oct 2026 02:00:00 +0900"
+    },
+    {
+      "title": "[가상] 야간 버스 시범 운행 소식 3",
+      "originallink": "https://paper3.example.com/bus-night",
+      "link": "https://example.com/naver-demo-3",
+      "description": "검색용 짧은 설명입니다. 이 필드는 기사 전문이 아닙니다.",
+      "pubDate": "Thu, 22 Oct 2026 03:00:00 +0900"
+    }
+  ]
+}

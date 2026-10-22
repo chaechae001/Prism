@@ -1,0 +1,136 @@
+{
+  "items": [
+    {
+      "story": {
+        "id": "story-001",
+        "title": "AI가 바꾸는 일터, 생산성 너머의 질문들",
+        "category": "technology",
+        "dek": "생산성의 기회와 일자리 전환의 과제를 함께 읽습니다.",
+        "updated_at": "2026-10-21T13:50:00+09:00",
+        "keywords": [
+          "AI",
+          "노동",
+          "생산성"
+        ],
+        "visual": "chip",
+        "coverage": {
+          "publisher_count": 3,
+          "article_count": 3,
+          "perspective_count": 3,
+          "label_status": "demo"
+        },
+        "summary": {
+          "status": "ready",
+          "bullets": [
+            {
+              "text": "생산성의 기회와 일자리 전환의 과제를 함께 읽습니다.",
+              "article_ids": [
+                "story-001-a1",
+                "story-001-a2"
+              ]
+            },
+            {
+              "text": "가상 자료에서는 기대 효과와 실행 비용을 서로 다른 쟁점으로 다룹니다.",
+              "article_ids": [
+                "story-001-a1",
+                "story-001-a3"
+              ]
+            },
+            {
+              "text": "구체적인 효과는 후속 자료와 당사자 의견을 확인해야 합니다.",
+              "article_ids": [
+                "story-001-a2"
+              ]
+            }
+          ],
+          "unknowns": [
+            "실제 보도가 아닌 UI 개발용 가상 자료입니다."
+          ],
+          "model_version": "fixture-only",
+          "prompt_version": "demo-v1"
+        },
+        "perspectives": [
+          {
+            "label": "기회와 기대",
+            "text": "도입으로 얻을 수 있는 편익과 새로운 가능성을 강조합니다.",
+            "article_ids": [
+              "story-001-a1"
+            ]
+          },
+          {
+            "label": "현장의 과제",
+            "text": "비용 부담과 실행 과정에서 소외될 수 있는 집단을 살펴봅니다.",
+            "article_ids": [
+              "story-001-a2"
+            ]
+          },
+          {
+            "label": "제도와 실행",
+            "text": "단계적인 시행과 성과 검증을 위한 조건에 주목합니다.",
+            "article_ids": [
+              "story-001-a3"
+            ]
+          }
+        ],
+        "articles": [
+          {
+            "id": "story-001-a1",
+            "publisher_id": "p-01",
+            "publisher_name": "데모 일보",
+            "title": "[가상 기사] AI가 바꾸는 일터, 생산성 너머의 질문들 — 기회와 기대",
+            "url": "https://example.com/demo/story-001/a1",
+            "published_at": "2026-10-21T09:00:00+09:00",
+            "framing": "기회와 기대",
+            "is_demo": true
+          },
+          {
+            "id": "story-001-a2",
+            "publisher_id": "p-02",
+            "publisher_name": "데모 경제",
+            "title": "[가상 기사] AI가 바꾸는 일터, 생산성 너머의 질문들 — 현장의 과제",
+            "url": "https://example.com/demo/story-001/a2",
+            "published_at": "2026-10-21T09:10:00+09:00",
+            "framing": "현장의 과제",
+            "is_demo": true
+          },
+          {
+            "id": "story-001-a3",
+            "publisher_id": "p-03",
+            "publisher_name": "데모 시민",
+            "title": "[가상 기사] AI가 바꾸는 일터, 생산성 너머의 질문들 — 제도와 실행",
+            "url": "https://example.com/demo/story-001/a3",
+            "published_at": "2026-10-21T09:20:00+09:00",
+            "framing": "제도와 실행",
+            "is_demo": true
+          }
+        ],
+        "public_interest": 0.97,
+        "is_demo": true
+      },
+      "reason": {
+        "code": "source_diversity",
+        "label": "여러 출처를 비교할 수 있어요"
+      }
+    }
+  ],
+  "total": 1,
+  "next_cursor": null,
+  "meta": {
+    "request_id": "c6e44c86-04eb-43d9-a84c-1eef7b0eac2f",
+    "generated_at": "2026-10-21T07:39:24.601475Z",
+    "dataset_version": "demo-2026-10-21-v1",
+    "is_mock": true,
+    "mode": "balanced",
+    "diversity": 70,
+    "policy_version": "mock-v1",
+    "policy_notes": [
+      "개인화 없는 데모 순위입니다.",
+      "다양성은 주제와 출처 중복을 줄이는 가중치이며 정치 성향 점수가 아닙니다.",
+      "정렬은 고정된 fixture 최신성·공익성 예시 값을 사용합니다."
+    ],
+    "returned_categories": [
+      "technology"
+    ],
+    "source_cap_relaxed": false
+  }
+}

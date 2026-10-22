@@ -1,0 +1,1249 @@
+{
+  "dataset_version": "demo-2026-10-21-v1",
+  "generated_at": "2026-10-21T14:00:00+09:00",
+  "stories": [
+    {
+      "id": "story-001",
+      "title": "AI가 바꾸는 일터, 생산성 너머의 질문들",
+      "category": "technology",
+      "dek": "생산성의 기회와 일자리 전환의 과제를 함께 읽습니다.",
+      "updated_at": "2026-10-21T13:50:00+09:00",
+      "keywords": [
+        "AI",
+        "노동",
+        "생산성"
+      ],
+      "visual": "chip",
+      "coverage": {
+        "publisher_count": 3,
+        "article_count": 3,
+        "perspective_count": 3,
+        "label_status": "demo"
+      },
+      "summary": {
+        "status": "ready",
+        "bullets": [
+          {
+            "text": "생산성의 기회와 일자리 전환의 과제를 함께 읽습니다.",
+            "article_ids": [
+              "story-001-a1",
+              "story-001-a2"
+            ]
+          },
+          {
+            "text": "가상 자료에서는 기대 효과와 실행 비용을 서로 다른 쟁점으로 다룹니다.",
+            "article_ids": [
+              "story-001-a1",
+              "story-001-a3"
+            ]
+          },
+          {
+            "text": "구체적인 효과는 후속 자료와 당사자 의견을 확인해야 합니다.",
+            "article_ids": [
+              "story-001-a2"
+            ]
+          }
+        ],
+        "unknowns": [
+          "실제 보도가 아닌 UI 개발용 가상 자료입니다."
+        ],
+        "model_version": "fixture-only",
+        "prompt_version": "demo-v1"
+      },
+      "perspectives": [
+        {
+          "label": "기회와 기대",
+          "text": "도입으로 얻을 수 있는 편익과 새로운 가능성을 강조합니다.",
+          "article_ids": [
+            "story-001-a1"
+          ]
+        },
+        {
+          "label": "현장의 과제",
+          "text": "비용 부담과 실행 과정에서 소외될 수 있는 집단을 살펴봅니다.",
+          "article_ids": [
+            "story-001-a2"
+          ]
+        },
+        {
+          "label": "제도와 실행",
+          "text": "단계적인 시행과 성과 검증을 위한 조건에 주목합니다.",
+          "article_ids": [
+            "story-001-a3"
+          ]
+        }
+      ],
+      "articles": [
+        {
+          "id": "story-001-a1",
+          "publisher_id": "p-01",
+          "publisher_name": "데모 일보",
+          "title": "[가상 기사] AI가 바꾸는 일터, 생산성 너머의 질문들 — 기회와 기대",
+          "url": "https://example.com/demo/story-001/a1",
+          "published_at": "2026-10-21T09:00:00+09:00",
+          "framing": "기회와 기대",
+          "is_demo": true
+        },
+        {
+          "id": "story-001-a2",
+          "publisher_id": "p-02",
+          "publisher_name": "데모 경제",
+          "title": "[가상 기사] AI가 바꾸는 일터, 생산성 너머의 질문들 — 현장의 과제",
+          "url": "https://example.com/demo/story-001/a2",
+          "published_at": "2026-10-21T09:10:00+09:00",
+          "framing": "현장의 과제",
+          "is_demo": true
+        },
+        {
+          "id": "story-001-a3",
+          "publisher_id": "p-03",
+          "publisher_name": "데모 시민",
+          "title": "[가상 기사] AI가 바꾸는 일터, 생산성 너머의 질문들 — 제도와 실행",
+          "url": "https://example.com/demo/story-001/a3",
+          "published_at": "2026-10-21T09:20:00+09:00",
+          "framing": "제도와 실행",
+          "is_demo": true
+        }
+      ],
+      "public_interest": 0.97,
+      "is_demo": true
+    },
+    {
+      "id": "story-002",
+      "title": "도시의 내일을 결정할 새로운 교통 정책",
+      "category": "politics",
+      "dek": "이동의 편리함과 재정 부담, 정책의 서로 다른 쟁점을 살펴봅니다.",
+      "updated_at": "2026-10-21T13:35:00+09:00",
+      "keywords": [
+        "교통",
+        "정책",
+        "도시"
+      ],
+      "visual": "city",
+      "coverage": {
+        "publisher_count": 4,
+        "article_count": 4,
+        "perspective_count": 3,
+        "label_status": "demo"
+      },
+      "summary": {
+        "status": "ready",
+        "bullets": [
+          {
+            "text": "이동의 편리함과 재정 부담, 정책의 서로 다른 쟁점을 살펴봅니다.",
+            "article_ids": [
+              "story-002-a1",
+              "story-002-a2"
+            ]
+          },
+          {
+            "text": "가상 자료에서는 기대 효과와 실행 비용을 서로 다른 쟁점으로 다룹니다.",
+            "article_ids": [
+              "story-002-a1",
+              "story-002-a3"
+            ]
+          },
+          {
+            "text": "구체적인 효과는 후속 자료와 당사자 의견을 확인해야 합니다.",
+            "article_ids": [
+              "story-002-a2"
+            ]
+          }
+        ],
+        "unknowns": [
+          "실제 보도가 아닌 UI 개발용 가상 자료입니다."
+        ],
+        "model_version": "fixture-only",
+        "prompt_version": "demo-v1"
+      },
+      "perspectives": [
+        {
+          "label": "기회와 기대",
+          "text": "도입으로 얻을 수 있는 편익과 새로운 가능성을 강조합니다.",
+          "article_ids": [
+            "story-002-a1"
+          ]
+        },
+        {
+          "label": "현장의 과제",
+          "text": "비용 부담과 실행 과정에서 소외될 수 있는 집단을 살펴봅니다.",
+          "article_ids": [
+            "story-002-a2"
+          ]
+        },
+        {
+          "label": "제도와 실행",
+          "text": "단계적인 시행과 성과 검증을 위한 조건에 주목합니다.",
+          "article_ids": [
+            "story-002-a3"
+          ]
+        }
+      ],
+      "articles": [
+        {
+          "id": "story-002-a1",
+          "publisher_id": "p-02",
+          "publisher_name": "데모 경제",
+          "title": "[가상 기사] 도시의 내일을 결정할 새로운 교통 정책 — 기회와 기대",
+          "url": "https://example.com/demo/story-002/a1",
+          "published_at": "2026-10-21T09:00:00+09:00",
+          "framing": "기회와 기대",
+          "is_demo": true
+        },
+        {
+          "id": "story-002-a2",
+          "publisher_id": "p-03",
+          "publisher_name": "데모 시민",
+          "title": "[가상 기사] 도시의 내일을 결정할 새로운 교통 정책 — 현장의 과제",
+          "url": "https://example.com/demo/story-002/a2",
+          "published_at": "2026-10-21T09:10:00+09:00",
+          "framing": "현장의 과제",
+          "is_demo": true
+        },
+        {
+          "id": "story-002-a3",
+          "publisher_id": "p-04",
+          "publisher_name": "데모 테크",
+          "title": "[가상 기사] 도시의 내일을 결정할 새로운 교통 정책 — 제도와 실행",
+          "url": "https://example.com/demo/story-002/a3",
+          "published_at": "2026-10-21T09:20:00+09:00",
+          "framing": "제도와 실행",
+          "is_demo": true
+        },
+        {
+          "id": "story-002-a4",
+          "publisher_id": "p-05",
+          "publisher_name": "데모 지역",
+          "title": "[가상 기사] 도시의 내일을 결정할 새로운 교통 정책 — 지역의 시선",
+          "url": "https://example.com/demo/story-002/a4",
+          "published_at": "2026-10-21T09:30:00+09:00",
+          "framing": "지역의 시선",
+          "is_demo": true
+        }
+      ],
+      "public_interest": 0.94,
+      "is_demo": true
+    },
+    {
+      "id": "story-003",
+      "title": "금리의 방향, 가계와 기업이 주목하는 이유",
+      "category": "economy",
+      "dek": "같은 금리 변화도 대출자와 예금자에게 다른 의미가 됩니다.",
+      "updated_at": "2026-10-21T13:20:00+09:00",
+      "keywords": [
+        "금리",
+        "금융",
+        "가계"
+      ],
+      "visual": "market",
+      "coverage": {
+        "publisher_count": 5,
+        "article_count": 5,
+        "perspective_count": 3,
+        "label_status": "demo"
+      },
+      "summary": {
+        "status": "ready",
+        "bullets": [
+          {
+            "text": "같은 금리 변화도 대출자와 예금자에게 다른 의미가 됩니다.",
+            "article_ids": [
+              "story-003-a1",
+              "story-003-a2"
+            ]
+          },
+          {
+            "text": "가상 자료에서는 기대 효과와 실행 비용을 서로 다른 쟁점으로 다룹니다.",
+            "article_ids": [
+              "story-003-a1",
+              "story-003-a3"
+            ]
+          },
+          {
+            "text": "구체적인 효과는 후속 자료와 당사자 의견을 확인해야 합니다.",
+            "article_ids": [
+              "story-003-a2"
+            ]
+          }
+        ],
+        "unknowns": [
+          "실제 보도가 아닌 UI 개발용 가상 자료입니다."
+        ],
+        "model_version": "fixture-only",
+        "prompt_version": "demo-v1"
+      },
+      "perspectives": [
+        {
+          "label": "기회와 기대",
+          "text": "도입으로 얻을 수 있는 편익과 새로운 가능성을 강조합니다.",
+          "article_ids": [
+            "story-003-a1"
+          ]
+        },
+        {
+          "label": "현장의 과제",
+          "text": "비용 부담과 실행 과정에서 소외될 수 있는 집단을 살펴봅니다.",
+          "article_ids": [
+            "story-003-a2"
+          ]
+        },
+        {
+          "label": "제도와 실행",
+          "text": "단계적인 시행과 성과 검증을 위한 조건에 주목합니다.",
+          "article_ids": [
+            "story-003-a3"
+          ]
+        }
+      ],
+      "articles": [
+        {
+          "id": "story-003-a1",
+          "publisher_id": "p-03",
+          "publisher_name": "데모 시민",
+          "title": "[가상 기사] 금리의 방향, 가계와 기업이 주목하는 이유 — 기회와 기대",
+          "url": "https://example.com/demo/story-003/a1",
+          "published_at": "2026-10-21T09:00:00+09:00",
+          "framing": "기회와 기대",
+          "is_demo": true
+        },
+        {
+          "id": "story-003-a2",
+          "publisher_id": "p-04",
+          "publisher_name": "데모 테크",
+          "title": "[가상 기사] 금리의 방향, 가계와 기업이 주목하는 이유 — 현장의 과제",
+          "url": "https://example.com/demo/story-003/a2",
+          "published_at": "2026-10-21T09:10:00+09:00",
+          "framing": "현장의 과제",
+          "is_demo": true
+        },
+        {
+          "id": "story-003-a3",
+          "publisher_id": "p-05",
+          "publisher_name": "데모 지역",
+          "title": "[가상 기사] 금리의 방향, 가계와 기업이 주목하는 이유 — 제도와 실행",
+          "url": "https://example.com/demo/story-003/a3",
+          "published_at": "2026-10-21T09:20:00+09:00",
+          "framing": "제도와 실행",
+          "is_demo": true
+        },
+        {
+          "id": "story-003-a4",
+          "publisher_id": "p-06",
+          "publisher_name": "데모 통신",
+          "title": "[가상 기사] 금리의 방향, 가계와 기업이 주목하는 이유 — 지역의 시선",
+          "url": "https://example.com/demo/story-003/a4",
+          "published_at": "2026-10-21T09:30:00+09:00",
+          "framing": "지역의 시선",
+          "is_demo": true
+        },
+        {
+          "id": "story-003-a5",
+          "publisher_id": "p-01",
+          "publisher_name": "데모 일보",
+          "title": "[가상 기사] 금리의 방향, 가계와 기업이 주목하는 이유 — 남은 질문",
+          "url": "https://example.com/demo/story-003/a5",
+          "published_at": "2026-10-21T09:40:00+09:00",
+          "framing": "남은 질문",
+          "is_demo": true
+        }
+      ],
+      "public_interest": 0.91,
+      "is_demo": true
+    },
+    {
+      "id": "story-004",
+      "title": "학교 밖 배움, 지역이 교육의 공간이 된다",
+      "category": "society",
+      "dek": "지역 연계 교육의 기회와 접근성 격차를 함께 살펴봅니다.",
+      "updated_at": "2026-10-21T12:50:00+09:00",
+      "keywords": [
+        "교육",
+        "지역",
+        "접근성"
+      ],
+      "visual": "school",
+      "coverage": {
+        "publisher_count": 3,
+        "article_count": 3,
+        "perspective_count": 3,
+        "label_status": "demo"
+      },
+      "summary": {
+        "status": "ready",
+        "bullets": [
+          {
+            "text": "지역 연계 교육의 기회와 접근성 격차를 함께 살펴봅니다.",
+            "article_ids": [
+              "story-004-a1",
+              "story-004-a2"
+            ]
+          },
+          {
+            "text": "가상 자료에서는 기대 효과와 실행 비용을 서로 다른 쟁점으로 다룹니다.",
+            "article_ids": [
+              "story-004-a1",
+              "story-004-a3"
+            ]
+          },
+          {
+            "text": "구체적인 효과는 후속 자료와 당사자 의견을 확인해야 합니다.",
+            "article_ids": [
+              "story-004-a2"
+            ]
+          }
+        ],
+        "unknowns": [
+          "실제 보도가 아닌 UI 개발용 가상 자료입니다."
+        ],
+        "model_version": "fixture-only",
+        "prompt_version": "demo-v1"
+      },
+      "perspectives": [
+        {
+          "label": "기회와 기대",
+          "text": "도입으로 얻을 수 있는 편익과 새로운 가능성을 강조합니다.",
+          "article_ids": [
+            "story-004-a1"
+          ]
+        },
+        {
+          "label": "현장의 과제",
+          "text": "비용 부담과 실행 과정에서 소외될 수 있는 집단을 살펴봅니다.",
+          "article_ids": [
+            "story-004-a2"
+          ]
+        },
+        {
+          "label": "제도와 실행",
+          "text": "단계적인 시행과 성과 검증을 위한 조건에 주목합니다.",
+          "article_ids": [
+            "story-004-a3"
+          ]
+        }
+      ],
+      "articles": [
+        {
+          "id": "story-004-a1",
+          "publisher_id": "p-04",
+          "publisher_name": "데모 테크",
+          "title": "[가상 기사] 학교 밖 배움, 지역이 교육의 공간이 된다 — 기회와 기대",
+          "url": "https://example.com/demo/story-004/a1",
+          "published_at": "2026-10-21T10:00:00+09:00",
+          "framing": "기회와 기대",
+          "is_demo": true
+        },
+        {
+          "id": "story-004-a2",
+          "publisher_id": "p-05",
+          "publisher_name": "데모 지역",
+          "title": "[가상 기사] 학교 밖 배움, 지역이 교육의 공간이 된다 — 현장의 과제",
+          "url": "https://example.com/demo/story-004/a2",
+          "published_at": "2026-10-21T10:10:00+09:00",
+          "framing": "현장의 과제",
+          "is_demo": true
+        },
+        {
+          "id": "story-004-a3",
+          "publisher_id": "p-06",
+          "publisher_name": "데모 통신",
+          "title": "[가상 기사] 학교 밖 배움, 지역이 교육의 공간이 된다 — 제도와 실행",
+          "url": "https://example.com/demo/story-004/a3",
+          "published_at": "2026-10-21T10:20:00+09:00",
+          "framing": "제도와 실행",
+          "is_demo": true
+        }
+      ],
+      "public_interest": 0.88,
+      "is_demo": true
+    },
+    {
+      "id": "story-005",
+      "title": "에너지 전환의 속도와 비용 사이",
+      "category": "economy",
+      "dek": "투자 확대의 필요성과 소비자가 부담할 비용이 쟁점입니다.",
+      "updated_at": "2026-10-21T12:35:00+09:00",
+      "keywords": [
+        "에너지",
+        "투자",
+        "전환"
+      ],
+      "visual": "energy",
+      "coverage": {
+        "publisher_count": 4,
+        "article_count": 4,
+        "perspective_count": 3,
+        "label_status": "demo"
+      },
+      "summary": {
+        "status": "ready",
+        "bullets": [
+          {
+            "text": "투자 확대의 필요성과 소비자가 부담할 비용이 쟁점입니다.",
+            "article_ids": [
+              "story-005-a1",
+              "story-005-a2"
+            ]
+          },
+          {
+            "text": "가상 자료에서는 기대 효과와 실행 비용을 서로 다른 쟁점으로 다룹니다.",
+            "article_ids": [
+              "story-005-a1",
+              "story-005-a3"
+            ]
+          },
+          {
+            "text": "구체적인 효과는 후속 자료와 당사자 의견을 확인해야 합니다.",
+            "article_ids": [
+              "story-005-a2"
+            ]
+          }
+        ],
+        "unknowns": [
+          "실제 보도가 아닌 UI 개발용 가상 자료입니다."
+        ],
+        "model_version": "fixture-only",
+        "prompt_version": "demo-v1"
+      },
+      "perspectives": [
+        {
+          "label": "기회와 기대",
+          "text": "도입으로 얻을 수 있는 편익과 새로운 가능성을 강조합니다.",
+          "article_ids": [
+            "story-005-a1"
+          ]
+        },
+        {
+          "label": "현장의 과제",
+          "text": "비용 부담과 실행 과정에서 소외될 수 있는 집단을 살펴봅니다.",
+          "article_ids": [
+            "story-005-a2"
+          ]
+        },
+        {
+          "label": "제도와 실행",
+          "text": "단계적인 시행과 성과 검증을 위한 조건에 주목합니다.",
+          "article_ids": [
+            "story-005-a3"
+          ]
+        }
+      ],
+      "articles": [
+        {
+          "id": "story-005-a1",
+          "publisher_id": "p-05",
+          "publisher_name": "데모 지역",
+          "title": "[가상 기사] 에너지 전환의 속도와 비용 사이 — 기회와 기대",
+          "url": "https://example.com/demo/story-005/a1",
+          "published_at": "2026-10-21T10:00:00+09:00",
+          "framing": "기회와 기대",
+          "is_demo": true
+        },
+        {
+          "id": "story-005-a2",
+          "publisher_id": "p-06",
+          "publisher_name": "데모 통신",
+          "title": "[가상 기사] 에너지 전환의 속도와 비용 사이 — 현장의 과제",
+          "url": "https://example.com/demo/story-005/a2",
+          "published_at": "2026-10-21T10:10:00+09:00",
+          "framing": "현장의 과제",
+          "is_demo": true
+        },
+        {
+          "id": "story-005-a3",
+          "publisher_id": "p-01",
+          "publisher_name": "데모 일보",
+          "title": "[가상 기사] 에너지 전환의 속도와 비용 사이 — 제도와 실행",
+          "url": "https://example.com/demo/story-005/a3",
+          "published_at": "2026-10-21T10:20:00+09:00",
+          "framing": "제도와 실행",
+          "is_demo": true
+        },
+        {
+          "id": "story-005-a4",
+          "publisher_id": "p-02",
+          "publisher_name": "데모 경제",
+          "title": "[가상 기사] 에너지 전환의 속도와 비용 사이 — 지역의 시선",
+          "url": "https://example.com/demo/story-005/a4",
+          "published_at": "2026-10-21T10:30:00+09:00",
+          "framing": "지역의 시선",
+          "is_demo": true
+        }
+      ],
+      "public_interest": 0.85,
+      "is_demo": true
+    },
+    {
+      "id": "story-006",
+      "title": "반도체 투자, 기술 경쟁의 다음 장",
+      "category": "technology",
+      "dek": "공급망 안정과 자원 집중 문제를 서로 다른 시선으로 봅니다.",
+      "updated_at": "2026-10-21T12:20:00+09:00",
+      "keywords": [
+        "반도체",
+        "공급망",
+        "투자"
+      ],
+      "visual": "chip",
+      "coverage": {
+        "publisher_count": 5,
+        "article_count": 5,
+        "perspective_count": 3,
+        "label_status": "demo"
+      },
+      "summary": {
+        "status": "ready",
+        "bullets": [
+          {
+            "text": "공급망 안정과 자원 집중 문제를 서로 다른 시선으로 봅니다.",
+            "article_ids": [
+              "story-006-a1",
+              "story-006-a2"
+            ]
+          },
+          {
+            "text": "가상 자료에서는 기대 효과와 실행 비용을 서로 다른 쟁점으로 다룹니다.",
+            "article_ids": [
+              "story-006-a1",
+              "story-006-a3"
+            ]
+          },
+          {
+            "text": "구체적인 효과는 후속 자료와 당사자 의견을 확인해야 합니다.",
+            "article_ids": [
+              "story-006-a2"
+            ]
+          }
+        ],
+        "unknowns": [
+          "실제 보도가 아닌 UI 개발용 가상 자료입니다."
+        ],
+        "model_version": "fixture-only",
+        "prompt_version": "demo-v1"
+      },
+      "perspectives": [
+        {
+          "label": "기회와 기대",
+          "text": "도입으로 얻을 수 있는 편익과 새로운 가능성을 강조합니다.",
+          "article_ids": [
+            "story-006-a1"
+          ]
+        },
+        {
+          "label": "현장의 과제",
+          "text": "비용 부담과 실행 과정에서 소외될 수 있는 집단을 살펴봅니다.",
+          "article_ids": [
+            "story-006-a2"
+          ]
+        },
+        {
+          "label": "제도와 실행",
+          "text": "단계적인 시행과 성과 검증을 위한 조건에 주목합니다.",
+          "article_ids": [
+            "story-006-a3"
+          ]
+        }
+      ],
+      "articles": [
+        {
+          "id": "story-006-a1",
+          "publisher_id": "p-06",
+          "publisher_name": "데모 통신",
+          "title": "[가상 기사] 반도체 투자, 기술 경쟁의 다음 장 — 기회와 기대",
+          "url": "https://example.com/demo/story-006/a1",
+          "published_at": "2026-10-21T10:00:00+09:00",
+          "framing": "기회와 기대",
+          "is_demo": true
+        },
+        {
+          "id": "story-006-a2",
+          "publisher_id": "p-01",
+          "publisher_name": "데모 일보",
+          "title": "[가상 기사] 반도체 투자, 기술 경쟁의 다음 장 — 현장의 과제",
+          "url": "https://example.com/demo/story-006/a2",
+          "published_at": "2026-10-21T10:10:00+09:00",
+          "framing": "현장의 과제",
+          "is_demo": true
+        },
+        {
+          "id": "story-006-a3",
+          "publisher_id": "p-02",
+          "publisher_name": "데모 경제",
+          "title": "[가상 기사] 반도체 투자, 기술 경쟁의 다음 장 — 제도와 실행",
+          "url": "https://example.com/demo/story-006/a3",
+          "published_at": "2026-10-21T10:20:00+09:00",
+          "framing": "제도와 실행",
+          "is_demo": true
+        },
+        {
+          "id": "story-006-a4",
+          "publisher_id": "p-03",
+          "publisher_name": "데모 시민",
+          "title": "[가상 기사] 반도체 투자, 기술 경쟁의 다음 장 — 지역의 시선",
+          "url": "https://example.com/demo/story-006/a4",
+          "published_at": "2026-10-21T10:30:00+09:00",
+          "framing": "지역의 시선",
+          "is_demo": true
+        },
+        {
+          "id": "story-006-a5",
+          "publisher_id": "p-04",
+          "publisher_name": "데모 테크",
+          "title": "[가상 기사] 반도체 투자, 기술 경쟁의 다음 장 — 남은 질문",
+          "url": "https://example.com/demo/story-006/a5",
+          "published_at": "2026-10-21T10:40:00+09:00",
+          "framing": "남은 질문",
+          "is_demo": true
+        }
+      ],
+      "public_interest": 0.89,
+      "is_demo": true
+    },
+    {
+      "id": "story-007",
+      "title": "주 4일 근무 논의, 업종마다 다른 출발선",
+      "category": "society",
+      "dek": "근로시간 단축과 현장의 운영 여건을 비교합니다.",
+      "updated_at": "2026-10-21T11:50:00+09:00",
+      "keywords": [
+        "노동",
+        "근무",
+        "생산성"
+      ],
+      "visual": "work",
+      "coverage": {
+        "publisher_count": 3,
+        "article_count": 3,
+        "perspective_count": 3,
+        "label_status": "demo"
+      },
+      "summary": {
+        "status": "ready",
+        "bullets": [
+          {
+            "text": "근로시간 단축과 현장의 운영 여건을 비교합니다.",
+            "article_ids": [
+              "story-007-a1",
+              "story-007-a2"
+            ]
+          },
+          {
+            "text": "가상 자료에서는 기대 효과와 실행 비용을 서로 다른 쟁점으로 다룹니다.",
+            "article_ids": [
+              "story-007-a1",
+              "story-007-a3"
+            ]
+          },
+          {
+            "text": "구체적인 효과는 후속 자료와 당사자 의견을 확인해야 합니다.",
+            "article_ids": [
+              "story-007-a2"
+            ]
+          }
+        ],
+        "unknowns": [
+          "실제 보도가 아닌 UI 개발용 가상 자료입니다."
+        ],
+        "model_version": "fixture-only",
+        "prompt_version": "demo-v1"
+      },
+      "perspectives": [
+        {
+          "label": "기회와 기대",
+          "text": "도입으로 얻을 수 있는 편익과 새로운 가능성을 강조합니다.",
+          "article_ids": [
+            "story-007-a1"
+          ]
+        },
+        {
+          "label": "현장의 과제",
+          "text": "비용 부담과 실행 과정에서 소외될 수 있는 집단을 살펴봅니다.",
+          "article_ids": [
+            "story-007-a2"
+          ]
+        },
+        {
+          "label": "제도와 실행",
+          "text": "단계적인 시행과 성과 검증을 위한 조건에 주목합니다.",
+          "article_ids": [
+            "story-007-a3"
+          ]
+        }
+      ],
+      "articles": [
+        {
+          "id": "story-007-a1",
+          "publisher_id": "p-01",
+          "publisher_name": "데모 일보",
+          "title": "[가상 기사] 주 4일 근무 논의, 업종마다 다른 출발선 — 기회와 기대",
+          "url": "https://example.com/demo/story-007/a1",
+          "published_at": "2026-10-21T11:00:00+09:00",
+          "framing": "기회와 기대",
+          "is_demo": true
+        },
+        {
+          "id": "story-007-a2",
+          "publisher_id": "p-02",
+          "publisher_name": "데모 경제",
+          "title": "[가상 기사] 주 4일 근무 논의, 업종마다 다른 출발선 — 현장의 과제",
+          "url": "https://example.com/demo/story-007/a2",
+          "published_at": "2026-10-21T11:10:00+09:00",
+          "framing": "현장의 과제",
+          "is_demo": true
+        },
+        {
+          "id": "story-007-a3",
+          "publisher_id": "p-03",
+          "publisher_name": "데모 시민",
+          "title": "[가상 기사] 주 4일 근무 논의, 업종마다 다른 출발선 — 제도와 실행",
+          "url": "https://example.com/demo/story-007/a3",
+          "published_at": "2026-10-21T11:20:00+09:00",
+          "framing": "제도와 실행",
+          "is_demo": true
+        }
+      ],
+      "public_interest": 0.83,
+      "is_demo": true
+    },
+    {
+      "id": "story-008",
+      "title": "지역 예산, 시민의 참여는 어디까지",
+      "category": "politics",
+      "dek": "참여 확대의 기대와 대표성 확보의 과제를 살펴봅니다.",
+      "updated_at": "2026-10-21T11:35:00+09:00",
+      "keywords": [
+        "예산",
+        "시민",
+        "지역"
+      ],
+      "visual": "assembly",
+      "coverage": {
+        "publisher_count": 4,
+        "article_count": 4,
+        "perspective_count": 3,
+        "label_status": "demo"
+      },
+      "summary": {
+        "status": "ready",
+        "bullets": [
+          {
+            "text": "참여 확대의 기대와 대표성 확보의 과제를 살펴봅니다.",
+            "article_ids": [
+              "story-008-a1",
+              "story-008-a2"
+            ]
+          },
+          {
+            "text": "가상 자료에서는 기대 효과와 실행 비용을 서로 다른 쟁점으로 다룹니다.",
+            "article_ids": [
+              "story-008-a1",
+              "story-008-a3"
+            ]
+          },
+          {
+            "text": "구체적인 효과는 후속 자료와 당사자 의견을 확인해야 합니다.",
+            "article_ids": [
+              "story-008-a2"
+            ]
+          }
+        ],
+        "unknowns": [
+          "실제 보도가 아닌 UI 개발용 가상 자료입니다."
+        ],
+        "model_version": "fixture-only",
+        "prompt_version": "demo-v1"
+      },
+      "perspectives": [
+        {
+          "label": "기회와 기대",
+          "text": "도입으로 얻을 수 있는 편익과 새로운 가능성을 강조합니다.",
+          "article_ids": [
+            "story-008-a1"
+          ]
+        },
+        {
+          "label": "현장의 과제",
+          "text": "비용 부담과 실행 과정에서 소외될 수 있는 집단을 살펴봅니다.",
+          "article_ids": [
+            "story-008-a2"
+          ]
+        },
+        {
+          "label": "제도와 실행",
+          "text": "단계적인 시행과 성과 검증을 위한 조건에 주목합니다.",
+          "article_ids": [
+            "story-008-a3"
+          ]
+        }
+      ],
+      "articles": [
+        {
+          "id": "story-008-a1",
+          "publisher_id": "p-02",
+          "publisher_name": "데모 경제",
+          "title": "[가상 기사] 지역 예산, 시민의 참여는 어디까지 — 기회와 기대",
+          "url": "https://example.com/demo/story-008/a1",
+          "published_at": "2026-10-21T11:00:00+09:00",
+          "framing": "기회와 기대",
+          "is_demo": true
+        },
+        {
+          "id": "story-008-a2",
+          "publisher_id": "p-03",
+          "publisher_name": "데모 시민",
+          "title": "[가상 기사] 지역 예산, 시민의 참여는 어디까지 — 현장의 과제",
+          "url": "https://example.com/demo/story-008/a2",
+          "published_at": "2026-10-21T11:10:00+09:00",
+          "framing": "현장의 과제",
+          "is_demo": true
+        },
+        {
+          "id": "story-008-a3",
+          "publisher_id": "p-04",
+          "publisher_name": "데모 테크",
+          "title": "[가상 기사] 지역 예산, 시민의 참여는 어디까지 — 제도와 실행",
+          "url": "https://example.com/demo/story-008/a3",
+          "published_at": "2026-10-21T11:20:00+09:00",
+          "framing": "제도와 실행",
+          "is_demo": true
+        },
+        {
+          "id": "story-008-a4",
+          "publisher_id": "p-05",
+          "publisher_name": "데모 지역",
+          "title": "[가상 기사] 지역 예산, 시민의 참여는 어디까지 — 지역의 시선",
+          "url": "https://example.com/demo/story-008/a4",
+          "published_at": "2026-10-21T11:30:00+09:00",
+          "framing": "지역의 시선",
+          "is_demo": true
+        }
+      ],
+      "public_interest": 0.8,
+      "is_demo": true
+    },
+    {
+      "id": "story-009",
+      "title": "공공 연구 데이터 개방을 둘러싼 논의",
+      "category": "technology",
+      "dek": "데이터 활용과 개인정보 보호의 접점을 찾습니다.",
+      "updated_at": "2026-10-21T11:20:00+09:00",
+      "keywords": [
+        "데이터",
+        "연구",
+        "개인정보"
+      ],
+      "visual": "research",
+      "coverage": {
+        "publisher_count": 5,
+        "article_count": 5,
+        "perspective_count": 0,
+        "label_status": "demo"
+      },
+      "summary": {
+        "status": "pending",
+        "bullets": [],
+        "unknowns": [
+          "실제 보도가 아닌 UI 개발용 가상 자료입니다."
+        ],
+        "model_version": null,
+        "prompt_version": null
+      },
+      "perspectives": [],
+      "articles": [
+        {
+          "id": "story-009-a1",
+          "publisher_id": "p-03",
+          "publisher_name": "데모 시민",
+          "title": "[가상 기사] 공공 연구 데이터 개방을 둘러싼 논의 — 기회와 기대",
+          "url": "https://example.com/demo/story-009/a1",
+          "published_at": "2026-10-21T11:00:00+09:00",
+          "framing": "기회와 기대",
+          "is_demo": true
+        },
+        {
+          "id": "story-009-a2",
+          "publisher_id": "p-04",
+          "publisher_name": "데모 테크",
+          "title": "[가상 기사] 공공 연구 데이터 개방을 둘러싼 논의 — 현장의 과제",
+          "url": "https://example.com/demo/story-009/a2",
+          "published_at": "2026-10-21T11:10:00+09:00",
+          "framing": "현장의 과제",
+          "is_demo": true
+        },
+        {
+          "id": "story-009-a3",
+          "publisher_id": "p-05",
+          "publisher_name": "데모 지역",
+          "title": "[가상 기사] 공공 연구 데이터 개방을 둘러싼 논의 — 제도와 실행",
+          "url": "https://example.com/demo/story-009/a3",
+          "published_at": "2026-10-21T11:20:00+09:00",
+          "framing": "제도와 실행",
+          "is_demo": true
+        },
+        {
+          "id": "story-009-a4",
+          "publisher_id": "p-06",
+          "publisher_name": "데모 통신",
+          "title": "[가상 기사] 공공 연구 데이터 개방을 둘러싼 논의 — 지역의 시선",
+          "url": "https://example.com/demo/story-009/a4",
+          "published_at": "2026-10-21T11:30:00+09:00",
+          "framing": "지역의 시선",
+          "is_demo": true
+        },
+        {
+          "id": "story-009-a5",
+          "publisher_id": "p-01",
+          "publisher_name": "데모 일보",
+          "title": "[가상 기사] 공공 연구 데이터 개방을 둘러싼 논의 — 남은 질문",
+          "url": "https://example.com/demo/story-009/a5",
+          "published_at": "2026-10-21T11:40:00+09:00",
+          "framing": "남은 질문",
+          "is_demo": true
+        }
+      ],
+      "public_interest": 0.77,
+      "is_demo": true
+    },
+    {
+      "id": "story-010",
+      "title": "지역 의료 공백, 현장이 제안한 대안",
+      "category": "society",
+      "dek": "독립적인 추가 출처를 확보하기 전에는 통합 요약을 보류합니다.",
+      "updated_at": "2026-10-21T10:50:00+09:00",
+      "keywords": [
+        "의료",
+        "지역",
+        "복지"
+      ],
+      "visual": "city",
+      "coverage": {
+        "publisher_count": 1,
+        "article_count": 1,
+        "perspective_count": 0,
+        "label_status": "demo"
+      },
+      "summary": {
+        "status": "insufficient_sources",
+        "bullets": [],
+        "unknowns": [
+          "실제 보도가 아닌 UI 개발용 가상 자료입니다."
+        ],
+        "model_version": null,
+        "prompt_version": null
+      },
+      "perspectives": [],
+      "articles": [
+        {
+          "id": "story-010-a1",
+          "publisher_id": "p-04",
+          "publisher_name": "데모 테크",
+          "title": "[가상 기사] 지역 의료 공백, 현장이 제안한 대안 — 기회와 기대",
+          "url": "https://example.com/demo/story-010/a1",
+          "published_at": "2026-10-21T12:00:00+09:00",
+          "framing": "기회와 기대",
+          "is_demo": true
+        }
+      ],
+      "public_interest": 0.79,
+      "is_demo": true
+    },
+    {
+      "id": "story-011",
+      "title": "작은 기업의 수출, 새로운 시장을 찾아서",
+      "category": "economy",
+      "dek": "판로 확대의 기회와 환율·물류 부담을 함께 읽습니다.",
+      "updated_at": "2026-10-21T10:35:00+09:00",
+      "keywords": [
+        "수출",
+        "기업",
+        "환율"
+      ],
+      "visual": "market",
+      "coverage": {
+        "publisher_count": 4,
+        "article_count": 4,
+        "perspective_count": 3,
+        "label_status": "demo"
+      },
+      "summary": {
+        "status": "ready",
+        "bullets": [
+          {
+            "text": "판로 확대의 기회와 환율·물류 부담을 함께 읽습니다.",
+            "article_ids": [
+              "story-011-a1",
+              "story-011-a2"
+            ]
+          },
+          {
+            "text": "가상 자료에서는 기대 효과와 실행 비용을 서로 다른 쟁점으로 다룹니다.",
+            "article_ids": [
+              "story-011-a1",
+              "story-011-a3"
+            ]
+          },
+          {
+            "text": "구체적인 효과는 후속 자료와 당사자 의견을 확인해야 합니다.",
+            "article_ids": [
+              "story-011-a2"
+            ]
+          }
+        ],
+        "unknowns": [
+          "실제 보도가 아닌 UI 개발용 가상 자료입니다."
+        ],
+        "model_version": "fixture-only",
+        "prompt_version": "demo-v1"
+      },
+      "perspectives": [
+        {
+          "label": "기회와 기대",
+          "text": "도입으로 얻을 수 있는 편익과 새로운 가능성을 강조합니다.",
+          "article_ids": [
+            "story-011-a1"
+          ]
+        },
+        {
+          "label": "현장의 과제",
+          "text": "비용 부담과 실행 과정에서 소외될 수 있는 집단을 살펴봅니다.",
+          "article_ids": [
+            "story-011-a2"
+          ]
+        },
+        {
+          "label": "제도와 실행",
+          "text": "단계적인 시행과 성과 검증을 위한 조건에 주목합니다.",
+          "article_ids": [
+            "story-011-a3"
+          ]
+        }
+      ],
+      "articles": [
+        {
+          "id": "story-011-a1",
+          "publisher_id": "p-05",
+          "publisher_name": "데모 지역",
+          "title": "[가상 기사] 작은 기업의 수출, 새로운 시장을 찾아서 — 기회와 기대",
+          "url": "https://example.com/demo/story-011/a1",
+          "published_at": "2026-10-21T12:00:00+09:00",
+          "framing": "기회와 기대",
+          "is_demo": true
+        },
+        {
+          "id": "story-011-a2",
+          "publisher_id": "p-06",
+          "publisher_name": "데모 통신",
+          "title": "[가상 기사] 작은 기업의 수출, 새로운 시장을 찾아서 — 현장의 과제",
+          "url": "https://example.com/demo/story-011/a2",
+          "published_at": "2026-10-21T12:10:00+09:00",
+          "framing": "현장의 과제",
+          "is_demo": true
+        },
+        {
+          "id": "story-011-a3",
+          "publisher_id": "p-01",
+          "publisher_name": "데모 일보",
+          "title": "[가상 기사] 작은 기업의 수출, 새로운 시장을 찾아서 — 제도와 실행",
+          "url": "https://example.com/demo/story-011/a3",
+          "published_at": "2026-10-21T12:20:00+09:00",
+          "framing": "제도와 실행",
+          "is_demo": true
+        },
+        {
+          "id": "story-011-a4",
+          "publisher_id": "p-02",
+          "publisher_name": "데모 경제",
+          "title": "[가상 기사] 작은 기업의 수출, 새로운 시장을 찾아서 — 지역의 시선",
+          "url": "https://example.com/demo/story-011/a4",
+          "published_at": "2026-10-21T12:30:00+09:00",
+          "framing": "지역의 시선",
+          "is_demo": true
+        }
+      ],
+      "public_interest": 0.75,
+      "is_demo": true
+    },
+    {
+      "id": "story-012",
+      "title": "공공 정보 공개 절차 개선 논의",
+      "category": "politics",
+      "dek": "요약 생성 오류로 원문 목록만 제공합니다.",
+      "updated_at": "2026-10-21T10:20:00+09:00",
+      "keywords": [
+        "정보공개",
+        "행정",
+        "정책"
+      ],
+      "visual": "assembly",
+      "coverage": {
+        "publisher_count": 5,
+        "article_count": 5,
+        "perspective_count": 0,
+        "label_status": "demo"
+      },
+      "summary": {
+        "status": "failed",
+        "bullets": [],
+        "unknowns": [
+          "실제 보도가 아닌 UI 개발용 가상 자료입니다."
+        ],
+        "model_version": null,
+        "prompt_version": null
+      },
+      "perspectives": [],
+      "articles": [
+        {
+          "id": "story-012-a1",
+          "publisher_id": "p-06",
+          "publisher_name": "데모 통신",
+          "title": "[가상 기사] 공공 정보 공개 절차 개선 논의 — 기회와 기대",
+          "url": "https://example.com/demo/story-012/a1",
+          "published_at": "2026-10-21T12:00:00+09:00",
+          "framing": "기회와 기대",
+          "is_demo": true
+        },
+        {
+          "id": "story-012-a2",
+          "publisher_id": "p-01",
+          "publisher_name": "데모 일보",
+          "title": "[가상 기사] 공공 정보 공개 절차 개선 논의 — 현장의 과제",
+          "url": "https://example.com/demo/story-012/a2",
+          "published_at": "2026-10-21T12:10:00+09:00",
+          "framing": "현장의 과제",
+          "is_demo": true
+        },
+        {
+          "id": "story-012-a3",
+          "publisher_id": "p-02",
+          "publisher_name": "데모 경제",
+          "title": "[가상 기사] 공공 정보 공개 절차 개선 논의 — 제도와 실행",
+          "url": "https://example.com/demo/story-012/a3",
+          "published_at": "2026-10-21T12:20:00+09:00",
+          "framing": "제도와 실행",
+          "is_demo": true
+        },
+        {
+          "id": "story-012-a4",
+          "publisher_id": "p-03",
+          "publisher_name": "데모 시민",
+          "title": "[가상 기사] 공공 정보 공개 절차 개선 논의 — 지역의 시선",
+          "url": "https://example.com/demo/story-012/a4",
+          "published_at": "2026-10-21T12:30:00+09:00",
+          "framing": "지역의 시선",
+          "is_demo": true
+        },
+        {
+          "id": "story-012-a5",
+          "publisher_id": "p-04",
+          "publisher_name": "데모 테크",
+          "title": "[가상 기사] 공공 정보 공개 절차 개선 논의 — 남은 질문",
+          "url": "https://example.com/demo/story-012/a5",
+          "published_at": "2026-10-21T12:40:00+09:00",
+          "framing": "남은 질문",
+          "is_demo": true
+        }
+      ],
+      "public_interest": 0.71,
+      "is_demo": true
+    }
+  ]
+}

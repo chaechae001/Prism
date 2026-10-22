@@ -1,0 +1,91 @@
+{
+  "$defs": {
+    "Citation": {
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "article_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Article Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "text",
+        "article_ids"
+      ],
+      "title": "Citation",
+      "type": "object"
+    },
+    "Perspective": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "article_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Article Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "label",
+        "text",
+        "article_ids"
+      ],
+      "title": "Perspective",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "title": {
+      "title": "Title",
+      "type": "string"
+    },
+    "bullets": {
+      "items": {
+        "$ref": "#/$defs/Citation"
+      },
+      "maxItems": 5,
+      "minItems": 1,
+      "title": "Bullets",
+      "type": "array"
+    },
+    "perspectives": {
+      "items": {
+        "$ref": "#/$defs/Perspective"
+      },
+      "title": "Perspectives",
+      "type": "array"
+    },
+    "unknowns": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Unknowns",
+      "type": "array"
+    }
+  },
+  "required": [
+    "title",
+    "bullets",
+    "perspectives",
+    "unknowns"
+  ],
+  "title": "SummaryOutput",
+  "type": "object"
+}

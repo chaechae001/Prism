@@ -1,0 +1,51 @@
+{
+  "$defs": {
+    "Message": {
+      "additionalProperties": false,
+      "properties": {
+        "role": {
+          "enum": [
+            "user",
+            "assistant"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "content": {
+          "maxLength": 5000,
+          "minLength": 1,
+          "title": "Content",
+          "type": "string"
+        }
+      },
+      "required": [
+        "role",
+        "content"
+      ],
+      "title": "Message",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "question": {
+      "maxLength": 2000,
+      "minLength": 1,
+      "title": "Question",
+      "type": "string"
+    },
+    "history": {
+      "items": {
+        "$ref": "#/$defs/Message"
+      },
+      "maxItems": 10,
+      "title": "History",
+      "type": "array"
+    }
+  },
+  "required": [
+    "question"
+  ],
+  "title": "ChatRequest",
+  "type": "object"
+}

@@ -1,0 +1,87 @@
+{
+  "story": {
+    "id": "story-009",
+    "title": "공공 연구 데이터 개방을 둘러싼 논의",
+    "category": "technology",
+    "dek": "데이터 활용과 개인정보 보호의 접점을 찾습니다.",
+    "updated_at": "2026-10-21T11:20:00+09:00",
+    "keywords": [
+      "데이터",
+      "연구",
+      "개인정보"
+    ],
+    "visual": "research",
+    "coverage": {
+      "publisher_count": 5,
+      "article_count": 5,
+      "perspective_count": 0,
+      "label_status": "demo"
+    },
+    "summary": {
+      "status": "pending",
+      "bullets": [],
+      "unknowns": [
+        "실제 보도가 아닌 UI 개발용 가상 자료입니다."
+      ],
+      "model_version": null,
+      "prompt_version": null
+    },
+    "perspectives": [],
+    "articles": [
+      {
+        "id": "story-009-a1",
+        "publisher_id": "p-03",
+        "publisher_name": "데모 시민",
+        "title": "[가상 기사] 공공 연구 데이터 개방을 둘러싼 논의 — 기회와 기대",
+        "url": "https://example.com/demo/story-009/a1",
+        "published_at": "2026-10-21T11:00:00+09:00",
+        "framing": "기회와 기대",
+        "is_demo": true
+      },
+      {
+        "id": "story-009-a2",
+        "publisher_id": "p-04",
+        "publisher_name": "데모 테크",
+        "title": "[가상 기사] 공공 연구 데이터 개방을 둘러싼 논의 — 현장의 과제",
+        "url": "https://example.com/demo/story-009/a2",
+        "published_at": "2026-10-21T11:10:00+09:00",
+        "framing": "현장의 과제",
+        "is_demo": true
+      },
+      {
+        "id": "story-009-a3",
+        "publisher_id": "p-05",
+        "publisher_name": "데모 지역",
+        "title": "[가상 기사] 공공 연구 데이터 개방을 둘러싼 논의 — 제도와 실행",
+        "url": "https://example.com/demo/story-009/a3",
+        "published_at": "2026-10-21T11:20:00+09:00",
+        "framing": "제도와 실행",
+        "is_demo": true
+      },
+      {
+        "id": "story-009-a4",
+        "publisher_id": "p-06",
+        "publisher_name": "데모 통신",
+        "title": "[가상 기사] 공공 연구 데이터 개방을 둘러싼 논의 — 지역의 시선",
+        "url": "https://example.com/demo/story-009/a4",
+        "published_at": "2026-10-21T11:30:00+09:00",
+        "framing": "지역의 시선",
+        "is_demo": true
+      },
+      {
+        "id": "story-009-a5",
+        "publisher_id": "p-01",
+        "publisher_name": "데모 일보",
+        "title": "[가상 기사] 공공 연구 데이터 개방을 둘러싼 논의 — 남은 질문",
+        "url": "https://example.com/demo/story-009/a5",
+        "published_at": "2026-10-21T11:40:00+09:00",
+        "framing": "남은 질문",
+        "is_demo": true
+      }
+    ],
+    "public_interest": 0.77,
+    "is_demo": true
+  },
+  "request_id": "6bff2c9f-5cbf-4515-9fe2-969331d2234d",
+  "is_mock": true
+}

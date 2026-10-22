@@ -1,0 +1,565 @@
+[
+  {
+    "query": {
+      "mode": "balanced",
+      "diversity": 0,
+      "limit": 4
+    },
+    "ids": [
+      "story-001",
+      "story-002",
+      "story-003",
+      "story-004"
+    ],
+    "reasons": [
+      "public_interest",
+      "public_interest",
+      "public_interest",
+      "public_interest"
+    ],
+    "total": 12,
+    "cursor": "WyJkZW1vLTIwMjYtMTAtMjEtdjEiLCIiLCIiLCJiYWxhbmNlZCIsMCw0XQ"
+  },
+  {
+    "query": {
+      "mode": "balanced",
+      "diversity": 0,
+      "limit": 4,
+      "category": "politics"
+    },
+    "ids": [
+      "story-002",
+      "story-008",
+      "story-012"
+    ],
+    "reasons": [
+      "public_interest",
+      "public_interest",
+      "public_interest"
+    ],
+    "total": 3,
+    "cursor": null
+  },
+  {
+    "query": {
+      "mode": "balanced",
+      "diversity": 0,
+      "limit": 4,
+      "category": "technology"
+    },
+    "ids": [
+      "story-001",
+      "story-006",
+      "story-009"
+    ],
+    "reasons": [
+      "public_interest",
+      "public_interest",
+      "public_interest"
+    ],
+    "total": 3,
+    "cursor": null
+  },
+  {
+    "query": {
+      "mode": "balanced",
+      "diversity": 70,
+      "limit": 4
+    },
+    "ids": [
+      "story-001",
+      "story-002",
+      "story-003",
+      "story-004"
+    ],
+    "reasons": [
+      "source_diversity",
+      "discovery",
+      "discovery",
+      "discovery"
+    ],
+    "total": 12,
+    "cursor": "WyJkZW1vLTIwMjYtMTAtMjEtdjEiLCIiLCIiLCJiYWxhbmNlZCIsNzAsNF0"
+  },
+  {
+    "query": {
+      "mode": "balanced",
+      "diversity": 70,
+      "limit": 4,
+      "category": "politics"
+    },
+    "ids": [
+      "story-002",
+      "story-008",
+      "story-012"
+    ],
+    "reasons": [
+      "source_diversity",
+      "source_diversity",
+      "source_diversity"
+    ],
+    "total": 3,
+    "cursor": null
+  },
+  {
+    "query": {
+      "mode": "balanced",
+      "diversity": 70,
+      "limit": 4,
+      "category": "technology"
+    },
+    "ids": [
+      "story-001",
+      "story-006",
+      "story-009"
+    ],
+    "reasons": [
+      "source_diversity",
+      "source_diversity",
+      "source_diversity"
+    ],
+    "total": 3,
+    "cursor": null
+  },
+  {
+    "query": {
+      "mode": "balanced",
+      "diversity": 100,
+      "limit": 4
+    },
+    "ids": [
+      "story-001",
+      "story-002",
+      "story-003",
+      "story-004"
+    ],
+    "reasons": [
+      "source_diversity",
+      "discovery",
+      "discovery",
+      "discovery"
+    ],
+    "total": 12,
+    "cursor": "WyJkZW1vLTIwMjYtMTAtMjEtdjEiLCIiLCIiLCJiYWxhbmNlZCIsMTAwLDRd"
+  },
+  {
+    "query": {
+      "mode": "balanced",
+      "diversity": 100,
+      "limit": 4,
+      "category": "politics"
+    },
+    "ids": [
+      "story-002",
+      "story-008",
+      "story-012"
+    ],
+    "reasons": [
+      "source_diversity",
+      "source_diversity",
+      "source_diversity"
+    ],
+    "total": 3,
+    "cursor": null
+  },
+  {
+    "query": {
+      "mode": "balanced",
+      "diversity": 100,
+      "limit": 4,
+      "category": "technology"
+    },
+    "ids": [
+      "story-001",
+      "story-006",
+      "story-009"
+    ],
+    "reasons": [
+      "source_diversity",
+      "source_diversity",
+      "source_diversity"
+    ],
+    "total": 3,
+    "cursor": null
+  },
+  {
+    "query": {
+      "mode": "latest",
+      "diversity": 0,
+      "limit": 4
+    },
+    "ids": [
+      "story-001",
+      "story-002",
+      "story-003",
+      "story-004"
+    ],
+    "reasons": [
+      "latest",
+      "latest",
+      "latest",
+      "latest"
+    ],
+    "total": 12,
+    "cursor": "WyJkZW1vLTIwMjYtMTAtMjEtdjEiLCIiLCIiLCJsYXRlc3QiLDAsNF0"
+  },
+  {
+    "query": {
+      "mode": "latest",
+      "diversity": 0,
+      "limit": 4,
+      "category": "politics"
+    },
+    "ids": [
+      "story-002",
+      "story-008",
+      "story-012"
+    ],
+    "reasons": [
+      "latest",
+      "latest",
+      "latest"
+    ],
+    "total": 3,
+    "cursor": null
+  },
+  {
+    "query": {
+      "mode": "latest",
+      "diversity": 0,
+      "limit": 4,
+      "category": "technology"
+    },
+    "ids": [
+      "story-001",
+      "story-006",
+      "story-009"
+    ],
+    "reasons": [
+      "latest",
+      "latest",
+      "latest"
+    ],
+    "total": 3,
+    "cursor": null
+  },
+  {
+    "query": {
+      "mode": "latest",
+      "diversity": 70,
+      "limit": 4
+    },
+    "ids": [
+      "story-001",
+      "story-002",
+      "story-003",
+      "story-004"
+    ],
+    "reasons": [
+      "latest",
+      "latest",
+      "latest",
+      "latest"
+    ],
+    "total": 12,
+    "cursor": "WyJkZW1vLTIwMjYtMTAtMjEtdjEiLCIiLCIiLCJsYXRlc3QiLDcwLDRd"
+  },
+  {
+    "query": {
+      "mode": "latest",
+      "diversity": 70,
+      "limit": 4,
+      "category": "politics"
+    },
+    "ids": [
+      "story-002",
+      "story-008",
+      "story-012"
+    ],
+    "reasons": [
+      "latest",
+      "latest",
+      "latest"
+    ],
+    "total": 3,
+    "cursor": null
+  },
+  {
+    "query": {
+      "mode": "latest",
+      "diversity": 70,
+      "limit": 4,
+      "category": "technology"
+    },
+    "ids": [
+      "story-001",
+      "story-006",
+      "story-009"
+    ],
+    "reasons": [
+      "latest",
+      "latest",
+      "latest"
+    ],
+    "total": 3,
+    "cursor": null
+  },
+  {
+    "query": {
+      "mode": "latest",
+      "diversity": 100,
+      "limit": 4
+    },
+    "ids": [
+      "story-001",
+      "story-002",
+      "story-003",
+      "story-004"
+    ],
+    "reasons": [
+      "latest",
+      "latest",
+      "latest",
+      "latest"
+    ],
+    "total": 12,
+    "cursor": "WyJkZW1vLTIwMjYtMTAtMjEtdjEiLCIiLCIiLCJsYXRlc3QiLDEwMCw0XQ"
+  },
+  {
+    "query": {
+      "mode": "latest",
+      "diversity": 100,
+      "limit": 4,
+      "category": "politics"
+    },
+    "ids": [
+      "story-002",
+      "story-008",
+      "story-012"
+    ],
+    "reasons": [
+      "latest",
+      "latest",
+      "latest"
+    ],
+    "total": 3,
+    "cursor": null
+  },
+  {
+    "query": {
+      "mode": "latest",
+      "diversity": 100,
+      "limit": 4,
+      "category": "technology"
+    },
+    "ids": [
+      "story-001",
+      "story-006",
+      "story-009"
+    ],
+    "reasons": [
+      "latest",
+      "latest",
+      "latest"
+    ],
+    "total": 3,
+    "cursor": null
+  },
+  {
+    "query": {
+      "mode": "explore",
+      "diversity": 0,
+      "limit": 4
+    },
+    "ids": [
+      "story-001",
+      "story-002",
+      "story-003",
+      "story-004"
+    ],
+    "reasons": [
+      "public_interest",
+      "public_interest",
+      "public_interest",
+      "public_interest"
+    ],
+    "total": 12,
+    "cursor": "WyJkZW1vLTIwMjYtMTAtMjEtdjEiLCIiLCIiLCJleHBsb3JlIiwwLDRd"
+  },
+  {
+    "query": {
+      "mode": "explore",
+      "diversity": 0,
+      "limit": 4,
+      "category": "politics"
+    },
+    "ids": [
+      "story-002",
+      "story-008",
+      "story-012"
+    ],
+    "reasons": [
+      "public_interest",
+      "public_interest",
+      "public_interest"
+    ],
+    "total": 3,
+    "cursor": null
+  },
+  {
+    "query": {
+      "mode": "explore",
+      "diversity": 0,
+      "limit": 4,
+      "category": "technology"
+    },
+    "ids": [
+      "story-001",
+      "story-006",
+      "story-009"
+    ],
+    "reasons": [
+      "public_interest",
+      "public_interest",
+      "public_interest"
+    ],
+    "total": 3,
+    "cursor": null
+  },
+  {
+    "query": {
+      "mode": "explore",
+      "diversity": 70,
+      "limit": 4
+    },
+    "ids": [
+      "story-001",
+      "story-002",
+      "story-003",
+      "story-004"
+    ],
+    "reasons": [
+      "source_diversity",
+      "discovery",
+      "discovery",
+      "discovery"
+    ],
+    "total": 12,
+    "cursor": "WyJkZW1vLTIwMjYtMTAtMjEtdjEiLCIiLCIiLCJleHBsb3JlIiw3MCw0XQ"
+  },
+  {
+    "query": {
+      "mode": "explore",
+      "diversity": 70,
+      "limit": 4,
+      "category": "politics"
+    },
+    "ids": [
+      "story-002",
+      "story-008",
+      "story-012"
+    ],
+    "reasons": [
+      "source_diversity",
+      "source_diversity",
+      "source_diversity"
+    ],
+    "total": 3,
+    "cursor": null
+  },
+  {
+    "query": {
+      "mode": "explore",
+      "diversity": 70,
+      "limit": 4,
+      "category": "technology"
+    },
+    "ids": [
+      "story-001",
+      "story-006",
+      "story-009"
+    ],
+    "reasons": [
+      "source_diversity",
+      "source_diversity",
+      "source_diversity"
+    ],
+    "total": 3,
+    "cursor": null
+  },
+  {
+    "query": {
+      "mode": "explore",
+      "diversity": 100,
+      "limit": 4
+    },
+    "ids": [
+      "story-001",
+      "story-002",
+      "story-003",
+      "story-004"
+    ],
+    "reasons": [
+      "source_diversity",
+      "discovery",
+      "discovery",
+      "discovery"
+    ],
+    "total": 12,
+    "cursor": "WyJkZW1vLTIwMjYtMTAtMjEtdjEiLCIiLCIiLCJleHBsb3JlIiwxMDAsNF0"
+  },
+  {
+    "query": {
+      "mode": "explore",
+      "diversity": 100,
+      "limit": 4,
+      "category": "politics"
+    },
+    "ids": [
+      "story-002",
+      "story-008",
+      "story-012"
+    ],
+    "reasons": [
+      "source_diversity",
+      "source_diversity",
+      "source_diversity"
+    ],
+    "total": 3,
+    "cursor": null
+  },
+  {
+    "query": {
+      "mode": "explore",
+      "diversity": 100,
+      "limit": 4,
+      "category": "technology"
+    },
+    "ids": [
+      "story-001",
+      "story-006",
+      "story-009"
+    ],
+    "reasons": [
+      "source_diversity",
+      "source_diversity",
+      "source_diversity"
+    ],
+    "total": 3,
+    "cursor": null
+  },
+  {
+    "query": {
+      "q": " AI ",
+      "limit": 1
+    },
+    "ids": [
+      "story-001"
+    ],
+    "reasons": [
+      "source_diversity"
+    ],
+    "total": 1,
+    "cursor": null
+  }
+]

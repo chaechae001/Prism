@@ -1,0 +1,152 @@
+{
+  "$defs": {
+    "BodyImport": {
+      "additionalProperties": false,
+      "properties": {
+        "article_id": {
+          "format": "uuid",
+          "title": "Article Id",
+          "type": "string"
+        },
+        "content_kind": {
+          "enum": [
+            "full_text",
+            "excerpt"
+          ],
+          "title": "Content Kind",
+          "type": "string"
+        },
+        "text": {
+          "maxLength": 2000000,
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "source_kind": {
+          "enum": [
+            "licensed_api",
+            "provided_file",
+            "permitted_extraction",
+            "demo"
+          ],
+          "title": "Source Kind",
+          "type": "string"
+        },
+        "source_url": {
+          "format": "uri",
+          "maxLength": 2083,
+          "minLength": 1,
+          "title": "Source Url",
+          "type": "string"
+        },
+        "acquired_at": {
+          "format": "date-time",
+          "title": "Acquired At",
+          "type": "string"
+        },
+        "publisher_published_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Publisher Published At"
+        },
+        "extractor_version": {
+          "minLength": 1,
+          "title": "Extractor Version",
+          "type": "string"
+        },
+        "rights": {
+          "$ref": "#/$defs/BodyRights"
+        }
+      },
+      "required": [
+        "article_id",
+        "content_kind",
+        "text",
+        "source_kind",
+        "source_url",
+        "acquired_at",
+        "extractor_version",
+        "rights"
+      ],
+      "title": "BodyImport",
+      "type": "object"
+    },
+    "BodyRights": {
+      "additionalProperties": false,
+      "properties": {
+        "store": {
+          "default": false,
+          "title": "Store",
+          "type": "boolean"
+        },
+        "cluster": {
+          "default": false,
+          "title": "Cluster",
+          "type": "boolean"
+        },
+        "summarize": {
+          "default": false,
+          "title": "Summarize",
+          "type": "boolean"
+        },
+        "analyze": {
+          "default": false,
+          "title": "Analyze",
+          "type": "boolean"
+        },
+        "publish_summary": {
+          "default": false,
+          "title": "Publish Summary",
+          "type": "boolean"
+        },
+        "display_full_text": {
+          "default": false,
+          "title": "Display Full Text",
+          "type": "boolean"
+        },
+        "evidence": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Evidence",
+          "type": "string"
+        }
+      },
+      "required": [
+        "evidence"
+      ],
+      "title": "BodyRights",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "2.0",
+      "default": "2.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "items": {
+      "items": {
+        "$ref": "#/$defs/BodyImport"
+      },
+      "maxItems": 1000,
+      "minItems": 1,
+      "title": "Items",
+      "type": "array"
+    }
+  },
+  "required": [
+    "items"
+  ],
+  "title": "BodyBatch",
+  "type": "object"
+}

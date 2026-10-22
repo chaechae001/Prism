@@ -1,0 +1,17 @@
+{
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "요청 값을 확인해주세요.",
+    "details": [
+      {
+        "loc": [
+          "query",
+          "diversity"
+        ],
+        "message": "Input should be less than or equal to 100",
+        "type": "less_than_equal"
+      }
+    ],
+    "request_id": "72039934-3c4a-40b6-a699-6a41f2378c94"
+  }
+}

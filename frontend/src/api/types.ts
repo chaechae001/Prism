@@ -1,0 +1,21 @@
+import type { components } from "./schema";
+export type Story = components["schemas"]["Story"];
+export type Category = Story["category"];
+export type Mode = components["schemas"]["FeedMeta"]["mode"];
+export type FeedResponse = components["schemas"]["FeedResponse"];
+export type FeedItem = components["schemas"]["FeedItem"];
+export type FeedbackRequest = components["schemas"]["FeedbackRequest"];
+export type FeedbackResponse = components["schemas"]["FeedbackResponse"];
+export type StoryResponse = components["schemas"]["StoryResponse"];
+export type CategoriesResponse = components["schemas"]["CategoriesResponse"];
+export type Scenario = "normal" | "slow" | "empty" | "error";
+export type FeedFilters = {
+  q: string;
+  category: Category | "";
+  mode: Mode;
+  diversity: number;
+  scenario: Scenario;
+  date?: string;
+  from?: string;
+  to?: string;
+};
