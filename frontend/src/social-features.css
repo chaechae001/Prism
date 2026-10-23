@@ -32,6 +32,19 @@
 }
 .news-story > span:last-child {
   font-size: 11px;
+  -webkit-line-clamp: 2;
+  min-height: 2.8em;
+}
+.news-story .story-date {
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.2;
+  margin-bottom: -4px;
+}
+.news-story:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+  border-radius: 8px;
 }
 .comments-dialog {
   position: fixed;

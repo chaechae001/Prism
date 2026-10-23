@@ -42,6 +42,19 @@ python -m uvicorn app.api:app --app-dir backend --host 127.0.0.1 --port 8004
 
 현재 연결은 public.stories/articles/story_articles/publishers와 private.rss_items/rss_feeds/raw_articles/summary_versions를 사용합니다. 브라우저는 private 스키마를 직접 조회하지 않습니다. 서버 DB 계정은 필요한 최소 권한으로 운영하고 공개 API에서도 게시·출처 조건을 검사합니다.
 
+## 개발용 가상 뉴스 채우기
+
+UI 검증용 `contracts/fixtures.json`에는 사건 12개와 관련 기사 46개가 들어 있습니다. DB 연결로 전환하면 이 파일을 자동으로 합치지 않고 DB에 게시된 사건만 표시합니다.
+
+```powershell
+# 루트 .env의 DB 설정을 사용합니다. 기본 실행은 읽기 전용 추가 계획입니다.
+python scripts/import_demo_fixtures.py
+# 계획을 확인한 뒤 누락된 가상 사건과 기사만 저장합니다.
+python scripts/import_demo_fixtures.py --apply
+```
+
+기존 사건은 건너뛰며 기존 행을 수정하거나 삭제하지 않습니다. 새 기사의 ID·URL 또는 언론사 ID가 기존 데이터와 충돌하면 중단합니다. 가상 뉴스와 example.com 기사만 허용하고 `is_demo=true`로 저장합니다. 관련 기사 연결과 공개 표시는 이 가상 묶음에만 적용합니다. 실제 수집 데이터의 승인·게시 용도로 사용하지 않습니다. 전체 추가 작업은 하나의 트랜잭션으로 실행하고, 실패하면 취소합니다. RSS 수신 이력과 본문·요약 생성 기록은 변경하지 않습니다.
+
 ## 본문과 기사 ID
 
 `python -m backend.app.worker import-bodies --input <배치 JSON>`으로 기존 기사에 본문을 연결합니다. 형식은 contracts/analyst-batch.schema.json입니다. canonical_url과 publisher_id가 기존 기사와 일치해야 하며 입력 ID가 달라도 DB article_id로 매핑합니다. content_hash는 전달한 본문의 UTF-8 SHA-256이어야 합니다.
