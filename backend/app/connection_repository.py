@@ -13,7 +13,7 @@ from .repository import FixtureRepository
 from .rss_preview import RssRecord, rss_to_story
 
 ROOT = Path(__file__).resolve().parents[2]
-SOURCES = {"fixture", "rss-fixture", "db-demo", "rss-reader"}
+SOURCES = {"fixture", "rss-fixture", "db-demo", "rss-reader", "supabase"}
 
 
 @dataclass
@@ -39,6 +39,12 @@ def load_snapshot(source: str | None = None) -> Snapshot:
     if source == "fixture":
         repo = FixtureRepository()
         return Snapshot(repo.all(), repo.dataset_version, True, source, ["가상 사건·기사로 검증하는 HTTP 연결입니다."])
+    if source == "supabase":
+        reader = importlib.import_module(".news_repository", __package__)
+        stories = [Story.model_validate(row) for row in reader.list_news_from_db()]
+        return Snapshot(stories, _version("supabase", stories), bool(stories) and all(s.is_demo for s in stories), source,
+                        ["DB에 게시된 사건과 공개 가능한 출처를 조회합니다.",
+                         "개발용 조회 범위는 최대 500개 사건입니다. 초과하면 페이지 조회 전환이 필요합니다."])
     if source == "db-demo":
         # Optional DB reader. Import or DB failures must not fall back to fixtures.
         reader = importlib.import_module(".news_repository", __package__)
@@ -54,13 +60,18 @@ def load_snapshot(source: str | None = None) -> Snapshot:
         rows = reader.list_rss_records(limit=100)
     if not isinstance(rows, list):
         raise TypeError("RSS reader must return a list")
+    article_links = reader.list_rss_article_links(limit=100) if source == "rss-reader" else {}
     stories, seen, skipped = [], set(), {}
     for row in rows:
         try:
             record = RssRecord.model_validate(row)
             if source == "rss-fixture" and not record.is_demo:
                 raise ValueError("RSS fixture must be synthetic")
-            story, reason = rss_to_story(record)
+            article_id = article_links.get(str(record.canonical_url))
+            if source == "rss-reader" and not article_id:
+                story, reason = None, "unlinked_database_article"
+            else:
+                story, reason = rss_to_story(record, article_id=article_id)
         except ValidationError:
             story, reason = None, "invalid_record"
         if story is None:

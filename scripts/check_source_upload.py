@@ -15,20 +15,54 @@ def candidates():
 
 
 def local_secrets():
-    path = ROOT / "backend/.env.chat.local"
-    if not path.exists():
-        return []
+    from dotenv import dotenv_values
     values = []
-    for line in path.read_text(encoding="utf-8-sig").splitlines():
-        if not line.strip() or line.strip().startswith("#") or "=" not in line:
+    for path in [ROOT / ".env", ROOT / "backend/.env.chat.local"]:
+        if not path.exists():
             continue
-        key, value = line.split("=", 1)
-        if key.strip() not in {"ELICE_API_KEY", "OPENAI_API_KEY"}:
-            continue
-        value = value.strip().strip("\"'")
-        if len(value) >= 8:
-            values.append(value.encode("utf-8"))
+        settings = dotenv_values(path, interpolate=False, encoding="utf-8-sig")
+        for name in ("ELICE_API_KEY", "OPENAI_API_KEY", "DB_PASSWORD"):
+            value = settings.get(name)
+            if value and len(value) >= 8:
+                values.append(value.encode("utf-8"))
     return values
+
+
+def template_issues(blob):
+    """Reject real-looking credential assignments even without a local .env."""
+    from dotenv import dotenv_values
+    from io import StringIO
+    settings = dotenv_values(stream=StringIO(blob.decode("utf-8-sig")), interpolate=False)
+    bad = []
+    for key, value in settings.items():
+        if not re.search(r"(?:PASSWORD|API_KEY|TOKEN|SECRET)$", key) or not value:
+            continue
+        if not re.fullmatch(r"(?:YOUR[_-]|REPLACE[_-])[A-Z0-9_-]+|<[^>]+>", value):
+            bad.append(key)
+    return bad
+
+
+def staged_blobs():
+    listing = subprocess.run(["git", "ls-files", "--stage", "-z"], cwd=ROOT,
+                             capture_output=True, check=True).stdout
+    entries = []
+    for row in listing.split(b"\0"):
+        if not row:
+            continue
+        metadata, name = row.split(b"\t", 1)
+        _, sha, stage = metadata.split()
+        if stage == b"0":
+            entries.append((name.decode("utf-8"), sha))
+    result = subprocess.run(["git", "cat-file", "--batch"], cwd=ROOT,
+        input=b"".join(sha + b"\n" for _, sha in entries), capture_output=True, check=True).stdout
+    offset = 0
+    for name, _ in entries:
+        end = result.index(b"\n", offset)
+        header = result[offset:end].split()
+        size = int(header[-1])
+        blob = result[end + 1:end + 1 + size]
+        offset = end + 1 + size + 1
+        yield name, blob
 
 
 def main():
@@ -53,6 +87,9 @@ def main():
         if path.name.startswith(".env") and not path.name.endswith(".example"):
             issues.append({"path": name, "rule": "private_environment_file"})
         blob = path.read_bytes()
+        if path.name.startswith(".env") and path.name.endswith(".example"):
+            if template_issues(blob):
+                issues.append({"path": name, "rule": "credential_in_environment_template"})
         if any(secret in blob for secret in secrets):
             issues.append({"path": name, "rule": "local_credential_value"})
         if path.suffix.lower() not in {".woff2", ".png", ".jpg", ".jpeg", ".webp", ".pdf"}:
@@ -62,6 +99,11 @@ def main():
         if len(blob) > 30_000_000:
             issues.append({"path": name, "rule": "large_file_requires_review"})
         rows.append({"path": name, "bytes": len(blob), "sha256": hashlib.sha256(blob).hexdigest()})
+    for name, blob in staged_blobs():
+        if any(secret in blob for secret in secrets):
+            issues.append({"path": name, "rule": "staged_local_credential_value"})
+        if Path(name).name.startswith(".env") and name.endswith(".example") and template_issues(blob):
+            issues.append({"path": name, "rule": "staged_credential_in_environment_template"})
     manifest = {"scope_name": "source upload preflight",
                 "scope": "current upload candidates; not a push receipt", "file_count": len(rows),
                 "total_bytes": sum(r["bytes"] for r in rows), "issues": issues, "files": rows}
