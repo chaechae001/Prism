@@ -2,7 +2,7 @@
 
 **여러 시선이 만나는 뉴스.**
 
-사건별 뉴스와 출처를 함께 살펴보고, 뉴스별 AI 대화로 내용을 이해하는 모바일 우선 웹앱입니다. 사진 중심 피드에 날짜별 스토리, 카테고리 탐색, 북마크를 결합했습니다.
+사건별 뉴스와 출처를 함께 살펴보고, 뉴스별 AI 대화로 내용을 이해하는 모바일 우선 웹앱입니다. 사진 중심 피드에 기사별 스토리, 카테고리 탐색, 북마크를 결합했습니다.
 
 ## 주요 기능
 
@@ -86,7 +86,7 @@ scripts/              계약 생성·데이터 검증 도구
 - 모델 응답의 JSON 형식과 출처 ID를 확인하고, 실패를 생성된 답변처럼 표시하지 않습니다.
 - 가상 뉴스·AI 생성 결과·검토되지 않은 분석을 구분해 표시합니다.
 
-[아키텍처](docs/ARCHITECTURE.md) · [API 계약](docs/API_CONTRACT.md) · [데이터 계약](docs/DATA_HANDOFF.md) · [DB·본문·요약 연결](docs/DATABASE.md) · [기여 방법](CONTRIBUTING.md)
+[아키텍처](docs/ARCHITECTURE.md) · [API 계약](docs/API_CONTRACT.md) · [데이터 계약](docs/DATA_HANDOFF.md) · [DB·본문·요약 연결](docs/DATABASE.md)
 
 ## 테스트
 
@@ -99,7 +99,7 @@ npm.cmd test
 npm.cmd run build
 ```
 
-GitHub Actions는 `main`·`dev`·`develop` 및 작업 브랜치의 push와 PR에서 백엔드 테스트, 프론트 테스트와 빌드, PostgreSQL 통합 검증을 실행합니다. CI에는 실제 AI 키나 Supabase 접속 정보가 필요하지 않습니다.
+GitHub Actions는 `main`·`dev` 및 작업 브랜치의 push와 PR에서 백엔드 테스트, 프론트 테스트와 빌드, PostgreSQL 통합 검증을 실행합니다. CI에는 실제 AI 키나 Supabase 접속 정보가 필요하지 않습니다.
 
 ## 실행 범위
 

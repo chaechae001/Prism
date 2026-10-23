@@ -1,4 +1,4 @@
-"""팀원이 API 연결에서 사용할 내부 RSS 조회 함수입니다."""
+"""공통 JSON 형식으로 RSS 수신 항목을 조회하는 내부 함수입니다."""
 
 from sqlalchemy import text
 
