@@ -1,9 +1,9 @@
 name: Checks
 on:
   push:
-    branches: [main, dev, develop, "feat/**", "feature/**"]
+    branches: [main, dev, "feat/**", "feature/**"]
   pull_request:
-    branches: [main, dev, develop, "feat/**", "feature/**"]
+    branches: [main, dev, "feat/**", "feature/**"]
 permissions:
   contents: read
 jobs:
