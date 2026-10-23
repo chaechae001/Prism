@@ -1,0 +1,122 @@
+{
+  "schema_version": "prism-clustering-testdata/v1",
+  "snapshot_date": "2026-10-23",
+  "includes_article_bodies": true,
+  "includes_pretrained_weights": false,
+  "includes_credentials": false,
+  "human_gold_labels": false,
+  "datasets": {
+    "anchor92": {
+      "articles": 92,
+      "groups": 74,
+      "image_urls": 92,
+      "scope": "user-requested private team test snapshot",
+      "automatic_publication": false,
+      "accuracy_measured": false,
+      "files": {
+        "articles.json": {
+          "bytes": 297799,
+          "sha256": "60a08ef768464909a6523ce844c2a92c1ef21cffec964a8a4b950c04f1c5fbc8"
+        },
+        "clustering.json": {
+          "bytes": 599883,
+          "sha256": "742c8bf9e6cff4926ec8cae3b672c7776dbbfa0cfd9a9583f179e46d02409dcc"
+        },
+        "handoff.json": {
+          "bytes": 560,
+          "sha256": "31d705d64c69398e333b0d8b1f172ca4a467efa76c22f20b1b881047953f71a0"
+        },
+        "images.json": {
+          "bytes": 48250,
+          "sha256": "90b6affa4156f20b5eb05f194fa68b98238f0b0611b487e43844eab5d5a2a91a"
+        },
+        "input.json": {
+          "bytes": 398001,
+          "sha256": "2a6b5c2136f5dc503151c32a27d5a524dcdd805f99bd7eddf2f68b82c76cdb51"
+        },
+        "lead-vectors.npz": {
+          "bytes": 136199,
+          "sha256": "c9942a9f03f0e4a3662105f86c8d9fe4be8e1248aae8d922c7d1102f5a32cb50"
+        },
+        "report.html": {
+          "bytes": 296444,
+          "sha256": "c8e8f2e40414a49d3b1a4ec100d33a3a2f9c26cb993f39a826c14fbfb2a34315"
+        },
+        "representatives.json": {
+          "bytes": 427317,
+          "sha256": "337027a0e8dc1c619e01d34a698d66cd50f2309be34267c8b725f1c335ec83bf"
+        },
+        "run.json": {
+          "bytes": 2179,
+          "sha256": "1a31c0e4528d4f76960e9c0e6d4408b437b2dbdb66727f5f52e5857c576fe82d"
+        },
+        "skipped.json": {
+          "bytes": 4,
+          "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+        },
+        "vectors.npz": {
+          "bytes": 136179,
+          "sha256": "02b6b84ed54715138e05ef537d04c9e7f8e2b6736c4393a2e36cc2ad2212fb7f"
+        }
+      }
+    },
+    "scheduled-sbs": {
+      "articles": 29,
+      "groups": 20,
+      "image_urls": 29,
+      "scope": "user-requested private team test snapshot",
+      "automatic_publication": false,
+      "accuracy_measured": false,
+      "files": {
+        "articles.json": {
+          "bytes": 89059,
+          "sha256": "ca90d0981400a2712faab059761ecfbc545f409ad86fbe1bc4e70cc6daa5d1d2"
+        },
+        "batch.json": {
+          "bytes": 101562,
+          "sha256": "f41324f0b58213b2293c1703754e40e61562cb2a60dc2874c614eeeab60fc9dd"
+        },
+        "clustering.json": {
+          "bytes": 191725,
+          "sha256": "dfb28298c8b72829a47818b39ea279d5e9e40e7f8dc0500ed082f0c1a7a3c8f1"
+        },
+        "handoff.json": {
+          "bytes": 560,
+          "sha256": "07868ef7d57d1dc08c17eaff415d47521eaf0f1177209c443ab51d2c486542b0"
+        },
+        "images.json": {
+          "bytes": 15604,
+          "sha256": "1c435d045c436218c70622b479fa0f7e7d2da673b217ca98a972e6f2762d282b"
+        },
+        "input.json": {
+          "bytes": 271121,
+          "sha256": "ddf77d3a31936b5c2b073b31fb04172d4f29b8e2a6931671a241cd8e191cac8c"
+        },
+        "lead-vectors.npz": {
+          "bytes": 44245,
+          "sha256": "72404c69a6469239054ecdfec109057425694d34a690337e81c98a0d1cdc9c10"
+        },
+        "report.html": {
+          "bytes": 78980,
+          "sha256": "e5739583cd87aa0d7e454001423c3e160f8d05a62289e7dc1b1bc8b228cee3cf"
+        },
+        "representatives.json": {
+          "bytes": 222101,
+          "sha256": "1d1514c647b42da2ecf0c2950c1272d0cbb95530e695787f4d745948acde5999"
+        },
+        "run.json": {
+          "bytes": 2112,
+          "sha256": "0e2ae9b2e28ed96e62b58a295b00cb747a46cbc2b59a0c9c8b6c5d18dde00c1b"
+        },
+        "skipped.json": {
+          "bytes": 4,
+          "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+        },
+        "vectors.npz": {
+          "bytes": 44206,
+          "sha256": "42decaf43345f37cfd07730e0a2c7eb4077a2757171118ddea5a42fe2de347e4"
+        }
+      }
+    }
+  }
+}

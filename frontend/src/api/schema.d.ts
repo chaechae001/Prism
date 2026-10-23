@@ -154,6 +154,11 @@ export interface components {
              * @default true
              */
             is_demo: boolean;
+            /**
+             * Image Url
+             * @description Original article image URL, when available. Optional for existing clients and data sources.
+             */
+            image_url?: string | null;
         };
         /** CategoriesResponse */
         CategoriesResponse: {

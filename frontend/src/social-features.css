@@ -611,3 +611,33 @@
     display: none;
   }
 }
+.cluster-preview-notice {
+  display: grid;
+  gap: 5px;
+  margin: 14px 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.cluster-preview-notice strong {
+  color: var(--primary);
+}
+.cluster-preview-notice small {
+  color: var(--muted);
+}
+.cluster-review-tag {
+  display: inline-block;
+  margin: 2px 0 8px;
+  color: var(--primary);
+  font-size: 11px;
+}
+.cluster-review-warning {
+  padding: 9px 11px;
+  border-left: 2px solid var(--primary);
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}

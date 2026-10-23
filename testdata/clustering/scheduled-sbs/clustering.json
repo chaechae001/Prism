@@ -1,0 +1,4342 @@
+{
+  "schema_version": "1.0",
+  "algorithm_version": "v2-seeded-source-anchor-strict-bridge/v1",
+  "model_id": "Xenova/multilingual-e5-small@761b726dd34fb83930e26aab4e9ac3899aa1fa78:onnx-int8:news-title-body-v2:w0.6:tokens384:overlap64",
+  "config": {
+    "k_candidates": [
+      8,
+      12,
+      16,
+      20,
+      24,
+      32
+    ],
+    "min_similarity": 0.94,
+    "min_lexical_similarity": 0.08,
+    "min_title_similarity": 0.025,
+    "rescue_margin": 0.02,
+    "max_event_gap_hours": 48.0,
+    "random_state": 42,
+    "max_articles": 2000,
+    "use_kmeans": true
+  },
+  "multiview_config": {
+    "full_similarity_floor": 0.93,
+    "lead_similarity_min": 0.935,
+    "title_lexical_min": 0.08,
+    "lead_lexical_min": 0.25,
+    "max_gap_hours": 24.0,
+    "mutual_top_k": 3,
+    "lead_characters": 600,
+    "max_articles": 500,
+    "detail_limit": 200,
+    "anchor_rescue": {
+      "full_similarity_min": 0.9,
+      "lead_similarity_min": 0.9,
+      "title_lexical_min": 0.025,
+      "lead_lexical_min": 0.08,
+      "strict_cross_pair_required": true,
+      "scope": "source-explicit-current-day-BOK-primary-rate-decision"
+    },
+    "neighbor_scope": "seed_group"
+  },
+  "baseline_result": {
+    "schema_version": "1.0",
+    "algorithm_version": "kmeans-title-evidence/v2",
+    "model_id": "Xenova/multilingual-e5-small@761b726dd34fb83930e26aab4e9ac3899aa1fa78:onnx-int8:news-title-body-v2:w0.6:tokens384:overlap64",
+    "config": {
+      "k_candidates": [
+        8,
+        12,
+        16,
+        20,
+        24,
+        32
+      ],
+      "min_similarity": 0.94,
+      "min_lexical_similarity": 0.08,
+      "min_title_similarity": 0.025,
+      "rescue_margin": 0.02,
+      "max_event_gap_hours": 48.0,
+      "random_state": 42,
+      "max_articles": 2000,
+      "use_kmeans": true
+    },
+    "groups": [
+      {
+        "group_id": "group-24688740a4d2ab20",
+        "article_ids": [
+          "article-5c04c463737e055be24d1547",
+          "article-764ba243cc3011e86d40b2c0",
+          "article-d9fe3a1d11aaac61bb6a7867"
+        ],
+        "representative_article_id": "article-5c04c463737e055be24d1547",
+        "representative_title": "SK하이닉스, 솔리다임 상장 전격 중단…\"시장 여건 고려\"",
+        "article_count": 3,
+        "publishers": [
+          "SBS"
+        ],
+        "publisher_count": 1,
+        "category": "economy",
+        "status": "candidate",
+        "same_event_confirmed": false,
+        "min_pair_similarity": 0.973142,
+        "mean_pair_similarity": 0.981924,
+        "kmeans_labels": [
+          2
+        ],
+        "evidence": {
+          "shared_terms": [
+            "손자회사인",
+            "만입니다",
+            "솔리다임",
+            "자본시장",
+            "하이닉스",
+            "알려진",
+            "주주들",
+            "기존"
+          ],
+          "term_method": "surface_words_not_ner",
+          "min_title_similarity": 0.259373,
+          "title_guard_enabled": true,
+          "body_kinds": {
+            "publisher_html": 3
+          }
+        }
+      },
+      {
+        "group_id": "group-65618b814556f050",
+        "article_ids": [
+          "article-54084df5e2aa31d4eaa020d4",
+          "article-5c9ac85891430311503e8279",
+          "article-5ff8218da9a32ad8f645ea7b"
+        ],
+        "representative_article_id": "article-5ff8218da9a32ad8f645ea7b",
+        "representative_title": "로그인 없이 서버 장악?…\"국내 취약 서버 11만 개\"",
+        "article_count": 3,
+        "publishers": [
+          "SBS"
+        ],
+        "publisher_count": 1,
+        "category": "economy",
+        "status": "candidate",
+        "same_event_confirmed": false,
+        "min_pair_similarity": 0.979112,
+        "mean_pair_similarity": 0.986193,
+        "kmeans_labels": [
+          4
+        ],
+        "evidence": {
+          "shared_terms": [
+            "드러났습니다",
+            "로그인하거나",
+            "발견됐습니다",
+            "빼돌리거나",
+            "착각하거나",
+            "개인정보",
+            "공개돼서",
+            "다루면서"
+          ],
+          "term_method": "surface_words_not_ner",
+          "min_title_similarity": 0.481552,
+          "title_guard_enabled": true,
+          "body_kinds": {
+            "publisher_html": 3
+          }
+        }
+      },
+      {
+        "group_id": "group-d7d720a828f223e1",
+        "article_ids": [
+          "article-9b153d0671cf32d485d67dc0",
+          "article-b0d3eb77d4df208736c814e5",
+          "article-f2d12c41d47db0ffb18fd183"
+        ],
+        "representative_article_id": "article-9b153d0671cf32d485d67dc0",
+        "representative_title": "\"노동부가 쿠팡에 면죄부\"…유족·노동계 반발",
+        "article_count": 3,
+        "publishers": [
+          "SBS"
+        ],
+        "publisher_count": 1,
+        "category": "economy",
+        "status": "candidate",
+        "same_event_confirmed": false,
+        "min_pair_similarity": 0.998174,
+        "mean_pair_similarity": 0.998453,
+        "kmeans_labels": [
+          3
+        ],
+        "evidence": {
+          "shared_terms": [
+            "고용노동부에",
+            "반발했습니다",
+            "비판했습니다",
+            "송치였습니다",
+            "지적했습니다",
+            "비판했지만",
+            "집행위원장",
+            "쿠팡대책위"
+          ],
+          "term_method": "surface_words_not_ner",
+          "min_title_similarity": 1.0,
+          "title_guard_enabled": true,
+          "body_kinds": {
+            "publisher_html": 3
+          }
+        }
+      },
+      {
+        "group_id": "group-788ff6d92b3a1f51",
+        "article_ids": [
+          "article-a4bdafce8a6673a75147d313",
+          "article-b9c7bf7baa4531874f58341e"
+        ],
+        "representative_article_id": "article-a4bdafce8a6673a75147d313",
+        "representative_title": "'산재 은폐' 지시 확인했지만…\"형사 처벌 어려워\"",
+        "article_count": 2,
+        "publishers": [
+          "SBS"
+        ],
+        "publisher_count": 1,
+        "category": "economy",
+        "status": "candidate",
+        "same_event_confirmed": false,
+        "min_pair_similarity": 0.978765,
+        "mean_pair_similarity": 0.978765,
+        "kmeans_labels": [
+          1
+        ],
+        "evidence": {
+          "shared_terms": [
+            "근로복지공단",
+            "보도했습니다",
+            "칠곡물류센터",
+            "파악됐습니다",
+            "판단했습니다",
+            "공소시효도",
+            "숨졌습니다",
+            "확인했다고"
+          ],
+          "term_method": "surface_words_not_ner",
+          "min_title_similarity": 0.289815,
+          "title_guard_enabled": true,
+          "body_kinds": {
+            "publisher_html": 2
+          }
+        }
+      },
+      {
+        "group_id": "group-b1948116c879bab0",
+        "article_ids": [
+          "article-2df57a84dd1c8aff7ce6bd60",
+          "article-339d649281acc69bc58d4baf"
+        ],
+        "representative_article_id": "article-2df57a84dd1c8aff7ce6bd60",
+        "representative_title": "\"합격\" 뒤 수백만 원 계약…활동도 환불도 '막막'",
+        "article_count": 2,
+        "publishers": [
+          "SBS"
+        ],
+        "publisher_count": 1,
+        "category": "economy",
+        "status": "candidate",
+        "same_event_confirmed": false,
+        "min_pair_similarity": 0.971524,
+        "mean_pair_similarity": 0.971524,
+        "kmeans_labels": [
+          5
+        ],
+        "evidence": {
+          "shared_terms": [
+            "기간만큼이라도",
+            "촬영이었습니다",
+            "실망했습니다",
+            "통보했습니다",
+            "돌려받으려",
+            "보내줬어요",
+            "연예인이나",
+            "요구했는데"
+          ],
+          "term_method": "surface_words_not_ner",
+          "min_title_similarity": 0.219604,
+          "title_guard_enabled": true,
+          "body_kinds": {
+            "publisher_html": 2
+          }
+        }
+      },
+      {
+        "group_id": "group-d18f735dc1d5b749",
+        "article_ids": [
+          "article-5144b72d95413473fe116a7d",
+          "article-c082e78f93d81433f9bb6e8e"
+        ],
+        "representative_article_id": "article-5144b72d95413473fe116a7d",
+        "representative_title": "금리 동결에도 3.5% 급락…AI 수익성·긴축 우려",
+        "article_count": 2,
+        "publishers": [
+          "SBS"
+        ],
+        "publisher_count": 1,
+        "category": "economy",
+        "status": "candidate",
+        "same_event_confirmed": false,
+        "min_pair_similarity": 0.959921,
+        "mean_pair_similarity": 0.959921,
+        "kmeans_labels": [
+          6
+        ],
+        "evidence": {
+          "shared_terms": [
+            "급락했습니다",
+            "동결했습니다",
+            "시사했습니다",
+            "인상했습니다",
+            "찬성했습니다",
+            "강조했는데",
+            "가능성도",
+            "금통위원"
+          ],
+          "term_method": "surface_words_not_ner",
+          "min_title_similarity": 0.13226,
+          "title_guard_enabled": true,
+          "body_kinds": {
+            "publisher_html": 2
+          }
+        }
+      },
+      {
+        "group_id": "group-05190846e8d13b7e",
+        "article_ids": [
+          "article-aeefa8b85737df0a11701a57"
+        ],
+        "representative_article_id": "article-aeefa8b85737df0a11701a57",
+        "representative_title": "올해 8월까지 미성년자 주택 매수 66건…지난해 37건",
+        "article_count": 1,
+        "publishers": [
+          "SBS"
+        ],
+        "publisher_count": 1,
+        "category": "economy",
+        "status": "singleton",
+        "same_event_confirmed": false,
+        "min_pair_similarity": null,
+        "mean_pair_similarity": null,
+        "kmeans_labels": [
+          7
+        ],
+        "evidence": {
+          "shared_terms": [],
+          "term_method": "surface_words_not_ner",
+          "min_title_similarity": null,
+          "title_guard_enabled": true,
+          "body_kinds": {
+            "publisher_html": 1
+          }
+        }
+      },
+      {
+        "group_id": "group-0a92408017e59478",
+        "article_ids": [
+          "article-27f8175e07fb1698cefaad68"
+        ],
+        "representative_article_id": "article-27f8175e07fb1698cefaad68",
+        "representative_title": "[친절한 경제] 바나나 관세 563억 깎아줬는데…소매가는 그대로, 왜?",
+        "article_count": 1,
+        "publishers": [
+          "SBS"
+        ],
+        "publisher_count": 1,
+        "category": "economy",
+        "status": "singleton",
+        "same_event_confirmed": false,
+        "min_pair_similarity": null,
+        "mean_pair_similarity": null,
+        "kmeans_labels": [
+          0
+        ],
+        "evidence": {
+          "shared_terms": [],
+          "term_method": "surface_words_not_ner",
+          "min_title_similarity": null,
+          "title_guard_enabled": true,
+          "body_kinds": {
+            "publisher_html": 1
+          }
+        }
+      },
+      {
+        "group_id": "group-0b910719f3859873",
+        "article_ids": [
+          "article-b228985f1f1e3df1cf5f267e"
+        ],
+        "representative_article_id": "article-b228985f1f1e3df1cf5f267e",
+        "representative_title": "배경훈 \"PHP 취약점 계기, 범부처 종합대책·조직 개편 검토\"",
+        "article_count": 1,
+        "publishers": [
+          "SBS"
+        ],
+        "publisher_count": 1,
+        "category": "economy",
+        "status": "singleton",
+        "same_event_confirmed": false,
+        "min_pair_similarity": null,
+        "mean_pair_similarity": null,
+        "kmeans_labels": [
+          4
+        ],
+        "evidence": {
+          "shared_terms": [],
+          "term_method": "surface_words_not_ner",
+          "min_title_similarity": null,
+          "title_guard_enabled": true,
+          "body_kinds": {
+            "publisher_html": 1
+          }
+        }
+      },
+      {
+        "group_id": "group-154b16b8f7d1736d",
+        "article_ids": [
+          "article-e4b91bf4349eab7676d3f757"
+        ],
+        "representative_article_id": "article-e4b91bf4349eab7676d3f757",
+        "representative_title": "\"서둘러라\"…전 세계 위험 빠뜨린 '치명적 결함' (풀영상)",
+        "article_count": 1,
+        "publishers": [
+          "SBS"
+        ],
+        "publisher_count": 1,
+        "category": "economy",
+        "status": "singleton",
+        "same_event_confirmed": false,
+        "min_pair_similarity": null,
+        "mean_pair_similarity": null,
+        "kmeans_labels": [
+          4
+        ],
+        "evidence": {
+          "shared_terms": [],
+          "term_method": "surface_words_not_ner",
+          "min_title_similarity": null,
+          "title_guard_enabled": true,
+          "body_kinds": {
+            "publisher_html": 1
+          }
+        }
+      },
+      {
+        "group_id": "group-18feb0c5515d4fed",
+        "article_ids": [
+          "article-0696791b2e783ad350057b3c"
+        ],
+        "representative_article_id": "article-0696791b2e783ad350057b3c",
+        "representative_title": "아웃렛판 블랙프라이데이…오늘부터 나흘간 할인 행사",
+        "article_count": 1,
+        "publishers": [
+          "SBS"
+        ],
+        "publisher_count": 1,
+        "category": "economy",
+        "status": "singleton",
+        "same_event_confirmed": false,
+        "min_pair_similarity": null,
+        "mean_pair_similarity": null,
+        "kmeans_labels": [
+          9
+        ],
+        "evidence": {
+          "shared_terms": [],
+          "term_method": "surface_words_not_ner",
+          "min_title_similarity": null,
+          "title_guard_enabled": true,
+          "body_kinds": {
+            "publisher_html": 1
+          }
+        }
+      },
+      {
+        "group_id": "group-1eb8b45af3dbdf47",
+        "article_ids": [
+          "article-9f46cab4e01d015f8ce56faa"
+        ],
+        "representative_article_id": "article-9f46cab4e01d015f8ce56faa",
+        "representative_title": "계란값 '금값'에 3분기 산란계 사육 증가",
+        "article_count": 1,
+        "publishers": [
+          "SBS"
+        ],
+        "publisher_count": 1,
+        "category": "economy",
+        "status": "singleton",
+        "same_event_confirmed": false,
+        "min_pair_similarity": null,
+        "mean_pair_similarity": null,
+        "kmeans_labels": [
+          11
+        ],
+        "evidence": {
+          "shared_terms": [],
+          "term_method": "surface_words_not_ner",
+          "min_title_similarity": null,
+          "title_guard_enabled": true,
+          "body_kinds": {
+            "publisher_html": 1
+          }
+        }
+      },
+      {
+        "group_id": "group-339da9750dbd9104",
+        "article_ids": [
+          "article-cf1a2e8c2a5aa970eb63db1c"
+        ],
+        "representative_article_id": "article-cf1a2e8c2a5aa970eb63db1c",
+        "representative_title": "먹으면 서서히 죽음이 다가오는 달콤함 / 스브스뉴스",
+        "article_count": 1,
+        "publishers": [
+          "SBS"
+        ],
+        "publisher_count": 1,
+        "category": "economy",
+        "status": "singleton",
+        "same_event_confirmed": false,
+        "min_pair_similarity": null,
+        "mean_pair_similarity": null,
+        "kmeans_labels": [
+          8
+        ],
+        "evidence": {
+          "shared_terms": [],
+          "term_method": "surface_words_not_ner",
+          "min_title_similarity": null,
+          "title_guard_enabled": true,
+          "body_kinds": {
+            "publisher_html": 1
+          }
+        }
+      },
+      {
+        "group_id": "group-c5e7b9915ef1e413",
+        "article_ids": [
+          "article-fcdfc4b88783de767a59a844"
+        ],
+        "representative_article_id": "article-fcdfc4b88783de767a59a844",
+        "representative_title": "코스피, 2.4% 내린 5,403 개장…코스닥도 2% 내려",
+        "article_count": 1,
+        "publishers": [
+          "SBS"
+        ],
+        "publisher_count": 1,
+        "category": "economy",
+        "status": "singleton",
+        "same_event_confirmed": false,
+        "min_pair_similarity": null,
+        "mean_pair_similarity": null,
+        "kmeans_labels": [
+          6
+        ],
+        "evidence": {
+          "shared_terms": [],
+          "term_method": "surface_words_not_ner",
+          "min_title_similarity": null,
+          "title_guard_enabled": true,
+          "body_kinds": {
+            "publisher_html": 1
+          }
+        }
+      },
+      {
+        "group_id": "group-cd70499da5c0c640",
+        "article_ids": [
+          "article-7a56d0d1db2ebeef5b323911"
+        ],
+        "representative_article_id": "article-7a56d0d1db2ebeef5b323911",
+        "representative_title": "\"오래 묶어두기? 짧게 굴릴래\"…'초단기 재테크' 인기",
+        "article_count": 1,
+        "publishers": [
+          "SBS"
+        ],
+        "publisher_count": 1,
+        "category": "economy",
+        "status": "singleton",
+        "same_event_confirmed": false,
+        "min_pair_similarity": null,
+        "mean_pair_similarity": null,
+        "kmeans_labels": [
+          6
+        ],
+        "evidence": {
+          "shared_terms": [],
+          "term_method": "surface_words_not_ner",
+          "min_title_similarity": null,
+          "title_guard_enabled": true,
+          "body_kinds": {
+            "publisher_html": 1
+          }
+        }
+      },
+      {
+        "group_id": "group-cee1e68a8b8604d0",
+        "article_ids": [
+          "article-ab0bb21e9727c2eca2457aa2"
+        ],
+        "representative_article_id": "article-ab0bb21e9727c2eca2457aa2",
+        "representative_title": "여론은 난리 났는데…국민연금, 300억 성과급 잔치?",
+        "article_count": 1,
+        "publishers": [
+          "SBS"
+        ],
+        "publisher_count": 1,
+        "category": "economy",
+        "status": "singleton",
+        "same_event_confirmed": false,
+        "min_pair_similarity": null,
+        "mean_pair_similarity": null,
+        "kmeans_labels": [
+          10
+        ],
+        "evidence": {
+          "shared_terms": [],
+          "term_method": "surface_words_not_ner",
+          "min_title_similarity": null,
+          "title_guard_enabled": true,
+          "body_kinds": {
+            "publisher_html": 1
+          }
+        }
+      },
+      {
+        "group_id": "group-d5c275d58b9a2eca",
+        "article_ids": [
+          "article-d02e82f01c734a7dc4e38be6"
+        ],
+        "representative_article_id": "article-d02e82f01c734a7dc4e38be6",
+        "representative_title": "[글로벌 마켓시황] 투자 심리 위축…미 국채 금리 큰 폭↓",
+        "article_count": 1,
+        "publishers": [
+          "SBS"
+        ],
+        "publisher_count": 1,
+        "category": "economy",
+        "status": "singleton",
+        "same_event_confirmed": false,
+        "min_pair_similarity": null,
+        "mean_pair_similarity": null,
+        "kmeans_labels": [
+          6
+        ],
+        "evidence": {
+          "shared_terms": [],
+          "term_method": "surface_words_not_ner",
+          "min_title_similarity": null,
+          "title_guard_enabled": true,
+          "body_kinds": {
+            "publisher_html": 1
+          }
+        }
+      },
+      {
+        "group_id": "group-d655898e11103080",
+        "article_ids": [
+          "article-f2cbc4de0317cecb4fbc3f77"
+        ],
+        "representative_article_id": "article-f2cbc4de0317cecb4fbc3f77",
+        "representative_title": "\"모두 수능 파이팅!\"…벨기에 왕실 초콜릿 비결은",
+        "article_count": 1,
+        "publishers": [
+          "SBS"
+        ],
+        "publisher_count": 1,
+        "category": "economy",
+        "status": "singleton",
+        "same_event_confirmed": false,
+        "min_pair_similarity": null,
+        "mean_pair_similarity": null,
+        "kmeans_labels": [
+          8
+        ],
+        "evidence": {
+          "shared_terms": [],
+          "term_method": "surface_words_not_ner",
+          "min_title_similarity": null,
+          "title_guard_enabled": true,
+          "body_kinds": {
+            "publisher_html": 1
+          }
+        }
+      },
+      {
+        "group_id": "group-de1e3e70bd505567",
+        "article_ids": [
+          "article-0bd6e6a82bcad52c72654d1a"
+        ],
+        "representative_article_id": "article-0bd6e6a82bcad52c72654d1a",
+        "representative_title": "8월 은행 대출 연체율 0.69%…한 달 사이 0.06%p ↑",
+        "article_count": 1,
+        "publishers": [
+          "SBS"
+        ],
+        "publisher_count": 1,
+        "category": "economy",
+        "status": "singleton",
+        "same_event_confirmed": false,
+        "min_pair_similarity": null,
+        "mean_pair_similarity": null,
+        "kmeans_labels": [
+          6
+        ],
+        "evidence": {
+          "shared_terms": [],
+          "term_method": "surface_words_not_ner",
+          "min_title_similarity": null,
+          "title_guard_enabled": true,
+          "body_kinds": {
+            "publisher_html": 1
+          }
+        }
+      },
+      {
+        "group_id": "group-e895cc20a2a617e1",
+        "article_ids": [
+          "article-26befd41ca4c8d14241b9e0c"
+        ],
+        "representative_article_id": "article-26befd41ca4c8d14241b9e0c",
+        "representative_title": "[자막뉴스] 한국인 '무주택자' 넘쳐 나는데…중국인 'K-자가' 6만 채 돌파",
+        "article_count": 1,
+        "publishers": [
+          "SBS"
+        ],
+        "publisher_count": 1,
+        "category": "economy",
+        "status": "singleton",
+        "same_event_confirmed": false,
+        "min_pair_similarity": null,
+        "mean_pair_similarity": null,
+        "kmeans_labels": [
+          7
+        ],
+        "evidence": {
+          "shared_terms": [],
+          "term_method": "surface_words_not_ner",
+          "min_title_similarity": null,
+          "title_guard_enabled": true,
+          "body_kinds": {
+            "publisher_html": 1
+          }
+        }
+      }
+    ],
+    "diagnostics": {
+      "article_count": 29,
+      "selected_k": 12,
+      "k_comparison": [
+        {
+          "k": 8,
+          "silhouette_cosine": 0.377042,
+          "inertia": 1.594102
+        },
+        {
+          "k": 12,
+          "silhouette_cosine": 0.421313,
+          "inertia": 1.007491
+        },
+        {
+          "k": 16,
+          "silhouette_cosine": 0.4156,
+          "inertia": 0.537905
+        },
+        {
+          "k": 20,
+          "silhouette_cosine": 0.407052,
+          "inertia": 0.15665
+        },
+        {
+          "k": 24,
+          "silhouette_cosine": 0.261898,
+          "inertia": 0.032913
+        }
+      ],
+      "accuracy_measured": false,
+      "requires_human_review": true,
+      "review_pairs": [
+        {
+          "article_ids": [
+            "article-54084df5e2aa31d4eaa020d4",
+            "article-e4b91bf4349eab7676d3f757"
+          ],
+          "similarity": 0.929283,
+          "lexical_similarity": 0.133262,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.013296,
+          "required_similarity": 0.94,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-9b153d0671cf32d485d67dc0",
+            "article-a4bdafce8a6673a75147d313"
+          ],
+          "similarity": 0.92822,
+          "lexical_similarity": 0.175145,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.0,
+          "required_similarity": 0.96,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-a4bdafce8a6673a75147d313",
+            "article-b0d3eb77d4df208736c814e5"
+          ],
+          "similarity": 0.92727,
+          "lexical_similarity": 0.175719,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.0,
+          "required_similarity": 0.96,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-5ff8218da9a32ad8f645ea7b",
+            "article-e4b91bf4349eab7676d3f757"
+          ],
+          "similarity": 0.927203,
+          "lexical_similarity": 0.164189,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.0,
+          "required_similarity": 0.94,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-a4bdafce8a6673a75147d313",
+            "article-f2d12c41d47db0ffb18fd183"
+          ],
+          "similarity": 0.926827,
+          "lexical_similarity": 0.167174,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.0,
+          "required_similarity": 0.96,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-5c9ac85891430311503e8279",
+            "article-b228985f1f1e3df1cf5f267e"
+          ],
+          "similarity": 0.926034,
+          "lexical_similarity": 0.079649,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.028421,
+          "required_similarity": 0.94,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_text_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-54084df5e2aa31d4eaa020d4",
+            "article-b228985f1f1e3df1cf5f267e"
+          ],
+          "similarity": 0.926021,
+          "lexical_similarity": 0.09118,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.027873,
+          "required_similarity": 0.94,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-5ff8218da9a32ad8f645ea7b",
+            "article-b228985f1f1e3df1cf5f267e"
+          ],
+          "similarity": 0.925682,
+          "lexical_similarity": 0.099703,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.028421,
+          "required_similarity": 0.94,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-9b153d0671cf32d485d67dc0",
+            "article-b9c7bf7baa4531874f58341e"
+          ],
+          "similarity": 0.925322,
+          "lexical_similarity": 0.172057,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.0,
+          "required_similarity": 0.96,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-5c9ac85891430311503e8279",
+            "article-e4b91bf4349eab7676d3f757"
+          ],
+          "similarity": 0.925095,
+          "lexical_similarity": 0.107307,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.0,
+          "required_similarity": 0.94,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-b9c7bf7baa4531874f58341e",
+            "article-f2d12c41d47db0ffb18fd183"
+          ],
+          "similarity": 0.924727,
+          "lexical_similarity": 0.17109,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.0,
+          "required_similarity": 0.96,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-b0d3eb77d4df208736c814e5",
+            "article-b9c7bf7baa4531874f58341e"
+          ],
+          "similarity": 0.924573,
+          "lexical_similarity": 0.17263,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.0,
+          "required_similarity": 0.96,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-5144b72d95413473fe116a7d",
+            "article-d02e82f01c734a7dc4e38be6"
+          ],
+          "similarity": 0.92168,
+          "lexical_similarity": 0.065444,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.028408,
+          "required_similarity": 0.94,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_text_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-26befd41ca4c8d14241b9e0c",
+            "article-aeefa8b85737df0a11701a57"
+          ],
+          "similarity": 0.917538,
+          "lexical_similarity": 0.103465,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.015839,
+          "required_similarity": 0.94,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-c082e78f93d81433f9bb6e8e",
+            "article-d02e82f01c734a7dc4e38be6"
+          ],
+          "similarity": 0.915251,
+          "lexical_similarity": 0.060359,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.030636,
+          "required_similarity": 0.94,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_text_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-c082e78f93d81433f9bb6e8e",
+            "article-fcdfc4b88783de767a59a844"
+          ],
+          "similarity": 0.91214,
+          "lexical_similarity": 0.052695,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.059668,
+          "required_similarity": 0.94,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_text_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-339d649281acc69bc58d4baf",
+            "article-a4bdafce8a6673a75147d313"
+          ],
+          "similarity": 0.904621,
+          "lexical_similarity": 0.041856,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.0,
+          "required_similarity": 0.96,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_text_evidence",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-b228985f1f1e3df1cf5f267e",
+            "article-e4b91bf4349eab7676d3f757"
+          ],
+          "similarity": 0.904467,
+          "lexical_similarity": 0.101756,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.0,
+          "required_similarity": 0.94,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-5144b72d95413473fe116a7d",
+            "article-fcdfc4b88783de767a59a844"
+          ],
+          "similarity": 0.904404,
+          "lexical_similarity": 0.045754,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.024554,
+          "required_similarity": 0.94,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_text_evidence",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-339d649281acc69bc58d4baf",
+            "article-b9c7bf7baa4531874f58341e"
+          ],
+          "similarity": 0.903017,
+          "lexical_similarity": 0.040593,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.0,
+          "required_similarity": 0.96,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_text_evidence",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-d02e82f01c734a7dc4e38be6",
+            "article-fcdfc4b88783de767a59a844"
+          ],
+          "similarity": 0.90252,
+          "lexical_similarity": 0.049275,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.0,
+          "required_similarity": 0.94,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_text_evidence",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-5144b72d95413473fe116a7d",
+            "article-7a56d0d1db2ebeef5b323911"
+          ],
+          "similarity": 0.901112,
+          "lexical_similarity": 0.048782,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.0,
+          "required_similarity": 0.94,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_text_evidence",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-7a56d0d1db2ebeef5b323911",
+            "article-c082e78f93d81433f9bb6e8e"
+          ],
+          "similarity": 0.901086,
+          "lexical_similarity": 0.049986,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.00489,
+          "required_similarity": 0.94,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_text_evidence",
+            "weak_title_evidence"
+          ]
+        }
+      ],
+      "coarse_assignments": {
+        "article-0696791b2e783ad350057b3c": 9,
+        "article-0bd6e6a82bcad52c72654d1a": 6,
+        "article-26befd41ca4c8d14241b9e0c": 7,
+        "article-27f8175e07fb1698cefaad68": 0,
+        "article-2df57a84dd1c8aff7ce6bd60": 5,
+        "article-339d649281acc69bc58d4baf": 5,
+        "article-5144b72d95413473fe116a7d": 6,
+        "article-54084df5e2aa31d4eaa020d4": 4,
+        "article-5c04c463737e055be24d1547": 2,
+        "article-5c9ac85891430311503e8279": 4,
+        "article-5ff8218da9a32ad8f645ea7b": 4,
+        "article-764ba243cc3011e86d40b2c0": 2,
+        "article-7a56d0d1db2ebeef5b323911": 6,
+        "article-9b153d0671cf32d485d67dc0": 3,
+        "article-9f46cab4e01d015f8ce56faa": 11,
+        "article-a4bdafce8a6673a75147d313": 1,
+        "article-ab0bb21e9727c2eca2457aa2": 10,
+        "article-aeefa8b85737df0a11701a57": 7,
+        "article-b0d3eb77d4df208736c814e5": 3,
+        "article-b228985f1f1e3df1cf5f267e": 4,
+        "article-b9c7bf7baa4531874f58341e": 1,
+        "article-c082e78f93d81433f9bb6e8e": 6,
+        "article-cf1a2e8c2a5aa970eb63db1c": 8,
+        "article-d02e82f01c734a7dc4e38be6": 6,
+        "article-d9fe3a1d11aaac61bb6a7867": 2,
+        "article-e4b91bf4349eab7676d3f757": 4,
+        "article-f2cbc4de0317cecb4fbc3f77": 8,
+        "article-f2d12c41d47db0ffb18fd183": 3,
+        "article-fcdfc4b88783de767a59a844": 6
+      },
+      "group_count": 20,
+      "multi_article_group_count": 6,
+      "multi_publisher_group_count": 0,
+      "singleton_count": 14,
+      "missing_publication_date_count": 0,
+      "body_kinds": {
+        "publisher_html": 29
+      },
+      "embedding": {
+        "backend": "onnx_cpu_int8_cached",
+        "article_count": 29,
+        "dimensions": 384,
+        "cache": {
+          "schema": "news-e5-cache/1",
+          "namespace": "5c1ccc425759a11e04f1c52c358263668c2bc0dc5f9bb5506a820d6de6a8e901",
+          "model_files": {
+            "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+            "onnx/model_quantized.onnx": "f80102d3f2a1229f387d3c81909990d8945513e347b0eab049f7de3c6f98c193"
+          },
+          "representation": {
+            "title_weight": 0.6,
+            "window_tokens": 384,
+            "overlap_tokens": 64,
+            "batch_size": 8
+          },
+          "runtime_versions": {
+            "onnxruntime": "1.31.0",
+            "tokenizers": "0.23.3",
+            "numpy": "2.5.4"
+          },
+          "hit_count": 29,
+          "miss_count": 0,
+          "unique_text_count": 29,
+          "unique_miss_count": 0,
+          "corrupt_entry_count": 0,
+          "lookup_and_model_hash_seconds": 0.313984900014475,
+          "inference_seconds": 2.00001522898674e-07,
+          "total_seconds": 0.3140242000226863
+        },
+        "miss_embedding": null
+      },
+      "top_pairs": [
+        {
+          "article_ids": [
+            "article-5c9ac85891430311503e8279",
+            "article-5ff8218da9a32ad8f645ea7b"
+          ],
+          "similarity": 0.999296,
+          "lexical_similarity": 0.80634,
+          "within_time_window": true,
+          "grouped_together": true,
+          "title_similarity": 1.0,
+          "required_similarity": 0.94,
+          "eligible": true,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "candidate_rule_match"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-9b153d0671cf32d485d67dc0",
+            "article-b0d3eb77d4df208736c814e5"
+          ],
+          "similarity": 0.998816,
+          "lexical_similarity": 0.972111,
+          "within_time_window": true,
+          "grouped_together": true,
+          "title_similarity": 1.0,
+          "required_similarity": 0.94,
+          "eligible": true,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "candidate_rule_match"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-9b153d0671cf32d485d67dc0",
+            "article-f2d12c41d47db0ffb18fd183"
+          ],
+          "similarity": 0.998368,
+          "lexical_similarity": 0.898735,
+          "within_time_window": true,
+          "grouped_together": true,
+          "title_similarity": 1.0,
+          "required_similarity": 0.94,
+          "eligible": true,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "candidate_rule_match"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-b0d3eb77d4df208736c814e5",
+            "article-f2d12c41d47db0ffb18fd183"
+          ],
+          "similarity": 0.998174,
+          "lexical_similarity": 0.899212,
+          "within_time_window": true,
+          "grouped_together": true,
+          "title_similarity": 1.0,
+          "required_similarity": 0.94,
+          "eligible": true,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "candidate_rule_match"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-5c04c463737e055be24d1547",
+            "article-d9fe3a1d11aaac61bb6a7867"
+          ],
+          "similarity": 0.992121,
+          "lexical_similarity": 0.459631,
+          "within_time_window": true,
+          "grouped_together": true,
+          "title_similarity": 0.781068,
+          "required_similarity": 0.94,
+          "eligible": true,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "candidate_rule_match"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-5c04c463737e055be24d1547",
+            "article-764ba243cc3011e86d40b2c0"
+          ],
+          "similarity": 0.98051,
+          "lexical_similarity": 0.542748,
+          "within_time_window": true,
+          "grouped_together": true,
+          "title_similarity": 0.42827,
+          "required_similarity": 0.94,
+          "eligible": true,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "candidate_rule_match"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-54084df5e2aa31d4eaa020d4",
+            "article-5ff8218da9a32ad8f645ea7b"
+          ],
+          "similarity": 0.980171,
+          "lexical_similarity": 0.760142,
+          "within_time_window": true,
+          "grouped_together": true,
+          "title_similarity": 0.481552,
+          "required_similarity": 0.94,
+          "eligible": true,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "candidate_rule_match"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-54084df5e2aa31d4eaa020d4",
+            "article-5c9ac85891430311503e8279"
+          ],
+          "similarity": 0.979112,
+          "lexical_similarity": 0.746628,
+          "within_time_window": true,
+          "grouped_together": true,
+          "title_similarity": 0.481552,
+          "required_similarity": 0.94,
+          "eligible": true,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "candidate_rule_match"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-a4bdafce8a6673a75147d313",
+            "article-b9c7bf7baa4531874f58341e"
+          ],
+          "similarity": 0.978765,
+          "lexical_similarity": 0.754833,
+          "within_time_window": true,
+          "grouped_together": true,
+          "title_similarity": 0.289815,
+          "required_similarity": 0.94,
+          "eligible": true,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "candidate_rule_match"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-764ba243cc3011e86d40b2c0",
+            "article-d9fe3a1d11aaac61bb6a7867"
+          ],
+          "similarity": 0.973142,
+          "lexical_similarity": 0.362595,
+          "within_time_window": true,
+          "grouped_together": true,
+          "title_similarity": 0.259373,
+          "required_similarity": 0.94,
+          "eligible": true,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "candidate_rule_match"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-2df57a84dd1c8aff7ce6bd60",
+            "article-339d649281acc69bc58d4baf"
+          ],
+          "similarity": 0.971524,
+          "lexical_similarity": 0.828708,
+          "within_time_window": true,
+          "grouped_together": true,
+          "title_similarity": 0.219604,
+          "required_similarity": 0.94,
+          "eligible": true,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "candidate_rule_match"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-5144b72d95413473fe116a7d",
+            "article-c082e78f93d81433f9bb6e8e"
+          ],
+          "similarity": 0.959921,
+          "lexical_similarity": 0.76051,
+          "within_time_window": true,
+          "grouped_together": true,
+          "title_similarity": 0.13226,
+          "required_similarity": 0.94,
+          "eligible": true,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "candidate_rule_match"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-54084df5e2aa31d4eaa020d4",
+            "article-e4b91bf4349eab7676d3f757"
+          ],
+          "similarity": 0.929283,
+          "lexical_similarity": 0.133262,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.013296,
+          "required_similarity": 0.94,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-9b153d0671cf32d485d67dc0",
+            "article-a4bdafce8a6673a75147d313"
+          ],
+          "similarity": 0.92822,
+          "lexical_similarity": 0.175145,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.0,
+          "required_similarity": 0.96,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-a4bdafce8a6673a75147d313",
+            "article-b0d3eb77d4df208736c814e5"
+          ],
+          "similarity": 0.92727,
+          "lexical_similarity": 0.175719,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.0,
+          "required_similarity": 0.96,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-5ff8218da9a32ad8f645ea7b",
+            "article-e4b91bf4349eab7676d3f757"
+          ],
+          "similarity": 0.927203,
+          "lexical_similarity": 0.164189,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.0,
+          "required_similarity": 0.94,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-a4bdafce8a6673a75147d313",
+            "article-f2d12c41d47db0ffb18fd183"
+          ],
+          "similarity": 0.926827,
+          "lexical_similarity": 0.167174,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.0,
+          "required_similarity": 0.96,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-5c9ac85891430311503e8279",
+            "article-b228985f1f1e3df1cf5f267e"
+          ],
+          "similarity": 0.926034,
+          "lexical_similarity": 0.079649,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.028421,
+          "required_similarity": 0.94,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_text_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-54084df5e2aa31d4eaa020d4",
+            "article-b228985f1f1e3df1cf5f267e"
+          ],
+          "similarity": 0.926021,
+          "lexical_similarity": 0.09118,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.027873,
+          "required_similarity": 0.94,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-5ff8218da9a32ad8f645ea7b",
+            "article-b228985f1f1e3df1cf5f267e"
+          ],
+          "similarity": 0.925682,
+          "lexical_similarity": 0.099703,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.028421,
+          "required_similarity": 0.94,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-9b153d0671cf32d485d67dc0",
+            "article-b9c7bf7baa4531874f58341e"
+          ],
+          "similarity": 0.925322,
+          "lexical_similarity": 0.172057,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.0,
+          "required_similarity": 0.96,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-5c9ac85891430311503e8279",
+            "article-e4b91bf4349eab7676d3f757"
+          ],
+          "similarity": 0.925095,
+          "lexical_similarity": 0.107307,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.0,
+          "required_similarity": 0.94,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-b9c7bf7baa4531874f58341e",
+            "article-f2d12c41d47db0ffb18fd183"
+          ],
+          "similarity": 0.924727,
+          "lexical_similarity": 0.17109,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.0,
+          "required_similarity": 0.96,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-b0d3eb77d4df208736c814e5",
+            "article-b9c7bf7baa4531874f58341e"
+          ],
+          "similarity": 0.924573,
+          "lexical_similarity": 0.17263,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.0,
+          "required_similarity": 0.96,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-5144b72d95413473fe116a7d",
+            "article-d02e82f01c734a7dc4e38be6"
+          ],
+          "similarity": 0.92168,
+          "lexical_similarity": 0.065444,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.028408,
+          "required_similarity": 0.94,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_text_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-26befd41ca4c8d14241b9e0c",
+            "article-aeefa8b85737df0a11701a57"
+          ],
+          "similarity": 0.917538,
+          "lexical_similarity": 0.103465,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.015839,
+          "required_similarity": 0.94,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-c082e78f93d81433f9bb6e8e",
+            "article-d02e82f01c734a7dc4e38be6"
+          ],
+          "similarity": 0.915251,
+          "lexical_similarity": 0.060359,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.030636,
+          "required_similarity": 0.94,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_text_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-c082e78f93d81433f9bb6e8e",
+            "article-fcdfc4b88783de767a59a844"
+          ],
+          "similarity": 0.91214,
+          "lexical_similarity": 0.052695,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.059668,
+          "required_similarity": 0.94,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_text_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-339d649281acc69bc58d4baf",
+            "article-a4bdafce8a6673a75147d313"
+          ],
+          "similarity": 0.904621,
+          "lexical_similarity": 0.041856,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.0,
+          "required_similarity": 0.96,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_text_evidence",
+            "weak_title_evidence"
+          ]
+        },
+        {
+          "article_ids": [
+            "article-b228985f1f1e3df1cf5f267e",
+            "article-e4b91bf4349eab7676d3f757"
+          ],
+          "similarity": 0.904467,
+          "lexical_similarity": 0.101756,
+          "within_time_window": true,
+          "grouped_together": false,
+          "title_similarity": 0.0,
+          "required_similarity": 0.94,
+          "eligible": false,
+          "strong_title_boundary_rescue": false,
+          "reasons": [
+            "below_semantic_threshold",
+            "weak_title_evidence"
+          ]
+        }
+      ],
+      "review_pair_total": 23,
+      "review_pair_limit": 60
+    }
+  },
+  "groups": [
+    {
+      "group_id": "group-24688740a4d2ab20",
+      "article_ids": [
+        "article-5c04c463737e055be24d1547",
+        "article-764ba243cc3011e86d40b2c0",
+        "article-d9fe3a1d11aaac61bb6a7867"
+      ],
+      "representative_article_id": "article-5c04c463737e055be24d1547",
+      "representative_title": "SK하이닉스, 솔리다임 상장 전격 중단…\"시장 여건 고려\"",
+      "article_count": 3,
+      "publishers": [
+        "SBS"
+      ],
+      "publisher_count": 1,
+      "category": "economy",
+      "status": "candidate",
+      "same_event_confirmed": false,
+      "min_pair_similarity": 0.973142,
+      "mean_pair_similarity": 0.981924,
+      "kmeans_labels": [
+        2
+      ],
+      "evidence": {
+        "method": "source-anchor-strict-bridge/v1",
+        "source_v2_group_ids": [
+          "group-24688740a4d2ab20"
+        ],
+        "inherited_relations_are_not_human_verified": true
+      },
+      "quality_review_required": false,
+      "quality_review_reasons": []
+    },
+    {
+      "group_id": "group-65618b814556f050",
+      "article_ids": [
+        "article-54084df5e2aa31d4eaa020d4",
+        "article-5c9ac85891430311503e8279",
+        "article-5ff8218da9a32ad8f645ea7b"
+      ],
+      "representative_article_id": "article-5ff8218da9a32ad8f645ea7b",
+      "representative_title": "로그인 없이 서버 장악?…\"국내 취약 서버 11만 개\"",
+      "article_count": 3,
+      "publishers": [
+        "SBS"
+      ],
+      "publisher_count": 1,
+      "category": "economy",
+      "status": "candidate",
+      "same_event_confirmed": false,
+      "min_pair_similarity": 0.979112,
+      "mean_pair_similarity": 0.986193,
+      "kmeans_labels": [
+        4
+      ],
+      "evidence": {
+        "method": "source-anchor-strict-bridge/v1",
+        "source_v2_group_ids": [
+          "group-65618b814556f050"
+        ],
+        "inherited_relations_are_not_human_verified": true
+      },
+      "quality_review_required": false,
+      "quality_review_reasons": []
+    },
+    {
+      "group_id": "group-d7d720a828f223e1",
+      "article_ids": [
+        "article-9b153d0671cf32d485d67dc0",
+        "article-b0d3eb77d4df208736c814e5",
+        "article-f2d12c41d47db0ffb18fd183"
+      ],
+      "representative_article_id": "article-9b153d0671cf32d485d67dc0",
+      "representative_title": "\"노동부가 쿠팡에 면죄부\"…유족·노동계 반발",
+      "article_count": 3,
+      "publishers": [
+        "SBS"
+      ],
+      "publisher_count": 1,
+      "category": "economy",
+      "status": "candidate",
+      "same_event_confirmed": false,
+      "min_pair_similarity": 0.998174,
+      "mean_pair_similarity": 0.998453,
+      "kmeans_labels": [
+        3
+      ],
+      "evidence": {
+        "method": "source-anchor-strict-bridge/v1",
+        "source_v2_group_ids": [
+          "group-d7d720a828f223e1"
+        ],
+        "inherited_relations_are_not_human_verified": true
+      },
+      "quality_review_required": false,
+      "quality_review_reasons": []
+    },
+    {
+      "group_id": "group-788ff6d92b3a1f51",
+      "article_ids": [
+        "article-a4bdafce8a6673a75147d313",
+        "article-b9c7bf7baa4531874f58341e"
+      ],
+      "representative_article_id": "article-a4bdafce8a6673a75147d313",
+      "representative_title": "'산재 은폐' 지시 확인했지만…\"형사 처벌 어려워\"",
+      "article_count": 2,
+      "publishers": [
+        "SBS"
+      ],
+      "publisher_count": 1,
+      "category": "economy",
+      "status": "candidate",
+      "same_event_confirmed": false,
+      "min_pair_similarity": 0.978765,
+      "mean_pair_similarity": 0.978765,
+      "kmeans_labels": [
+        1
+      ],
+      "evidence": {
+        "method": "source-anchor-strict-bridge/v1",
+        "source_v2_group_ids": [
+          "group-788ff6d92b3a1f51"
+        ],
+        "inherited_relations_are_not_human_verified": true
+      },
+      "quality_review_required": false,
+      "quality_review_reasons": []
+    },
+    {
+      "group_id": "group-b1948116c879bab0",
+      "article_ids": [
+        "article-2df57a84dd1c8aff7ce6bd60",
+        "article-339d649281acc69bc58d4baf"
+      ],
+      "representative_article_id": "article-2df57a84dd1c8aff7ce6bd60",
+      "representative_title": "\"합격\" 뒤 수백만 원 계약…활동도 환불도 '막막'",
+      "article_count": 2,
+      "publishers": [
+        "SBS"
+      ],
+      "publisher_count": 1,
+      "category": "economy",
+      "status": "candidate",
+      "same_event_confirmed": false,
+      "min_pair_similarity": 0.971524,
+      "mean_pair_similarity": 0.971524,
+      "kmeans_labels": [
+        5
+      ],
+      "evidence": {
+        "method": "source-anchor-strict-bridge/v1",
+        "source_v2_group_ids": [
+          "group-b1948116c879bab0"
+        ],
+        "inherited_relations_are_not_human_verified": true
+      },
+      "quality_review_required": false,
+      "quality_review_reasons": []
+    },
+    {
+      "group_id": "group-d18f735dc1d5b749",
+      "article_ids": [
+        "article-5144b72d95413473fe116a7d",
+        "article-c082e78f93d81433f9bb6e8e"
+      ],
+      "representative_article_id": "article-5144b72d95413473fe116a7d",
+      "representative_title": "금리 동결에도 3.5% 급락…AI 수익성·긴축 우려",
+      "article_count": 2,
+      "publishers": [
+        "SBS"
+      ],
+      "publisher_count": 1,
+      "category": "economy",
+      "status": "candidate",
+      "same_event_confirmed": false,
+      "min_pair_similarity": 0.959921,
+      "mean_pair_similarity": 0.959921,
+      "kmeans_labels": [
+        6
+      ],
+      "evidence": {
+        "method": "source-anchor-strict-bridge/v1",
+        "source_v2_group_ids": [
+          "group-d18f735dc1d5b749"
+        ],
+        "inherited_relations_are_not_human_verified": true
+      },
+      "quality_review_required": false,
+      "quality_review_reasons": []
+    },
+    {
+      "group_id": "group-05190846e8d13b7e",
+      "article_ids": [
+        "article-aeefa8b85737df0a11701a57"
+      ],
+      "representative_article_id": "article-aeefa8b85737df0a11701a57",
+      "representative_title": "올해 8월까지 미성년자 주택 매수 66건…지난해 37건",
+      "article_count": 1,
+      "publishers": [
+        "SBS"
+      ],
+      "publisher_count": 1,
+      "category": "economy",
+      "status": "singleton",
+      "same_event_confirmed": false,
+      "min_pair_similarity": null,
+      "mean_pair_similarity": null,
+      "kmeans_labels": [
+        7
+      ],
+      "evidence": {
+        "method": "source-anchor-strict-bridge/v1",
+        "source_v2_group_ids": [
+          "group-05190846e8d13b7e"
+        ],
+        "inherited_relations_are_not_human_verified": true
+      },
+      "quality_review_required": false,
+      "quality_review_reasons": []
+    },
+    {
+      "group_id": "group-0a92408017e59478",
+      "article_ids": [
+        "article-27f8175e07fb1698cefaad68"
+      ],
+      "representative_article_id": "article-27f8175e07fb1698cefaad68",
+      "representative_title": "[친절한 경제] 바나나 관세 563억 깎아줬는데…소매가는 그대로, 왜?",
+      "article_count": 1,
+      "publishers": [
+        "SBS"
+      ],
+      "publisher_count": 1,
+      "category": "economy",
+      "status": "singleton",
+      "same_event_confirmed": false,
+      "min_pair_similarity": null,
+      "mean_pair_similarity": null,
+      "kmeans_labels": [
+        0
+      ],
+      "evidence": {
+        "method": "source-anchor-strict-bridge/v1",
+        "source_v2_group_ids": [
+          "group-0a92408017e59478"
+        ],
+        "inherited_relations_are_not_human_verified": true
+      },
+      "quality_review_required": false,
+      "quality_review_reasons": []
+    },
+    {
+      "group_id": "group-0b910719f3859873",
+      "article_ids": [
+        "article-b228985f1f1e3df1cf5f267e"
+      ],
+      "representative_article_id": "article-b228985f1f1e3df1cf5f267e",
+      "representative_title": "배경훈 \"PHP 취약점 계기, 범부처 종합대책·조직 개편 검토\"",
+      "article_count": 1,
+      "publishers": [
+        "SBS"
+      ],
+      "publisher_count": 1,
+      "category": "economy",
+      "status": "singleton",
+      "same_event_confirmed": false,
+      "min_pair_similarity": null,
+      "mean_pair_similarity": null,
+      "kmeans_labels": [
+        4
+      ],
+      "evidence": {
+        "method": "source-anchor-strict-bridge/v1",
+        "source_v2_group_ids": [
+          "group-0b910719f3859873"
+        ],
+        "inherited_relations_are_not_human_verified": true
+      },
+      "quality_review_required": false,
+      "quality_review_reasons": []
+    },
+    {
+      "group_id": "group-154b16b8f7d1736d",
+      "article_ids": [
+        "article-e4b91bf4349eab7676d3f757"
+      ],
+      "representative_article_id": "article-e4b91bf4349eab7676d3f757",
+      "representative_title": "\"서둘러라\"…전 세계 위험 빠뜨린 '치명적 결함' (풀영상)",
+      "article_count": 1,
+      "publishers": [
+        "SBS"
+      ],
+      "publisher_count": 1,
+      "category": "economy",
+      "status": "singleton",
+      "same_event_confirmed": false,
+      "min_pair_similarity": null,
+      "mean_pair_similarity": null,
+      "kmeans_labels": [
+        4
+      ],
+      "evidence": {
+        "method": "source-anchor-strict-bridge/v1",
+        "source_v2_group_ids": [
+          "group-154b16b8f7d1736d"
+        ],
+        "inherited_relations_are_not_human_verified": true
+      },
+      "quality_review_required": false,
+      "quality_review_reasons": []
+    },
+    {
+      "group_id": "group-18feb0c5515d4fed",
+      "article_ids": [
+        "article-0696791b2e783ad350057b3c"
+      ],
+      "representative_article_id": "article-0696791b2e783ad350057b3c",
+      "representative_title": "아웃렛판 블랙프라이데이…오늘부터 나흘간 할인 행사",
+      "article_count": 1,
+      "publishers": [
+        "SBS"
+      ],
+      "publisher_count": 1,
+      "category": "economy",
+      "status": "singleton",
+      "same_event_confirmed": false,
+      "min_pair_similarity": null,
+      "mean_pair_similarity": null,
+      "kmeans_labels": [
+        9
+      ],
+      "evidence": {
+        "method": "source-anchor-strict-bridge/v1",
+        "source_v2_group_ids": [
+          "group-18feb0c5515d4fed"
+        ],
+        "inherited_relations_are_not_human_verified": true
+      },
+      "quality_review_required": false,
+      "quality_review_reasons": []
+    },
+    {
+      "group_id": "group-1eb8b45af3dbdf47",
+      "article_ids": [
+        "article-9f46cab4e01d015f8ce56faa"
+      ],
+      "representative_article_id": "article-9f46cab4e01d015f8ce56faa",
+      "representative_title": "계란값 '금값'에 3분기 산란계 사육 증가",
+      "article_count": 1,
+      "publishers": [
+        "SBS"
+      ],
+      "publisher_count": 1,
+      "category": "economy",
+      "status": "singleton",
+      "same_event_confirmed": false,
+      "min_pair_similarity": null,
+      "mean_pair_similarity": null,
+      "kmeans_labels": [
+        11
+      ],
+      "evidence": {
+        "method": "source-anchor-strict-bridge/v1",
+        "source_v2_group_ids": [
+          "group-1eb8b45af3dbdf47"
+        ],
+        "inherited_relations_are_not_human_verified": true
+      },
+      "quality_review_required": false,
+      "quality_review_reasons": []
+    },
+    {
+      "group_id": "group-339da9750dbd9104",
+      "article_ids": [
+        "article-cf1a2e8c2a5aa970eb63db1c"
+      ],
+      "representative_article_id": "article-cf1a2e8c2a5aa970eb63db1c",
+      "representative_title": "먹으면 서서히 죽음이 다가오는 달콤함 / 스브스뉴스",
+      "article_count": 1,
+      "publishers": [
+        "SBS"
+      ],
+      "publisher_count": 1,
+      "category": "economy",
+      "status": "singleton",
+      "same_event_confirmed": false,
+      "min_pair_similarity": null,
+      "mean_pair_similarity": null,
+      "kmeans_labels": [
+        8
+      ],
+      "evidence": {
+        "method": "source-anchor-strict-bridge/v1",
+        "source_v2_group_ids": [
+          "group-339da9750dbd9104"
+        ],
+        "inherited_relations_are_not_human_verified": true
+      },
+      "quality_review_required": false,
+      "quality_review_reasons": []
+    },
+    {
+      "group_id": "group-c5e7b9915ef1e413",
+      "article_ids": [
+        "article-fcdfc4b88783de767a59a844"
+      ],
+      "representative_article_id": "article-fcdfc4b88783de767a59a844",
+      "representative_title": "코스피, 2.4% 내린 5,403 개장…코스닥도 2% 내려",
+      "article_count": 1,
+      "publishers": [
+        "SBS"
+      ],
+      "publisher_count": 1,
+      "category": "economy",
+      "status": "singleton",
+      "same_event_confirmed": false,
+      "min_pair_similarity": null,
+      "mean_pair_similarity": null,
+      "kmeans_labels": [
+        6
+      ],
+      "evidence": {
+        "method": "source-anchor-strict-bridge/v1",
+        "source_v2_group_ids": [
+          "group-c5e7b9915ef1e413"
+        ],
+        "inherited_relations_are_not_human_verified": true
+      },
+      "quality_review_required": false,
+      "quality_review_reasons": []
+    },
+    {
+      "group_id": "group-cd70499da5c0c640",
+      "article_ids": [
+        "article-7a56d0d1db2ebeef5b323911"
+      ],
+      "representative_article_id": "article-7a56d0d1db2ebeef5b323911",
+      "representative_title": "\"오래 묶어두기? 짧게 굴릴래\"…'초단기 재테크' 인기",
+      "article_count": 1,
+      "publishers": [
+        "SBS"
+      ],
+      "publisher_count": 1,
+      "category": "economy",
+      "status": "singleton",
+      "same_event_confirmed": false,
+      "min_pair_similarity": null,
+      "mean_pair_similarity": null,
+      "kmeans_labels": [
+        6
+      ],
+      "evidence": {
+        "method": "source-anchor-strict-bridge/v1",
+        "source_v2_group_ids": [
+          "group-cd70499da5c0c640"
+        ],
+        "inherited_relations_are_not_human_verified": true
+      },
+      "quality_review_required": false,
+      "quality_review_reasons": []
+    },
+    {
+      "group_id": "group-cee1e68a8b8604d0",
+      "article_ids": [
+        "article-ab0bb21e9727c2eca2457aa2"
+      ],
+      "representative_article_id": "article-ab0bb21e9727c2eca2457aa2",
+      "representative_title": "여론은 난리 났는데…국민연금, 300억 성과급 잔치?",
+      "article_count": 1,
+      "publishers": [
+        "SBS"
+      ],
+      "publisher_count": 1,
+      "category": "economy",
+      "status": "singleton",
+      "same_event_confirmed": false,
+      "min_pair_similarity": null,
+      "mean_pair_similarity": null,
+      "kmeans_labels": [
+        10
+      ],
+      "evidence": {
+        "method": "source-anchor-strict-bridge/v1",
+        "source_v2_group_ids": [
+          "group-cee1e68a8b8604d0"
+        ],
+        "inherited_relations_are_not_human_verified": true
+      },
+      "quality_review_required": false,
+      "quality_review_reasons": []
+    },
+    {
+      "group_id": "group-d5c275d58b9a2eca",
+      "article_ids": [
+        "article-d02e82f01c734a7dc4e38be6"
+      ],
+      "representative_article_id": "article-d02e82f01c734a7dc4e38be6",
+      "representative_title": "[글로벌 마켓시황] 투자 심리 위축…미 국채 금리 큰 폭↓",
+      "article_count": 1,
+      "publishers": [
+        "SBS"
+      ],
+      "publisher_count": 1,
+      "category": "economy",
+      "status": "singleton",
+      "same_event_confirmed": false,
+      "min_pair_similarity": null,
+      "mean_pair_similarity": null,
+      "kmeans_labels": [
+        6
+      ],
+      "evidence": {
+        "method": "source-anchor-strict-bridge/v1",
+        "source_v2_group_ids": [
+          "group-d5c275d58b9a2eca"
+        ],
+        "inherited_relations_are_not_human_verified": true
+      },
+      "quality_review_required": false,
+      "quality_review_reasons": []
+    },
+    {
+      "group_id": "group-d655898e11103080",
+      "article_ids": [
+        "article-f2cbc4de0317cecb4fbc3f77"
+      ],
+      "representative_article_id": "article-f2cbc4de0317cecb4fbc3f77",
+      "representative_title": "\"모두 수능 파이팅!\"…벨기에 왕실 초콜릿 비결은",
+      "article_count": 1,
+      "publishers": [
+        "SBS"
+      ],
+      "publisher_count": 1,
+      "category": "economy",
+      "status": "singleton",
+      "same_event_confirmed": false,
+      "min_pair_similarity": null,
+      "mean_pair_similarity": null,
+      "kmeans_labels": [
+        8
+      ],
+      "evidence": {
+        "method": "source-anchor-strict-bridge/v1",
+        "source_v2_group_ids": [
+          "group-d655898e11103080"
+        ],
+        "inherited_relations_are_not_human_verified": true
+      },
+      "quality_review_required": false,
+      "quality_review_reasons": []
+    },
+    {
+      "group_id": "group-de1e3e70bd505567",
+      "article_ids": [
+        "article-0bd6e6a82bcad52c72654d1a"
+      ],
+      "representative_article_id": "article-0bd6e6a82bcad52c72654d1a",
+      "representative_title": "8월 은행 대출 연체율 0.69%…한 달 사이 0.06%p ↑",
+      "article_count": 1,
+      "publishers": [
+        "SBS"
+      ],
+      "publisher_count": 1,
+      "category": "economy",
+      "status": "singleton",
+      "same_event_confirmed": false,
+      "min_pair_similarity": null,
+      "mean_pair_similarity": null,
+      "kmeans_labels": [
+        6
+      ],
+      "evidence": {
+        "method": "source-anchor-strict-bridge/v1",
+        "source_v2_group_ids": [
+          "group-de1e3e70bd505567"
+        ],
+        "inherited_relations_are_not_human_verified": true
+      },
+      "quality_review_required": false,
+      "quality_review_reasons": []
+    },
+    {
+      "group_id": "group-e895cc20a2a617e1",
+      "article_ids": [
+        "article-26befd41ca4c8d14241b9e0c"
+      ],
+      "representative_article_id": "article-26befd41ca4c8d14241b9e0c",
+      "representative_title": "[자막뉴스] 한국인 '무주택자' 넘쳐 나는데…중국인 'K-자가' 6만 채 돌파",
+      "article_count": 1,
+      "publishers": [
+        "SBS"
+      ],
+      "publisher_count": 1,
+      "category": "economy",
+      "status": "singleton",
+      "same_event_confirmed": false,
+      "min_pair_similarity": null,
+      "mean_pair_similarity": null,
+      "kmeans_labels": [
+        7
+      ],
+      "evidence": {
+        "method": "source-anchor-strict-bridge/v1",
+        "source_v2_group_ids": [
+          "group-e895cc20a2a617e1"
+        ],
+        "inherited_relations_are_not_human_verified": true
+      },
+      "quality_review_required": false,
+      "quality_review_reasons": []
+    }
+  ],
+  "diagnostics": {
+    "article_count": 29,
+    "selected_k": 12,
+    "k_comparison": [
+      {
+        "k": 8,
+        "silhouette_cosine": 0.377042,
+        "inertia": 1.594102
+      },
+      {
+        "k": 12,
+        "silhouette_cosine": 0.421313,
+        "inertia": 1.007491
+      },
+      {
+        "k": 16,
+        "silhouette_cosine": 0.4156,
+        "inertia": 0.537905
+      },
+      {
+        "k": 20,
+        "silhouette_cosine": 0.407052,
+        "inertia": 0.15665
+      },
+      {
+        "k": 24,
+        "silhouette_cosine": 0.261898,
+        "inertia": 0.032913
+      }
+    ],
+    "coarse_assignments": {
+      "article-0696791b2e783ad350057b3c": 9,
+      "article-0bd6e6a82bcad52c72654d1a": 6,
+      "article-26befd41ca4c8d14241b9e0c": 7,
+      "article-27f8175e07fb1698cefaad68": 0,
+      "article-2df57a84dd1c8aff7ce6bd60": 5,
+      "article-339d649281acc69bc58d4baf": 5,
+      "article-5144b72d95413473fe116a7d": 6,
+      "article-54084df5e2aa31d4eaa020d4": 4,
+      "article-5c04c463737e055be24d1547": 2,
+      "article-5c9ac85891430311503e8279": 4,
+      "article-5ff8218da9a32ad8f645ea7b": 4,
+      "article-764ba243cc3011e86d40b2c0": 2,
+      "article-7a56d0d1db2ebeef5b323911": 6,
+      "article-9b153d0671cf32d485d67dc0": 3,
+      "article-9f46cab4e01d015f8ce56faa": 11,
+      "article-a4bdafce8a6673a75147d313": 1,
+      "article-ab0bb21e9727c2eca2457aa2": 10,
+      "article-aeefa8b85737df0a11701a57": 7,
+      "article-b0d3eb77d4df208736c814e5": 3,
+      "article-b228985f1f1e3df1cf5f267e": 4,
+      "article-b9c7bf7baa4531874f58341e": 1,
+      "article-c082e78f93d81433f9bb6e8e": 6,
+      "article-cf1a2e8c2a5aa970eb63db1c": 8,
+      "article-d02e82f01c734a7dc4e38be6": 6,
+      "article-d9fe3a1d11aaac61bb6a7867": 2,
+      "article-e4b91bf4349eab7676d3f757": 4,
+      "article-f2cbc4de0317cecb4fbc3f77": 8,
+      "article-f2d12c41d47db0ffb18fd183": 3,
+      "article-fcdfc4b88783de767a59a844": 6
+    },
+    "embedding": {
+      "backend": "onnx_cpu_int8_cached",
+      "article_count": 29,
+      "dimensions": 384,
+      "cache": {
+        "schema": "news-e5-cache/1",
+        "namespace": "5c1ccc425759a11e04f1c52c358263668c2bc0dc5f9bb5506a820d6de6a8e901",
+        "model_files": {
+          "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+          "onnx/model_quantized.onnx": "f80102d3f2a1229f387d3c81909990d8945513e347b0eab049f7de3c6f98c193"
+        },
+        "representation": {
+          "title_weight": 0.6,
+          "window_tokens": 384,
+          "overlap_tokens": 64,
+          "batch_size": 8
+        },
+        "runtime_versions": {
+          "onnxruntime": "1.31.0",
+          "tokenizers": "0.23.3",
+          "numpy": "2.5.4"
+        },
+        "hit_count": 29,
+        "miss_count": 0,
+        "unique_text_count": 29,
+        "unique_miss_count": 0,
+        "corrupt_entry_count": 0,
+        "lookup_and_model_hash_seconds": 0.313984900014475,
+        "inference_seconds": 2.00001522898674e-07,
+        "total_seconds": 0.3140242000226863
+      },
+      "miss_embedding": null
+    },
+    "body_kinds": {
+      "publisher_html": 29
+    },
+    "missing_publication_date_count": 0,
+    "accuracy_measured": false,
+    "requires_human_review": true,
+    "group_count": 20,
+    "multi_article_group_count": 6,
+    "singleton_count": 14,
+    "multiview": {
+      "baseline_groups_preserved": true,
+      "added_pair_count": 0,
+      "removed_pair_count": 0,
+      "added_pairs": [],
+      "pair_detail_limit": 200,
+      "baseline_view_disagreement_count": 0,
+      "review_pair_count": 12,
+      "review_pairs": [
+        {
+          "article_ids": [
+            "article-9b153d0671cf32d485d67dc0",
+            "article-b0d3eb77d4df208736c814e5"
+          ],
+          "inherited_v2_relation": true,
+          "eligible_new_connection": false,
+          "full_similarity": 0.998816,
+          "lead_similarity": 0.998322,
+          "title_similarity": 1.0,
+          "lead_lexical_similarity": 0.970392,
+          "reasons": [],
+          "headline_clues": {
+            "method": "headline-event-clues/v1",
+            "scope": "limited_headline_rules_not_ner",
+            "status": "unknown",
+            "left": {
+              "entities": [],
+              "targets": [],
+              "actions": [],
+              "explicit_headline_dates": []
+            },
+            "right": {
+              "entities": [],
+              "targets": [],
+              "actions": [],
+              "explicit_headline_dates": []
+            },
+            "shared_entities": [],
+            "shared_targets": [],
+            "shared_actions": [],
+            "conflicts": [],
+            "missing_information_is_negative_evidence": false
+          },
+          "connection_route": "inherited_v2",
+          "strict_rejection_reasons": [],
+          "source_anchor_match": {
+            "method": "bok-primary-rate-decision/v1",
+            "compatible": false,
+            "conflicts": [],
+            "human_verified": false
+          },
+          "grouped_together": true
+        },
+        {
+          "article_ids": [
+            "article-b0d3eb77d4df208736c814e5",
+            "article-f2d12c41d47db0ffb18fd183"
+          ],
+          "inherited_v2_relation": true,
+          "eligible_new_connection": false,
+          "full_similarity": 0.998174,
+          "lead_similarity": 0.997377,
+          "title_similarity": 1.0,
+          "lead_lexical_similarity": 0.89388,
+          "reasons": [],
+          "headline_clues": {
+            "method": "headline-event-clues/v1",
+            "scope": "limited_headline_rules_not_ner",
+            "status": "unknown",
+            "left": {
+              "entities": [],
+              "targets": [],
+              "actions": [],
+              "explicit_headline_dates": []
+            },
+            "right": {
+              "entities": [],
+              "targets": [],
+              "actions": [],
+              "explicit_headline_dates": []
+            },
+            "shared_entities": [],
+            "shared_targets": [],
+            "shared_actions": [],
+            "conflicts": [],
+            "missing_information_is_negative_evidence": false
+          },
+          "connection_route": "inherited_v2",
+          "strict_rejection_reasons": [],
+          "source_anchor_match": {
+            "method": "bok-primary-rate-decision/v1",
+            "compatible": false,
+            "conflicts": [],
+            "human_verified": false
+          },
+          "grouped_together": true
+        },
+        {
+          "article_ids": [
+            "article-5c9ac85891430311503e8279",
+            "article-5ff8218da9a32ad8f645ea7b"
+          ],
+          "inherited_v2_relation": true,
+          "eligible_new_connection": false,
+          "full_similarity": 0.999296,
+          "lead_similarity": 0.997286,
+          "title_similarity": 1.0,
+          "lead_lexical_similarity": 0.789829,
+          "reasons": [],
+          "headline_clues": {
+            "method": "headline-event-clues/v1",
+            "scope": "limited_headline_rules_not_ner",
+            "status": "unknown",
+            "left": {
+              "entities": [],
+              "targets": [],
+              "actions": [],
+              "explicit_headline_dates": []
+            },
+            "right": {
+              "entities": [],
+              "targets": [],
+              "actions": [],
+              "explicit_headline_dates": []
+            },
+            "shared_entities": [],
+            "shared_targets": [],
+            "shared_actions": [],
+            "conflicts": [],
+            "missing_information_is_negative_evidence": false
+          },
+          "connection_route": "inherited_v2",
+          "strict_rejection_reasons": [],
+          "source_anchor_match": {
+            "method": "bok-primary-rate-decision/v1",
+            "compatible": false,
+            "conflicts": [],
+            "human_verified": false
+          },
+          "grouped_together": true
+        },
+        {
+          "article_ids": [
+            "article-9b153d0671cf32d485d67dc0",
+            "article-f2d12c41d47db0ffb18fd183"
+          ],
+          "inherited_v2_relation": true,
+          "eligible_new_connection": false,
+          "full_similarity": 0.998368,
+          "lead_similarity": 0.997122,
+          "title_similarity": 1.0,
+          "lead_lexical_similarity": 0.893387,
+          "reasons": [],
+          "headline_clues": {
+            "method": "headline-event-clues/v1",
+            "scope": "limited_headline_rules_not_ner",
+            "status": "unknown",
+            "left": {
+              "entities": [],
+              "targets": [],
+              "actions": [],
+              "explicit_headline_dates": []
+            },
+            "right": {
+              "entities": [],
+              "targets": [],
+              "actions": [],
+              "explicit_headline_dates": []
+            },
+            "shared_entities": [],
+            "shared_targets": [],
+            "shared_actions": [],
+            "conflicts": [],
+            "missing_information_is_negative_evidence": false
+          },
+          "connection_route": "inherited_v2",
+          "strict_rejection_reasons": [],
+          "source_anchor_match": {
+            "method": "bok-primary-rate-decision/v1",
+            "compatible": false,
+            "conflicts": [],
+            "human_verified": false
+          },
+          "grouped_together": true
+        },
+        {
+          "article_ids": [
+            "article-5c04c463737e055be24d1547",
+            "article-d9fe3a1d11aaac61bb6a7867"
+          ],
+          "inherited_v2_relation": true,
+          "eligible_new_connection": false,
+          "full_similarity": 0.992121,
+          "lead_similarity": 0.991636,
+          "title_similarity": 0.781068,
+          "lead_lexical_similarity": 0.424719,
+          "reasons": [],
+          "headline_clues": {
+            "method": "headline-event-clues/v1",
+            "scope": "limited_headline_rules_not_ner",
+            "status": "unknown",
+            "left": {
+              "entities": [],
+              "targets": [],
+              "actions": [],
+              "explicit_headline_dates": []
+            },
+            "right": {
+              "entities": [],
+              "targets": [],
+              "actions": [],
+              "explicit_headline_dates": []
+            },
+            "shared_entities": [],
+            "shared_targets": [],
+            "shared_actions": [],
+            "conflicts": [],
+            "missing_information_is_negative_evidence": false
+          },
+          "connection_route": "inherited_v2",
+          "strict_rejection_reasons": [],
+          "source_anchor_match": {
+            "method": "bok-primary-rate-decision/v1",
+            "compatible": false,
+            "conflicts": [],
+            "human_verified": false
+          },
+          "grouped_together": true
+        },
+        {
+          "article_ids": [
+            "article-5c04c463737e055be24d1547",
+            "article-764ba243cc3011e86d40b2c0"
+          ],
+          "inherited_v2_relation": true,
+          "eligible_new_connection": false,
+          "full_similarity": 0.98051,
+          "lead_similarity": 0.981789,
+          "title_similarity": 0.42827,
+          "lead_lexical_similarity": 0.546204,
+          "reasons": [],
+          "headline_clues": {
+            "method": "headline-event-clues/v1",
+            "scope": "limited_headline_rules_not_ner",
+            "status": "unknown",
+            "left": {
+              "entities": [],
+              "targets": [],
+              "actions": [],
+              "explicit_headline_dates": []
+            },
+            "right": {
+              "entities": [],
+              "targets": [],
+              "actions": [
+                "market_update"
+              ],
+              "explicit_headline_dates": []
+            },
+            "shared_entities": [],
+            "shared_targets": [],
+            "shared_actions": [],
+            "conflicts": [],
+            "missing_information_is_negative_evidence": false
+          },
+          "connection_route": "inherited_v2",
+          "strict_rejection_reasons": [],
+          "source_anchor_match": {
+            "method": "bok-primary-rate-decision/v1",
+            "compatible": false,
+            "conflicts": [],
+            "human_verified": false
+          },
+          "grouped_together": true
+        },
+        {
+          "article_ids": [
+            "article-a4bdafce8a6673a75147d313",
+            "article-b9c7bf7baa4531874f58341e"
+          ],
+          "inherited_v2_relation": true,
+          "eligible_new_connection": false,
+          "full_similarity": 0.978765,
+          "lead_similarity": 0.97713,
+          "title_similarity": 0.289815,
+          "lead_lexical_similarity": 0.794818,
+          "reasons": [],
+          "headline_clues": {
+            "method": "headline-event-clues/v1",
+            "scope": "limited_headline_rules_not_ner",
+            "status": "unknown",
+            "left": {
+              "entities": [],
+              "targets": [],
+              "actions": [],
+              "explicit_headline_dates": []
+            },
+            "right": {
+              "entities": [],
+              "targets": [],
+              "actions": [],
+              "explicit_headline_dates": []
+            },
+            "shared_entities": [],
+            "shared_targets": [],
+            "shared_actions": [],
+            "conflicts": [],
+            "missing_information_is_negative_evidence": false
+          },
+          "connection_route": "inherited_v2",
+          "strict_rejection_reasons": [],
+          "source_anchor_match": {
+            "method": "bok-primary-rate-decision/v1",
+            "compatible": false,
+            "conflicts": [],
+            "human_verified": false
+          },
+          "grouped_together": true
+        },
+        {
+          "article_ids": [
+            "article-54084df5e2aa31d4eaa020d4",
+            "article-5ff8218da9a32ad8f645ea7b"
+          ],
+          "inherited_v2_relation": true,
+          "eligible_new_connection": false,
+          "full_similarity": 0.980171,
+          "lead_similarity": 0.976947,
+          "title_similarity": 0.481552,
+          "lead_lexical_similarity": 0.786109,
+          "reasons": [],
+          "headline_clues": {
+            "method": "headline-event-clues/v1",
+            "scope": "limited_headline_rules_not_ner",
+            "status": "unknown",
+            "left": {
+              "entities": [],
+              "targets": [],
+              "actions": [],
+              "explicit_headline_dates": []
+            },
+            "right": {
+              "entities": [],
+              "targets": [],
+              "actions": [],
+              "explicit_headline_dates": []
+            },
+            "shared_entities": [],
+            "shared_targets": [],
+            "shared_actions": [],
+            "conflicts": [],
+            "missing_information_is_negative_evidence": false
+          },
+          "connection_route": "inherited_v2",
+          "strict_rejection_reasons": [],
+          "source_anchor_match": {
+            "method": "bok-primary-rate-decision/v1",
+            "compatible": false,
+            "conflicts": [],
+            "human_verified": false
+          },
+          "grouped_together": true
+        },
+        {
+          "article_ids": [
+            "article-54084df5e2aa31d4eaa020d4",
+            "article-5c9ac85891430311503e8279"
+          ],
+          "inherited_v2_relation": true,
+          "eligible_new_connection": false,
+          "full_similarity": 0.979112,
+          "lead_similarity": 0.97543,
+          "title_similarity": 0.481552,
+          "lead_lexical_similarity": 0.770712,
+          "reasons": [],
+          "headline_clues": {
+            "method": "headline-event-clues/v1",
+            "scope": "limited_headline_rules_not_ner",
+            "status": "unknown",
+            "left": {
+              "entities": [],
+              "targets": [],
+              "actions": [],
+              "explicit_headline_dates": []
+            },
+            "right": {
+              "entities": [],
+              "targets": [],
+              "actions": [],
+              "explicit_headline_dates": []
+            },
+            "shared_entities": [],
+            "shared_targets": [],
+            "shared_actions": [],
+            "conflicts": [],
+            "missing_information_is_negative_evidence": false
+          },
+          "connection_route": "inherited_v2",
+          "strict_rejection_reasons": [],
+          "source_anchor_match": {
+            "method": "bok-primary-rate-decision/v1",
+            "compatible": false,
+            "conflicts": [],
+            "human_verified": false
+          },
+          "grouped_together": true
+        },
+        {
+          "article_ids": [
+            "article-764ba243cc3011e86d40b2c0",
+            "article-d9fe3a1d11aaac61bb6a7867"
+          ],
+          "inherited_v2_relation": true,
+          "eligible_new_connection": false,
+          "full_similarity": 0.973142,
+          "lead_similarity": 0.974841,
+          "title_similarity": 0.259373,
+          "lead_lexical_similarity": 0.367611,
+          "reasons": [],
+          "headline_clues": {
+            "method": "headline-event-clues/v1",
+            "scope": "limited_headline_rules_not_ner",
+            "status": "unknown",
+            "left": {
+              "entities": [],
+              "targets": [],
+              "actions": [
+                "market_update"
+              ],
+              "explicit_headline_dates": []
+            },
+            "right": {
+              "entities": [],
+              "targets": [],
+              "actions": [],
+              "explicit_headline_dates": []
+            },
+            "shared_entities": [],
+            "shared_targets": [],
+            "shared_actions": [],
+            "conflicts": [],
+            "missing_information_is_negative_evidence": false
+          },
+          "connection_route": "inherited_v2",
+          "strict_rejection_reasons": [],
+          "source_anchor_match": {
+            "method": "bok-primary-rate-decision/v1",
+            "compatible": false,
+            "conflicts": [],
+            "human_verified": false
+          },
+          "grouped_together": true
+        },
+        {
+          "article_ids": [
+            "article-2df57a84dd1c8aff7ce6bd60",
+            "article-339d649281acc69bc58d4baf"
+          ],
+          "inherited_v2_relation": true,
+          "eligible_new_connection": false,
+          "full_similarity": 0.971524,
+          "lead_similarity": 0.972377,
+          "title_similarity": 0.219604,
+          "lead_lexical_similarity": 0.880893,
+          "reasons": [],
+          "headline_clues": {
+            "method": "headline-event-clues/v1",
+            "scope": "limited_headline_rules_not_ner",
+            "status": "unknown",
+            "left": {
+              "entities": [],
+              "targets": [],
+              "actions": [
+                "agreement"
+              ],
+              "explicit_headline_dates": []
+            },
+            "right": {
+              "entities": [],
+              "targets": [],
+              "actions": [],
+              "explicit_headline_dates": []
+            },
+            "shared_entities": [],
+            "shared_targets": [],
+            "shared_actions": [],
+            "conflicts": [],
+            "missing_information_is_negative_evidence": false
+          },
+          "connection_route": "inherited_v2",
+          "strict_rejection_reasons": [],
+          "source_anchor_match": {
+            "method": "bok-primary-rate-decision/v1",
+            "compatible": false,
+            "conflicts": [],
+            "human_verified": false
+          },
+          "grouped_together": true
+        },
+        {
+          "article_ids": [
+            "article-5144b72d95413473fe116a7d",
+            "article-c082e78f93d81433f9bb6e8e"
+          ],
+          "inherited_v2_relation": true,
+          "eligible_new_connection": false,
+          "full_similarity": 0.959921,
+          "lead_similarity": 0.954413,
+          "title_similarity": 0.13226,
+          "lead_lexical_similarity": 0.806395,
+          "reasons": [],
+          "headline_clues": {
+            "method": "headline-event-clues/v1",
+            "scope": "limited_headline_rules_not_ner",
+            "status": "unknown",
+            "left": {
+              "entities": [],
+              "targets": [
+                "corporate_profitability"
+              ],
+              "actions": [
+                "market_update"
+              ],
+              "explicit_headline_dates": []
+            },
+            "right": {
+              "entities": [],
+              "targets": [
+                "equity_market"
+              ],
+              "actions": [
+                "market_update"
+              ],
+              "explicit_headline_dates": []
+            },
+            "shared_entities": [],
+            "shared_targets": [],
+            "shared_actions": [
+              "market_update"
+            ],
+            "conflicts": [],
+            "missing_information_is_negative_evidence": false
+          },
+          "connection_route": "inherited_v2",
+          "strict_rejection_reasons": [],
+          "source_anchor_match": {
+            "method": "bok-primary-rate-decision/v1",
+            "compatible": false,
+            "conflicts": [],
+            "human_verified": false
+          },
+          "grouped_together": true
+        }
+      ],
+      "full_text_hashes": [
+        "e78a96f4a6b7c9d866540bb388f59fc413ff37987bfb49b404a296406a0e500d",
+        "7d7bdc1824bb5ba1fad526f5d0f9e67654faca27a476815d1bcf83a7543dcb66",
+        "9d097046d6c3f4261020d18fb80f7e53ad1a8dca2d0412bfd9131f6ca498fa13",
+        "277b74ba513ae10facefc80cba3e6f414caf97a6eb01ece21939405a6a1902ff",
+        "860fbf2bfebae6404145a16f40b79feb199517a1857bc78d366c6dd69a323361",
+        "dfafe6931a283be8bdbd940aa3f36121a6fca88cbd3e330259a1700ce09cf397",
+        "dc381047fa29ec18213f952ba82a60de21246447a47305b89cc0aa13cc33105b",
+        "36af8a9cf536919128b2b9023e00f8f2107a1a0c04ec1c136125c9227aaea51c",
+        "aff35ace1dbe0df1daa02562e88deecc0a14a5e9d275078cf2adfabb40a37386",
+        "4d5bddd7fca5d94d54e693184d695b76a86b6a6cc567c940025c4db027d76d73",
+        "a2fd76456d4531feb371be310b90c3bea4281db55bb66fc1a05b4153428c924d",
+        "9b8b6eb7aefbedb5df542c5640eea0e90b61091d0f8e84edc4a73d696c715d4c",
+        "7b484480f21469e80095bb9942760f4285965481b6835ef8f937af5b7dc384db",
+        "88f082d33801a21041172f6e1fc7a6e6fa5674acb6655bb8363deb5cd9d79225",
+        "01fedf02336a14d2e5f6f7b9a1bc4691f1cfc18be7f4d46a55bc26211bb8964d",
+        "549fc8ac5d66fca6a0e19a0c8d59292fa9269cbc8cdb8135c0c80fd52eb70377",
+        "74c932a55b983bfbbbd46556936626cf1b4bc266bcf2a8d9462c5666c79f917f",
+        "f59f03d49175b9e65937ebc936c7db9f261c40bf9b622c920a901605110895b0",
+        "232d8e7e09f7acb4bd8b5f0885ca63880e97e7e3fa904705ac7621619424c990",
+        "e17fbacb28431cc768c5364d1e42c34519dedc15a0e1bfd3f849f148ec4a72ac",
+        "5450cda3bbf5e8edd8e0ac4c08279f7a48f622ac589f7d6ac263826c833b47c9",
+        "8fb991f5e6cda5b91939c82e011ca58ec8dadc965f2390618147f3eba3ab069f",
+        "513d516d6decbd85179861c76edd93c26ad37849c39aaf401675f3cf906c2c16",
+        "07eabf234d2be99e7db0653e7467859a55e3d8a6b79fc218ec6fdf7356200387",
+        "af9b7652f10b30752d2a2cbf40bb2b4b8b545fc2e5dbfef290d47498cbc9dccf",
+        "cdc72cb3443018b14a1a613d44cd02dc5eb778a6e223b1728cb9fe268757b57f",
+        "02966a712e73ee2d74eb05098dfc30e5ace7c826f324ac6fbb52bd346c70272d",
+        "a3dca2dd79c81b31678c84f324117499d8566eacb12d3c52a4cfb85c2d20cb57",
+        "51de847d61d5305598d9d29c61f8d38c67fae2ba23874543bea29668d01851ee"
+      ],
+      "lead_text_hashes": [
+        "e78a96f4a6b7c9d866540bb388f59fc413ff37987bfb49b404a296406a0e500d",
+        "7d7bdc1824bb5ba1fad526f5d0f9e67654faca27a476815d1bcf83a7543dcb66",
+        "fec16aa14634d7d327f42b7e1a28d3ce723cc44070204c517665ae68b4c08c61",
+        "b208579b569d30604e004f25d9269abe06a74fb405c1737a4202389e16f18f29",
+        "a1751b54bc257abd791be8eeaed95be876dda1894f11b290b12770ab9efb3500",
+        "21379af6e4caab6045448958afc5b828ee3fe9cb93cc7a6ace3f222f7fd5e99f",
+        "a10e6159062da39a4eb8df4b01d3d02188c03f75ee989b571177ad2a4ed690d4",
+        "079983badd9a6432f0cbb06fa7ee0713a31dfd65a7e35dcc3a17dce1c1f34c40",
+        "20df2f4157a6f111055b4d4933c61f7229ca1a64e518abc03c5accff5c1dd27d",
+        "a76c2ded1c225c8c2b3856bf3f86c92635a68cec5044a417ea0a2e1cc9a8a44d",
+        "f5ded8c1084341f79d3e0ca2d6f3cf540f1ad417e446c9eb21bdbf3b20d12395",
+        "39eee786ff196fb54a14b78b3b0b4747bfef536159d676644f6b438f15cc018b",
+        "7b484480f21469e80095bb9942760f4285965481b6835ef8f937af5b7dc384db",
+        "1a45cbab6d025353487829ce2740073db39e8bc9ca7c38d10a78652d5b07e199",
+        "8399e6efdeda42531e7a2aab33eda9149797fa9aa420f4e9b8672d770866e18e",
+        "0866add632a2ebf75995ff590a1a87b77721f6807f3946afcfecd3a6629c019f",
+        "0dded75c2658baca92c5090a3975370fc06e4e7413184dbe821197b5ac8a509f",
+        "f59f03d49175b9e65937ebc936c7db9f261c40bf9b622c920a901605110895b0",
+        "a68e77d115dbe61f949ccc1a5cfc8c201c8879fdbdcf1896844cbb1529701604",
+        "4cf57cfb2dee10a22b21f82d1c99b4edba9618fc9be66898230e96f7d0dbc12c",
+        "91bb6e6e912c9928c654bad05f5a6728bf752eac745e52dd7569f7563d637b3b",
+        "20732788067193e51ef4b29bb8c0857c307e4c5549286bd9da314d5af591c4d3",
+        "513d516d6decbd85179861c76edd93c26ad37849c39aaf401675f3cf906c2c16",
+        "ee1f7a7da4aab17102b4944553a68e69b353b1039e7a3beba6d1c3560e897ac2",
+        "af9b7652f10b30752d2a2cbf40bb2b4b8b545fc2e5dbfef290d47498cbc9dccf",
+        "cc88924b27bd47fbef581090081bf75525d286f3c3b47f6d2d4a1a656d51a795",
+        "6cb854f176825648fffb7789b2994b805a88c8e6b11656a443341351d6f5e5e1",
+        "7a5a61eb803f3dbbcacf270189355961e2ea2f84711a03cf3a211763412557a6",
+        "8897333fd236dabc25cff26854d17fc6f4591b18527c7d434b619301a10b7fc8"
+      ],
+      "lead_model_id": "Xenova/multilingual-e5-small@761b726dd34fb83930e26aab4e9ac3899aa1fa78:onnx-int8:news-title-body-v2:w0.6:tokens384:overlap64",
+      "lead_embedding": {
+        "backend": "onnx_cpu_int8_cached",
+        "article_count": 29,
+        "dimensions": 384,
+        "cache": {
+          "schema": "news-e5-cache/1",
+          "namespace": "5c1ccc425759a11e04f1c52c358263668c2bc0dc5f9bb5506a820d6de6a8e901",
+          "model_files": {
+            "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+            "onnx/model_quantized.onnx": "f80102d3f2a1229f387d3c81909990d8945513e347b0eab049f7de3c6f98c193"
+          },
+          "representation": {
+            "title_weight": 0.6,
+            "window_tokens": 384,
+            "overlap_tokens": 64,
+            "batch_size": 8
+          },
+          "runtime_versions": {
+            "onnxruntime": "1.31.0",
+            "tokenizers": "0.23.3",
+            "numpy": "2.5.4"
+          },
+          "hit_count": 29,
+          "miss_count": 0,
+          "unique_text_count": 29,
+          "unique_miss_count": 0,
+          "corrupt_entry_count": 0,
+          "lookup_and_model_hash_seconds": 0.2915806999662891,
+          "inference_seconds": 5.00003807246685e-07,
+          "total_seconds": 0.291618799965363
+        },
+        "miss_embedding": null
+      },
+      "lead_views": [
+        {
+          "article_id": "article-0696791b2e783ad350057b3c",
+          "source_content_hash": "e78a96f4a6b7c9d866540bb388f59fc413ff37987bfb49b404a296406a0e500d",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 389,
+          "text": "다음 알찬 뉴스는 아웃렛 할인입니다. 날이 많이 추워졌네, 두꺼운 옷 좀 사야 하나 생각하시는 분들 많으시죠. 대형 프리미엄 아웃렛에서 대규모 할인 행사가 열린다는 소식을 가지고 왔습니다. 오늘(23일)부터 나흘 동안 열리는 이 행사, '아웃렛판 블랙프라이데이'라고도 불리더라고요. 전 장르 브랜드에서 아웃렛 판매가 기준으로도 최대 30% 추가 할인됩니다. 일부 스포츠 브랜드는 전 품목 20%, 2개 이상 구매하면 30%까지 추가 할인을 하고요. 일부 브랜드는 최대 50%, 패밀리 세일은 최대 70%까지 할인을 해줍니다. 그리고 할인 기간 동안 카드 결제 고객에게는 구매 금액에 따라 최대 5% 상당의 상품권도 선착순 증정한다고 하니까요. 주말 아웃렛 나들이 계획도 한번 세워보시면 좋겠네요.",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-0696791b2e783ad350057b3c",
+            "analysis_only": true,
+            "original_content_hash": "e78a96f4a6b7c9d866540bb388f59fc413ff37987bfb49b404a296406a0e500d",
+            "analysis_content_hash": "e78a96f4a6b7c9d866540bb388f59fc413ff37987bfb49b404a296406a0e500d",
+            "changed": false,
+            "removed_spans": [],
+            "warnings": [],
+            "original_body_characters": 389,
+            "analysis_body_characters": 389
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-0bd6e6a82bcad52c72654d1a",
+          "source_content_hash": "7d7bdc1824bb5ba1fad526f5d0f9e67654faca27a476815d1bcf83a7543dcb66",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 449,
+          "text": "[경제 365] 지난 8월 국내 은행의 대출 연체율이 9년 10개월 만에 최고치를 기록했습니다. 한 달 이상 원리금을 연체한 비율은 0.69%로, 한 달 전보다 0.06%포인트, 1년 전보다 0.08%포인트 상승했습니다. 대기업 연체율 상승과 함께 고금리가 장기화하면서 차주들의 상환 부담이 누적된 영향으로 풀이됩니다. 기업 대출 연체율은 0.86%였고, 중소기업 대출은 1%까지 올랐습니다. 이 가운데 중소법인은 1.1%, 개인사업자는 0.86%였습니다. 가계 대출 연체율도 0.45%로 상승했습니다. 주택담보대출은 0.31%였고, 신용대출 등 주담대를 제외한 가계 대출은 0.91%로 지난해 8월 이후 가장 높았습니다. 금융감독원은 연체율이 상승하고 있지만 코로나19 이전 10년 평균인 0.78%보다는 낮아 중장기적으로 관리 가능한 수준이라고 설명했습니다. *이 기사는 AI 오디오로 제작됐습니다.",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-0bd6e6a82bcad52c72654d1a",
+            "analysis_only": true,
+            "original_content_hash": "7d7bdc1824bb5ba1fad526f5d0f9e67654faca27a476815d1bcf83a7543dcb66",
+            "analysis_content_hash": "7d7bdc1824bb5ba1fad526f5d0f9e67654faca27a476815d1bcf83a7543dcb66",
+            "changed": false,
+            "removed_spans": [],
+            "warnings": [],
+            "original_body_characters": 449,
+            "analysis_body_characters": 449
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-26befd41ca4c8d14241b9e0c",
+          "source_content_hash": "9d097046d6c3f4261020d18fb80f7e53ad1a8dca2d0412bfd9131f6ca498fa13",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 600,
+          "text": "중국인이 소유한 국내 주택이 3년 만에 1만 6천 채 넘게 늘어나 6만 채를 넘어섰습니다. 하지만 외국인 다주택자의 국적별 현황이나 주택 거래 규모는 정부가 별도로 집계하지 않는 것으로 나타났습니다. 국민의힘 김미애 의원이 국토교통부에서 제출받은 자료에 따르면, 중국인이 소유한 국내 주택은 2022년 말 4만 4천889채에서 지난해 말 6만 1천439채로 증가했습니다. 3년 동안 1만 6천550채, 36.9% 늘어난 건데 해마다 평균 5천500채가량 증가한 셈입니다. 같은 기간 외국인 전체가 소유한 국내 주택도 늘었습니다. 2022년 말 8만 3천512채에서 지난해 말 10만 8천231채로, 3년 새 2만 4천719채, 29.6% 증가했습니다. 국적별로 보면 중국인이 6만 1천439채로 가장 많았고, 미국인이 2만 3천187채, 캐나다인 6천542채, 타이완인 3천392채, 베트남인 2천28채 순이었습니다. 중국인 소유 주택 수는 미국인 소유 주택의 약 2.6배에 달했습니다. 그런데 외국인들이 주택을 얼마나 여러 채씩 갖고 있는지, 또 매년 몇 채를 사고팔았는지는 세부 통계로 확인하기 어려웠습니다. 국토부에 따르면 지난해 말 기준 국내 주택을 2채 이상 보유",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-26befd41ca4c8d14241b9e0c",
+            "analysis_only": true,
+            "original_content_hash": "9d097046d6c3f4261020d18fb80f7e53ad1a8dca2d0412bfd9131f6ca498fa13",
+            "analysis_content_hash": "9d097046d6c3f4261020d18fb80f7e53ad1a8dca2d0412bfd9131f6ca498fa13",
+            "changed": false,
+            "removed_spans": [],
+            "warnings": [],
+            "original_body_characters": 1042,
+            "analysis_body_characters": 1042
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-27f8175e07fb1698cefaad68",
+          "source_content_hash": "277b74ba513ae10facefc80cba3e6f414caf97a6eb01ece21939405a6a1902ff",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 600,
+          "text": "<엥커> 금요일 친절한 경제 한지연 기자 나와 있습니다. 한 기자, 오늘(23일)은 관세 얘기군요. <기자> 지난해 바나나 관세를 정부가 563억 원을 깎아줬는데요. 도매가는 34% 떨어졌지만, 소매가는 거의 그대로였습니다. \"관세 깎아줬다는데 왜 안 싸지냐?\" 싶으셨던 분들 이유가 있었습니다. 할당관세라는 게 있는데요. 물가를 잡으려고 정해진 물량까지는 수입품 관세를 낮춰주는 제도입니다. 관세가 30%면 1만 원어치 들여올 때 3천 원을 내야 하는데, 5%로 낮추면 500원만 내면 되는 거죠. 지난해 가격을 따져볼 수 있는 식료품 10개에 깎아준 관세만 1천586억 원입니다. 이게 정말 장바구니 물가를 낮췄는지 한국조세재정연구원이 따져봤더니, 가격 인하 효과가 확인된 건 파인애플, 망고, 오렌지 딱 3개였습니다. 나머지 7개는 효과를 확인하지 못했고, 일부는 오히려 반대로 움직였습니다. 가장 많이 깎아준 게 바로 바나나인데요. 깎아준 관세 전체의 3분의 1이 넘습니다. 도매가는 1kg에 재작년 중반 2천900원대에서 지난해 말 1천900원대로 뚝 떨어졌는데, 소매가는 지난해 말 3천333원, 최고가 3천407원과 별 차이가 없었습니다. 도매 단계에서는 싸졌",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-27f8175e07fb1698cefaad68",
+            "analysis_only": true,
+            "original_content_hash": "277b74ba513ae10facefc80cba3e6f414caf97a6eb01ece21939405a6a1902ff",
+            "analysis_content_hash": "277b74ba513ae10facefc80cba3e6f414caf97a6eb01ece21939405a6a1902ff",
+            "changed": false,
+            "removed_spans": [],
+            "warnings": [],
+            "original_body_characters": 2106,
+            "analysis_body_characters": 2106
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-2df57a84dd1c8aff7ce6bd60",
+          "source_content_hash": "860fbf2bfebae6404145a16f40b79feb199517a1857bc78d366c6dd69a323361",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 600,
+          "text": "<앵커> 연예인이나 모델을 꿈꾸는 아이와 부모에게 교육과 활동 기회를 약속하며 수백만 원의 계약을 유도하는 학원형 연예 기획사들이 있습니다. 하지만 정작 실제로 활동할 기회는 거의 주어지지 않고, 계약을 해지해도 환불을 받지 못하는 경우가 빠르게 늘고 있습니다. 정성진 기자입니다. <기자> 지난해 9월 아이가 키즈 모델에 뽑혔다는 소식에 2년 계약으로 297만 원을 지불한 A 씨. 활발한 모델 제의가 있을 거라는 설명과 달리 7개월간 모델 제의는 단 1건, 그것도 해당 기획사 내부 촬영이었습니다. 남은 기간만큼이라도 계약금을 돌려받으려 했지만 업체는 프로필 촬영 등으로 더 많은 비용을 썼다며 돌려줄 돈이 없다고 통보했습니다. [A 씨 : 10% 위약금만 제외하고는 환불이 가능하다 해서 계약을 한 거였는데 환불할 금액이 없다고 하면서 그 정산서를 이제 보내줬어요.] 연기 오디션에 합격해 1년 계약금으로 400만 원을 낸 B 양은 한 차례 교육을 받고 실망했습니다. [B 양 : 발성 연습하는 거, 복식 호흡하는 거 하나 배우고 대본을 주고 그냥 읽게만 시켜요.] 2주 만에 계약 해지를 요구했는데, 업체는 위약금 39%에 추가 비용까지 청구해 절반도 안 되는 돈을",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-2df57a84dd1c8aff7ce6bd60",
+            "analysis_only": true,
+            "original_content_hash": "860fbf2bfebae6404145a16f40b79feb199517a1857bc78d366c6dd69a323361",
+            "analysis_content_hash": "860fbf2bfebae6404145a16f40b79feb199517a1857bc78d366c6dd69a323361",
+            "changed": false,
+            "removed_spans": [],
+            "warnings": [],
+            "original_body_characters": 1034,
+            "analysis_body_characters": 1034
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-339d649281acc69bc58d4baf",
+          "source_content_hash": "dfafe6931a283be8bdbd940aa3f36121a6fca88cbd3e330259a1700ce09cf397",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 600,
+          "text": "<앵커> 연예인이나 모델을 꿈꾸는 아이와 부모에게 활동 기회를 약속하며 수백만 원의 계약을 유도하는 학원형 연예 기획사들이 있습니다. 그런데 막상 활동할 기회는 턱없이 부족한 데다, 계약을 해지해도 제대로 환불받지 못하는 피해가 잇따르고 있습니다. 정성진 기자가 취재했습니다. <기자> 지난해 9월 아이가 키즈 모델에 뽑혔다는 소식에 2년 계약으로 297만 원을 지불한 A 씨. 활발한 모델 제의가 있을 거라는 설명과 달리 7개월간 모델 제의는 단 1건, 그것도 해당 기획사 내부 촬영이었습니다. 남은 기간만큼이라도 계약금을 돌려받으려 했지만 업체는 프로필 촬영 등으로 더 많은 비용을 썼다며 돌려줄 돈이 없다고 통보했습니다. [A 씨 : 10% 위약금만 제외하고는 환불이 가능하다 해서 계약을 한 거였는데 환불할 금액이 없다고 하면서 그 정산서를 이제 보내줬어요.] 연기 오디션에 합격해 1년 계약금으로 400만 원을 낸 B 양은 한 차례 교육을 받고 실망했습니다. [B 양 : 발성 연습하는 거, 복식 호흡하는 거 하나 배우고 대본을 주고 그냥 읽게만 시켜요.] 2주 만에 계약 해지를 요구했는데, 업체는 위약금 39%에 추가 비용까지 청구해 절반도 안 되는 돈을 돌려",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-339d649281acc69bc58d4baf",
+            "analysis_only": true,
+            "original_content_hash": "dfafe6931a283be8bdbd940aa3f36121a6fca88cbd3e330259a1700ce09cf397",
+            "analysis_content_hash": "dfafe6931a283be8bdbd940aa3f36121a6fca88cbd3e330259a1700ce09cf397",
+            "changed": false,
+            "removed_spans": [],
+            "warnings": [],
+            "original_body_characters": 1031,
+            "analysis_body_characters": 1031
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-5144b72d95413473fe116a7d",
+          "source_content_hash": "dc381047fa29ec18213f952ba82a60de21246447a47305b89cc0aa13cc33105b",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 600,
+          "text": "<앵커> 긴축 기조를 이어가고 있는 한국은행이 이번 달에는 금리 인상을 쉬어갔습니다. 하지만 고금리가 장기화될 거라는 우려에 코스피는 3.5% 넘게 급락했습니다. 김혜민 기자입니다. <기자> 한국은행이 시장의 예상대로 기준금리를 연 3%로 동결했습니다. 금통위원 7명 모두 동결에 찬성했습니다. 앞서 금통위는 2024년 10월부터 지난해 5월까지 네 차례 금리를 인하한 뒤, 지난 7월과 8월 연달아 금리를 인상했습니다. 신현송 한국은행 총재는 지난 8월 금리 인상 때 \"가래로 막아야 할 것을 호미로 막았다\"며 선제적 대응을 강조했는데 \"이번 동결이 그 호미질의 결실\"이라고 설명했습니다. 외부 상황에 쫓기지 않고 국내 경제 여건에 맞게 정책을 펼 수 있는 운신의 폭을 얻었다고 말했습니다. 다만 오는 11월이나 내년 초 추가 금리 인상 가능성도 함께 시사했습니다. [신현송/한국은행 총재 : 성장세나 물가 오름세가 오히려 8월보다도 더 강한 측면이 있기 때문에 지금의 긴축적인 정책 기조를 계속 이어갈 필요가 있다고 생각을 하고요.] 코스피는 금리 인상 기조가 이어질 것이라는 전망과 함께 AI 수익성에 대한 의문 등으로 큰 폭으로 하락했습니다. 삼성전자가 4%, SK",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-5144b72d95413473fe116a7d",
+            "analysis_only": true,
+            "original_content_hash": "dc381047fa29ec18213f952ba82a60de21246447a47305b89cc0aa13cc33105b",
+            "analysis_content_hash": "dc381047fa29ec18213f952ba82a60de21246447a47305b89cc0aa13cc33105b",
+            "changed": false,
+            "removed_spans": [],
+            "warnings": [],
+            "original_body_characters": 1009,
+            "analysis_body_characters": 1009
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-54084df5e2aa31d4eaa020d4",
+          "source_content_hash": "36af8a9cf536919128b2b9023e00f8f2107a1a0c04ec1c136125c9227aaea51c",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 600,
+          "text": "<앵커> 인터넷 웹사이트에 보편적으로 쓰이는 프로그래밍 언어에서 심각한 취약점이 발견돼서 전 세계 정부와 기업들이 비상에 걸렸죠. 우리 정부도 긴급 대응에 나섰는데, 이게 어떤 원리로 정보를 탈취 당하게 되는 건지 최승훈 기자가 쉽게 설명해드립니다. <기자> 우리가 온라인 쇼핑몰에서 로그인하거나 물건을 주문하면 그 요청을 확인하고 결과를 알려주는 '직원' 같은 프로그램이 있습니다. 이런 프로그램을 만드는 데 쓰이는 대표적인 언어가 바로 PHP입니다. 1995년 처음 공개돼서 지금도 쇼핑몰과 인터넷 게시판, 블로그 등에서 널리 쓰입니다. 그런데 이 프로그램이 정보를 잠시 저장해 두는 '메모리'를 다루면서 두 가지 실수를 한다는 사실이 드러났습니다. 해커가 특정한 요청을 보내 PHP가 쓸 수 있는 메모리를 부족하게 만들 때 PHP가 오류를 일으킨다는 건데요. 잘못된 정보를 멀쩡한 정보로 착각하거나 이미 버린 정보를 다음 손님의 것인 양 다시 꺼내 쓰는 문제가 발견됐습니다. 해커는 이런 혼란을 틈타서 서버가 해커의 명령을 따르도록 만들 수 있었습니다. 로그인 없이도 개인정보를 빼돌리거나 악성 프로그램을 설치할 수 있다는 거죠. 개발진은 취약점을 고칠 때까지 공격 ",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-54084df5e2aa31d4eaa020d4",
+            "analysis_only": true,
+            "original_content_hash": "36af8a9cf536919128b2b9023e00f8f2107a1a0c04ec1c136125c9227aaea51c",
+            "analysis_content_hash": "36af8a9cf536919128b2b9023e00f8f2107a1a0c04ec1c136125c9227aaea51c",
+            "changed": false,
+            "removed_spans": [],
+            "warnings": [],
+            "original_body_characters": 1158,
+            "analysis_body_characters": 1158
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-5c04c463737e055be24d1547",
+          "source_content_hash": "aff35ace1dbe0df1daa02562e88deecc0a14a5e9d275078cf2adfabb40a37386",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 600,
+          "text": "▲ SK하이닉스의 미국 손자회사인 솔리다임 SK하이닉스가 손자회사인 솔리다임의 미국 증시 상장 절차를 중단하기로 했습니다. SK하이닉스는 오늘(23일) \"해외 종속회사인 솔리다임은 생산 능력 확대 및 경쟁력 강화를 위한 다양한 자금 조달 방안을 검토해 왔으나, 자본시장 여건 등을 종합적으로 고려해 상장 전 투자유치(프리IPO) 및 기업공개(IPO)에 대한 검토를 중단하기로 결정했다\"고 공시했습니다. 지난 8월 5일 상장 준비 사실이 알려진 지 79일 만입니다. SK하이닉스는 \"최근 자본시장 여건과 주가 흐름 등을 고려할 때, IPO가 SK하이닉스와 기존 주주들에게 가장 유리한 선택인지 재검토할 필요가 있다고 판단했다\"고 밝혔습니다. 솔리다임은 SK하이닉스가 2021년 인텔의 낸드플래시·솔리드스테이트드라이브(SSD) 사업을 인수하며 출범한 회사입니다. SK하이닉스가 미국 중간지주사인 AI컴퍼니를 통해 솔리다임 지분을 100% 보유하고 있습니다. AI(인공지능) 확대로 시장이 커지는 가운데, 미국 내 생산시설 구축과 기술 개발에 필요한 투자 재원을 마련하는 게 상장의 주요 명분으로 거론돼 왔습니다. 상장 중단에는 주주들의 거센 반발과 주가 하락이 결정적 영향을 ",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-5c04c463737e055be24d1547",
+            "analysis_only": true,
+            "original_content_hash": "aff35ace1dbe0df1daa02562e88deecc0a14a5e9d275078cf2adfabb40a37386",
+            "analysis_content_hash": "c943a769faea532070b54f25c154b80306794312c8a0d41ad60a5cc196503dbb",
+            "changed": true,
+            "removed_spans": [
+              {
+                "field": "body",
+                "start": 1715,
+                "end": 1739,
+                "reason": "photo_credit",
+                "text": " (사진=솔리다임 홈페이지 제공, 연합뉴스)"
+              }
+            ],
+            "warnings": [
+              "unparsed_leading_caption_marker"
+            ],
+            "original_body_characters": 1739,
+            "analysis_body_characters": 1715
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-5c9ac85891430311503e8279",
+          "source_content_hash": "4d5bddd7fca5d94d54e693184d695b76a86b6a6cc567c940025c4db027d76d73",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 600,
+          "text": "<앵커> 방금 보신 것처럼 PHP 보안 취약점이 발견되면서, 국내에서도 긴급 대응에 나섰습니다. 대체 어떤 문제이고 얼마나 위험한 걸까요? 공격 원리부터 우리 상황까지, 이어서 최승훈 기자가 짚어드리겠습니다. <기자> 우리가 온라인 쇼핑몰에서 로그인하거나 물건을 주문하면 그 요청을 확인하고 결과를 알려주는 '직원' 같은 프로그램이 있습니다. 이런 프로그램을 만드는 데 쓰이는 대표적인 언어가 바로 PHP입니다. 1995년 처음 공개돼서 지금도 쇼핑몰과 인터넷 게시판, 블로그 등에서 널리 쓰입니다. 그런데 이 프로그램이 정보를 잠시 저장해 두는 '메모리'를 다루면서 두 가지 실수를 한다는 사실이 드러났습니다. 해커가 특정한 요청을 보내 PHP가 쓸 수 있는 메모리를 부족하게 만들 때 PHP가 오류를 일으킨다는 건데요, 잘못된 정보를 멀쩡한 정보로 착각하거나 이미 버린 정보를 다음 손님의 것인 양 다시 꺼내 쓰는 문제가 발견됐습니다. 해커는 이런 혼란을 틈타서 서버가 해커의 명령을 따르도록 만들 수 있었습니다. 로그인 없이도 개인정보를 빼돌리거나 악성 프로그램을 설치할 수 있다는 거죠. 개발진은 취약점을 고칠 때까지 공격 방법을 비밀에 부쳤지만 보안 패치 배포 업",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-5c9ac85891430311503e8279",
+            "analysis_only": true,
+            "original_content_hash": "4d5bddd7fca5d94d54e693184d695b76a86b6a6cc567c940025c4db027d76d73",
+            "analysis_content_hash": "4d5bddd7fca5d94d54e693184d695b76a86b6a6cc567c940025c4db027d76d73",
+            "changed": false,
+            "removed_spans": [],
+            "warnings": [],
+            "original_body_characters": 1145,
+            "analysis_body_characters": 1145
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-5ff8218da9a32ad8f645ea7b",
+          "source_content_hash": "a2fd76456d4531feb371be310b90c3bea4281db55bb66fc1a05b4153428c924d",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 600,
+          "text": "<앵커> 전 세계 인터넷 보안에 비상이 걸렸습니다. 웹사이트에서 널리 쓰이는 프로그래밍 언어 PHP에서 심각한 보안 결함이 발견됐는데요. 해커들이 이 취약점을 어떻게 악용할 수 있고 실제 피해로 이어질 가능성은 얼마나 될지 공격 원리부터 국내 대응 상황까지 최승훈 기자가 짚어드립니다. <기자> 우리가 온라인 쇼핑몰에서 로그인하거나 물건을 주문하면 그 요청을 확인하고 결과를 알려주는 '직원' 같은 프로그램이 있습니다. 이런 프로그램을 만드는 데 쓰이는 대표적인 언어가 바로 PHP입니다. 1995년 처음 공개돼서 지금도 쇼핑몰과 인터넷 게시판, 블로그 등에서 널리 쓰입니다. 그런데 이 프로그램이 정보를 잠시 저장해 두는 '메모리'를 다루면서 두 가지 실수를 한다는 사실이 드러났습니다. 해커가 특정한 요청을 보내 PHP가 쓸 수 있는 메모리를 부족하게 만들 때 PHP가 오류를 일으킨다는 건데요. 잘못된 정보를 멀쩡한 정보로 착각하거나 이미 버린 정보를 다음 손님의 것인 양 다시 꺼내 쓰는 문제가 발견됐습니다. 해커는 이런 혼란을 틈타서 서버가 해커의 명령을 따르도록 만들 수 있었습니다. 로그인 없이도 개인정보를 빼돌리거나 악성 프로그램을 설치할 수 있다는 거죠. ",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-5ff8218da9a32ad8f645ea7b",
+            "analysis_only": true,
+            "original_content_hash": "a2fd76456d4531feb371be310b90c3bea4281db55bb66fc1a05b4153428c924d",
+            "analysis_content_hash": "a2fd76456d4531feb371be310b90c3bea4281db55bb66fc1a05b4153428c924d",
+            "changed": false,
+            "removed_spans": [],
+            "warnings": [],
+            "original_body_characters": 1178,
+            "analysis_body_characters": 1178
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-764ba243cc3011e86d40b2c0",
+          "source_content_hash": "9b8b6eb7aefbedb5df542c5640eea0e90b61091d0f8e84edc4a73d696c715d4c",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 600,
+          "text": "<앵커> SK하이닉스가 손자회사인 솔리다임의 미국 나스닥 상장 검토 작업을 중단하기로 했습니다. SK하이닉스 주가는 하락 출발했다가 반등을 시도하고 있습니다. 김혜민 기자입니다. <기자> \"솔리다임은 자본시장 여건 등을 종합적으로 고려해 프리IPO와 기업공개에 대한 검토를 중단하기로 결정했습니다.\" 오늘(23일) 오전 SK하이닉스가 올린 공시입니다. 지난 8월 5일 SK하이닉스가 솔리다임 미국 나스닥 상장을 준비한다고 알려진 지 79일 만입니다. SK하이닉스는 \"최근 자본시장 여건과 주가 흐름 등을 고려할 때, IPO가 SK하이닉스와 기존 주주들에게 가장 유리한 선택인지 재검토할 필요가 있다고 판단했다\"고 밝혔습니다. 솔리다임은 SK하이닉스가 2021년 인텔의 낸드플래시와 SSD 사업을 인수하며 출범한 회사입니다. SK주식회사에서 SK하이닉스, 솔리다임으로 이어지는 다층적 지배 구조에서 솔리다임이 따로 상장하면 이익을 나눠야 하는 만큼 모기업들의 가치가 떨어질 수 있습니다. 앞서 금융위와 금감원 국정감사에서 \"솔리다임의 중복 상장은 규제 대상\"이라는 발언이 나온 데다 주주들의 거센 반발과 주가 하락이 결정적인 영향을 미친 것으로 보입니다. SK하이닉스 주가는",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-764ba243cc3011e86d40b2c0",
+            "analysis_only": true,
+            "original_content_hash": "9b8b6eb7aefbedb5df542c5640eea0e90b61091d0f8e84edc4a73d696c715d4c",
+            "analysis_content_hash": "9b8b6eb7aefbedb5df542c5640eea0e90b61091d0f8e84edc4a73d696c715d4c",
+            "changed": false,
+            "removed_spans": [],
+            "warnings": [],
+            "original_body_characters": 869,
+            "analysis_body_characters": 869
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-7a56d0d1db2ebeef5b323911",
+          "source_content_hash": "7b484480f21469e80095bb9942760f4285965481b6835ef8f937af5b7dc384db",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 376,
+          "text": "첫 번째 알찬 뉴스는 초단기 재테크입니다. 요즘 금리 또 금융시장 전망하기가 정말 어려운 시장이죠. 그러다 보니까 돈을 오래 묶어두기보다는 초단기로 굴리려는 사람들이 늘고 있습니다. 한 달 안팎으로 만기가 돌아오는 초단기 적금 상품들이 인기입니다. 한 인터넷은행의 31일 적금은 출시 넉 달 만에 60만 계좌를 넘어섰고요. 또 다른 한 달 적금도 6개월 동안 100만 계좌 이상 팔렸습니다. 증권사의 단기 금융상품인 발행어음도 투자금 빠르게 늘고 있고요. 대표적인 단기 상품인 머니마켓펀드, MMF 설정액도 지난 6월 말보다 35조 원 넘게 증가했습니다. 전문가들은 금리 방향과 증시 변동성을 예측하기 어려운 만큼 당분간은 단기 상품의 선호가 이어질 것으로 보고 있습니다.",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-7a56d0d1db2ebeef5b323911",
+            "analysis_only": true,
+            "original_content_hash": "7b484480f21469e80095bb9942760f4285965481b6835ef8f937af5b7dc384db",
+            "analysis_content_hash": "7b484480f21469e80095bb9942760f4285965481b6835ef8f937af5b7dc384db",
+            "changed": false,
+            "removed_spans": [],
+            "warnings": [],
+            "original_body_characters": 376,
+            "analysis_body_characters": 376
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-9b153d0671cf32d485d67dc0",
+          "source_content_hash": "88f082d33801a21041172f6e1fc7a6e6fa5674acb6655bb8363deb5cd9d79225",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 600,
+          "text": "<앵커> 이렇게 부적절한 지시가 있었다면서도 책임을 묻긴 어렵다는 결정에 유족과 노동계는 반발했습니다. 제대로 조사하지도 않고 쿠팡에 면죄부를 줬다고 비판했습니다. 이어서 이성훈 기자가 보도합니다. <기자> 쿠팡 노동자 고 장덕준 씨가 숨진 지 어느덧 6년. 김영훈 노동부 장관은 지난 1월 국회 쿠팡 청문회를 지켜본 뒤 \"고쳐 쓸 수 있겠냐는 생각이 들었다\"며 비판했지만 수사 결과는 불기소 의견 송치였습니다. [박미숙/고 장덕준 씨 어머니 : 저희가 왜 6년 동안 이렇게 아무것도 못 하고 정말 모든 걸 던져 가면서 싸워 왔는데, 이 과정들이 진짜 아무 부질없는 결과가 나온 거예요. 더더욱 고용노동부에 대한 신뢰는 없는 상태죠.] 쿠팡대책위는 김범석 의장에 대한 소환 조사를 한 차례도 못 하고 불기소 의견이 나왔다며 쿠팡에 면죄부를 주려 한 것 아니냐고 비판했습니다. [김혜진/쿠팡대책위 집행위원장 : (수사·감독의) 미흡함을 질타하는 수준이 아니고요. 고용노동부의 조사가 애초부터 쿠팡에 면죄부를 주려고 진행된 거 아니냐라는 의구심을 갖고 있습니다.] 산재 발생 사실을 보고했기 때문에 은폐죄 적용이 어렵다고 판단한 것도 문제라고 지적했습니다. [김혜진/쿠팡대책위",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-9b153d0671cf32d485d67dc0",
+            "analysis_only": true,
+            "original_content_hash": "88f082d33801a21041172f6e1fc7a6e6fa5674acb6655bb8363deb5cd9d79225",
+            "analysis_content_hash": "88f082d33801a21041172f6e1fc7a6e6fa5674acb6655bb8363deb5cd9d79225",
+            "changed": false,
+            "removed_spans": [],
+            "warnings": [],
+            "original_body_characters": 1177,
+            "analysis_body_characters": 1177
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-9f46cab4e01d015f8ce56faa",
+          "source_content_hash": "01fedf02336a14d2e5f6f7b9a1bc4691f1cfc18be7f4d46a55bc26211bb8964d",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 557,
+          "text": "올해 상반기 계란값이 오르면서 3분기 산란계 사육 마릿수가 증가했습니다. 23일 국가데이터처가 발표한 '2026년 3분기 가축동향조사'에 따르면, 산란계는 8천654만 4천 마리로 지난해 동기 대비 546만 1천 마리, 6.7% 증가했습니다. 사육시설에 새로 들이는 병아리가 늘어났는데 특히 3개월 미만 마릿수가 24.8% 증가했습니다. 상반기 동안 계란값이 높게 유지되면서 최근 사육을 시작한 병아리들이 많아진 것으로 분석됩니다. 고기용인 육용계는 9천13만 9천 마리로 411만 3천 마리 줄었습니다. 지난해에 이어 올해 상반기 고병원성 조류인플루엔자가 확산하면서 사육 마릿수가 감소한 영향이 있다는 게 데이터처의 설명입니다. 소와 돼지 또한 각각 구제역과 아프리카돼지열병의 영향으로 사육 마릿수가 줄었습니다. 한·육우 사육 마릿수는 331만 8천 마리로 1년 전보다 14만 7천 마리 감소했고, 젖소는 1만 1천 마리 감소한 36만 2천 마리로 조사됐습니다. 돼지는 1천77만 6천 마리로 26만 1천 마리 줄었습니다. 오리 사육 마릿수는 926만 2천 마리로 7만 2천 마리 증가했습니다.",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-9f46cab4e01d015f8ce56faa",
+            "analysis_only": true,
+            "original_content_hash": "01fedf02336a14d2e5f6f7b9a1bc4691f1cfc18be7f4d46a55bc26211bb8964d",
+            "analysis_content_hash": "8399e6efdeda42531e7a2aab33eda9149797fa9aa420f4e9b8672d770866e18e",
+            "changed": true,
+            "removed_spans": [
+              {
+                "field": "body",
+                "start": 557,
+                "end": 578,
+                "reason": "photo_credit",
+                "text": " (사진=연합뉴스TV 제공, 연합뉴스)"
+              }
+            ],
+            "warnings": [],
+            "original_body_characters": 578,
+            "analysis_body_characters": 557
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-a4bdafce8a6673a75147d313",
+          "source_content_hash": "549fc8ac5d66fca6a0e19a0c8d59292fa9269cbc8cdb8135c0c80fd52eb70377",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 600,
+          "text": "<앵커> 야간 근무 뒤 숨진 고 장덕준 씨의 사건을 쿠팡이 덮으려 했다는 의혹이 지난해 저희 보도로 드러났는데요. 고용노동부가 당시 김범석 대표이사의 부적절한 지시가 있었다고 밝혔지만 공소시효가 지났고 산재 은폐죄를 적용하기 어려워 형사 책임을 묻기는 힘들다고 판단했습니다. 먼저 백운 기자입니다. <기자> 고 장덕준 씨는 지난 2020년 10월 쿠팡 칠곡물류센터에서 야간 근무를 마친 뒤 숨졌습니다. SBS는 지난해 12월, 김범석 당시 쿠팡 대표이사가 \"고인의 업무 기록에 열심히 일했다는 기록이 남지 않도록 하라\"고 지시한 정황을 단독 보도했습니다. 쿠팡 내부 자료에는 물을 마시거나 화장실을 이용한 시간까지 분초 단위로 기록돼 있었습니다. 산재 은폐 의혹을 수사해 온 고용노동부는 이런 부적절한 지시가 있었던 사실을 확인했다고 밝혔습니다. 쿠팡 측이 근로복지공단 조사 과정에서 장 씨가 보이지 않는 CCTV 영상을 제출하고, 근무 환경과 관련해 영상과 다른 진술을 한 사실도 파악됐습니다. 하지만 노동부는 산재 발생 사실은 보고됐고, 산재 승인 방해도 확인되지 않았다며 산재 은폐 혐의 적용이 어렵다고 밝혔습니다. 또 공소시효도 지나 불기소 의견으로 송치할 예정이라",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-a4bdafce8a6673a75147d313",
+            "analysis_only": true,
+            "original_content_hash": "549fc8ac5d66fca6a0e19a0c8d59292fa9269cbc8cdb8135c0c80fd52eb70377",
+            "analysis_content_hash": "549fc8ac5d66fca6a0e19a0c8d59292fa9269cbc8cdb8135c0c80fd52eb70377",
+            "changed": false,
+            "removed_spans": [],
+            "warnings": [],
+            "original_body_characters": 1164,
+            "analysis_body_characters": 1164
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-ab0bb21e9727c2eca2457aa2",
+          "source_content_hash": "74c932a55b983bfbbbd46556936626cf1b4bc266bcf2a8d9462c5666c79f917f",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 600,
+          "text": "국민연금 기금 운용 수익률이 지난해의 절반 수준으로 떨어지더라도 운용 직원들에게는 300억 원 넘는 성과급이 지급될 수 있다는 분석이 나왔습니다. 1인당 평균 7천500만 원에 달하는데, 성과급 평가 기준이 지나치게 낮다는 지적이 제기됐습니다. 국회 등에 따르면 올해 국민연금 기금운용 수익률이 지난해 18.97%에서 10% 수준으로 떨어진다고 가정할 경우, 기금운용직에 지급될 성과급은 308억 8천600만 원으로 추산됐습니다. 운용 직원 410명을 기준으로 1인당 평균 약 7천500만 원입니다. 수익률은 지난해보다 약 47% 감소하지만, 성과급은 31.6% 줄어드는 데 그쳐 여전히 300억 원을 웃도는 겁니다. 이런 결과가 나오는 이유로는 국민연금의 성과급 평가 방식이 지목됐습니다. 국민연금은 지난해부터 성과급 산정에 '절대성과' 평가를 도입했습니다. 시장 평균보다 얼마나 높은 수익을 냈는지 평가하는 '상대성과'와 달리, 절대성과는 미리 정한 목표 수익률을 얼마나 초과했는지 따지는 방식입니다. 문제는 국민연금이 정한 목표 수익률이 5.5%라는 점입니다. 최근 5년간 국민연금의 평균 수익률은 약 9.75%, 시장 기준 수익률도 약 9.59%였는데, 절대성과 평",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-ab0bb21e9727c2eca2457aa2",
+            "analysis_only": true,
+            "original_content_hash": "74c932a55b983bfbbbd46556936626cf1b4bc266bcf2a8d9462c5666c79f917f",
+            "analysis_content_hash": "74c932a55b983bfbbbd46556936626cf1b4bc266bcf2a8d9462c5666c79f917f",
+            "changed": false,
+            "removed_spans": [],
+            "warnings": [],
+            "original_body_characters": 1104,
+            "analysis_body_characters": 1104
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-aeefa8b85737df0a11701a57",
+          "source_content_hash": "f59f03d49175b9e65937ebc936c7db9f261c40bf9b622c920a901605110895b0",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 342,
+          "text": "[경제 365] 올해 8월까지 미성년자가 사들인 주택이 지난해 전체의 두 배 가까이로 늘었습니다. 0세에서 19세의 주택 매수는 66건으로, 지난해 37건의 1.8배였습니다. 총 매수 금액은 231억 원으로 지난해보다 9.5% 증가했습니다. 이 가운데 예금이나 주식·채권 매각 대금 등 '자기 자금'이라고 신고한 금액은 전체의 56.7%인 131억 원이었습니다. 한 명당 평균 3억 5천만 원짜리 주택을 사면서 약 2억 원을 자기 자금으로 신고한 셈입니다. 2021년부터 올해 8월까지 미성년자의 주택 매수는 모두 1천541건, 매수 금액은 3천405억 원에 달했습니다. *이 기사는 AI 오디오로 제작됐습니다.",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-aeefa8b85737df0a11701a57",
+            "analysis_only": true,
+            "original_content_hash": "f59f03d49175b9e65937ebc936c7db9f261c40bf9b622c920a901605110895b0",
+            "analysis_content_hash": "f59f03d49175b9e65937ebc936c7db9f261c40bf9b622c920a901605110895b0",
+            "changed": false,
+            "removed_spans": [],
+            "warnings": [],
+            "original_body_characters": 342,
+            "analysis_body_characters": 342
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-b0d3eb77d4df208736c814e5",
+          "source_content_hash": "232d8e7e09f7acb4bd8b5f0885ca63880e97e7e3fa904705ac7621619424c990",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 600,
+          "text": "<앵커> 부적절한 지시가 있었다면서도 책임을 묻긴 어렵다는 정부 결정에, 유족과 노동계는 강하게 반발했습니다. 제대로 조사하지도 않고 쿠팡에 면죄부를 줬다고 비판했습니다. 이어서 이성훈 기자입니다. <기자> 쿠팡 노동자 고 장덕준 씨가 숨진 지 어느덧 6년. 김영훈 노동부 장관은 지난 1월 국회 쿠팡 청문회를 지켜본 뒤 \"고쳐 쓸 수 있겠냐는 생각이 들었다\"며 비판했지만 수사 결과는 불기소 의견 송치였습니다. [박미숙/고 장덕준 씨 어머니 : 저희가 왜 6년 동안 이렇게 아무것도 못 하고 정말 모든 걸 던져 가면서 싸워 왔는데, 이 과정들이 진짜 아무 부질없는 결과가 나온 거예요. 더더욱 고용노동부에 대한 신뢰는 없는 상태죠.] 쿠팡대책위는 김범석 의장에 대한 소환 조사를 한 차례도 못 하고 불기소 의견이 나왔다며 쿠팡에 면죄부를 주려 한 것 아니냐고 비판했습니다. [김혜진/쿠팡대책위 집행위원장 : (수사·감독의) 미흡함을 질타하는 수준이 아니고요. 고용노동부의 조사가 애초부터 쿠팡에 면죄부를 주려고 진행된 거 아니냐라는 의구심을 갖고 있습니다.] 산재 발생 사실을 보고했기 때문에 은폐죄 적용이 어렵다고 판단한 것도 문제라고 지적했습니다. [김혜진/쿠팡대책위",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-b0d3eb77d4df208736c814e5",
+            "analysis_only": true,
+            "original_content_hash": "232d8e7e09f7acb4bd8b5f0885ca63880e97e7e3fa904705ac7621619424c990",
+            "analysis_content_hash": "232d8e7e09f7acb4bd8b5f0885ca63880e97e7e3fa904705ac7621619424c990",
+            "changed": false,
+            "removed_spans": [],
+            "warnings": [],
+            "original_body_characters": 1177,
+            "analysis_body_characters": 1177
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-b228985f1f1e3df1cf5f267e",
+          "source_content_hash": "e17fbacb28431cc768c5364d1e42c34519dedc15a0e1bfd3f849f148ec4a72ac",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 600,
+          "text": "▲ 배경훈 부총리 겸 과학기술정보통신부 장관이 23일 국회에서 열린 과학기술정보방송통신위원회 종합감사에서 위원 질문에 답하고 있다. 배경훈 부총리 겸 과학기술정보통신부 장관이 최근 전 세계 웹사이트에서 널리 쓰이는 프로그래밍 언어 'PHP'에서 심각한 보안 취약점이 발견된 것과 관련해 범부처 차원의 종합대책을 마련하겠다고 했습니다. 배경훈 부총리는 오늘(23일) 국회에서 열린 과학기술정보방송통신위원회 종합감사에서 \"사이버 보안 컨트롤타워 체계를 정비해야 한다는 지적에 깊이 공감한다\"며 \"국가안보실 중심 대응을 넘어 범부처 차원의 종합대책과 관련 조직 개편을 검토하고 있다\"고 말했습니다. 배 부총리는 \"PHP 문제를 넘어 근본적인 대책을 수립할 필요가 있다고 생각한다\"며 조만간 관련 방안을 보고하겠다고 밝혔습니다. 의원들은 미국·일본·중국 등 주요국이 패치 불가 시스템에 대한 오프라인 전환이나 접속 차단까지 권고하며 더 빠르게 움직인 반면, 한국은 각 기관의 자율 조치에 맡기는 '주의' 단계에 그쳤다며 대응 속도가 안일하다고 질타했습니다. 서천호 국민의힘 의원은 국내 웹사이트의 약 80%가 PHP를 사용하고 있어 해외 평균 약 70%보다 의존도가 높다고 지적하",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-b228985f1f1e3df1cf5f267e",
+            "analysis_only": true,
+            "original_content_hash": "e17fbacb28431cc768c5364d1e42c34519dedc15a0e1bfd3f849f148ec4a72ac",
+            "analysis_content_hash": "eaf3323cae3138cf64aa1a43643205a2195350d0541b3f5b4f1cce7af3d4d33b",
+            "changed": true,
+            "removed_spans": [
+              {
+                "field": "body",
+                "start": 1024,
+                "end": 1034,
+                "reason": "photo_credit",
+                "text": " (사진=연합뉴스)"
+              }
+            ],
+            "warnings": [
+              "unparsed_leading_caption_marker"
+            ],
+            "original_body_characters": 1034,
+            "analysis_body_characters": 1024
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-b9c7bf7baa4531874f58341e",
+          "source_content_hash": "5450cda3bbf5e8edd8e0ac4c08279f7a48f622ac589f7d6ac263826c833b47c9",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 600,
+          "text": "<앵커> 저희가 지난해 단독 보도 해드렸던 쿠팡이 고 장덕준 씨의 산업 재해 사망을 숨기려고 했다는 했다는 의혹에 대해 고용노동부가 조사 결과를 내놨습니다. 김범석 의장이 당시 부적절한 지시를 한 것은 맞지만 죄가 성립하지는 않고 공소시효도 지났다고 판단했습니다. 오늘(23일) 첫 소식, 백운 기자입니다. <기자> 고 장덕준 씨는 지난 2020년 10월 쿠팡 칠곡물류센터에서 야간 근무를 마친 뒤 숨졌습니다. SBS는 지난해 12월, 김범석 당시 쿠팡 대표이사가 \"고인의 업무 기록에 열심히 일했다는 기록이 남지 않도록 하라\"고 지시한 정황을 단독 보도했습니다. 쿠팡 내부 자료에는 물을 마시거나 화장실을 이용한 시간까지 분초 단위로 기록돼 있었습니다. 산재 은폐 의혹을 수사해 온 고용노동부는 이런 부적절한 지시가 있었던 사실을 확인했다고 밝혔습니다. 쿠팡 측이 근로복지공단 조사 과정에서 장 씨가 보이지 않는 CCTV 영상을 제출하고, 근무 환경과 관련해 영상과 다른 진술을 한 사실도 파악됐습니다. 하지만 노동부는 산재 발생 사실은 보고됐고, 산재 승인 방해도 확인되지 않았다며 산재 은폐 혐의 적용이 어렵다고 밝혔습니다. 또 공소시효도 지나 불기소 의견으로 송치할",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-b9c7bf7baa4531874f58341e",
+            "analysis_only": true,
+            "original_content_hash": "5450cda3bbf5e8edd8e0ac4c08279f7a48f622ac589f7d6ac263826c833b47c9",
+            "analysis_content_hash": "5450cda3bbf5e8edd8e0ac4c08279f7a48f622ac589f7d6ac263826c833b47c9",
+            "changed": false,
+            "removed_spans": [],
+            "warnings": [],
+            "original_body_characters": 1170,
+            "analysis_body_characters": 1170
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-c082e78f93d81433f9bb6e8e",
+          "source_content_hash": "8fb991f5e6cda5b91939c82e011ca58ec8dadc965f2390618147f3eba3ab069f",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 600,
+          "text": "<앵커> 지난 7월과 8월 연달아 기준금리를 인상했던 한국은행이, 이번에는 동결을 선택했습니다. 하지만 향후 인상 가능성을 강하게 시사한 데다, 인공지능 투자 수익성 우려까지 겹치면서 코스피는 3.5% 넘게 급락했습니다. 김혜민 기자의 보도입니다. <기자> 한국은행이 시장의 예상대로 기준금리를 연 3%로 동결했습니다. 금통위원 7명 모두 동결에 찬성했습니다. 앞서 금통위는 2024년 10월부터 지난해 5월까지 네 차례 금리를 인하한 뒤, 지난 7월과 8월 연달아 금리를 인상했습니다. 신현송 한국은행 총재는 지난 8월 금리 인상 때 \"가래로 막아야 할 것을 호미로 막았다\"며 선제적 대응을 강조했는데, 오늘(22일)은 \"이번 동결이 그 호미질의 결실\"이라고 설명했습니다. 외부 상황에 쫓기지 않고 국내 경제 여건에 맞게 정책을 펼 수 있는 운신의 폭을 얻었다고 말했습니다. 다만 오는 11월이나 내년 초 추가 금리 인상 가능성도 함께 시사했습니다. [신현송/한국은행 총재 : 성장세나 물가 오름세가 오히려 8월보다도 더 강한 측면이 있기 때문에 지금의 긴축적인 정책 기조를 계속 이어갈 필요가 있다고 생각을 하고요.] 코스피는 금리 인상 기조가 이어질 것이라는 전망과 ",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-c082e78f93d81433f9bb6e8e",
+            "analysis_only": true,
+            "original_content_hash": "8fb991f5e6cda5b91939c82e011ca58ec8dadc965f2390618147f3eba3ab069f",
+            "analysis_content_hash": "8fb991f5e6cda5b91939c82e011ca58ec8dadc965f2390618147f3eba3ab069f",
+            "changed": false,
+            "removed_spans": [],
+            "warnings": [],
+            "original_body_characters": 1064,
+            "analysis_body_characters": 1064
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-cf1a2e8c2a5aa970eb63db1c",
+          "source_content_hash": "513d516d6decbd85179861c76edd93c26ad37849c39aaf401675f3cf906c2c16",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 305,
+          "text": "희대의 역작, 자리에서 한 박스는 순식간이라는 악마의 디저트! 크리스피크림 도넛 '오리지널 글레이즈드'. 던킨이 독주하던 도넛씬에 등장한 '갓 나온 따끈한 도넛'은 여러 사람에게 신세계를 맛보여줬었죠. 근데… 다들 요즘 이거 '매장' 가서 사드시나요? 생각해 보면 크리스피크림 매장은 예전만큼 눈에 띄지 않는 것 같은데… 던킨 대비 매장 수 ¼ 수준임에도 3년 연속 최고 매출을 경신 중인 크리스피크림 도넛의 전략은 무엇인지 스브스뉴스가 알아봤습니다. 프로듀서 김혜지 / 편집 문소라 / 내레이션·담당 인턴 박효빈 / 도움 전혜빈 / 연출 김다솜",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-cf1a2e8c2a5aa970eb63db1c",
+            "analysis_only": true,
+            "original_content_hash": "513d516d6decbd85179861c76edd93c26ad37849c39aaf401675f3cf906c2c16",
+            "analysis_content_hash": "513d516d6decbd85179861c76edd93c26ad37849c39aaf401675f3cf906c2c16",
+            "changed": false,
+            "removed_spans": [],
+            "warnings": [],
+            "original_body_characters": 305,
+            "analysis_body_characters": 305
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-d02e82f01c734a7dc4e38be6",
+          "source_content_hash": "07eabf234d2be99e7db0653e7467859a55e3d8a6b79fc218ec6fdf7356200387",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 600,
+          "text": "글로벌 시황입니다. 먼저 뉴욕증시부터 살펴보겠습니다. 미 증시 3대 지수가 엇갈린 흐름으로 마감했는데요. 나스닥이 2% 내렸고 S&P500도 1% 넘게 밀렸습니다. 다우지수만이 소폭 상승했습니다. 업종별로 뚜렷하게 갈렸습니다. 기술주가 3%, 소재가 2% 하락하며 부진했던 반면, 필수소비재는 3%, 유틸리티는 1% 오르며 경기 방어주에 매수세가 몰렸습니다. 어제 호실적을 발표한 메타가 향후 수백억 달러에 달하는 AI 인프라 투자 계획과 자금 조달 부담을 드러내면서 \"건전성이 나빠질 수 있다\"는 공포가 시장을 강타했습니다. 여기에 엔비디아의 젠슨 황 CEO는 AI 수요가 여전히 강하지만, 뒷받침할 자본이 부족하다고 언급해 투자 심리는 더욱 위축됐습니다. 다음은, 미 선물 시장을 살펴보겠습니다. 앞서 뉴욕증시에서 기술주를 중심으로 매도세가 확대된 가운데, 선물 시장에서는 투자 심리가 회복될지가 관심입니다. 미 주가지수 선물은 나스닥100 선물만이 약세를 보이고 있는데요. 다우 선물이 37포인트 오르며 5만 3천 선에서 움직이고 있고, 나스닥100 선물은 18포인트 하락하며 2만 9천100선을 기록하고 있습니다. 또 S&P500 선물은 소폭 상승하며 7천700선에",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-d02e82f01c734a7dc4e38be6",
+            "analysis_only": true,
+            "original_content_hash": "07eabf234d2be99e7db0653e7467859a55e3d8a6b79fc218ec6fdf7356200387",
+            "analysis_content_hash": "07eabf234d2be99e7db0653e7467859a55e3d8a6b79fc218ec6fdf7356200387",
+            "changed": false,
+            "removed_spans": [],
+            "warnings": [],
+            "original_body_characters": 1173,
+            "analysis_body_characters": 1173
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-d9fe3a1d11aaac61bb6a7867",
+          "source_content_hash": "af9b7652f10b30752d2a2cbf40bb2b4b8b545fc2e5dbfef290d47498cbc9dccf",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 228,
+          "text": "SK하이닉스가 미국 손자회사인 솔리다임의 상장 추진을 중단했습니다. 지난 8월 상장 준비 사실이 알려진 지 79일 만입니다. SK하이닉스는 최근 자본시장 여건과 기존 주주 이익 등을 고려한 결정이라고 설명했습니다. 그동안 솔리다임 상장을 놓고 중복 상장 논란과 주주들의 반발이 이어졌는데, SK하이닉스는 앞으로 투자 시기와 규모, 자금 조달 방식 등을 검토해 주주 가치를 높일 방안을 모색하겠다고 밝혔습니다.",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-d9fe3a1d11aaac61bb6a7867",
+            "analysis_only": true,
+            "original_content_hash": "af9b7652f10b30752d2a2cbf40bb2b4b8b545fc2e5dbfef290d47498cbc9dccf",
+            "analysis_content_hash": "af9b7652f10b30752d2a2cbf40bb2b4b8b545fc2e5dbfef290d47498cbc9dccf",
+            "changed": false,
+            "removed_spans": [],
+            "warnings": [],
+            "original_body_characters": 228,
+            "analysis_body_characters": 228
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-e4b91bf4349eab7676d3f757",
+          "source_content_hash": "cdc72cb3443018b14a1a613d44cd02dc5eb778a6e223b1728cb9fe268757b57f",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 600,
+          "text": "<앵커> 전 세계 수많은 웹사이트를 움직이는 핵심 기술에서 심각한 보안 결함이 발견돼, 비상이 걸렸습니다. 해커가 이걸 악용하면 웹사이트 장악은 물론, 정보까지 빼낼 수 있는 것으로 전해졌습니다. 각국 정부는 보안 업데이트를 서둘러 설치하라고 당부했습니다. 뉴욕에서 김현우 특파원입니다. <김현우 기자> 프랑스 정부 포털 사이트가 멈춰 섰습니다. 네덜란드 정부도 점검 중이라는 문구와 함께 포털 사이트 접속을 차단했습니다. 전 세계 웹사이트의 70% 정도가 쓰고 있는 프로그래밍 언어, PHP에서 보안상 심각한 허점이 발견됐다는 소식에 유럽 일부 국가들이 예방 차원에서 사이트 접속을 막은 겁니다. PHP 측은 사이트에 로그인하지 않고도 외부에서 서버를 장악할 수 있는 결함이 2건 확인됐다며 어젯(21일)밤 11시 보안 업데이트를 급히 배포했습니다. 보안 취약성을 평가하는 국제 기준에서 10점 만점에 9.2점을 받을 정도로 치명적인 결함이라는 사실이 알려지면서 전 세계에 비상이 걸렸습니다. 미국 보안당국은 업데이트가 어렵다면 웹사이트를 아예 닫아두라고 권고했고, 일본도 총리까지 나서서 긴급 업데이트를 당부했습니다. [라이언 오스틴/보안 업체 연구원 : 이번 취약점을",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-e4b91bf4349eab7676d3f757",
+            "analysis_only": true,
+            "original_content_hash": "cdc72cb3443018b14a1a613d44cd02dc5eb778a6e223b1728cb9fe268757b57f",
+            "analysis_content_hash": "cdc72cb3443018b14a1a613d44cd02dc5eb778a6e223b1728cb9fe268757b57f",
+            "changed": false,
+            "removed_spans": [],
+            "warnings": [],
+            "original_body_characters": 2268,
+            "analysis_body_characters": 2268
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-f2cbc4de0317cecb4fbc3f77",
+          "source_content_hash": "02966a712e73ee2d74eb05098dfc30e5ace7c826f324ac6fbb52bd346c70272d",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 600,
+          "text": "<앵커> 자신의 이름을 내건 초콜릿을 벨기에 왕실에 공급하는 초콜릿 장인이 우리나라를 찾았습니다. 다음 달 수능을 앞둔 한국 학생들을 응원하기 위해 특별한 제품을 가져왔다고 하는데요. 한지연 기자가 피에르 마르콜리니를 만나봤습니다. <기자> Q. '피에르 마르콜리니' 어떤 초콜릿인지? [피에르 마르콜리니/브랜드 창업자, 벨기에 왕실 쇼콜라티에 : 굉장히 의미 있는 질문인데요. 피에르 마르콜리니라는 브랜드는 우선 하나의 프로젝트라고 생각합니다. 초콜릿을 만드는 방식을 다르게 해보자는 프로젝트죠. 초콜릿의 본질인 카카오 빈에서부터 출발하는 작업입니다. 저희 방식은 20세기 초로 거슬러 올라가 옛 초콜릿 장인들의 방식을 그대로 따르는 것입니다. (바다 건너) 재배 농가를 직접 고르고, 카카오 빈의 품종을 선택해 가공합니다. 카카오 빈으로부터 초콜릿을 직접 만드는 것, 그것이 바로 차이입니다. 남다른 맛과 진정성 있는 초콜릿, 우리만의 시그니처가 담긴 초콜릿을 만드는 것이죠. 저희와 카카오 원료 제조농장 사이에 중간 상인이 없다는 점이 시그니처 초콜릿의 기본 요소가 되는 것입니다. 원료에 대한 진정성과 확실성을 지니고 있다는 점, 바로 그 부분이 독창적인 초콜릿의 ",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-f2cbc4de0317cecb4fbc3f77",
+            "analysis_only": true,
+            "original_content_hash": "02966a712e73ee2d74eb05098dfc30e5ace7c826f324ac6fbb52bd346c70272d",
+            "analysis_content_hash": "02966a712e73ee2d74eb05098dfc30e5ace7c826f324ac6fbb52bd346c70272d",
+            "changed": false,
+            "removed_spans": [],
+            "warnings": [],
+            "original_body_characters": 1943,
+            "analysis_body_characters": 1943
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-f2d12c41d47db0ffb18fd183",
+          "source_content_hash": "a3dca2dd79c81b31678c84f324117499d8566eacb12d3c52a4cfb85c2d20cb57",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 600,
+          "text": "<앵커> 김범석 의장에게 죄를 물을 수 없다는 노동부 판단에 유족은 반발했습니다. 노동계는 쿠팡에 면죄부를 준 거라고 비판했습니다. 이성훈 기자입니다. <기자> 쿠팡 노동자 고 장덕준 씨가 숨진 지 어느덧 6년. 김영훈 노동부 장관은 지난 1월 국회 쿠팡 청문회를 지켜본 뒤 \"고쳐 쓸 수 있겠냐는 생각이 들었다\"며 비판했지만 수사 결과는 불기소 의견 송치였습니다. [박미숙/고 장덕준 씨 어머니 : 저희가 왜 6년 동안 이렇게 아무것도 못 하고 정말 모든 걸 던져 가면서 싸워 왔는데, 이 과정들이 진짜 아무 부질없는 결과가 나온 거예요. 더더욱 고용노동부에 대한 신뢰는 없는 상태죠.] 쿠팡대책위는 김범석 의장에 대한 소환 조사를 한 차례도 못 하고 불기소 의견이 나왔다며 쿠팡에 면죄부를 주려 한 것 아니냐고 비판했습니다. [김혜진/쿠팡대책위 집행위원장 : (수사·감독의) 미흡함을 질타하는 수준이 아니고요. 고용노동부의 조사가 애초부터 쿠팡에 면죄부를 주려고 진행된 거 아니냐라는 의구심을 갖고 있습니다.] 산재 발생 사실을 보고했기 때문에 은폐죄 적용이 어렵다고 판단한 것도 문제라고 지적했습니다. [김혜진/쿠팡대책위 집행위원장 : 산재 은폐는 산재 사실 자체를 ",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-f2d12c41d47db0ffb18fd183",
+            "analysis_only": true,
+            "original_content_hash": "a3dca2dd79c81b31678c84f324117499d8566eacb12d3c52a4cfb85c2d20cb57",
+            "analysis_content_hash": "a3dca2dd79c81b31678c84f324117499d8566eacb12d3c52a4cfb85c2d20cb57",
+            "changed": false,
+            "removed_spans": [],
+            "warnings": [],
+            "original_body_characters": 1151,
+            "analysis_body_characters": 1151
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        },
+        {
+          "article_id": "article-fcdfc4b88783de767a59a844",
+          "source_content_hash": "51de847d61d5305598d9d29c61f8d38c67fae2ba23874543bea29668d01851ee",
+          "analysis_only": true,
+          "analysis_body_start": 0,
+          "analysis_body_end": 297,
+          "text": "▲ 23일 서울 중구 하나은행 본점 딜링룸 현황판에 원/달러 환율, 코스피, 코스닥 지수가 표시돼 있다. 오늘(23일) 코스피와 코스닥이 나란히 2%대의 낙폭을 보이며 하락 출발했습니다. 이날 오전 9시 2분 현재 코스피는 전장보다 147.91포인트(2.67%) 내린 5,385.86을 나타내고 있습니다. 지수는 130.60포인트(2.36%) 내린 5,403.17로 개장했습니다. 코스닥은 15.78포인트(2.07%) 내린 748.32로 출발했으며, 이 시각 현재 전장보다 17.11포인트(2.24%) 내린 746.99를 보입니다.",
+          "cleanup": {
+            "version": "source-analysis-cleanup/v2",
+            "article_id": "article-fcdfc4b88783de767a59a844",
+            "analysis_only": true,
+            "original_content_hash": "51de847d61d5305598d9d29c61f8d38c67fae2ba23874543bea29668d01851ee",
+            "analysis_content_hash": "8897333fd236dabc25cff26854d17fc6f4591b18527c7d434b619301a10b7fc8",
+            "changed": true,
+            "removed_spans": [
+              {
+                "field": "body",
+                "start": 297,
+                "end": 307,
+                "reason": "photo_credit",
+                "text": " (사진=연합뉴스)"
+              }
+            ],
+            "warnings": [
+              "unparsed_leading_caption_marker"
+            ],
+            "original_body_characters": 307,
+            "analysis_body_characters": 297
+          },
+          "note": "Exact prefix of the cleaned analysis body; not extracted event facts or a summary."
+        }
+      ],
+      "new_connections_are_human_verified": false,
+      "neighbor_scope": "seed_group",
+      "seed_rank_criterion": "minimum_cross_pair_lead_cosine_then_seed_id",
+      "seed_group_count": 20,
+      "possible_seed_group_pair_count": 190,
+      "feasible_seed_group_pair_count": 0,
+      "mutual_seed_group_pair_count": 0,
+      "seed_neighbours": [
+        {
+          "group_id": "group-05190846e8d13b7e",
+          "article_count": 1,
+          "neighbours": []
+        },
+        {
+          "group_id": "group-0a92408017e59478",
+          "article_count": 1,
+          "neighbours": []
+        },
+        {
+          "group_id": "group-0b910719f3859873",
+          "article_count": 1,
+          "neighbours": []
+        },
+        {
+          "group_id": "group-154b16b8f7d1736d",
+          "article_count": 1,
+          "neighbours": []
+        },
+        {
+          "group_id": "group-18feb0c5515d4fed",
+          "article_count": 1,
+          "neighbours": []
+        },
+        {
+          "group_id": "group-1eb8b45af3dbdf47",
+          "article_count": 1,
+          "neighbours": []
+        },
+        {
+          "group_id": "group-24688740a4d2ab20",
+          "article_count": 3,
+          "neighbours": []
+        },
+        {
+          "group_id": "group-339da9750dbd9104",
+          "article_count": 1,
+          "neighbours": []
+        },
+        {
+          "group_id": "group-65618b814556f050",
+          "article_count": 3,
+          "neighbours": []
+        },
+        {
+          "group_id": "group-788ff6d92b3a1f51",
+          "article_count": 2,
+          "neighbours": []
+        },
+        {
+          "group_id": "group-b1948116c879bab0",
+          "article_count": 2,
+          "neighbours": []
+        },
+        {
+          "group_id": "group-c5e7b9915ef1e413",
+          "article_count": 1,
+          "neighbours": []
+        },
+        {
+          "group_id": "group-cd70499da5c0c640",
+          "article_count": 1,
+          "neighbours": []
+        },
+        {
+          "group_id": "group-cee1e68a8b8604d0",
+          "article_count": 1,
+          "neighbours": []
+        },
+        {
+          "group_id": "group-d18f735dc1d5b749",
+          "article_count": 2,
+          "neighbours": []
+        },
+        {
+          "group_id": "group-d5c275d58b9a2eca",
+          "article_count": 1,
+          "neighbours": []
+        },
+        {
+          "group_id": "group-d655898e11103080",
+          "article_count": 1,
+          "neighbours": []
+        },
+        {
+          "group_id": "group-d7d720a828f223e1",
+          "article_count": 3,
+          "neighbours": []
+        },
+        {
+          "group_id": "group-de1e3e70bd505567",
+          "article_count": 1,
+          "neighbours": []
+        },
+        {
+          "group_id": "group-e895cc20a2a617e1",
+          "article_count": 1,
+          "neighbours": []
+        }
+      ],
+      "shared_summary_audit": {
+        "method": "identical-cleaned-body-divergent-headlines/v1",
+        "clusters": [],
+        "article_ids_requiring_review": [],
+        "equality_is_same_event_proof": false,
+        "human_verified": false
+      },
+      "anchor_rescue": {
+        "method": "bok-source-anchor-strict-bridge/v1",
+        "config": {
+          "full_similarity_min": 0.9,
+          "lead_similarity_min": 0.9,
+          "title_lexical_min": 0.025,
+          "lead_lexical_min": 0.08,
+          "strict_cross_pair_required": true,
+          "scope": "source-explicit-current-day-BOK-primary-rate-decision"
+        },
+        "anchors": {
+          "article-0696791b2e783ad350057b3c": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "e78a96f4a6b7c9d866540bb388f59fc413ff37987bfb49b404a296406a0e500d",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          },
+          "article-0bd6e6a82bcad52c72654d1a": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "7d7bdc1824bb5ba1fad526f5d0f9e67654faca27a476815d1bcf83a7543dcb66",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          },
+          "article-26befd41ca4c8d14241b9e0c": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "9d097046d6c3f4261020d18fb80f7e53ad1a8dca2d0412bfd9131f6ca498fa13",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          },
+          "article-27f8175e07fb1698cefaad68": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "277b74ba513ae10facefc80cba3e6f414caf97a6eb01ece21939405a6a1902ff",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          },
+          "article-2df57a84dd1c8aff7ce6bd60": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "860fbf2bfebae6404145a16f40b79feb199517a1857bc78d366c6dd69a323361",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          },
+          "article-339d649281acc69bc58d4baf": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "dfafe6931a283be8bdbd940aa3f36121a6fca88cbd3e330259a1700ce09cf397",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          },
+          "article-5144b72d95413473fe116a7d": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "dc381047fa29ec18213f952ba82a60de21246447a47305b89cc0aa13cc33105b",
+            "human_verified": false,
+            "reasons": [
+              "missing_explicit_today_date"
+            ]
+          },
+          "article-54084df5e2aa31d4eaa020d4": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "36af8a9cf536919128b2b9023e00f8f2107a1a0c04ec1c136125c9227aaea51c",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          },
+          "article-5c04c463737e055be24d1547": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "aff35ace1dbe0df1daa02562e88deecc0a14a5e9d275078cf2adfabb40a37386",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          },
+          "article-5c9ac85891430311503e8279": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "4d5bddd7fca5d94d54e693184d695b76a86b6a6cc567c940025c4db027d76d73",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          },
+          "article-5ff8218da9a32ad8f645ea7b": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "a2fd76456d4531feb371be310b90c3bea4281db55bb66fc1a05b4153428c924d",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          },
+          "article-764ba243cc3011e86d40b2c0": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "9b8b6eb7aefbedb5df542c5640eea0e90b61091d0f8e84edc4a73d696c715d4c",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          },
+          "article-7a56d0d1db2ebeef5b323911": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "7b484480f21469e80095bb9942760f4285965481b6835ef8f937af5b7dc384db",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          },
+          "article-9b153d0671cf32d485d67dc0": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "88f082d33801a21041172f6e1fc7a6e6fa5674acb6655bb8363deb5cd9d79225",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          },
+          "article-9f46cab4e01d015f8ce56faa": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "01fedf02336a14d2e5f6f7b9a1bc4691f1cfc18be7f4d46a55bc26211bb8964d",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          },
+          "article-a4bdafce8a6673a75147d313": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "549fc8ac5d66fca6a0e19a0c8d59292fa9269cbc8cdb8135c0c80fd52eb70377",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          },
+          "article-ab0bb21e9727c2eca2457aa2": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "74c932a55b983bfbbbd46556936626cf1b4bc266bcf2a8d9462c5666c79f917f",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          },
+          "article-aeefa8b85737df0a11701a57": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "f59f03d49175b9e65937ebc936c7db9f261c40bf9b622c920a901605110895b0",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          },
+          "article-b0d3eb77d4df208736c814e5": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "232d8e7e09f7acb4bd8b5f0885ca63880e97e7e3fa904705ac7621619424c990",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          },
+          "article-b228985f1f1e3df1cf5f267e": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "e17fbacb28431cc768c5364d1e42c34519dedc15a0e1bfd3f849f148ec4a72ac",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          },
+          "article-b9c7bf7baa4531874f58341e": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "5450cda3bbf5e8edd8e0ac4c08279f7a48f622ac589f7d6ac263826c833b47c9",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          },
+          "article-c082e78f93d81433f9bb6e8e": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "8fb991f5e6cda5b91939c82e011ca58ec8dadc965f2390618147f3eba3ab069f",
+            "human_verified": false,
+            "reasons": [
+              "missing_completed_bok_decision"
+            ]
+          },
+          "article-cf1a2e8c2a5aa970eb63db1c": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "513d516d6decbd85179861c76edd93c26ad37849c39aaf401675f3cf906c2c16",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          },
+          "article-d02e82f01c734a7dc4e38be6": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "07eabf234d2be99e7db0653e7467859a55e3d8a6b79fc218ec6fdf7356200387",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          },
+          "article-d9fe3a1d11aaac61bb6a7867": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "af9b7652f10b30752d2a2cbf40bb2b4b8b545fc2e5dbfef290d47498cbc9dccf",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          },
+          "article-e4b91bf4349eab7676d3f757": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "cdc72cb3443018b14a1a613d44cd02dc5eb778a6e223b1728cb9fe268757b57f",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          },
+          "article-f2cbc4de0317cecb4fbc3f77": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "02966a712e73ee2d74eb05098dfc30e5ace7c826f324ac6fbb52bd346c70272d",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          },
+          "article-f2d12c41d47db0ffb18fd183": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "a3dca2dd79c81b31678c84f324117499d8566eacb12d3c52a4cfb85c2d20cb57",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          },
+          "article-fcdfc4b88783de767a59a844": {
+            "method": "bok-primary-rate-decision/v1",
+            "supported": false,
+            "institution": null,
+            "event_date": null,
+            "action": null,
+            "rate_percent": null,
+            "evidence": [],
+            "source_content_hash": "51de847d61d5305598d9d29c61f8d38c67fae2ba23874543bea29668d01851ee",
+            "human_verified": false,
+            "reasons": [
+              "unsupported_primary_headline"
+            ]
+          }
+        },
+        "relaxed_pair_candidate_count": 0,
+        "grouped_relaxed_pair_count": 0,
+        "grouped_relaxed_pairs": [],
+        "rule_developed_on_inspected_sources": true,
+        "human_verified": false
+      }
+    }
+  }
+}

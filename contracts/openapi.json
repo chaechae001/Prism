@@ -776,6 +776,21 @@
             "type": "boolean",
             "title": "Is Demo",
             "default": true
+          },
+          "image_url": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2083,
+                "minLength": 1,
+                "format": "uri"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Url",
+            "description": "Original article image URL, when available. Optional for existing clients and data sources."
           }
         },
         "additionalProperties": false,

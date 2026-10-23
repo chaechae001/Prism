@@ -251,6 +251,13 @@
 .social-photo.compact {
   aspect-ratio: 1 / 1;
 }
+.detail-article-photo {
+  margin-bottom: 22px;
+}
+.detail-article-photo .social-photo {
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+}
 .photo-disclaimer {
   position: absolute;
   bottom: 12px;

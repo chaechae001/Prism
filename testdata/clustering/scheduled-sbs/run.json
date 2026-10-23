@@ -1,0 +1,57 @@
+{
+  "schema_version": "local-news-bot-run/v1",
+  "status": "completed",
+  "profile": "multiview-anchor",
+  "created_at": "2026-10-23T05:42:15.958095+00:00",
+  "input_sha256": "49f65ed3c035f538a9e17959e8468f2c66e4f72c69020193218e925d6c020e52",
+  "snapshot_sha256": "ddf77d3a31936b5c2b073b31fb04172d4f29b8e2a6931671a241cd8e191cac8c",
+  "provenance": {
+    "mode": "prism_local_batch",
+    "namespace": "scheduled-local-test",
+    "input_sha256": "49f65ed3c035f538a9e17959e8468f2c66e4f72c69020193218e925d6c020e52",
+    "input_format": "collector",
+    "batch_id": null
+  },
+  "article_count": 29,
+  "group_count": 20,
+  "skipped_count": 0,
+  "elapsed_seconds": 1.0522840000339784,
+  "algorithm_version": "v2-seeded-source-anchor-strict-bridge/v1",
+  "model_id": "Xenova/multilingual-e5-small@761b726dd34fb83930e26aab4e9ac3899aa1fa78:onnx-int8:news-title-body-v2:w0.6:tokens384:overlap64",
+  "embedding_diagnostics": {
+    "backend": "onnx_cpu_int8_cached",
+    "article_count": 29,
+    "dimensions": 384,
+    "cache": {
+      "schema": "news-e5-cache/1",
+      "namespace": "5c1ccc425759a11e04f1c52c358263668c2bc0dc5f9bb5506a820d6de6a8e901",
+      "model_files": {
+        "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+        "onnx/model_quantized.onnx": "f80102d3f2a1229f387d3c81909990d8945513e347b0eab049f7de3c6f98c193"
+      },
+      "representation": {
+        "title_weight": 0.6,
+        "window_tokens": 384,
+        "overlap_tokens": 64,
+        "batch_size": 8
+      },
+      "runtime_versions": {
+        "onnxruntime": "1.31.0",
+        "tokenizers": "0.23.3",
+        "numpy": "2.5.4"
+      },
+      "hit_count": 29,
+      "miss_count": 0,
+      "unique_text_count": 29,
+      "unique_miss_count": 0,
+      "corrupt_entry_count": 0,
+      "lookup_and_model_hash_seconds": 0.313984900014475,
+      "inference_seconds": 2.00001522898674e-07,
+      "total_seconds": 0.3140242000226863
+    },
+    "miss_embedding": null
+  },
+  "shared_database_writes": 0,
+  "llm_calls": 0,
+  "automatic_publication": false
+}

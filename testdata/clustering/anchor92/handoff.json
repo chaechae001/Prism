@@ -1,0 +1,17 @@
+{
+  "schema_version": "prism-local-clustering/v1",
+  "batch_id": null,
+  "input_format": "collector",
+  "profile": "multiview-anchor",
+  "team_rights_validated": false,
+  "ready_for_publication": false,
+  "rights_validation_is_permission_verification": false,
+  "article_count": 92,
+  "group_count": 74,
+  "shared_database_writes": 0,
+  "llm_calls": 0,
+  "automatic_publication": false,
+  "accuracy_measured": false,
+  "requires_human_review": true,
+  "note": "Local representative candidates. No public Story IDs, DB updates or summaries."
+}

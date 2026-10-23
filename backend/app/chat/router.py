@@ -103,6 +103,8 @@ def context_for(story):
 
 
 def configuration():
+    if os.getenv("PRISM_DATA_SOURCE", "fixture") in {"cluster-local","cluster-db"}:
+        return False
     # A separate switch prevents accidental public exposure of a billable unauthenticated endpoint.
     enabled = os.getenv("PRISM_CHAT_ENABLED", "0") == "1"
     try:

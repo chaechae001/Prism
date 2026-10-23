@@ -15,9 +15,13 @@
 | 출처 확인 | AI 답변의 기사 ID를 서버에서 검증 |
 | 개인화 UI | 라이트·다크 모드, 북마크와 댓글·대화 기록의 브라우저 저장 |
 
-현재 피드는 가상 데이터 기반이며 AI 대화는 서버에 제공자 설정을 추가하면 실제 호출합니다. RSS XML 파싱·DB 저장과 본문 요약·승인 흐름을 제공합니다. 실제 언론사 HTTP 자동 수집·군집 분석·정치적 편향 평가는 연결되어 있지 않습니다. 댓글과 대화 기록은 같은 브라우저에서만 유지됩니다. 5W·쉬운 설명·감정 분석의 별도 탭은 준비 중이며, 요약과 쉬운 설명은 뉴스 DM에서 요청할 수 있습니다.
+현재 피드는 가상 데이터 기반이며 AI 대화는 서버에 제공자 설정을 추가하면 실제 호출합니다. RSS XML 파싱·DB 저장과 본문 요약·승인 흐름을 제공합니다. [로컬 군집화 워커](docs/CLUSTERING_HANDOFF.md)는 제목·본문 배치에서 대표기사 후보를 만들고, `cluster-local` 모드에서 저장된 군집 결과와 원문 사진 URL을 웹에 표시합니다. 실제 뉴스의 자동 게시와 정치적 편향 평가는 연결되어 있지 않습니다. 댓글과 대화 기록은 같은 브라우저에서만 유지됩니다. 5W·쉬운 설명·감정 분석의 별도 탭은 준비 중이며, 요약과 쉬운 설명은 뉴스 DM에서 요청할 수 있습니다.
 
 ## 기술 구성
+
+군집화 테스트 자료는 [testdata/clustering](testdata/clustering/README.md)에 기사 원문·메타데이터·대표기사·군집 결과·벡터와 함께 제공합니다. [고정 버전 E5 모델 준비 방법](docs/MODEL_SETUP.md)을 이용하면 별도 가중치 업로드 없이 분석 환경을 재현할 수 있습니다.
+
+정기 수집과 DB 군집 결과 피드는 [실행 안내](docs/SCHEDULED_NEWS.md)를 따릅니다. 별도 Python 작업자가 RSS·원문·사진 URL을 먼저 DB에 저장한 뒤 기존 모델로 분석하고, `cluster-db` 웹이 마지막 성공 배치의 대표기사·출처를 표시합니다. 현재는 사용자 승인 로컬 테스트이며 LLM 요약과 검토 완료 뉴스 자동 게시를 수행하지 않습니다.
 
 - **Frontend:** React 19, TypeScript, Vite, TanStack Query, Radix UI, Lucide
 - **Backend:** FastAPI, Pydantic, HTTPX, SQLAlchemy, psycopg / Supabase PostgreSQL
@@ -105,4 +109,4 @@ GitHub Actions는 `main`·`dev` 및 작업 브랜치의 push와 PR에서 백엔�
 
 기본 가상 모드의 AI 대화는 제목·요약·관련 기사 정보를 참고합니다. DB 모드는 허용된 본문도 조회하며 본문이 없는 경우 그 범위를 표시합니다. 서버의 대화 API는 로컬 개발용 접근 제한과 간단한 요청 한도를 적용합니다. 공개 배포에는 사용자 인증, 사용자별 한도와 영속 저장이 필요합니다.
 
-사진은 데모용 예시이며 실제 사건 사진을 의미하지 않습니다. Pretendard 폰트의 라이선스는 [폰트 라이선스](frontend/public/fonts/Pretendard-LICENSE.txt)에서 확인할 수 있습니다.
+기본 가상 피드의 사진은 데모용 예시입니다. `cluster-local`에서는 대표기사에서 확인한 사진 URL과 언론사 출처를 표시하며, 사진이 없거나 불러오지 못하면 대체 화면을 표시합니다. Pretendard 폰트의 라이선스는 [폰트 라이선스](frontend/public/fonts/Pretendard-LICENSE.txt)에서 확인할 수 있습니다.

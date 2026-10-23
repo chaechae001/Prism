@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "batch_id": "synthetic-clustering-001",
+  "articles": [
+    {
+      "id": "synthetic-article-1",
+      "canonical_url": "https://example.org/synthetic/1",
+      "publisher_id": "synthetic-publisher-1",
+      "publisher_group_id": "synthetic-owner-1",
+      "title": "가상 도시 노사 임금 협상 합의",
+      "text": "가상 도시의 노사 협상 대표단이 23일 임금 협상 합의안을 발표했습니다. 아래 기사는 실제 보도가 아닌 군집화 전달 예시입니다.",
+      "published_at": "2026-10-23T09:00:00+09:00",
+      "collected_at": "2026-10-23T09:10:00+09:00",
+      "category": "economy",
+      "content_hash": "da932d231a96cdd7475286663b3b67ed3de377d8432ae8525a05ac78a4df2371",
+      "license_status": "allowed",
+      "allowed_uses": [
+        "collect",
+        "store",
+        "summarize",
+        "publish_summary"
+      ]
+    },
+    {
+      "id": "synthetic-article-2",
+      "canonical_url": "https://example.org/synthetic/2",
+      "publisher_id": "synthetic-publisher-2",
+      "publisher_group_id": "synthetic-owner-2",
+      "title": "가상 도시 노사 임금 협상 합의",
+      "text": "가상 도시의 노사 협상 대표단이 23일 임금 협상 합의안을 발표했습니다. 아래 기사는 실제 보도가 아닌 군집화 전달 예시입니다.",
+      "published_at": "2026-10-23T09:00:00+09:00",
+      "collected_at": "2026-10-23T09:10:00+09:00",
+      "category": "economy",
+      "content_hash": "da932d231a96cdd7475286663b3b67ed3de377d8432ae8525a05ac78a4df2371",
+      "license_status": "allowed",
+      "allowed_uses": [
+        "collect",
+        "store",
+        "summarize",
+        "publish_summary"
+      ]
+    }
+  ]
+}

@@ -15,6 +15,8 @@ import { api, ApiError } from "../api/client";
 import type { FeedbackRequest, Story } from "../api/types";
 import type { DetailTab } from "../presentation/timeline";
 import { AnalysisPanel } from "./AnalysisPanel";
+import { NewsPhoto } from "./NewsPhoto";
+import { isLocalClusterStory, isDbClusterStory } from "../presentation/clusterPreview";
 
 const categoryNames = {
   politics: "정치",
@@ -36,6 +38,7 @@ export function StoryDetail({
   onSave,
   initialTab = "summary",
   onRead,
+  clusterPreview: feedClusterPreview = false,
 }: {
   id: string | null;
   onClose: () => void;
@@ -43,11 +46,13 @@ export function StoryDetail({
   onSave: (id: string) => void;
   initialTab?: DetailTab;
   onRead?: (story: Story) => void;
+  clusterPreview?: boolean;
 }) {
   const query = useQuery({
     queryKey: ["story", id],
     queryFn: ({ signal }) => api.story(id!, signal),
     enabled: !!id,
+    refetchInterval: id?.startsWith("db-cluster-") ? 60_000 : false,
   });
   const [tab, setTab] = useState<string>(initialTab);
   const returnFocus = useRef(document.activeElement as HTMLElement | null);
@@ -57,6 +62,7 @@ export function StoryDetail({
       api.feedback({ story_id: id!, kind }),
   });
   const story = query.data?.story;
+  const clusterPreview = feedClusterPreview || isLocalClusterStory(story);
   useEffect(() => {
     if (story) onRead?.(story);
   }, [story, onRead]);
@@ -92,7 +98,9 @@ export function StoryDetail({
             {story?.title || "사건 불러오는 중"}
           </Dialog.Title>
           <Dialog.Description id="story-dialog-description" className="muted">
-            여러 출처를 함께 읽고, 서로 다른 시선을 발견하세요.
+            {clusterPreview
+              ? "군집에 포함된 기사와 원문 출처를 확인하세요. 동일 사건 여부는 검토 전입니다."
+              : "여러 출처를 함께 읽고, 서로 다른 시선을 발견하세요."}
             {story?.is_demo ? " 현재 내용은 가상 데모 자료입니다." : ""}
           </Dialog.Description>
           {query.isPending ? (
@@ -137,7 +145,7 @@ export function StoryDetail({
                 </div>
                 <Tabs.Root value={tab} onValueChange={setTab}>
                   <Tabs.List className="detail-tabs" aria-label="사건 내용">
-                    <Tabs.Trigger value="summary">핵심 요약</Tabs.Trigger>
+                    <Tabs.Trigger value="summary">{clusterPreview ? "대표기사" : "핵심 요약"}</Tabs.Trigger>
                     <Tabs.Trigger value="five_w">팩트 5W</Tabs.Trigger>
                     <Tabs.Trigger value="easy">쉽게 읽기</Tabs.Trigger>
                     <Tabs.Trigger value="sentiment">감정·어조</Tabs.Trigger>
@@ -149,12 +157,23 @@ export function StoryDetail({
                     </Tabs.Trigger>
                   </Tabs.List>
                   <Tabs.Content value="summary" className="detail-panel">
+                    {story.articles[0]?.image_url && (
+                      <div className="detail-article-photo"><NewsPhoto story={story} /></div>
+                    )}
                     <div className="summary-label">
                       <span className="sparkle">✧</span>{" "}
-                      {statusNames[story.summary.status]}
+                      {isDbClusterStory(story) ? "대표기사 · 원문 출처" : clusterPreview ? "대표기사 본문 발췌" : statusNames[story.summary.status]}
                       {story.is_demo && <span className="tiny-tag">데모</span>}
                     </div>
-                    {story.summary.status === "ready" ? (
+                    {clusterPreview ? (
+                      <div className="notice">
+                        <strong>{isDbClusterStory(story) ? "AI 요약 미생성 · 군집 대표기사" : "AI 요약 미생성 · 원문 발췌"}</strong>
+                        <p>{story.dek}</p>
+                        <button className="citation-button" onClick={() => setTab("sources")}>
+                          대표기사와 관련 기사 {story.articles.length}개 확인 ↗
+                        </button>
+                      </div>
+                    ) : story.summary.status === "ready" ? (
                       <ol className="summary-bullets">
                         {story.summary.bullets.map((bullet, i) => (
                           <li key={i}>
@@ -190,8 +209,9 @@ export function StoryDetail({
                       ))}
                     </div>
                     <div className="detail-note">
-                      AI 요약은 사실 확인을 대신하지 않습니다. 원문과 다른
-                      부분은 알려주세요.
+                      {clusterPreview
+                        ? isDbClusterStory(story) ? "군집 후보와 원문 출처를 제공합니다. 동일 사건 여부는 검토 전입니다." : "표시된 발췌는 자동 요약이 아닙니다. 원문과 함께 확인해주세요."
+                        : "AI 요약은 사실 확인을 대신하지 않습니다. 원문과 다른 부분은 알려주세요."}
                     </div>
                   </Tabs.Content>
                   {(["five_w", "easy", "sentiment"] as const).map((mode) => (
@@ -200,7 +220,7 @@ export function StoryDetail({
                       className="detail-panel"
                       key={mode}
                     >
-                      <AnalysisPanel mode={mode} />
+                      <AnalysisPanel mode={mode} clusterPreview={clusterPreview} />
                     </Tabs.Content>
                   ))}
                   <Tabs.Content value="perspectives" className="detail-panel">

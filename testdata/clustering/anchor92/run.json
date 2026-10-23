@@ -1,0 +1,57 @@
+{
+  "schema_version": "local-news-bot-run/v1",
+  "status": "completed",
+  "profile": "multiview-anchor",
+  "created_at": "2026-10-23T00:48:41.724233+00:00",
+  "input_sha256": "2a6b5c2136f5dc503151c32a27d5a524dcdd805f99bd7eddf2f68b82c76cdb51",
+  "snapshot_sha256": "2a6b5c2136f5dc503151c32a27d5a524dcdd805f99bd7eddf2f68b82c76cdb51",
+  "provenance": {
+    "input_path": "D:\\AINews\\team\\filter-bubble-prism-local\\clustering-input\\saved-fulltext-92.json",
+    "input_sha256": "2a6b5c2136f5dc503151c32a27d5a524dcdd805f99bd7eddf2f68b82c76cdb51",
+    "mode": "prism_local_batch",
+    "input_format": "collector",
+    "batch_id": null
+  },
+  "article_count": 92,
+  "group_count": 74,
+  "skipped_count": 0,
+  "elapsed_seconds": 2.1207031999947503,
+  "algorithm_version": "v2-seeded-source-anchor-strict-bridge/v1",
+  "model_id": "Xenova/multilingual-e5-small@761b726dd34fb83930e26aab4e9ac3899aa1fa78:onnx-int8:news-title-body-v2:w0.6:tokens384:overlap64",
+  "embedding_diagnostics": {
+    "backend": "onnx_cpu_int8_cached",
+    "article_count": 92,
+    "dimensions": 384,
+    "cache": {
+      "schema": "news-e5-cache/1",
+      "namespace": "5c1ccc425759a11e04f1c52c358263668c2bc0dc5f9bb5506a820d6de6a8e901",
+      "model_files": {
+        "tokenizer.json": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+        "onnx/model_quantized.onnx": "f80102d3f2a1229f387d3c81909990d8945513e347b0eab049f7de3c6f98c193"
+      },
+      "representation": {
+        "title_weight": 0.6,
+        "window_tokens": 384,
+        "overlap_tokens": 64,
+        "batch_size": 8
+      },
+      "runtime_versions": {
+        "onnxruntime": "1.31.0",
+        "tokenizers": "0.23.3",
+        "numpy": "2.5.4"
+      },
+      "hit_count": 92,
+      "miss_count": 0,
+      "unique_text_count": 92,
+      "unique_miss_count": 0,
+      "corrupt_entry_count": 0,
+      "lookup_and_model_hash_seconds": 0.9470780999981798,
+      "inference_seconds": 2.00001522898674e-07,
+      "total_seconds": 0.9471202000277117
+    },
+    "miss_embedding": null
+  },
+  "shared_database_writes": 0,
+  "llm_calls": 0,
+  "automatic_publication": false
+}

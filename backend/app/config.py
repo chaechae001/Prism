@@ -8,6 +8,9 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 def load_environment():
+    # This source reads saved artifacts only; shared DB/provider files are unrelated.
+    if os.getenv("PRISM_DATA_SOURCE") == "cluster-local":
+        return
     load_dotenv(ROOT / ".env", interpolate=False, override=False)
     load_dotenv(ROOT / "backend/.env.chat.local", interpolate=False, override=False)
 
