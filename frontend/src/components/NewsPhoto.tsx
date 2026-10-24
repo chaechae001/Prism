@@ -3,7 +3,7 @@ import { Newspaper } from "lucide-react";
 import type { Story } from "../api/types";
 
 // Illustrative stock photography is limited to fictional demo stories.
-// Real article media needs an agreed API field and display permission first.
+// The API supplies original article media; cluster-local is a local preview only.
 const demos: Record<Story["visual"], string> = {
   city: "photo-1519608487953-e999c86e7455",
   chip: "photo-1518770660439-4636190af475",
@@ -21,27 +21,33 @@ export function NewsPhoto({
   story: Story;
   compact?: boolean;
 }) {
-  const [failed, setFailed] = useState(false);
+  const [failedUrl, setFailedUrl] = useState<string | null>(null);
+  const representative = story.articles[0];
+  const imageUrl = story.is_demo
+    ? `https://images.unsplash.com/${demos[story.visual]}?auto=format&fit=crop&w=${compact ? 360 : 1000}&q=80`
+    : representative?.image_url || null;
+  const available = !!imageUrl && failedUrl !== imageUrl;
   return (
     <span className={`social-photo ${compact ? "compact" : ""}`}>
-      {story.is_demo && !failed ? (
+      {available ? (
         <img
-          src={`https://images.unsplash.com/${demos[story.visual]}?auto=format&fit=crop&w=${compact ? 360 : 1000}&q=80`}
-          alt={`${story.title} · 사건과 무관한 예시 사진`}
+          src={imageUrl}
+          alt={story.is_demo ? `${story.title} · 사건과 무관한 예시 사진` : `${representative.title} · 기사 이미지`}
           loading="lazy"
+          decoding="async"
           referrerPolicy="no-referrer"
-          onError={() => setFailed(true)}
+          onError={() => setFailedUrl(imageUrl)}
         />
       ) : (
         <span className={`photo-placeholder photo-${story.visual}`}>
           <Newspaper size={compact ? 26 : 54} />
           <span>PRISM NEWS</span>
-          {!compact && <small>기사 사진이 제공되지 않았습니다</small>}
+          {!compact && <small>{imageUrl ? "기사 사진을 불러오지 못했습니다" : "기사 사진이 제공되지 않았습니다"}</small>}
         </span>
       )}
-      {!compact && story.is_demo && !failed && (
+      {!compact && available && (
         <small className="photo-disclaimer">
-          예시 사진 · 실제 사건 사진 아님
+          {story.is_demo ? "예시 사진 · 실제 사건 사진 아님" : `기사 이미지 · ${representative.publisher_name}`}
         </small>
       )}
     </span>

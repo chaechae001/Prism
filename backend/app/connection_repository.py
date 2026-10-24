@@ -13,7 +13,7 @@ from .repository import FixtureRepository
 from .rss_preview import RssRecord, rss_to_story
 
 ROOT = Path(__file__).resolve().parents[2]
-SOURCES = {"fixture", "rss-fixture", "db-demo", "rss-reader", "supabase"}
+SOURCES = {"fixture", "rss-fixture", "db-demo", "rss-reader", "supabase", "cluster-local", "cluster-db"}
 
 
 @dataclass
@@ -39,6 +39,17 @@ def load_snapshot(source: str | None = None) -> Snapshot:
     if source == "fixture":
         repo = FixtureRepository()
         return Snapshot(repo.all(), repo.dataset_version, True, source, ["가상 사건·기사로 검증하는 HTTP 연결입니다."])
+    if source == "cluster-local":
+        from .cluster_preview import load_cluster_preview
+        folder = os.getenv("CLUSTER_RESULTS_DIR", str(ROOT / "testdata/clustering/scheduled-sbs"))
+        default_images = Path(folder) / "images.json"
+        images = os.getenv("CLUSTER_IMAGES_PATH") or (default_images if default_images.is_file() else None)
+        stories, version, notes = load_cluster_preview(folder, image_manifest=images)
+        return Snapshot(stories, version, False, source, notes, preview=True)
+    if source == "cluster-db":
+        from .cluster_feed import load_cluster_feed
+        stories,version,notes=load_cluster_feed()
+        return Snapshot(stories,version,bool(stories) and all(s.is_demo for s in stories),source,notes,preview=True)
     if source == "supabase":
         reader = importlib.import_module(".news_repository", __package__)
         stories = [Story.model_validate(row) for row in reader.list_news_from_db()]

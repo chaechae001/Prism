@@ -5,3 +5,6 @@
 *.jpeg binary
 *.webp binary
 *.pdf binary
+# Snapshot fingerprints and image manifests depend on the original JSON bytes.
+testdata/clustering/*.json -text whitespace=cr-at-eol
+testdata/clustering/*/*.json -text whitespace=cr-at-eol

@@ -10,6 +10,7 @@ import {
 import type { FeedItem } from "../api/types";
 import { categoryNames, type DetailTab } from "../presentation/timeline";
 import { NewsPhoto } from "./NewsPhoto";
+import { isLocalClusterStory, isDbClusterStory } from "../presentation/clusterPreview";
 
 export function SocialPost({
   item,
@@ -19,6 +20,7 @@ export function SocialPost({
   onComments,
   onDm,
   commentCount,
+  clusterPreview: feedClusterPreview = false,
 }: {
   item: FeedItem;
   saved: boolean;
@@ -27,10 +29,12 @@ export function SocialPost({
   onComments: () => void;
   onDm: () => void;
   commentCount: number;
+  clusterPreview?: boolean;
 }) {
   const { story } = item;
+  const clusterPreview = feedClusterPreview || isLocalClusterStory(story);
   const [expanded, setExpanded] = useState(false);
-  const ready = story.summary.status === "ready";
+  const ready = !clusterPreview && story.summary.status === "ready";
   const text = ready
     ? story.summary.bullets.map((b) => b.text).join(" ") || story.dek
     : story.dek;
@@ -118,17 +122,20 @@ export function SocialPost({
             ))}
           </span>
           <span>
-            <strong>{story.coverage.publisher_count}개 매체</strong>가 함께 전한
-            이야기
+            <strong>{story.coverage.publisher_count}개 매체</strong>
+            {clusterPreview ? " · 보도 출처" : "가 함께 전한 이야기"}
           </span>
         </button>
         <h2>
           <button onClick={() => onOpen()}>{story.title}</button>
         </h2>
         <p className={expanded ? "post-caption expanded" : "post-caption"}>
-          <b>{ready ? "AI 요약" : "기사 미리보기"}</b>{" "}
+          <b>{isDbClusterStory(story) ? "대표기사 · 원문 출처" : clusterPreview ? "대표기사 발췌" : ready ? "AI 요약" : "기사 미리보기"}</b>{" "}
           {text || "요약을 준비하고 있습니다. 원문을 확인해주세요."}
         </p>
+        {clusterPreview && story.summary.unknowns.filter((note) => note.startsWith("검토 필요:")).map((note) => (
+          <p className="cluster-review-warning" key={note}>{note}</p>
+        ))}
         {text.length > 90 && (
           <button
             className="caption-more"

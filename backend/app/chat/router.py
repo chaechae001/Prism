@@ -103,6 +103,8 @@ def context_for(story):
 
 
 def configuration():
+    if os.getenv("PRISM_DATA_SOURCE", "fixture") in {"cluster-local","cluster-db"}:
+        return False
     # A separate switch prevents accidental public exposure of a billable unauthenticated endpoint.
     enabled = os.getenv("PRISM_CHAT_ENABLED", "0") == "1"
     try:
@@ -114,10 +116,17 @@ def configuration():
 
 @router.get("/chat/status", response_model=ChatStatus)
 def status():
+    if os.getenv("PRISM_DATA_SOURCE", "fixture") in {"cluster-local", "cluster-db"}:
+        return {
+            "configured": False,
+            "notice": "군집 결과 미리보기에서는 AI 대화가 비활성화되어 있습니다. 기사별 본문과 AI 대화 연결을 완료한 후 이용할 수 있어요.",
+            "context_notice": "현재는 군집 대표기사와 원문 출처를 확인하는 미리보기입니다. 이 화면의 기사와 질문은 LLM으로 전송하지 않습니다.",
+        }
+    configured = configuration()
     return {
-        "configured": configuration(),
+        "configured": configured,
         "notice": "이 뉴스에 대해 질문해보세요."
-        if configuration()
+        if configured
         else "뉴스 AI가 아직 준비되지 않았습니다. 연결 후 이 기사에 대해 대화할 수 있어요.",
         "context_notice": NOTICE,
     }
@@ -188,7 +197,7 @@ async def chat(story_id: str, body: ChatRequest, request: Request):
         raise HTTPException(403, "허용되지 않은 요청 출처입니다.")
     if not configuration():
         raise HTTPException(
-            503, "AI가 아직 연결되지 않았습니다. 서버의 API 키·모델 설정이 필요합니다."
+            503, status()["notice"]
         )
     if not body.question.strip():
         raise HTTPException(422, "질문을 입력해주세요.")

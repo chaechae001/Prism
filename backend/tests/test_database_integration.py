@@ -12,6 +12,7 @@ import psycopg
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine, text
 from sqlalchemy.engine import make_url
+from sqlalchemy.exc import DBAPIError
 
 from backend.app.api import app
 from backend.app import connection_api, connection_repository
@@ -22,6 +23,8 @@ from backend.app.rss.reader import RSSReader
 from backend.app.llm.schemas import SummaryDraft, SummaryResult
 from backend.app.llm.elice_settings import EliceSettings
 from backend.app.services.body_import import import_bodies
+from backend.app.services.analyst_validation import check_batch, plan_import, InvalidAnalystBatch
+from backend.app.services.article_intake import intake_articles, IntakeConflict
 from backend.app.services.article_context import load_bodies
 from backend.app.services.summaries import (
     generate_summary,
@@ -54,7 +57,7 @@ class DatabaseIntegrationTests(unittest.TestCase):
             TEST_URL.replace("postgresql+psycopg://", "postgresql://"), autocommit=True
         ) as c:
             c.execute(
-                "CREATE ROLE anon; CREATE ROLE authenticated; CREATE SCHEMA auth; "
+                "CREATE ROLE anon; CREATE ROLE authenticated; CREATE ROLE service_role; CREATE SCHEMA auth; "
                 "CREATE TABLE auth.users(id uuid PRIMARY KEY); "
                 "CREATE FUNCTION auth.uid() RETURNS uuid LANGUAGE sql AS 'SELECT NULL::uuid'"
             )
@@ -64,6 +67,8 @@ class DatabaseIntegrationTests(unittest.TestCase):
                     ROOT / "database/migrations/20261022_001_add_rss_tables.sql"
                 ).read_text(encoding="utf-8")
             )
+            for filename in ('20261023_001_cluster_storage.sql', '20261023_002_scheduled_news.sql'):
+                c.execute((ROOT / 'database/migrations' / filename).read_text(encoding='utf-8'))
 
     @classmethod
     def tearDownClass(cls):
@@ -145,6 +150,117 @@ class DatabaseIntegrationTests(unittest.TestCase):
         self.assertEqual(len(story["articles"]), 3)
         self.assertEqual(list_news_from_db(engine=self.engine)[0]["id"], "story-001")
         self.assertNotIn("raw_text", json.dumps(story))
+
+    def intake_batch(self):
+        payload = self.batch(ids={"story-001-a1"}).model_dump(mode="json")
+        payload["articles"][0]["canonical_url"] = "https://example.com/intake/new-article"
+        return AnalystBatch.model_validate(payload)
+
+    def test_intake_plan_does_not_create_new_article_or_body(self):
+        report = intake_articles(self.intake_batch(), engine=self.engine)
+        self.assertTrue(report["ready_for_intake"])
+        self.assertEqual(report["plan"]["new_article_count"], 1)
+        with self.engine.connect() as c:
+            self.assertEqual(c.execute(text("SELECT count(*) FROM public.articles")).scalar_one(), 3)
+            self.assertEqual(c.execute(text("SELECT count(*) FROM private.raw_articles")).scalar_one(), 0)
+
+    def test_intake_creates_unpublished_article_and_matching_body_atomically(self):
+        batch = self.intake_batch()
+        report = intake_articles(batch, engine=self.engine, apply=True, is_demo=True)
+        self.assertTrue(report["written"])
+        self.assertEqual(report["body_changed_count"], 1)
+        with self.engine.connect() as c:
+            row = c.execute(text("""
+                SELECT a.id,a.publish_allowed,a.is_demo,r.id AS body_id,r.raw_text
+                FROM public.articles a JOIN private.raw_articles r USING(canonical_url)
+                WHERE a.canonical_url=:url
+            """), {"url": str(batch.articles[0].canonical_url)}).mappings().one()
+            self.assertFalse(row["publish_allowed"])
+            self.assertTrue(row["is_demo"])
+            self.assertEqual(row["id"], row["body_id"])
+            self.assertNotEqual(row["id"], batch.articles[0].id)
+            self.assertEqual(row["raw_text"], batch.articles[0].text)
+        self.assertEqual(len(list_news_from_db(engine=self.engine)), 1)
+
+    def test_repeated_intake_does_not_duplicate_or_change_body_version(self):
+        batch = self.intake_batch()
+        intake_articles(batch, engine=self.engine, apply=True, is_demo=True)
+        report = intake_articles(batch, engine=self.engine, apply=True, is_demo=True)
+        self.assertEqual(report["plan"]["new_article_count"], 0)
+        self.assertEqual(report["body_changed_count"], 0)
+        with self.engine.connect() as c:
+            self.assertEqual(c.execute(text("SELECT count(*) FROM public.articles")).scalar_one(), 4)
+            self.assertEqual(c.execute(text("SELECT count(*) FROM private.raw_articles")).scalar_one(), 1)
+
+    def test_intake_group_conflict_is_reported_and_rejected(self):
+        payload = self.intake_batch().model_dump(mode="json")
+        payload["articles"][0]["publisher_group_id"] = "different-group"
+        batch = AnalystBatch.model_validate(payload)
+        report = intake_articles(batch, engine=self.engine)
+        self.assertFalse(report["ready_for_intake"])
+        self.assertEqual(report["intake_errors"][0]["code"], "PUBLISHER_GROUP_MISMATCH")
+        with self.assertRaises(IntakeConflict):
+            intake_articles(batch, engine=self.engine, apply=True)
+
+    def test_intake_unknown_publisher_is_not_automatically_registered(self):
+        payload = self.intake_batch().model_dump(mode="json")
+        payload["articles"][0]["publisher_id"] = "unknown-publisher"
+        batch = AnalystBatch.model_validate(payload)
+        with self.assertRaises(IntakeConflict):
+            intake_articles(batch, engine=self.engine, apply=True)
+        with self.engine.connect() as c:
+            self.assertEqual(c.execute(text("SELECT count(*) FROM public.publishers")).scalar_one(), 3)
+
+    def test_intake_failure_rolls_back_metadata_bodies_and_story_version(self):
+        from backend.app.services.body_import import _store_bodies
+
+        payload = self.batch(ids={"story-001-a1"}).model_dump(mode="json")
+        payload["articles"].extend(self.intake_batch().model_dump(mode="json")["articles"])
+        payload["articles"][1]["id"] = "new-input-id"
+        batch = AnalystBatch.model_validate(payload)
+        def fail_after_store(connection, rows):
+            _store_bodies(connection, rows)
+            raise RuntimeError("simulated interruption")
+        with patch("backend.app.services.article_intake._store_bodies", side_effect=fail_after_store):
+            with self.assertRaises(RuntimeError):
+                intake_articles(batch, engine=self.engine, apply=True)
+        with self.engine.connect() as c:
+            self.assertEqual(c.execute(text("SELECT count(*) FROM public.articles")).scalar_one(), 3)
+            self.assertEqual(c.execute(text("SELECT count(*) FROM private.raw_articles")).scalar_one(), 0)
+            self.assertEqual(c.execute(text("SELECT event_version FROM public.stories WHERE id='story-001'")).scalar_one(), 1)
+
+    def test_demo_intake_cannot_modify_real_article(self):
+        with self.engine.begin() as c:
+            c.execute(text("UPDATE public.articles SET is_demo=false WHERE id='story-001-a1'"))
+        batch = self.batch(ids={"story-001-a1"})
+        with self.assertRaises(IntakeConflict):
+            intake_articles(batch, engine=self.engine, apply=True, is_demo=True)
+
+    def test_analyst_plan_reads_existing_mapping_without_writing(self):
+        report = plan_import(check_batch(self.batch()), engine=self.engine)
+        self.assertTrue(report["ready_for_import"])
+        self.assertEqual(report["mapping"]["matched_count"], 3)
+        self.assertFalse(report["written"])
+        with self.engine.connect() as c:
+            self.assertEqual(c.execute(text("SELECT count(*) FROM private.raw_articles")).scalar_one(), 0)
+
+    def test_analyst_plan_identifies_new_url_without_creating_article(self):
+        batch = self.batch().model_dump(mode="json")
+        batch["articles"][0]["canonical_url"] = "https://example.com/not-registered"
+        report = plan_import(check_batch(batch), engine=self.engine)
+        self.assertFalse(report["ready_for_import"])
+        self.assertEqual(report["mapping"]["missing_article_indices"], [0])
+        with self.engine.connect() as c:
+            self.assertEqual(c.execute(text("SELECT count(*) FROM public.articles")).scalar_one(), 3)
+
+    def test_duplicate_batch_does_not_change_bodies_or_event_version(self):
+        batch = self.batch()
+        duplicate = batch.model_copy(update={"articles": [batch.articles[0], batch.articles[0]]})
+        with self.assertRaises(InvalidAnalystBatch):
+            import_bodies(duplicate, engine=self.engine)
+        with self.engine.connect() as c:
+            self.assertEqual(c.execute(text("SELECT count(*) FROM private.raw_articles")).scalar_one(), 0)
+            self.assertEqual(c.execute(text("SELECT event_version FROM public.stories WHERE id='story-001'")).scalar_one(), 1)
 
     def test_frontend_queries_categories_and_detail_on_db(self):
         with patch("backend.app.news_repository.get_engine", return_value=self.engine):
@@ -354,6 +470,35 @@ class DatabaseIntegrationTests(unittest.TestCase):
         import_bodies(batch, engine=self.engine)
         with self.assertRaises(ValueError):
             approve_summary(draft["id"], engine=self.engine)
+
+    def test_supplied_cluster_bundle_roundtrip_preserves_public_news(self):
+        from backend.app.cluster_store import prepare_bundle
+        from backend.app.cluster_store.repository import store_bundle
+        from backend.app.scheduled_news.repository import Repository
+        from backend.app.cluster_feed import load_cluster_feed
+
+        folder = ROOT / 'testdata/clustering/scheduled-sbs'
+        bundle = prepare_bundle(folder, namespace='integration-snapshot', image_manifest=folder / 'images.json')
+        before = list_news_from_db(engine=self.engine)
+        result = store_bundle(bundle, engine=self.engine)
+        self.assertIn(result['status'], {'stored', 'already_stored'})
+        repeated = store_bundle(bundle, engine=self.engine)
+        self.assertEqual(repeated['status'], 'already_stored')
+        self.assertEqual(repeated['database_writes'], 0)
+        repo = Repository(engine=self.engine)
+        repo.store(bundle, input_hash='a' * 64, analyzed_at=datetime.now(timezone.utc))
+        stories, _, _ = load_cluster_feed(namespace='integration-snapshot', engine=self.engine)
+        self.assertEqual(len(stories), 20)
+        self.assertEqual(sum(len(s.articles) for s in stories), 29)
+        self.assertTrue(all(s.summary.status == 'pending' for s in stories))
+        self.assertEqual(list_news_from_db(engine=self.engine), before)
+        with self.engine.connect() as c:
+            for role in ('anon', 'authenticated', 'service_role'):
+                c.execute(text(f'SET LOCAL ROLE {role}'))
+                with self.assertRaises(DBAPIError) as rejected:
+                    c.execute(text('SELECT raw_text FROM private.prism_cluster_articles LIMIT 1'))
+                self.assertEqual(rejected.exception.orig.sqlstate, '42501')
+                c.rollback()
 
 
 if __name__ == "__main__":

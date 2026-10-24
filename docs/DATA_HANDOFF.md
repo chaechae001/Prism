@@ -16,13 +16,22 @@
 | content_hash | 본문 중복 확인용 해시 |
 | license_status, allowed_uses | 처리 가능 여부·허용된 작업 |
 
-현재 스키마의 발행 시각은 필수입니다. 누락된 시각을 수집 시각으로 대체하지 않습니다. 예시 해시는 자리표시자이며 실제 입력에는 정규화한 본문의 해시를 사용합니다.
+현재 스키마의 발행 시각은 필수입니다. 누락된 시각을 수집 시각으로 대체하지 않습니다. content_hash는 전달하는 text의 UTF-8 바이트에 대한 SHA-256입니다. 공백·줄바꿈을 변경했다면 해시도 다시 계산합니다. 포함된 가상 예시는 해당 본문과 일치하는 해시를 사용합니다.
 
 `pipeline.allowed_articles`는 collect·store·summarize·publish_summary가 모두 허용된 입력을 선별하고 URL·본문 해시 중복을 제거합니다. 이 함수는 실제 수집·군집·생성을 실행하지 않습니다.
 
 ```powershell
 python scripts/validate_handoff.py contracts/analyst-batch.example.json
 ```
+
+이 명령은 DB나 LLM에 연결하지 않고 JSON 형식·본문 해시·공백 필드·중복 ID/URL·발행/수집 순서·수집/저장 조건을 검사합니다. 결과는 한글 안내를 포함한 JSON이며 오류가 있으면 종료 코드 1을 반환합니다. 실제 입력 값이나 본문은 출력하지 않습니다.
+
+```powershell
+# 같은 검사에 DB의 기존 기사 매핑 여부를 추가 확인합니다. 데이터를 저장하지 않습니다.
+python -m backend.app.worker validate-batch --input <배치JSON> --check-db
+```
+
+DB 연결 계획과 실제 저장은 별개입니다. `valid=true`는 수집·저장 입력 검증 통과를 의미하며 요약·게시 승인이나 데이터 내용의 사실성을 보증하지 않습니다. `ready_for_import`는 검사 시점에 URL·매체 ID가 기존 기사와 맞는지를 뜻하며 실제 저장 때 다시 확인합니다. 신규 URL은 기사 메타데이터 등록 후 본문을 연결해야 합니다. 전체 사용법과 분석 입력 준비 항목은 [분석 입력 검증](ANALYST_INPUT.md)에 있습니다.
 
 ## 요약 출력
 

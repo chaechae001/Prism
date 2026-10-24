@@ -12,7 +12,7 @@
       "published_at": "2026-10-21T09:00:00+09:00",
       "collected_at": "2026-10-21T09:10:00+09:00",
       "category": "technology",
-      "content_hash": "demo-sha256-placeholder",
+      "content_hash": "9ec643cfafa4b679a3453da897e3bf54cd7f5a1693c853bebca859f707a21d2e",
       "license_status": "allowed",
       "allowed_uses": [
         "collect",

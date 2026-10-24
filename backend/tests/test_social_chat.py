@@ -36,6 +36,20 @@ class SocialChatTests(unittest.TestCase):
         self.assertTrue(response.json()["configured"])
         self.assertNotIn("unit-test", response.text)
 
+    def test_cluster_status_explains_preview_and_blocks_provider(self):
+        for source in ('cluster-local', 'cluster-db'):
+            with self.subTest(source=source), patch.dict(os.environ, {'PRISM_DATA_SOURCE': source}):
+                with patch.object(social_chat, 'ask_provider', new_callable=AsyncMock) as call:
+                    status = self.client.get('/api/social/chat/status').json()
+                    self.assertFalse(status['configured'])
+                    self.assertIn('미리보기', status['notice'])
+                    self.assertNotIn('API 키', status['notice'])
+                    self.assertIn('전송하지 않습니다', status['context_notice'])
+                    response = self.client.post(self.url, json={'question': '요약해줘'})
+                    self.assertEqual(response.status_code, 503)
+                    self.assertIn(status['notice'], response.text)
+                    call.assert_not_awaited()
+
     def test_unconfigured_does_not_call_provider(self):
         with (
             patch.dict(os.environ, {"PRISM_CHAT_ENABLED": "0"}),

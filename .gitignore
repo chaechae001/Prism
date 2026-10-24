@@ -36,3 +36,10 @@ docs/worklogs/*
 
 # Generated private workflow exports
 work/
+
+# Local clustering models, intermediate results and package metadata
+.models/
+clustering-input/
+clustering-output/
+*.egg-info/
+analysis/data/

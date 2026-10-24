@@ -23,6 +23,7 @@ import { useTheme } from "./hooks/useTheme";
 import { SocialPost } from "./components/SocialPost";
 import { NewsPhoto } from "./components/NewsPhoto";
 import { NewsReel } from "./components/NewsReel";
+import { isLocalClusterStory } from "./presentation/clusterPreview";
 import { useNewsWorkspace } from "./hooks/useNewsWorkspace";
 import { useReaderActivity } from "./hooks/useReaderActivity";
 import {
@@ -100,6 +101,9 @@ export function App() {
     .slice(0, 10)
     .map((i) => i.story);
   const isMock = w.feed.data?.pages[0]?.meta.is_mock ?? apiMode === "mock";
+  const dbCluster = w.feed.data?.pages[0]?.meta.policy_version === "cluster-db-v1";
+  const clusterPreview = dbCluster || w.feed.data?.pages[0]?.meta.policy_version === "cluster-local-v1"
+    || w.items.some(({ story }) => isLocalClusterStory(story));
   const title =
     w.view === "mypage"
       ? "내 정보"
@@ -378,6 +382,7 @@ export function App() {
                       <SocialPost
                         key={item.story.id}
                         item={item}
+                        clusterPreview={clusterPreview}
                         saved={w.saved.includes(item.story.id)}
                         onSave={() => w.toggleSave(item.story.id)}
                         onOpen={(tab) => open(item.story.id, tab)}
@@ -569,6 +574,7 @@ export function App() {
         <StoryDetail
           key={w.selected + w.detailTab}
           id={w.selected}
+          clusterPreview={clusterPreview}
           initialTab={w.detailTab}
           onClose={() => w.update({ story: null, panel: null })}
           saved={w.saved.includes(w.selected)}

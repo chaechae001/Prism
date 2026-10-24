@@ -1,0 +1,130 @@
+{
+  "source": "existing local RSS/fulltext and clustering modules; exact-byte copy",
+  "date": "2026-10-23",
+  "algorithm_changes": false,
+  "default_profile": "v2",
+  "experimental_profiles": [
+    "multiview",
+    "multiview-dev",
+    "multiview-group",
+    "multiview-anchor"
+  ],
+  "files": [
+    {
+      "path": "news_clustering/__init__.py",
+      "sha256": "2b060eff1364f06bc8e5b65a7fed9d0bc8e426b320410e0432230257373dd0d6"
+    },
+    {
+      "path": "news_clustering/bot.py",
+      "sha256": "bbc4f4b0d8fe4657e179df8de767f7dd9b9b2a6349fbd3b13d704718337422c2"
+    },
+    {
+      "path": "news_clustering/bot_report.py",
+      "sha256": "ddf6afd117ab8b3025696622706df410ae1eee74116a9745ff0d85f13b483ac5"
+    },
+    {
+      "path": "news_clustering/core/__init__.py",
+      "sha256": "ced6cc5904cbdde8087fce1dafd10f52f331dbc341c809a44d57e1d2459365a3"
+    },
+    {
+      "path": "news_clustering/core/analysis_text.py",
+      "sha256": "5d51eefca37073bff3a4ea16690b21c178b38bfd9c4c27d64b1d805b4998f899"
+    },
+    {
+      "path": "news_clustering/core/decision_anchors.py",
+      "sha256": "bb7bab37008b42c9f0efcbb3b44898115e13daf09566be48dd62f7a9b9402691"
+    },
+    {
+      "path": "news_clustering/core/embedding_cache.py",
+      "sha256": "1b95ef4ead23c94a682f32a732c86e399e019a1491df6f328cb851ff1d537bbb"
+    },
+    {
+      "path": "news_clustering/core/embeddings.py",
+      "sha256": "9def8f60bdafa6c0284cf66f16e715db092324bf997a860812e1b94e5297779b"
+    },
+    {
+      "path": "news_clustering/core/event_evidence.py",
+      "sha256": "a2384b2afcaa35cc46a381bbd16d0acd123100297b4207c809639330f57f60b2"
+    },
+    {
+      "path": "news_clustering/core/news_views.py",
+      "sha256": "8a6947cc638355e99d1addb24701758360bcd0fbb37314fcca6b54c0e6af6355"
+    },
+    {
+      "path": "news_clustering/core/pipeline.py",
+      "sha256": "3ac5ce1de85b76e9c22a4d9734c1822017ad1b69da5ac22fa36aaf191681f596"
+    },
+    {
+      "path": "news_clustering/core/shared_summaries.py",
+      "sha256": "0ebd211b51b16d8a660756213c2451c07b1f3c39239629f531c8e255357c5263"
+    },
+    {
+      "path": "news_clustering/core/verification.py",
+      "sha256": "e1fa3520a7a4811d6e8870081d7529ec5a8b6c6412370152ea03ec77a2ed87ce"
+    },
+    {
+      "path": "news_clustering/models.py",
+      "sha256": "a3fcd7824a568778f8cc48e1c48dfeb7445a698f866fe174c8032e4a19e61748"
+    },
+    {
+      "path": "news_clustering/multiview.py",
+      "sha256": "b7e5c6d533ce124172e6fd323a7ff51eba1f51a5d677b528fa2f124fc2534923"
+    },
+    {
+      "path": "rss_fulltext_crawler/rss_crawler/__init__.py",
+      "sha256": "98b22e00dbb47c1be6cd7388b572079bae3e9a2303f17730e27601287e8d5808"
+    },
+    {
+      "path": "rss_fulltext_crawler/rss_crawler/extraction.py",
+      "sha256": "996bf87c0b402d8f5fe71f7ec923a525db91235d65749cc53fa8e3a9edc72b0e"
+    },
+    {
+      "path": "rss_fulltext_crawler/rss_crawler/network.py",
+      "sha256": "1cd577c004c3c58ab9455abb5bc08e9e1d747b1a4129a1799e733b9ed7eeb4d9"
+    },
+    {
+      "path": "rss_fulltext_crawler/rss_crawler/parsing.py",
+      "sha256": "8bac2d8eb5f9809fe1f4f5799e2e2867b9816311914b0e9cdc0e84d69dfe746d"
+    },
+    {
+      "path": "rss_fulltext_crawler/rss_crawler/runner.py",
+      "sha256": "71ae3143e6aece945344858c80269b048e328f71e71df3d70ce8164d66f6a0e2"
+    },
+    {
+      "path": "rss_fulltext_crawler/rss_crawler/selection.py",
+      "sha256": "0fb9ff25712ed5bcb0eb4e4d18efb1e807917b2d5fe7dc0702f8b5fad8ccaa4f"
+    },
+    {
+      "path": "tests/test_analysis_text.py",
+      "sha256": "75ccd612c397c93d47b47342e4ca29ff070b58c92b3e7eaf42d1ff64f3f56619"
+    },
+    {
+      "path": "tests/test_news_bot.py",
+      "sha256": "548e7c3ee383b4b0835f25336c931b8d91a324e581cf642224c45aba5b775c1a"
+    },
+    {
+      "path": "tests/test_multiview.py",
+      "sha256": "9f1100345f775ac784c857a6a66c86e55302947a140d6fcc5907ee69ed5405b3"
+    },
+    {
+      "path": "tests/test_seed_neighbours.py",
+      "sha256": "4263232751c60e3f4cdd1047ddcff68c38572077573532a21eba0bc391273a17"
+    },
+    {
+      "path": "tests/test_anchor_bridge.py",
+      "sha256": "27a4434646f1e0fb8ded2862251744b4c177c412610a0fb6e08ebf98d5ccaa0d"
+    },
+    {
+      "path": "tests/test_decision_anchors.py",
+      "sha256": "1afd8d440918425e02e2b60e3d586d148d4e9d74f27e06ff2e35d82804f0afe1"
+    },
+    {
+      "path": "tests/test_shared_summaries.py",
+      "sha256": "9c5a16a786bc78cae96f1f324904f4697e6d06062fa32b1a799bc2bebe98a382"
+    },
+    {
+      "path": "tests/test_embedding_cache.py",
+      "sha256": "c6dddc71c65e64fc8e41c37a9f6c4559c701777310f634f571ebe7a41f61ff0a"
+    }
+  ]
+}
