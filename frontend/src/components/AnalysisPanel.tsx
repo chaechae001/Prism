@@ -11,7 +11,7 @@ export function AnalysisPanel({ mode, clusterPreview = false }: { mode: Analysis
       <span className="overline">MORE WAYS TO READ</span>
       <h3>{titles[mode]}</h3>
       <p>{clusterPreview
-        ? "군집 결과의 AI 분석과 대화는 연결하지 않았습니다. 출처 탭에서 원문을 확인해주세요."
+        ? "추가 분석 결과를 준비하고 있습니다. 출처 탭에서 원문을 확인해주세요."
         : "분석 결과를 준비하고 있습니다. 지금은 뉴스 DM에서 요약이나 쉬운 설명을 요청할 수 있어요."}</p>
     </div>
   );

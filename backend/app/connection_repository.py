@@ -24,6 +24,14 @@ class Snapshot:
     source: str
     notes: list[str] = field(default_factory=list)
     preview: bool = False
+    aliases: dict[str, str] = field(default_factory=dict)
+
+
+def resolve_story(snapshot, identity):
+    canonical = snapshot.aliases.get(identity, identity)
+    value = next((s for s in snapshot.stories if s.id == canonical), None)
+    # Keep old saved links and DM threads valid when switching from files to DB.
+    return value.model_copy(update={'id': identity}) if value and canonical != identity else value
 
 
 def _version(prefix, stories):
@@ -48,8 +56,8 @@ def load_snapshot(source: str | None = None) -> Snapshot:
         return Snapshot(stories, version, False, source, notes, preview=True)
     if source == "cluster-db":
         from .cluster_feed import load_cluster_feed
-        stories,version,notes=load_cluster_feed()
-        return Snapshot(stories,version,bool(stories) and all(s.is_demo for s in stories),source,notes,preview=True)
+        stories,version,notes,aliases=load_cluster_feed(include_aliases=True)
+        return Snapshot(stories,version,bool(stories) and all(s.is_demo for s in stories),source,notes,preview=True,aliases=aliases)
     if source == "supabase":
         reader = importlib.import_module(".news_repository", __package__)
         stories = [Story.model_validate(row) for row in reader.list_news_from_db()]

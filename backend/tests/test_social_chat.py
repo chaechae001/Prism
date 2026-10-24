@@ -38,7 +38,7 @@ class SocialChatTests(unittest.TestCase):
 
     def test_cluster_status_explains_preview_and_blocks_provider(self):
         for source in ('cluster-local', 'cluster-db'):
-            with self.subTest(source=source), patch.dict(os.environ, {'PRISM_DATA_SOURCE': source}):
+            with self.subTest(source=source), patch.dict(os.environ, {'PRISM_DATA_SOURCE': source, 'PRISM_CLUSTER_CHAT_ENABLED':'0'}):
                 with patch.object(social_chat, 'ask_provider', new_callable=AsyncMock) as call:
                     status = self.client.get('/api/social/chat/status').json()
                     self.assertFalse(status['configured'])

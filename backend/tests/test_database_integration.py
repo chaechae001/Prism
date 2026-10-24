@@ -7,6 +7,7 @@ from datetime import datetime, timezone
 from hashlib import sha256
 from pathlib import Path
 from unittest.mock import Mock, patch
+from tempfile import TemporaryDirectory
 
 import psycopg
 from fastapi.testclient import TestClient
@@ -499,6 +500,117 @@ class DatabaseIntegrationTests(unittest.TestCase):
                     c.execute(text('SELECT raw_text FROM private.prism_cluster_articles LIMIT 1'))
                 self.assertEqual(rejected.exception.orig.sqlstate, '42501')
                 c.rollback()
+
+    def active_cluster_snapshot(self, bodies=None):
+        from backend.app.cluster_store import prepare_bundle
+        from backend.app.scheduled_news.repository import Repository
+        from backend.app.cluster_feed import load_cluster_feed
+        from backend.app.connection_repository import Snapshot
+        from backend.tests.test_cluster_preview import source_article, save
+
+        namespace = 'chat-' + sha256(self.id().encode()).hexdigest()[:16]
+        if bodies is None:
+            folder = ROOT / 'testdata/clustering/scheduled-sbs'
+            bundle = prepare_bundle(folder, namespace=namespace, image_manifest=folder/'images.json')
+        else:
+            with TemporaryDirectory() as directory:
+                folder = Path(directory)
+                rows = []
+                for identity, body in bodies.items():
+                    row = source_article(identity)
+                    row['body'] = body
+                    row['content_hash'] = sha256(f"{row['title']}\n{body}".strip().encode()).hexdigest()
+                    row['rights'] = {use:'allowed' for use in ('collect','store','summarize','publish_summary','display_image')}
+                    rows.append(row)
+                exported = dict(schema_version='local-news-representatives/v1',status='completed',
+                    article_count=len(rows),group_count=1,automatic_publication=False,accuracy_measured=False,
+                    groups=[dict(group_id='test-group',category='경제',article_count=len(rows),publisher_count=1,
+                        article_ids=[r['article_id'] for r in rows],representative=rows[0],related_articles=rows[1:],
+                        same_event_confirmed=False)])
+                save(folder,exported,rows)
+                (folder/'input.json').write_text(json.dumps({'articles':rows}),encoding='utf-8')
+                bundle = prepare_bundle(folder,namespace=namespace)
+        Repository(engine=self.engine).store(bundle,input_hash=bundle['payload_sha256'],analyzed_at=datetime.now(timezone.utc))
+        stories,version,notes,aliases = load_cluster_feed(namespace=namespace,engine=self.engine,include_aliases=True)
+        snapshot = Snapshot(stories,version,False,'cluster-db',notes,preview=True,aliases=aliases)
+        return namespace,bundle,snapshot
+
+    def test_cluster_chat_context_matches_only_selected_members_and_old_links(self):
+        from backend.app.services.cluster_context import chat_cluster_bodies, ClusterContextError
+        from backend.app.connection_repository import resolve_story
+        namespace,_,snapshot = self.active_cluster_snapshot()
+        story = max(snapshot.stories,key=lambda s:len(s.articles))
+        bodies = chat_cluster_bodies(story,engine=self.engine,namespace=namespace)
+        self.assertEqual({b['article_id'] for b in bodies},{a.id for a in story.articles})
+        old_id = next(k for k,v in snapshot.aliases.items() if v==story.id)
+        old = resolve_story(snapshot,old_id)
+        self.assertEqual(old.id,old_id)
+        self.assertEqual(chat_cluster_bodies(old,engine=self.engine,namespace=namespace),bodies)
+        altered = story.model_copy(deep=True)
+        altered.articles[0].id = 'different-news-article'
+        with self.assertRaises(ClusterContextError):
+            chat_cluster_bodies(altered,engine=self.engine,namespace=namespace)
+        connection_api.app.dependency_overrides[connection_api.get_snapshot] = lambda:snapshot
+        try:
+            detail = TestClient(connection_api.app).get('/api/v1/stories/'+old_id)
+            self.assertEqual(detail.status_code,200)
+            self.assertEqual(detail.json()['story']['id'],old_id)
+            self.assertNotIn('raw_text',detail.text)
+            self.assertNotIn('body_sha256',detail.text)
+        finally:
+            connection_api.app.dependency_overrides.clear()
+
+    def test_cluster_body_budget_and_excerpt_metadata(self):
+        from backend.app.services.cluster_context import chat_cluster_bodies
+        namespace,_,snapshot = self.active_cluster_snapshot({'a':'가'*16000,'b':'나'*16000,'c':'다'*16000})
+        bodies = chat_cluster_bodies(snapshot.stories[0],engine=self.engine,namespace=namespace)
+        self.assertEqual(sum(len(b['text']) for b in bodies),24000)
+        self.assertEqual([b['article_id'] for b in bodies],['a','b'])
+        self.assertTrue(all(b['is_excerpt'] for b in bodies))
+
+    def test_cluster_body_permission_revocation_and_stale_namespace_fail_closed(self):
+        from backend.app.services.cluster_context import chat_cluster_bodies, ClusterContextError
+        namespace,bundle,snapshot = self.active_cluster_snapshot({'a':'허용된 첫 본문','b':'별도 기사 본문'})
+        story = snapshot.stories[0]
+        with self.engine.begin() as c:
+            c.execute(text('''UPDATE private.prism_cluster_articles SET
+                rights=jsonb_set(rights,'{summarize}','"denied"'),
+                record=jsonb_set(record,'{rights,summarize}','"denied"')
+                WHERE batch_id=:batch AND article_id='b' '''),{'batch':bundle['batch_id']})
+        bodies = chat_cluster_bodies(story,engine=self.engine,namespace=namespace)
+        self.assertEqual([b['article_id'] for b in bodies],['a'])
+        with self.engine.begin() as c:
+            c.execute(text('''UPDATE private.prism_cluster_articles SET
+                rights=jsonb_set(rights,'{summarize}','"denied"'),
+                record=jsonb_set(record,'{rights,summarize}','"denied"')
+                WHERE batch_id=:batch'''),{'batch':bundle['batch_id']})
+        with self.assertRaises(ClusterContextError):
+            chat_cluster_bodies(story,engine=self.engine,namespace=namespace)
+        with self.assertRaises(ClusterContextError):
+            chat_cluster_bodies(story,engine=self.engine,namespace='other-namespace')
+
+    def test_cluster_dm_uses_db_bodies_and_cites_only_the_selected_news(self):
+        from unittest.mock import AsyncMock
+        from backend.app.chat import router as chat
+        namespace,_,snapshot = self.active_cluster_snapshot({'a':'가상 발표 내용입니다. 지원 기간은 3개월입니다.','b':'가상 지원 절차에 대한 기사입니다.'})
+        story = snapshot.stories[0]
+        with patch.dict(os.environ,{'PRISM_DATA_SOURCE':'cluster-db','PRISM_CLUSTER_NAMESPACE':namespace,
+                'PRISM_CHAT_ENABLED':'1','PRISM_CLUSTER_CHAT_ENABLED':'1','PRISM_CHAT_PROVIDER':'openai',
+                'OPENAI_API_KEY':'test-local-only','OPENAI_CHAT_MODEL':'test-model'}), \
+                patch('backend.app.services.cluster_context._engine',return_value=self.engine), \
+                patch.object(chat,'load_snapshot',return_value=snapshot):
+            answer = chat.GroundedAnswer(answer='가상 자료의 지원 기간은 3개월입니다.',article_ids=['a'])
+            with patch.object(chat,'ask_provider',new_callable=AsyncMock,return_value=answer) as provider:
+                response = TestClient(app).post('/api/social/stories/'+story.id+'/chat',json={'question':'지원 기간을 알려줘'})
+                self.assertEqual(response.status_code,200)
+                context = json.loads(provider.await_args.args[0]['input'][0]['content'])['CONTEXT']
+                self.assertEqual({b['article_id'] for b in context['bodies']},{'a','b'})
+                self.assertIn('3개월',context['bodies'][0]['text'])
+                self.assertNotIn('test-local-only',response.text)
+            invalid = chat.GroundedAnswer(answer='다른 뉴스의 내용',article_ids=['outside-article'])
+            with patch.object(chat,'ask_provider',new_callable=AsyncMock,return_value=invalid):
+                response = TestClient(app).post('/api/social/stories/'+story.id+'/chat',json={'question':'요약해줘'})
+                self.assertEqual(response.status_code,502)
 
 
 if __name__ == "__main__":

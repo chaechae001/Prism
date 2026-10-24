@@ -11,7 +11,7 @@ import httpx
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel, ConfigDict, Field
 
-from ..connection_repository import load_snapshot
+from ..connection_repository import load_snapshot, resolve_story
 from .providers import elice_answer, settings
 
 router = APIRouter(prefix="/api/social", tags=["news-dm"])
@@ -64,7 +64,7 @@ _lock = asyncio.Lock()
 
 def find_story(story_id: str):
     snapshot = load_snapshot()
-    story = next((s for s in snapshot.stories if s.id == story_id), None)
+    story = resolve_story(snapshot, story_id)
     if not story:
         raise HTTPException(404, "해당 뉴스를 찾을 수 없습니다.")
     return story
@@ -72,11 +72,22 @@ def find_story(story_id: str):
 
 def context_for(story):
     bodies = []
+    cluster_db = os.getenv('PRISM_DATA_SOURCE') == 'cluster-db'
+    if cluster_db:
+        from sqlalchemy.exc import SQLAlchemyError
+        from ..services.cluster_context import chat_cluster_bodies, ClusterContextError
+        try:
+            bodies = chat_cluster_bodies(story)
+        except (ClusterContextError, ValueError, KeyError, TypeError):
+            raise HTTPException(409, '뉴스가 갱신되었거나 AI가 참고할 수 있는 본문이 없습니다. 새로고침 후 다시 확인해주세요.') from None
+        except SQLAlchemyError:
+            raise HTTPException(503, '기사 본문을 읽지 못했습니다. 잠시 후 다시 시도해주세요.') from None
     if os.getenv("PRISM_DATA_SOURCE", "fixture") in {"supabase", "db-demo", "rss-reader"}:
         from ..services.article_context import chat_bodies
         bodies = chat_bodies(story)
     notice = ("선택 뉴스의 허용된 본문 또는 발췌와 제목·요약·출처를 참고합니다. 외부 정보는 조회하지 않습니다."
               if bodies else NOTICE)
+    body_ids = {b['article_id'] for b in bodies}
     return {
         "story_id": story.id,
         "title": story.title,
@@ -96,6 +107,7 @@ def context_for(story):
                 "framing": a.framing,
             }
             for a in story.articles
+            if not cluster_db or a.id in body_ids
         ],
         "bodies": bodies,
         "notice": notice,
@@ -103,7 +115,8 @@ def context_for(story):
 
 
 def configuration():
-    if os.getenv("PRISM_DATA_SOURCE", "fixture") in {"cluster-local","cluster-db"}:
+    source = os.getenv('PRISM_DATA_SOURCE', 'fixture')
+    if source == 'cluster-local' or (source == 'cluster-db' and os.getenv('PRISM_CLUSTER_CHAT_ENABLED') != '1'):
         return False
     # A separate switch prevents accidental public exposure of a billable unauthenticated endpoint.
     enabled = os.getenv("PRISM_CHAT_ENABLED", "0") == "1"
@@ -116,7 +129,8 @@ def configuration():
 
 @router.get("/chat/status", response_model=ChatStatus)
 def status():
-    if os.getenv("PRISM_DATA_SOURCE", "fixture") in {"cluster-local", "cluster-db"}:
+    source = os.getenv('PRISM_DATA_SOURCE', 'fixture')
+    if source == 'cluster-local' or (source == 'cluster-db' and os.getenv('PRISM_CLUSTER_CHAT_ENABLED') != '1'):
         return {
             "configured": False,
             "notice": "군집 결과 미리보기에서는 AI 대화가 비활성화되어 있습니다. 기사별 본문과 AI 대화 연결을 완료한 후 이용할 수 있어요.",
@@ -128,7 +142,8 @@ def status():
         "notice": "이 뉴스에 대해 질문해보세요."
         if configured
         else "뉴스 AI가 아직 준비되지 않았습니다. 연결 후 이 기사에 대해 대화할 수 있어요.",
-        "context_notice": NOTICE,
+        "context_notice": ('선택한 뉴스에 포함된 허용된 기사 본문을 참고합니다. 긴 본문은 일부만 사용하며 외부 정보는 조회하지 않습니다.'
+                           if source == 'cluster-db' else NOTICE),
     }
 
 
@@ -251,7 +266,8 @@ async def chat(story_id: str, body: ChatRequest, request: Request):
     }
     async with _lock:
         result = await ask_provider(payload)
-    allowed_ids = {a.id for a in story.articles}
+    allowed_ids = ({b['article_id'] for b in context['bodies']}
+                   if os.getenv('PRISM_DATA_SOURCE') == 'cluster-db' else {a.id for a in story.articles})
     if not set(result.article_ids).issubset(allowed_ids):
         raise HTTPException(502, "답변의 출처 검증에 실패했습니다. 다시 질문해주세요.")
     return ChatReply(

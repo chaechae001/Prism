@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 import { SocialPost } from "../components/SocialPost";
-import { clusterSourceLabel } from "./clusterPreview";
+import { clusterSourceLabel, isDbClusterStory } from "./clusterPreview";
 import { stories } from "../mocks/policy";
 
 describe("DB cluster candidates", () => {
@@ -25,6 +25,13 @@ describe("DB cluster candidates", () => {
 });
 
 describe("cluster source display", () => {
+  it("recognizes DB articles returned through a legacy saved story link", () => {
+    const story = structuredClone(stories[0]);
+    story.id = "local-cluster-80cef8ab151645a8c1319435";
+    story.articles[0].publisher_id = "cluster-publisher-example";
+    expect(isDbClusterStory(story)).toBe(true);
+    expect(isDbClusterStory({id:story.id})).toBe(false);
+  });
   it("hides the review-state suffix while preserving the original API data", () => {
     const framing = "대표기사 · 동일 사건 검토 전";
     expect(clusterSourceLabel(framing)).toBe("대표기사");

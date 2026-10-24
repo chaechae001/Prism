@@ -73,7 +73,7 @@ class ClusterFeedTests(unittest.TestCase):
         from backend.app.chat.router import configuration
         self.assertIn('cluster-db',SOURCES)
         batch,a,g,mem=candidate();stories,notes=m.project_batch('test-db',batch,a,g,mem)
-        with patch.dict(os.environ,{'PRISM_DATA_SOURCE':'cluster-db','PRISM_CLUSTER_NAMESPACE':'test-db','PRISM_CHAT_ENABLED':'1'}),patch.object(m,'load_cluster_feed',return_value=(stories,'cluster-db-test',notes)):
+        with patch.dict(os.environ,{'PRISM_DATA_SOURCE':'cluster-db','PRISM_CLUSTER_NAMESPACE':'test-db','PRISM_CHAT_ENABLED':'1','PRISM_CLUSTER_CHAT_ENABLED':'0'}),patch.object(m,'load_cluster_feed',return_value=(stories,'cluster-db-test',notes,{})):
             self.assertFalse(configuration())
             data=load_snapshot('cluster-db')
             self.assertEqual(data.source,'cluster-db')

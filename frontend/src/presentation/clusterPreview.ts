@@ -9,6 +9,7 @@ export function isLocalClusterStory(story?: Pick<Story, "id">): boolean {
   return /^(local|db)-cluster-[0-9a-f]{24}$/.test(story?.id || "");
 }
 
-export function isDbClusterStory(story?: Pick<Story, "id">): boolean {
-  return /^db-cluster-[0-9a-f]{24}$/.test(story?.id || "");
+export function isDbClusterStory(story?: Pick<Story, "id"> & Partial<Pick<Story, "articles">>): boolean {
+  return /^db-cluster-[0-9a-f]{24}$/.test(story?.id || "")
+    || !!story?.articles?.[0]?.publisher_id.startsWith("cluster-publisher-");
 }

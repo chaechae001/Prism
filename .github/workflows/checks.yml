@@ -33,6 +33,7 @@ jobs:
       - run: python -m unittest backend.tests.test_api backend.tests.test_connection backend.tests.test_social_chat backend.tests.test_integration_boundaries -q
       - run: python -m unittest backend.tests.test_analyst_validation -q
       - run: python -m unittest backend.tests.test_article_intake -q
+      - run: python -m unittest backend.tests.test_connected_news -q
       - run: python -m unittest discover -s backend/tests/rss -p 'test_*.py' -q
       - run: python -m unittest discover -s backend/tests/llm -p 'test_*.py' -q
       - run: python -m unittest backend.tests.test_database_integration -q

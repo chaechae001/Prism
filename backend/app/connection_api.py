@@ -14,7 +14,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from .connection_repository import SOURCES, Snapshot, load_snapshot
+from .connection_repository import SOURCES, Snapshot, load_snapshot, resolve_story
 from .cluster_preview import ClusterPreviewError
 from .cluster_feed import ClusterFeedError
 from .db import DatabaseConfigurationError
@@ -140,7 +140,7 @@ def stories(request: Request, data: Data, q: str = Query(default="", max_length=
 
 @app.get("/api/v1/stories/{story_id}", response_model=StoryResponse)
 def story(story_id: str, request: Request, data: Data):
-    value = next((s for s in data.stories if s.id == story_id), None)
+    value = resolve_story(data, story_id)
     if value is None:
         raise HTTPException(404, "해당 사건을 찾을 수 없습니다.")
     return StoryResponse(story=value, request_id=request.state.request_id, is_mock=data.is_mock)
@@ -148,7 +148,7 @@ def story(story_id: str, request: Request, data: Data):
 
 @app.post("/api/v1/feedback", response_model=FeedbackResponse, status_code=201)
 def feedback(body: FeedbackRequest, request: Request, data: Data):
-    if not any(s.id == body.story_id for s in data.stories):
+    if resolve_story(data, body.story_id) is None:
         raise HTTPException(404, "해당 사건을 찾을 수 없습니다.")
     # Explicitly ephemeral: no fake claim of persistence.
     return FeedbackResponse(id=str(uuid4()), request_id=request.state.request_id, persisted=False)
