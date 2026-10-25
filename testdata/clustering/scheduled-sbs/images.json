@@ -1,0 +1,309 @@
+{
+  "schema_version": "local-news-images/v1",
+  "created_at": "2026-10-23T05:30:00Z",
+  "articles_sha256": "ca90d0981400a2712faab059761ecfbc545f409ad86fbe1bc4e70cc6daa5d1d2",
+  "representatives_sha256": "1d1514c647b42da2ecf0c2950c1272d0cbb95530e695787f4d745948acde5999",
+  "input_sha256": "ddf77d3a31936b5c2b073b31fb04172d4f29b8e2a6931671a241cd8e191cac8c",
+  "automatic_publication": false,
+  "local_preview": true,
+  "image_bytes_downloaded": 0,
+  "summary": {
+    "selected_articles": 29,
+    "images_found": 29,
+    "statuses": {
+      "found": 29
+    }
+  },
+  "results": [
+    {
+      "article_id": "article-0696791b2e783ad350057b3c",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008811164",
+      "content_hash": "e78a96f4a6b7c9d866540bb388f59fc413ff37987bfb49b404a296406a0e500d",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261023/202234085_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "8252311c832254c494c9a522f505cc156acbb57fd9532fd2799958fd4735c8f5"
+    },
+    {
+      "article_id": "article-0bd6e6a82bcad52c72654d1a",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008811579",
+      "content_hash": "7d7bdc1824bb5ba1fad526f5d0f9e67654faca27a476815d1bcf83a7543dcb66",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261023/202234155_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "322fb4b67d125324f17f338ca5de0a0d2f4aeece2f8aa39ed850ba68e2bf4b48"
+    },
+    {
+      "article_id": "article-26befd41ca4c8d14241b9e0c",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008811808",
+      "content_hash": "9d097046d6c3f4261020d18fb80f7e53ad1a8dca2d0412bfd9131f6ca498fa13",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261023/202234230_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "471cf63d2eb01054045333a722bc4ab75dbc7fac9076ddc961d43dfa49fbf42b"
+    },
+    {
+      "article_id": "article-27f8175e07fb1698cefaad68",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008811166",
+      "content_hash": "277b74ba513ae10facefc80cba3e6f414caf97a6eb01ece21939405a6a1902ff",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261023/202234094_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "4b5b6b6aeda6424c9144d0e938afa5b38ed7a691ca87acd17e184d591e9f156a"
+    },
+    {
+      "article_id": "article-2df57a84dd1c8aff7ce6bd60",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008811206",
+      "content_hash": "860fbf2bfebae6404145a16f40b79feb199517a1857bc78d366c6dd69a323361",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261023/202234092_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "f2d627dbdf9ac880710e266ca538e5e299e3deea3cd4ab4abab898a6e90fab6f"
+    },
+    {
+      "article_id": "article-339d649281acc69bc58d4baf",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008810899",
+      "content_hash": "dfafe6931a283be8bdbd940aa3f36121a6fca88cbd3e330259a1700ce09cf397",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261022/202234013_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "12c7cd037d4d73e770f291b52790fe7e8d326a419a3dae81d2e49b60ff5dde0b"
+    },
+    {
+      "article_id": "article-5144b72d95413473fe116a7d",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008811204",
+      "content_hash": "dc381047fa29ec18213f952ba82a60de21246447a47305b89cc0aa13cc33105b",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261023/202234072_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "5e210ae86ca70a4d5ae0ee2a7ae74b2f7a39b07c9fb408acd39adf4bf0fe830b"
+    },
+    {
+      "article_id": "article-54084df5e2aa31d4eaa020d4",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008811185",
+      "content_hash": "36af8a9cf536919128b2b9023e00f8f2107a1a0c04ec1c136125c9227aaea51c",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261023/202234073_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "abe627cbee781510b970c5f57f9e5ab79f1325e2b910b990cb2f70dd0753922f"
+    },
+    {
+      "article_id": "article-5c04c463737e055be24d1547",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008811447",
+      "content_hash": "aff35ace1dbe0df1daa02562e88deecc0a14a5e9d275078cf2adfabb40a37386",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261023/202234134_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "38274dcdef3b78a5f4de6dd348d7791103bfd5127dca11e5ce5848bcddd22958"
+    },
+    {
+      "article_id": "article-5c9ac85891430311503e8279",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008810885",
+      "content_hash": "4d5bddd7fca5d94d54e693184d695b76a86b6a6cc567c940025c4db027d76d73",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261022/202233975_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "04349d82876d98f73a0bbe5bc9b505d4d92be2eea897e3fa18a1f258a463db5a"
+    },
+    {
+      "article_id": "article-5ff8218da9a32ad8f645ea7b",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008811095",
+      "content_hash": "a2fd76456d4531feb371be310b90c3bea4281db55bb66fc1a05b4153428c924d",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261023/202234039_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "09c3aaccf3be119416f60def7527ab19b3dbcb85fe801534201c965fdf5f018d"
+    },
+    {
+      "article_id": "article-764ba243cc3011e86d40b2c0",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008811849",
+      "content_hash": "9b8b6eb7aefbedb5df542c5640eea0e90b61091d0f8e84edc4a73d696c715d4c",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261023/202234176_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "145dc8e36215809eed8beae31b98fd3f4a1ad2c0800196abb127d14a5e9a18b0"
+    },
+    {
+      "article_id": "article-7a56d0d1db2ebeef5b323911",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008811162",
+      "content_hash": "7b484480f21469e80095bb9942760f4285965481b6835ef8f937af5b7dc384db",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261023/202234083_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "10c8acaef3a787beb0ec0d2214d690bccaa97eb9ce6ee79d6a01b3e1e40b9a86"
+    },
+    {
+      "article_id": "article-9b153d0671cf32d485d67dc0",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008811094",
+      "content_hash": "88f082d33801a21041172f6e1fc7a6e6fa5674acb6655bb8363deb5cd9d79225",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261023/202234038_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "acf6399208cd47e454d4e9df63b257717691c85116e1ba0575194951dba5458e"
+    },
+    {
+      "article_id": "article-9f46cab4e01d015f8ce56faa",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008812039",
+      "content_hash": "01fedf02336a14d2e5f6f7b9a1bc4691f1cfc18be7f4d46a55bc26211bb8964d",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261023/202234226_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "ab1f0fe951315ae714c58c45c4f01abe7619a704188dbb99db0ab7352a81922f"
+    },
+    {
+      "article_id": "article-a4bdafce8a6673a75147d313",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008811093",
+      "content_hash": "549fc8ac5d66fca6a0e19a0c8d59292fa9269cbc8cdb8135c0c80fd52eb70377",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261023/202234037_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "69b606f505ff1271ef841b5213bd91876b39ded22ceb9e9b1e490e622a82c101"
+    },
+    {
+      "article_id": "article-ab0bb21e9727c2eca2457aa2",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008811547",
+      "content_hash": "74c932a55b983bfbbbd46556936626cf1b4bc266bcf2a8d9462c5666c79f917f",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261023/202234157_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "bad246cf06a9031a5b2708881ef4500fd3547e24457b22e0dae0cab7bf50d5d7"
+    },
+    {
+      "article_id": "article-aeefa8b85737df0a11701a57",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008811578",
+      "content_hash": "f59f03d49175b9e65937ebc936c7db9f261c40bf9b622c920a901605110895b0",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261023/202234154_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "f1047470c56d3a4198bbdd7861aaf3a3a59c1d4b46d65f9a18a7777981937252"
+    },
+    {
+      "article_id": "article-b0d3eb77d4df208736c814e5",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008810881",
+      "content_hash": "232d8e7e09f7acb4bd8b5f0885ca63880e97e7e3fa904705ac7621619424c990",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261022/202233961_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "24b4e8ab612208b0fce71b0cc75b9a209cad0d80d05cdeb725e7ca530bacc228"
+    },
+    {
+      "article_id": "article-b228985f1f1e3df1cf5f267e",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008812025",
+      "content_hash": "e17fbacb28431cc768c5364d1e42c34519dedc15a0e1bfd3f849f148ec4a72ac",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261023/202234223_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "4ac5deb2a973ba046174c04f9f3e062aca1f356e6f1f528b7c17a9efd197404c"
+    },
+    {
+      "article_id": "article-b9c7bf7baa4531874f58341e",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008811182",
+      "content_hash": "5450cda3bbf5e8edd8e0ac4c08279f7a48f622ac589f7d6ac263826c833b47c9",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261023/202234054_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "80739bb2b50226b11891bf0b7f72654a5d27380b965020ca7d3fbbd590abbe36"
+    },
+    {
+      "article_id": "article-c082e78f93d81433f9bb6e8e",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008810891",
+      "content_hash": "8fb991f5e6cda5b91939c82e011ca58ec8dadc965f2390618147f3eba3ab069f",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261022/202233990_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "2b607bfc98721b70c04757e426023c487ce60cb8b764a7bce2002e8a43e27010"
+    },
+    {
+      "article_id": "article-cf1a2e8c2a5aa970eb63db1c",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008810830",
+      "content_hash": "513d516d6decbd85179861c76edd93c26ad37849c39aaf401675f3cf906c2c16",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261022/202233930_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "24a12688441931a3b76ebf65e017a3a1ec89fbbff32e510003adacee3044e85f"
+    },
+    {
+      "article_id": "article-d02e82f01c734a7dc4e38be6",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008811153",
+      "content_hash": "07eabf234d2be99e7db0653e7467859a55e3d8a6b79fc218ec6fdf7356200387",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261023/202234112_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "6da541a4e4b8c7fa19043ef4fa3b6902cf3351dd7da02ef6300a719fca79ba02"
+    },
+    {
+      "article_id": "article-d9fe3a1d11aaac61bb6a7867",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008811577",
+      "content_hash": "af9b7652f10b30752d2a2cbf40bb2b4b8b545fc2e5dbfef290d47498cbc9dccf",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261023/202234150_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "c17c689dad903aadbb26586be24a9bc3105c1f7e7e8ff6ae7f96555de017592a"
+    },
+    {
+      "article_id": "article-e4b91bf4349eab7676d3f757",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008810985",
+      "content_hash": "cdc72cb3443018b14a1a613d44cd02dc5eb778a6e223b1728cb9fe268757b57f",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261022/202233972_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "58b2f75f3ec5b75d2cb5042b647ef444ce3434c8a8756aacc74eb7fb809a63d5"
+    },
+    {
+      "article_id": "article-f2cbc4de0317cecb4fbc3f77",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008811852",
+      "content_hash": "02966a712e73ee2d74eb05098dfc30e5ace7c826f324ac6fbb52bd346c70272d",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261023/202234180_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "6c88a978bcebb2d18be06d365076e255805bf7c36093dbaf2e381f923af2e219"
+    },
+    {
+      "article_id": "article-f2d12c41d47db0ffb18fd183",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008811183",
+      "content_hash": "a3dca2dd79c81b31678c84f324117499d8566eacb12d3c52a4cfb85c2d20cb57",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261023/202234055_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "d23bbff003cb8b88050fc324fe3b91b2adb128a73fe1e1a2c62552083fd03b23"
+    },
+    {
+      "article_id": "article-fcdfc4b88783de767a59a844",
+      "article_url": "https://news.sbs.co.kr/news/endPage.do?cooper=RSSREADER&news_id=N1008811471",
+      "content_hash": "51de847d61d5305598d9d29c61f8d38c67fae2ba23874543bea29668d01851ee",
+      "status": "found",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261023/202234138_1280.jpg",
+      "origin": "og_image",
+      "rights_status": "allowed",
+      "html_sha256": "146f54c3d18b95b091b227bbb5f40689cc9be36e214e7f3062ec54d79bfe0d58"
+    }
+  ]
+}

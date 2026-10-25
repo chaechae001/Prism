@@ -1,0 +1,64 @@
+{
+  "schema_version": "prism-clustering-testdata/v1",
+  "snapshot_date": "2026-10-23",
+  "includes_article_bodies": true,
+  "includes_pretrained_weights": false,
+  "includes_credentials": false,
+  "human_gold_labels": false,
+  "datasets": {
+    "anchor92": {
+      "articles": 92,
+      "groups": 74,
+      "image_urls": 92,
+      "scope": "user-requested private team test snapshot",
+      "automatic_publication": false,
+      "accuracy_measured": false,
+      "files": {
+        "articles.json": {
+          "bytes": 297799,
+          "sha256": "60a08ef768464909a6523ce844c2a92c1ef21cffec964a8a4b950c04f1c5fbc8"
+        },
+        "images.json": {
+          "bytes": 48250,
+          "sha256": "90b6affa4156f20b5eb05f194fa68b98238f0b0611b487e43844eab5d5a2a91a"
+        },
+        "input.json": {
+          "bytes": 398001,
+          "sha256": "2a6b5c2136f5dc503151c32a27d5a524dcdd805f99bd7eddf2f68b82c76cdb51"
+        },
+        "representatives.json": {
+          "bytes": 427317,
+          "sha256": "337027a0e8dc1c619e01d34a698d66cd50f2309be34267c8b725f1c335ec83bf"
+        }
+      }
+    },
+    "scheduled-sbs": {
+      "articles": 29,
+      "groups": 20,
+      "image_urls": 29,
+      "scope": "user-requested private team test snapshot",
+      "automatic_publication": false,
+      "accuracy_measured": false,
+      "files": {
+        "articles.json": {
+          "bytes": 89059,
+          "sha256": "ca90d0981400a2712faab059761ecfbc545f409ad86fbe1bc4e70cc6daa5d1d2"
+        },
+        "images.json": {
+          "bytes": 15604,
+          "sha256": "1c435d045c436218c70622b479fa0f7e7d2da673b217ca98a972e6f2762d282b"
+        },
+        "input.json": {
+          "bytes": 271121,
+          "sha256": "ddf77d3a31936b5c2b073b31fb04172d4f29b8e2a6931671a241cd8e191cac8c"
+        },
+        "representatives.json": {
+          "bytes": 222101,
+          "sha256": "1d1514c647b42da2ecf0c2950c1272d0cbb95530e695787f4d745948acde5999"
+        }
+      }
+    }
+  },
+  "fixture_scope": "Saved article inputs and representative results required by the local preview and regression tests",
+  "source_revision": "6a2eb2d"
+}

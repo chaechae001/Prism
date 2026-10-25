@@ -14,7 +14,9 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from .connection_repository import SOURCES, Snapshot, load_snapshot
+from .connection_repository import SOURCES, Snapshot, load_snapshot, resolve_story
+from .cluster_preview import ClusterPreviewError
+from .cluster_feed import ClusterFeedError
 from .db import DatabaseConfigurationError
 from .models import (CategoriesResponse, Category, CategoryInfo, ErrorResponse, FeedMeta,
                      FeedResponse, FeedbackRequest, FeedbackResponse, Mode, StoryResponse)
@@ -23,7 +25,7 @@ from .recommendation import cursor_key, decode_cursor, encode_cursor, rank
 logger = logging.getLogger("prism.connection")
 source = os.getenv("PRISM_DATA_SOURCE", "fixture")
 if source not in SOURCES:
-    raise RuntimeError("PRISM_DATA_SOURCE must be fixture, rss-fixture, db-demo or rss-reader or supabase")
+    raise RuntimeError("PRISM_DATA_SOURCE must be one of: " + ", ".join(sorted(SOURCES)))
 app = FastAPI(title="Prism connection API (development)", version="1.0.0",
               responses={code: {"model": ErrorResponse} for code in (404, 422, 500, 503)})
 origins = [value.strip() for value in os.getenv("CORS_ORIGINS", "http://127.0.0.1:5173,http://localhost:5173").split(",") if value.strip()]
@@ -59,6 +61,16 @@ async def request_id(request: Request, call_next):
 @app.exception_handler(DatabaseConfigurationError)
 def database_configuration_error(request, exc):
     return failure(request, 503, "DATABASE_NOT_CONFIGURED", "DB 연결 설정을 확인해주세요.")
+
+
+@app.exception_handler(ClusterPreviewError)
+def cluster_results_error(request, exc):
+    return failure(request, 503, "CLUSTER_RESULTS_UNAVAILABLE", "로컬 군집 결과 파일이 없거나 서로 일치하지 않습니다. 결과 폴더를 확인해주세요.")
+
+
+@app.exception_handler(ClusterFeedError)
+def cluster_db_error(request,exc):
+    return failure(request,503,"CLUSTER_DB_UNAVAILABLE","DB 군집 결과를 읽지 못했습니다. 연결과 전용 테이블 설정을 확인해주세요.")
 
 
 @app.exception_handler(HTTPException)
@@ -106,7 +118,10 @@ def stories(request: Request, data: Data, q: str = Query(default="", max_length=
     if data.is_mock and scenario == "empty":
         pool = []
     ranked, relaxed = rank(pool, mode, diversity)
-    if data.preview:
+    if data.source in {"cluster-local","cluster-db"}:
+        for item in ranked:
+            item.reason.label = "군집분석 결과 · 동일 사건 검토 전"
+    elif data.preview:
         for item in ranked:
             item.reason.label = "RSS 원문 미리보기 · 군집/AI 요약 전"
     key = cursor_key(data.version, q, category, mode, diversity)
@@ -119,13 +134,13 @@ def stories(request: Request, data: Data, q: str = Query(default="", max_length=
         next_cursor=encode_cursor(key, offset + limit) if offset + limit < len(ranked) else None,
         meta=FeedMeta(request_id=request.state.request_id, generated_at=datetime.now(timezone.utc),
             dataset_version=data.version, is_mock=data.is_mock, mode=mode, diversity=diversity,
-            policy_version="rss-preview-v1" if data.preview else "connection-v1", policy_notes=data.notes + ["주제·출처 정렬은 개발용입니다. 정치적 편향 평가나 AI 중립성 검증 결과가 아닙니다."],
+            policy_version=data.source+"-v1" if data.source in {"cluster-local","cluster-db"} else "rss-preview-v1" if data.preview else "connection-v1", policy_notes=data.notes + ["주제·출처 정렬은 개발용입니다. 정치적 편향 평가나 AI 중립성 검증 결과가 아닙니다."],
             returned_categories=list(dict.fromkeys(i.story.category for i in page)), source_cap_relaxed=relaxed))
 
 
 @app.get("/api/v1/stories/{story_id}", response_model=StoryResponse)
 def story(story_id: str, request: Request, data: Data):
-    value = next((s for s in data.stories if s.id == story_id), None)
+    value = resolve_story(data, story_id)
     if value is None:
         raise HTTPException(404, "해당 사건을 찾을 수 없습니다.")
     return StoryResponse(story=value, request_id=request.state.request_id, is_mock=data.is_mock)
@@ -133,7 +148,7 @@ def story(story_id: str, request: Request, data: Data):
 
 @app.post("/api/v1/feedback", response_model=FeedbackResponse, status_code=201)
 def feedback(body: FeedbackRequest, request: Request, data: Data):
-    if not any(s.id == body.story_id for s in data.stories):
+    if resolve_story(data, body.story_id) is None:
         raise HTTPException(404, "해당 사건을 찾을 수 없습니다.")
     # Explicitly ephemeral: no fake claim of persistence.
     return FeedbackResponse(id=str(uuid4()), request_id=request.state.request_id, persisted=False)

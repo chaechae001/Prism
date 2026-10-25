@@ -1,0 +1,18 @@
+{
+  "namespace": "scheduled-local-test",
+  "usage_scope": "local_test",
+  "interval_seconds": 900,
+  "window_hours": 72,
+  "max_articles": 500,
+  "refetch_seconds": 21600,
+  "limit_per_feed": 100,
+  "min_body_characters": 200,
+  "profile": "multiview-anchor",
+  "model_dir": "../.models/multilingual-e5-small",
+  "work_dir": "../data/private/scheduled-news",
+  "sources": [
+    {"key":"khan","enabled":false,"rights":{"collect":"unknown","store":"unknown","summarize":"unknown","publish_summary":"unknown","display_image":"unknown"}},
+    {"key":"sbs","enabled":false,"rights":{"collect":"unknown","store":"unknown","summarize":"unknown","publish_summary":"unknown","display_image":"unknown"}},
+    {"key":"mk","enabled":false,"rights":{"collect":"unknown","store":"unknown","summarize":"unknown","publish_summary":"unknown","display_image":"unknown"}}
+  ]
+}

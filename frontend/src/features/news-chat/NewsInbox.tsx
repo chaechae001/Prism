@@ -186,9 +186,8 @@ export function NewsInbox({
           </button>
         </div>
         <p className="chat-context-note">
-          {story.data?.story.is_demo ? "가상 뉴스 · " : ""}현재 제목·제공된
-          요약·관련 기사 정보를 참고합니다. 원문 전문은 아직 연결되지
-          않았습니다.
+          {story.data?.story.is_demo ? "가상 뉴스 · " : ""}
+          {status.data?.context_notice || "기사 정보와 AI 연결 상태를 확인하고 있습니다."}
         </p>
         {status.isPending ? (
           <p className="chat-context-note">AI 연결 확인 중…</p>
@@ -213,7 +212,7 @@ export function NewsInbox({
               "초등학생도 이해할 수 있게 설명해줘",
               "이 기사에서 확인된 사실은 무엇이야?",
             ].map((p) => (
-              <button key={p} disabled={busy} onClick={() => void send(p)}>
+              <button key={p} disabled={busy || !status.data?.configured} onClick={() => void send(p)}>
                 <Sparkles size={14} />
                 {p}
               </button>
@@ -258,19 +257,21 @@ export function NewsInbox({
           placeholder="메시지 입력…"
           value={draft}
           onChange={(e) => setDraft(e.target.value)}
-          disabled={busy}
+          disabled={busy || !status.data?.configured}
           maxLength={2000}
         />
         <button
           type="submit"
-          disabled={!draft.trim() || busy}
+          disabled={!draft.trim() || busy || !status.data?.configured}
           aria-label="메시지 보내기"
         >
           <Send size={20} />
         </button>
       </form>
       <p className="local-only-note dm-disclosure">
-        전송 시 질문·최근 대화·이 뉴스의 제공 정보를 LLM으로 전달합니다.
+        {status.data?.configured
+          ? "전송 시 질문·최근 대화·이 뉴스의 제공 정보를 LLM으로 전달합니다."
+          : "AI 대화 연결을 기다리고 있습니다."}
       </p>
     </section>
   );

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import { api } from "../api/client";
+import { api, apiMode } from "../api/client";
 import type { Category, FeedFilters, Mode, Scenario } from "../api/types";
 import {
   visibleItems,
@@ -108,10 +108,13 @@ export function useNewsWorkspace() {
     getNextPageParam: (last) => last.next_cursor ?? undefined,
     enabled: view !== "mypage",
     retry: false,
+    refetchInterval: apiMode === "http" ? 60_000 : false,
+    refetchIntervalInBackground: false,
   });
   const categoryQuery = useQuery({
     queryKey: ["categories"],
     queryFn: ({ signal }) => api.categories(signal),
+    refetchInterval: apiMode === "http" ? 60_000 : false,
   });
   const savedQuery = useQuery({
     queryKey: ["saved", saved],
