@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import { api } from "../api/client";
+import {uniqueFeedItems} from "../presentation/feedItems";
+import { api, apiMode } from "../api/client";
+import { useAccount } from '../features/account/AccountProvider';
 import type { Category, FeedFilters, Mode, Scenario } from "../api/types";
 import {
   visibleItems,
@@ -20,6 +22,7 @@ function readSaved(): string[] {
   }
 }
 export function useNewsWorkspace() {
+  const account = useAccount();
   const [url, setUrl] = useState(() => new URL(location.href));
   useEffect(() => {
     const onBack = () => setUrl(new URL(location.href));
@@ -78,22 +81,26 @@ export function useNewsWorkspace() {
       : "summary"
   ) as DetailTab;
   const [scenario, setScenario] = useState<Scenario>("normal");
-  const [saved, setSaved] = useState(readSaved);
+  const [localSaved, setSaved] = useState(readSaved);
+  const saved = account.user ? account.workspace.bookmarks : account.loading ? [] : localSaved;
   const [storageError, setStorageError] = useState(false);
   useEffect(() => {
     try {
-      localStorage.setItem("prism:v1:saved", JSON.stringify(saved));
+      localStorage.setItem("prism:v1:saved", JSON.stringify(localSaved));
       setStorageError(false);
     } catch {
       setStorageError(true);
     }
-  }, [saved]);
-  const toggleSave = (id: string) =>
+  }, [localSaved]);
+  const toggleSave = (id: string) => {
+    if (account.loading) return;
+    if (account.user) { account.mutate(`/bookmarks/${encodeURIComponent(id)}`, saved.includes(id) ? 'DELETE' : 'PUT'); return; }
     setSaved((current) =>
       current.includes(id)
         ? current.filter((value) => value !== id)
         : [...current, id],
     );
+  };
   const filters: FeedFilters = {
     q,
     category,
@@ -108,10 +115,13 @@ export function useNewsWorkspace() {
     getNextPageParam: (last) => last.next_cursor ?? undefined,
     enabled: view !== "mypage",
     retry: false,
+    refetchInterval: apiMode === "http" ? 60_000 : false,
+    refetchIntervalInBackground: false,
   });
   const categoryQuery = useQuery({
     queryKey: ["categories"],
     queryFn: ({ signal }) => api.categories(signal),
+    refetchInterval: apiMode === "http" ? 60_000 : false,
   });
   const savedQuery = useQuery({
     queryKey: ["saved", saved],
@@ -143,7 +153,7 @@ export function useNewsWorkspace() {
     () =>
       view === "mypage"
         ? savedQuery.data?.items || []
-        : feed.data?.pages.flatMap((page) => page.items) || [],
+        : uniqueFeedItems(feed.data?.pages.flatMap((page) => page.items) || []),
     [view, savedQuery.data, feed.data],
   );
   const displayed = useMemo(
@@ -161,7 +171,7 @@ export function useNewsWorkspace() {
       ) as Record<string, string>,
     [feed.data],
   );
-  const error = view === "mypage" ? savedQuery.error : feed.error;
+  const error = view === "mypage" ? savedQuery.error : feed.isFetchNextPageError ? null : feed.error;
   const total =
     view === "mypage" ? saved.length : feed.data?.pages[0].total || 0;
   const clearDates = () => update({ date: "all", from: null, to: null });

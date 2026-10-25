@@ -9,6 +9,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import type { Story } from "../api/types";
 import { categoryNames } from "../presentation/timeline";
+import { reelExcerpt } from "../presentation/newsReel";
 import { NewsPhoto } from "./NewsPhoto";
 
 export function NewsReel({
@@ -92,9 +93,9 @@ export function NewsReel({
             <span>{story.is_demo ? "DEMO · 가상 뉴스" : "PRISM NEWS"}</span>
             <h2>{story.title}</h2>
             <p id="reel-description">
-              {story.summary.status === "ready"
+              {reelExcerpt(story.summary.status === "ready"
                 ? story.summary.bullets[0]?.text || story.dek
-                : story.dek}
+                : story.dek)}
             </p>
             <div>
               <button

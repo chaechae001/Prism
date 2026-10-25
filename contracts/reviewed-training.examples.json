@@ -1,0 +1,5 @@
+[
+  {"id":"demo-1","event_group":"fictional-bus","input":"가상 기사: 버스 노선 시범 운영 기간은 3개월이다.","answer":"가상 자료에서 시범 운영 기간은 3개월입니다.","human_reviewed":true,"approved_for_training":true,"is_demo":true},
+  {"id":"demo-2","event_group":"fictional-budget","input":"가상 기사: 공장 설비 개선 예산은 10억 원이다.","answer":"가상 자료에 제시된 설비 개선 예산은 10억 원입니다.","human_reviewed":true,"approved_for_training":true,"is_demo":true},
+  {"id":"demo-3","event_group":"fictional-library","input":"가상 기사: 도서관 시설 2곳을 보수할 예정이다.","answer":"가상 자료에서는 도서관 시설 2곳의 보수를 계획하고 있습니다.","human_reviewed":true,"approved_for_training":true,"is_demo":true}
+]

@@ -192,7 +192,7 @@
   flex-direction: column;
   gap: 4px;
 }
-.inbox-list > button {
+.inbox-thread-open {
   display: flex;
   align-items: center;
   gap: 13px;
@@ -225,7 +225,7 @@
   background: #e3e4ef;
   color: #696d94;
 }
-.inbox-list > button > span:nth-child(2) {
+.inbox-thread-open > span:nth-child(2) {
   flex: 1;
   min-width: 0;
 }
@@ -610,4 +610,11 @@
   .news-conversation + .social-footer {
     display: none;
   }
+}
+.cluster-review-warning {
+  padding: 9px 11px;
+  border-left: 2px solid var(--primary);
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
 }

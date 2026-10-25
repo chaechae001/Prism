@@ -6,6 +6,16 @@ afterEach(() => {
   vi.resetModules();
 });
 describe("API failure boundaries", () => {
+  it("uses the shared deployment origin when the HTTP base URL is empty", async () => {
+    vi.stubEnv("VITE_API_MODE", "http");
+    vi.stubEnv("VITE_API_BASE_URL", "");
+    vi.resetModules();
+    const deployed = await import("./client");
+    expect(deployed.apiOrigin).toBe("");
+    vi.stubGlobal("fetch", vi.fn().mockResolvedValue(new Response(JSON.stringify({ items: [] }))));
+    await deployed.api.categories();
+    expect(fetch).toHaveBeenCalledWith("/api/v1/categories", expect.anything());
+  });
   it("sends feed filters through the supported news API", async () => {
     const fetcher = vi.fn().mockResolvedValue(
       new Response(JSON.stringify({ items: [], total: 0, next_cursor: null })),

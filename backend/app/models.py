@@ -1,6 +1,7 @@
 """The API source of truth. Export OpenAPI; generate TS instead of hand-copying DTOs."""
 from typing import Annotated, Literal
-from pydantic import BaseModel, ConfigDict, Field, AwareDatetime, HttpUrl
+from pydantic import BaseModel, ConfigDict, Field, AwareDatetime, HttpUrl, field_validator
+from .article_images.metadata import safe_image_url
 
 Category = Literal['politics', 'economy', 'society', 'technology']
 Mode = Literal['balanced', 'latest', 'explore']
@@ -21,6 +22,14 @@ class Article(Model):
     published_at: AwareDatetime
     framing: str
     is_demo: bool = True
+    image_url: HttpUrl | None = Field(default=None, description='Original article image URL, when available. Optional for existing clients and data sources.')
+
+    @field_validator('image_url')
+    @classmethod
+    def public_image(cls, value):
+        if value is not None and safe_image_url(str(value)) is None:
+            raise ValueError('Image URL must be a public HTTP(S) URL')
+        return value
 
 class Perspective(Model):
     label: str

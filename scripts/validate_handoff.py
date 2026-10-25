@@ -1,11 +1,15 @@
+"""Validate analyst input without printing source content or connecting by default."""
+import argparse
 import sys
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT/'backend'))
-from app.models import AnalystBatch
-from app.pipeline import allowed_articles
-path=Path(sys.argv[1]) if len(sys.argv)>1 else ROOT/'contracts/analyst-batch.example.json'
-batch=AnalystBatch.model_validate_json(path.read_text(encoding='utf-8'))
-allowed=allowed_articles(batch)
-print(f'{batch.batch_id}: {len(batch.articles)} input, {len(allowed)} rights-eligible and deduplicated articles')
-print('Structure validation only. Collection, clustering, summary generation and publication have not run.')
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "backend"))
+from app.worker import main
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="분석 기사 입력 사전 검증")
+    parser.add_argument("input", type=Path, nargs="?", default=ROOT / "contracts/analyst-batch.example.json")
+    parser.add_argument("--check-db", action="store_true")
+    args = parser.parse_args()
+    raise SystemExit(main(["validate-batch", "--input", str(args.input), *(["--check-db"] if args.check_db else [])]))

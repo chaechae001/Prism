@@ -2,7 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { App } from "./App";
+import { AccountProvider } from './features/account/AccountProvider';
 import "./styles.css";
+import './features/account/account.css';
+import './components/reading.css';
+import { authRedirectLocation } from './features/account/authRedirect';
 
 const client = new QueryClient({
   defaultOptions: {
@@ -10,6 +14,8 @@ const client = new QueryClient({
   },
 });
 async function start() {
+  const returned = authRedirectLocation(location.href);
+  if (returned) history.replaceState({}, '', returned);
   const mode = import.meta.env.VITE_API_MODE || "mock";
   if (!["mock", "http"].includes(mode))
     throw new Error("VITE_API_MODE must be mock or http");
@@ -46,7 +52,7 @@ async function start() {
   ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
       <QueryClientProvider client={client}>
-        <App />
+        <AccountProvider><App /></AccountProvider>
       </QueryClientProvider>
     </React.StrictMode>,
   );

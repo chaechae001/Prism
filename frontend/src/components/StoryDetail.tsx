@@ -15,6 +15,7 @@ import { api, ApiError } from "../api/client";
 import type { FeedbackRequest, Story } from "../api/types";
 import type { DetailTab } from "../presentation/timeline";
 import { AnalysisPanel } from "./AnalysisPanel";
+import { isLocalClusterStory, clusterSourceLabel } from "../presentation/clusterPreview";
 
 const categoryNames = {
   politics: "정치",
@@ -36,6 +37,7 @@ export function StoryDetail({
   onSave,
   initialTab = "summary",
   onRead,
+  clusterPreview: feedClusterPreview = false,
 }: {
   id: string | null;
   onClose: () => void;
@@ -43,11 +45,13 @@ export function StoryDetail({
   onSave: (id: string) => void;
   initialTab?: DetailTab;
   onRead?: (story: Story) => void;
+  clusterPreview?: boolean;
 }) {
   const query = useQuery({
     queryKey: ["story", id],
     queryFn: ({ signal }) => api.story(id!, signal),
     enabled: !!id,
+    refetchInterval: id?.startsWith("db-cluster-") ? 60_000 : false,
   });
   const [tab, setTab] = useState<string>(initialTab);
   const returnFocus = useRef(document.activeElement as HTMLElement | null);
@@ -57,9 +61,11 @@ export function StoryDetail({
       api.feedback({ story_id: id!, kind }),
   });
   const story = query.data?.story;
+  const clusterPreview = feedClusterPreview || isLocalClusterStory(story);
   useEffect(() => {
     if (story) onRead?.(story);
   }, [story, onRead]);
+  const activeTab = tab === "perspectives" || (tab === "summary" && story?.summary.status !== "ready") ? "five_w" : tab;
   const cited = (ids: string[]) => {
     setHighlight(ids);
     setTab("sources");
@@ -92,7 +98,9 @@ export function StoryDetail({
             {story?.title || "사건 불러오는 중"}
           </Dialog.Title>
           <Dialog.Description id="story-dialog-description" className="muted">
-            여러 출처를 함께 읽고, 서로 다른 시선을 발견하세요.
+            {clusterPreview
+              ? "기사의 핵심을 읽고 원문 출처를 확인하세요."
+              : "여러 출처를 함께 읽고, 서로 다른 시선을 발견하세요."}
             {story?.is_demo ? " 현재 내용은 가상 데모 자료입니다." : ""}
           </Dialog.Description>
           {query.isPending ? (
@@ -135,107 +143,28 @@ export function StoryDetail({
                     />
                   </button>
                 </div>
-                <Tabs.Root value={tab} onValueChange={setTab}>
+                <Tabs.Root value={activeTab} onValueChange={setTab}>
                   <Tabs.List className="detail-tabs" aria-label="사건 내용">
-                    <Tabs.Trigger value="summary">핵심 요약</Tabs.Trigger>
+                    {story.summary.status === "ready" && <Tabs.Trigger value="summary">핵심 요약</Tabs.Trigger>}
                     <Tabs.Trigger value="five_w">팩트 5W</Tabs.Trigger>
                     <Tabs.Trigger value="easy">쉽게 읽기</Tabs.Trigger>
                     <Tabs.Trigger value="sentiment">감정·어조</Tabs.Trigger>
-                    <Tabs.Trigger value="perspectives">
-                      관점 비교 <span>{story.perspectives.length}</span>
-                    </Tabs.Trigger>
                     <Tabs.Trigger value="sources">
                       출처 <span>{story.articles.length}</span>
                     </Tabs.Trigger>
                   </Tabs.List>
-                  <Tabs.Content value="summary" className="detail-panel">
-                    <div className="summary-label">
-                      <span className="sparkle">✧</span>{" "}
-                      {statusNames[story.summary.status]}
-                      {story.is_demo && <span className="tiny-tag">데모</span>}
-                    </div>
-                    {story.summary.status === "ready" ? (
-                      <ol className="summary-bullets">
-                        {story.summary.bullets.map((bullet, i) => (
-                          <li key={i}>
-                            <span className="bullet-number">0{i + 1}</span>
-                            <div>
-                              {bullet.text}
-                              <button
-                                className="citation-button"
-                                onClick={() => cited(bullet.article_ids)}
-                              >
-                                출처 {bullet.article_ids.length}개 확인 ↗
-                              </button>
-                            </div>
-                          </li>
-                        ))}
-                      </ol>
-                    ) : (
-                      <div className="notice">
-                        <strong>{statusNames[story.summary.status]}</strong>
-                        <p>
-                          {story.summary.status === "insufficient_sources"
-                            ? "독립적인 출처가 부족해 요약을 보류했습니다."
-                            : story.summary.status === "failed"
-                              ? "처리 중 오류가 발생했습니다. 원문 목록은 출처 탭에서 확인할 수 있습니다."
-                              : "검토가 끝나면 근거를 연결한 요약을 제공합니다."}
-                        </p>
-                      </div>
-                    )}
-                    <div className="unknowns">
-                      <strong>아직 확인할 내용</strong>
-                      {story.summary.unknowns.map((t) => (
-                        <p key={t}>{t}</p>
-                      ))}
-                    </div>
-                    <div className="detail-note">
-                      AI 요약은 사실 확인을 대신하지 않습니다. 원문과 다른
-                      부분은 알려주세요.
-                    </div>
-                  </Tabs.Content>
+                  {story.summary.status === "ready" && <Tabs.Content value="summary" className="detail-panel">
+                    <ol className="summary-bullets">{story.summary.bullets.map((bullet,i)=><li key={i}><span className="bullet-number">0{i+1}</span><div>{bullet.text}<button className="citation-button" onClick={()=>cited(bullet.article_ids)}>출처 확인 ↗</button></div></li>)}</ol>
+                  </Tabs.Content>}
                   {(["five_w", "easy", "sentiment"] as const).map((mode) => (
                     <Tabs.Content
                       value={mode}
                       className="detail-panel"
                       key={mode}
                     >
-                      <AnalysisPanel mode={mode} />
+                      <AnalysisPanel mode={mode} storyId={story.id} revision={story.updated_at} onCite={cited} clusterPreview={clusterPreview} />
                     </Tabs.Content>
                   ))}
-                  <Tabs.Content value="perspectives" className="detail-panel">
-                    <p className="muted small">
-                      아래 구분은 기사에서 강조하는 쟁점입니다. 언론사의 정치
-                      성향을 뜻하지 않습니다.{" "}
-                      {story.coverage.label_status === "demo"
-                        ? "데모 라벨이며 검증된 분류가 아닙니다."
-                        : story.coverage.label_status === "unverified"
-                          ? "아직 검토되지 않은 분류입니다."
-                          : "검토된 쟁점 분류입니다."}
-                    </p>
-                    {story.perspectives.length ? (
-                      story.perspectives.map((p, i) => (
-                        <div
-                          className={`perspective perspective-${i}`}
-                          key={p.label}
-                        >
-                          <span className="eyebrow">VIEW 0{i + 1}</span>
-                          <h3>{p.label}</h3>
-                          <p>{p.text}</p>
-                          <button
-                            className="citation-button"
-                            onClick={() => cited(p.article_ids)}
-                          >
-                            근거 기사 보기 ↗
-                          </button>
-                        </div>
-                      ))
-                    ) : (
-                      <div className="state-box">
-                        관점 비교를 위한 자료를 준비하고 있습니다.
-                      </div>
-                    )}
-                  </Tabs.Content>
                   <Tabs.Content value="sources" className="detail-panel">
                     <p className="muted small">
                       {story.is_demo
@@ -255,7 +184,7 @@ export function StoryDetail({
                         </span>
                         <div>
                           <span className="source-name">
-                            {a.publisher_name} · {a.framing}
+                            {a.publisher_name} · {clusterPreview ? clusterSourceLabel(a.framing) : a.framing}
                           </span>
                           <h3>{a.title}</h3>
                           <span className="muted small">
@@ -290,7 +219,7 @@ export function StoryDetail({
                       onClick={() => feedback.mutate("more_perspectives")}
                     >
                       <Layers3 size={15} />
-                      다른 관점이 필요해요
+                      추가 정보가 필요해요
                     </button>
                     <button
                       disabled={feedback.isPending}

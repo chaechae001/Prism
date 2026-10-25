@@ -1,5 +1,6 @@
 """Deterministic, entirely fictional fixtures. Run from repository root."""
 import json
+from hashlib import sha256
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -45,11 +46,12 @@ for n,(sid,category,title,dek,visual,tags,interest,status) in enumerate(rows):
       'perspectives':perspectives,'articles':articles,'public_interest':interest,'is_demo':True})
 data={'dataset_version':'demo-2026-10-21-v1','generated_at':'2026-10-21T14:00:00+09:00','stories':stories}
 (ROOT/'contracts/fixtures.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+analyst_text='수집과 요약 및 게시가 허용된 본문을 여기에 전달합니다.'
 batch={'schema_version':'1.0','batch_id':'demo-batch-001','articles':[{
  'id':'article-demo-001','canonical_url':'https://example.com/demo/input-001','publisher_id':'p-01',
- 'publisher_group_id':'g-01','title':'가상 뉴스 데이터 전달 예시','text':'수집과 요약 및 게시가 허용된 본문을 여기에 전달합니다.',
+ 'publisher_group_id':'g-01','title':'가상 뉴스 데이터 전달 예시','text':analyst_text,
  'published_at':'2026-10-21T09:00:00+09:00','collected_at':'2026-10-21T09:10:00+09:00',
- 'category':'technology','content_hash':'demo-sha256-placeholder','license_status':'allowed',
+ 'category':'technology','content_hash':sha256(analyst_text.encode('utf-8')).hexdigest(),'license_status':'allowed',
  'allowed_uses':['collect','store','summarize','publish_summary']}]}
 (ROOT/'contracts/analyst-batch.example.json').write_text(json.dumps(batch,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 print(f'Wrote {len(stories)} fictional stories')

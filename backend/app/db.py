@@ -4,6 +4,7 @@ import os
 from functools import lru_cache
 from sqlalchemy import create_engine
 from sqlalchemy.engine import URL
+from sqlalchemy.pool import NullPool
 from .config import load_environment
 
 
@@ -37,18 +38,20 @@ def get_engine():
             port=port,
             database=os.environ["DB_NAME"],
         )
+        serverless = os.getenv('VERCEL') == '1'
+        pool_options = {'poolclass': NullPool} if serverless else {
+            'pool_size': 3, 'max_overflow': 2, 'pool_timeout': 10}
         return create_engine(
             url,
             connect_args={
                 "sslmode": sslmode,
                 "connect_timeout": 10,
                 "options": "-c statement_timeout=15000",
+                **({'prepare_threshold': None} if serverless else {}),
             },
             isolation_level="REPEATABLE READ",
             pool_pre_ping=True,
-            pool_size=3,
-            max_overflow=2,
-            pool_timeout=10,
+            **pool_options,
             hide_parameters=True,
         )
     except (ValueError, TypeError):

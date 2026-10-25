@@ -2,6 +2,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 import { MessageCircle, X } from "lucide-react";
 import type { NewsComment } from "../../hooks/useSocialWorkspace";
+import { useAccount } from '../account/AccountProvider';
 export function NewsComments({
   storyId,
   title,
@@ -18,6 +19,7 @@ export function NewsComments({
   onRemove: (id: string) => void;
 }) {
   const [draft, setDraft] = useState("");
+  const account = useAccount();
   const rows = comments.filter((c) => c.storyId === storyId);
   return (
     <Dialog.Root
@@ -44,7 +46,7 @@ export function NewsComments({
             {title}
           </Dialog.Description>
           <p className="local-only-note">
-            이 브라우저에 저장한 댓글입니다. 다른 사용자에게 공개되지 않습니다.
+            {account.user ? '내 계정에 저장한 댓글입니다.' : '이 브라우저에 저장한 댓글입니다.'} 다른 사용자에게 공개되지 않습니다.
           </p>
           <div className="comment-list">
             {rows.length ? (

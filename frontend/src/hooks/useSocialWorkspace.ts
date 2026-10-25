@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Story } from "../api/types";
+import { useAccount } from '../features/account/AccountProvider';
 
 export type ChatMessage = {
   id: string;
@@ -72,6 +73,7 @@ function read(): SocialData {
   }
 }
 export function useSocialWorkspace() {
+  const account = useAccount();
   const [data, setData] = useState<SocialData>(read);
   const [storageError, setStorageError] = useState(false);
   useEffect(() => {
@@ -82,7 +84,9 @@ export function useSocialWorkspace() {
       setStorageError(true);
     }
   }, [data]);
-  const openThread = (story: Story) =>
+  const openThread = (story: Story) => {
+    if (account.loading) return;
+    if (account.user) { account.mutate(`/threads/${encodeURIComponent(story.id)}`, 'POST'); return; }
     setData((current) => ({
       ...current,
       threads: [
@@ -96,7 +100,12 @@ export function useSocialWorkspace() {
         ...current.threads.filter((t) => t.id !== story.id),
       ].slice(0, 50),
     }));
-  const append = (id: string, message: Omit<ChatMessage, "id" | "createdAt">) =>
+  };
+  const append = (id: string, message: Omit<ChatMessage, "id" | "createdAt">) => {
+    if (account.user) {
+      if (message.role === 'assistant') void account.reload().catch(() => {});
+      return; // Authenticated exchanges are validated and saved by the server.
+    }
     setData((current) => ({
       ...current,
       threads: current.threads.map((t) =>
@@ -115,8 +124,11 @@ export function useSocialWorkspace() {
           : t,
       ),
     }));
+  };
   const addComment = (storyId: string, text: string) => {
     const trimmed = text.trim().slice(0, 1000);
+    if (account.loading) return;
+    if (account.user) { if (trimmed) account.mutate('/comments', 'POST', { story_id: storyId, text: trimmed }); return; }
     if (trimmed)
       setData((current) => ({
         ...current,
@@ -131,17 +143,25 @@ export function useSocialWorkspace() {
         ].slice(-500),
       }));
   };
-  const removeComment = (id: string) =>
+  const removeComment = (id: string) => {
+    if (account.user) { account.mutate(`/comments/${encodeURIComponent(id)}`, 'DELETE'); return; }
     setData((current) => ({
       ...current,
       comments: current.comments.filter((c) => c.id !== id),
     }));
+  };
+  const removeThread = (id:string) => {
+    if(account.loading)return;
+    if(account.user){account.mutate(`/threads/${encodeURIComponent(id)}`,'DELETE');return;}
+    setData(current=>({...current,threads:current.threads.filter(thread=>thread.id!==id)}));
+  };
   return {
-    ...data,
+    ...(account.user ? account.workspace : account.loading ? { threads: [], comments: [] } : data),
     storageError,
     openThread,
     append,
     addComment,
     removeComment,
+    removeThread,
   };
 }
