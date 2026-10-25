@@ -6,6 +6,7 @@ import {
   visibleItems,
   groupTimeline,
   weekDays,
+  selectStoryReel,
 } from "./timeline";
 import { stories } from "../mocks/policy";
 import type { FeedItem } from "../api/types";
@@ -23,6 +24,20 @@ const rows = [
 ];
 
 describe("timeline dates use Korea time, not the browser timezone", () => {
+  it("opens the selected news rather than the first news on the same date", () => {
+    const reel = selectStoryReel(rows, "c");
+    expect(reel.stories.map((s) => s.id)).toEqual(["b", "c"]);
+    expect(reel.stories[reel.initial].id).toBe("c");
+  });
+  it("keeps edition navigation scoped to the event date", () => {
+    const reel = selectStoryReel(rows, "a", { a: "2026-10-20" });
+    expect(reel.stories.map((s) => s.id)).toEqual(["a", "b", "c"]);
+    expect(reel.initial).toBe(0);
+  });
+  it("does not open stale or unselected story IDs", () => {
+    expect(selectStoryReel(rows, "removed").stories).toEqual([]);
+    expect(selectStoryReel(rows, null).stories).toEqual([]);
+  });
   it("uses the v2 event date instead of the last article update date", () => {
     expect(groupTimeline([rows[0]], { a: "2026-10-19" })[0].day).toBe(
       "2026-10-19",

@@ -1,21 +1,41 @@
 name: Checks
 on:
   push:
-    branches: [main, dev]
+    branches: [main, dev, "feat/**", "feature/**"]
   pull_request:
-    branches: [main, dev]
+    branches: [main, dev, "feat/**", "feature/**"]
 permissions:
   contents: read
 jobs:
   backend:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: prism_test
+          POSTGRES_DB: prism_test
+          POSTGRES_PASSWORD: prism-ci-test-only
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U prism_test -d prism_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
     steps:
       - uses: actions/checkout@v7.0.1
       - uses: actions/setup-python@v7.1.0
         with:
           python-version: '3.13'
       - run: python -m pip install -r backend/requirements.txt
-      - run: python -m unittest backend.tests.test_api backend.tests.test_connection backend.tests.test_social_chat -q
+      - run: python scripts/check_source_upload.py
+      - run: python -m unittest backend.tests.test_api backend.tests.test_connection backend.tests.test_social_chat backend.tests.test_integration_boundaries -q
+      - run: python -m unittest discover -s backend/tests/rss -p 'test_*.py' -q
+      - run: python -m unittest discover -s backend/tests/llm -p 'test_*.py' -q
+      - run: python -m unittest backend.tests.test_database_integration -q
+        env:
+          PRISM_TEST_DATABASE_URL: postgresql+psycopg://prism_test:prism-ci-test-only@127.0.0.1:5432/prism_test
   frontend:
     runs-on: ubuntu-latest
     defaults:

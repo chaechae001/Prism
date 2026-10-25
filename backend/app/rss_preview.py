@@ -72,7 +72,7 @@ def plain_text(value: str) -> str:
     return " ".join("".join(parser.parts).split())
 
 
-def rss_to_story(record: RssRecord, now: datetime | None = None) -> tuple[Story | None, str | None]:
+def rss_to_story(record: RssRecord, now: datetime | None = None, *, article_id: str | None = None) -> tuple[Story | None, str | None]:
     """An explicit single-article preview. Never fabricate dates, summaries or viewpoints."""
     if record.published_at is None:
         return None, "missing_publication_date"
@@ -99,7 +99,7 @@ def rss_to_story(record: RssRecord, now: datetime | None = None) -> tuple[Story 
             "RSS 설명은 언론사 제공 문구이며 AI 요약이 아닙니다.",
         ], "model_version": None, "prompt_version": None},
         "perspectives": [], "articles": [{
-            "id": f"rss-article-{key}", "publisher_id": record.publisher_id,
+            "id": article_id or f"rss-article-{key}", "publisher_id": record.publisher_id,
             "publisher_name": plain_text(record.publisher_name), "title": title,
             "url": str(record.canonical_url), "published_at": record.published_at,
             "framing": "원문 미리보기 · 쟁점 분류 전", "is_demo": record.is_demo,

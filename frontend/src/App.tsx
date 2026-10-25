@@ -28,7 +28,7 @@ import { useReaderActivity } from "./hooks/useReaderActivity";
 import {
   categoryNames,
   dateKey,
-  groupTimeline,
+  selectStoryReel,
   dayLabel,
   type DetailTab,
   type View,
@@ -76,9 +76,9 @@ export function App() {
   const open = (id: string, tab: DetailTab = "summary") =>
     w.update({ story: id, panel: tab === "summary" ? null : tab });
   const today = dateKey(new Date().toISOString());
-  const editions = groupTimeline(w.items, w.eventDates);
-  const reelStories =
-    editions.find((e) => e.day === reel)?.items.map((i) => i.story) || [];
+  const { stories: reelStories, initial: reelInitial } = selectStoryReel(
+    w.items, reel, w.eventDates,
+  );
   const openDm = (story: (typeof w.items)[number]["story"]) => {
     social.openThread(story);
     w.update({
@@ -188,25 +188,30 @@ export function App() {
               <>
                 <div className="social-feed-heading">
                   <span>여러 시선, 하나의 이야기.</span>
-                  <span>날짜별 뉴스 스토리</span>
+                  <span>기사별 뉴스 스토리</span>
                 </div>
                 {latest.length > 0 && (
                   <section
                     className="news-stories"
                     aria-label="최근 뉴스 스토리"
                   >
-                    {editions.map(({ day, items }) => (
+                    {latest.map((story) => (
                       <button
                         className="news-story"
-                        key={day}
-                        onClick={() => setReel(day)}
-                        aria-label={`${day} 뉴스 ${items.length}개 스토리 보기`}
+                        key={story.id}
+                        onClick={() => setReel(story.id)}
+                        aria-label={`${story.title} 스토리 보기`}
                       >
                         <span className="story-ring">
-                          <NewsPhoto story={items[0].story} compact />
+                          <NewsPhoto story={story} compact />
                         </span>
+                        <small className="story-date">
+                          {dayLabel(w.eventDates[story.id] || dateKey(story.updated_at), {
+                            month: "numeric", day: "numeric",
+                          })}
+                        </small>
                         <span>
-                          {dayLabel(day, { month: "long", day: "numeric" })}
+                          {story.title}
                         </span>
                       </button>
                     ))}
@@ -540,9 +545,9 @@ export function App() {
       </button>
       {reel !== null && reelStories.length > 0 && (
         <NewsReel
-          key={`${reel}-${latest.map((s) => s.id).join()}`}
+          key={`${reel}-${reelStories.map((s) => s.id).join()}`}
           stories={reelStories}
-          initial={0}
+          initial={reelInitial}
           onClose={() => setReel(null)}
           onOpen={(id) => open(id)}
           saved={w.saved}

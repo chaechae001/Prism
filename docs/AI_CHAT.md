@@ -42,3 +42,5 @@ python -m uvicorn app.api:app --app-dir backend --host 127.0.0.1 --port 8004
 OpenAI 직접 연결도 제공자 어댑터에 포함되어 있습니다. 사용할 경우 `PRISM_CHAT_PROVIDER=openai`를 명시하고 `OPENAI_API_KEY`, `OPENAI_CHAT_MODEL`을 설정합니다. 제공자별 키는 서로 교차 사용하지 않습니다.
 
 공개 서비스에 연결하기 전 사용자 인증과 사용자별 한도를 적용해야 합니다. 현재 대화 기록은 브라우저에만 저장됩니다.
+
+DB 연결 시 services/article_context가 선택 사건의 기사 ID로 처리 허용된 본문을 조회합니다. 본문이 없으면 기존 제목·요약 문맥을 사용하고, 발췌가 있으면 답변의 context_notice와 문맥에 범위를 명시합니다. 자세한 설정과 요약 저장은 [DB 연결](DATABASE.md)을 참고하세요.

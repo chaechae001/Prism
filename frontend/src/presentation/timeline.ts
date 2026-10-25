@@ -80,3 +80,15 @@ export function weekDays(anchor: string, offset: number): string[] {
     moveDay(anchor, offset * 7 - 6 + index),
   );
 }
+
+export function selectStoryReel(
+  items: FeedItem[],
+  selectedId: string | null,
+  eventDates: Record<string, string> = {},
+) {
+  const edition = groupTimeline(items, eventDates).find(({ items: entries }) =>
+    entries.some(({ story }) => story.id === selectedId),
+  );
+  const stories = edition?.items.map(({ story }) => story) || [];
+  return { stories, initial: stories.findIndex((story) => story.id === selectedId) };
+}
