@@ -53,21 +53,23 @@ class _MetadataClient:
 def collect_rows(settings,*,known_ids,cutoff,client=None,observations=None):
     from rss_fulltext_crawler.rss_crawler.runner import collect
     from rss_fulltext_crawler.rss_crawler.network import CrawlClient
-    from rss_fulltext_crawler.rss_crawler.parsing import SOURCES,article_identity
+    from rss_fulltext_crawler.rss_crawler.parsing import SOURCES,article_identity,feed_source
     active={s.key:s for s in settings.active_sources}
     if not active:return dict(articles=[],summary={'active_sources':0})
+    feeds=[feed_source(s.key,category) for s in active.values() for category in s.categories]
     selection=_PrioritySelection((cutoff-timedelta(hours=settings.window_hours)).isoformat(),
         cutoff.isoformat(),excluded_article_ids=frozenset(known_ids),observations=observations or {})
     proxy=_MetadataClient(client if client is not None else CrawlClient(),selection=selection,
-        sources={SOURCES[key].feed_url:SOURCES[key] for key in active},limit=settings.limit_per_feed)
-    result=collect([SOURCES[key] for key in active],limit=settings.limit_per_feed,
+        sources={source.feed_url:source for source in feeds},limit=settings.limit_per_feed)
+    result=collect(feeds,limit=settings.limit_per_feed,
         min_chars=settings.min_body_characters,client=proxy,selection=selection)
     rows=[]
     for original in result['results']:
         if original['status']!='ok':continue
         identity=article_identity(original['url'])
         if identity is None or identity[0] not in active:raise ValueError('Collected article source mismatch')
-        source=SOURCES[identity[0]]
+        source=next((s for s in feeds if s.key==identity[0] and s.category==original['category']),None)
+        if source is None:raise ValueError('Collected category is not enabled')
         if original['source_id']!=source.key+'-'+source.category or original['publisher']!=source.publisher:
             raise ValueError('Collected publisher metadata mismatch')
         # The old collector's unknown placeholder is replaced only for this newly

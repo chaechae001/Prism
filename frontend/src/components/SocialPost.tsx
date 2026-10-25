@@ -1,7 +1,5 @@
-import { useState } from "react";
 import {
   Bookmark,
-  ChevronDown,
   Ellipsis,
   Layers3,
   MessageCircle,
@@ -10,6 +8,7 @@ import {
 import type { FeedItem } from "../api/types";
 import { categoryNames, type DetailTab } from "../presentation/timeline";
 import { NewsPhoto } from "./NewsPhoto";
+import { ArticleCaption } from './ArticleCaption';
 import { isLocalClusterStory, isDbClusterStory } from "../presentation/clusterPreview";
 
 export function SocialPost({
@@ -33,11 +32,7 @@ export function SocialPost({
 }) {
   const { story } = item;
   const clusterPreview = feedClusterPreview || isLocalClusterStory(story);
-  const [expanded, setExpanded] = useState(false);
-  const ready = !clusterPreview && story.summary.status === "ready";
-  const text = ready
-    ? story.summary.bullets.map((b) => b.text).join(" ") || story.dek
-    : story.dek;
+  const ready = story.summary.status === "ready" && (!clusterPreview || isDbClusterStory(story));
   const publishers = [...new Set(story.articles.map((a) => a.publisher_name))];
   return (
     <article className="social-post">
@@ -76,6 +71,7 @@ export function SocialPost({
         aria-label={`${story.title} 상세 보기`}
       >
         <NewsPhoto story={story} />
+        <span className="post-photo-title">{story.title}</span>
         <span className="post-image-badge">
           <Layers3 size={13} />
           {story.coverage.article_count}개 기사
@@ -85,7 +81,7 @@ export function SocialPost({
         <button
           className="social-icon"
           onClick={() => onOpen("perspectives")}
-          aria-label={`${story.title} 다른 관점 보기`}
+          aria-label={`${story.title} ${story.coverage.article_count>1?"관점 비교":"기사 강조점"} 보기`}
         >
           <Layers3 />
         </button>
@@ -126,26 +122,10 @@ export function SocialPost({
             {clusterPreview ? " · 보도 출처" : "가 함께 전한 이야기"}
           </span>
         </button>
-        <h2>
-          <button onClick={() => onOpen()}>{story.title}</button>
-        </h2>
-        <p className={expanded ? "post-caption expanded" : "post-caption"}>
-          <b>{isDbClusterStory(story) ? "대표기사 · 원문 출처" : clusterPreview ? "대표기사 발췌" : ready ? "AI 요약" : "기사 미리보기"}</b>{" "}
-          {text || "요약을 준비하고 있습니다. 원문을 확인해주세요."}
-        </p>
-        {clusterPreview && story.summary.unknowns.filter((note) => note.startsWith("검토 필요:")).map((note) => (
+        <ArticleCaption story={story} ready={ready} clusterPreview={clusterPreview}/>
+        {clusterPreview && story.summary.unknowns.filter((note) => note.startsWith("검토 필요:") && !note.includes("군집 품질 점검")).map((note) => (
           <p className="cluster-review-warning" key={note}>{note}</p>
         ))}
-        {text.length > 90 && (
-          <button
-            className="caption-more"
-            aria-expanded={expanded}
-            onClick={() => setExpanded((v) => !v)}
-          >
-            {expanded ? "접기" : "더 보기"}
-            <ChevronDown size={12} />
-          </button>
-        )}
         <button className="post-all-sources" onClick={() => onOpen("sources")}>
           관련 기사 {story.coverage.article_count}개 모두 보기
         </button>

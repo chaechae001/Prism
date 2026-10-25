@@ -217,3 +217,17 @@ class ScheduledRunnerTests(unittest.TestCase):
 
 
 if __name__=='__main__':unittest.main()
+
+
+class PoliticsFeedTests(unittest.TestCase):
+    def test_political_feed_preserves_publisher_identity_and_original_category(self):
+        from rss_fulltext_crawler.rss_crawler.parsing import feed_source,parse_feed,article_identity
+        from backend.app.scheduled_news.settings import SourcePolicy
+        source=feed_source('sbs','politics')
+        self.assertIn('sectionId=01',source.feed_url)
+        url='https://news.sbs.co.kr/news/endPage.do?news_id=N1009999999'
+        rows=parse_feed(f'<rss><channel><item><title>가상 국회 기사</title><link>{url}</link></item></channel></rss>'.encode(),source)
+        self.assertEqual(rows[0]['source_id'],'sbs-politics');self.assertEqual(rows[0]['category'],'politics')
+        self.assertEqual(article_identity(url)[0],'sbs')
+        self.assertEqual(SourcePolicy(key='sbs').categories,['economy'])
+        with self.assertRaises(ValueError):SourcePolicy(key='sbs',categories=['politics','politics'])

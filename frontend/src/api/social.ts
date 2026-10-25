@@ -1,5 +1,6 @@
 import { apiMode, apiOrigin } from "./client";
 import type { components } from "./social-schema";
+import { refreshAccountSession } from './account';
 export type ChatReply = components["schemas"]["ChatReply"];
 export type ChatStatus = components["schemas"]["ChatStatus"];
 const origin = apiMode === "http" ? apiOrigin : "";
@@ -9,7 +10,10 @@ export async function socialRequest<T>(
 ): Promise<T> {
   let response: Response;
   try {
-    response = await fetch(`${origin}/api/social${path}`, init);
+    response = await fetch(`${origin}/api/social${path}`, { ...init, credentials: 'include' });
+    if (response.status === 401 && await refreshAccountSession()) {
+      response = await fetch(`${origin}/api/social${path}`, { ...init, credentials: 'include' });
+    }
   } catch {
     throw new Error(
       "뉴스 DM 서버에 연결하지 못했습니다. FastAPI social_api 실행 상태를 확인해주세요.",

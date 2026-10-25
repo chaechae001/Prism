@@ -26,6 +26,9 @@ def elice_url(value: str) -> str:
 
 def settings():
     provider = os.getenv("PRISM_CHAT_PROVIDER", "openai")
+    if provider=='ollama':
+        from ..ai_pipeline.ollama import endpoint
+        return provider,'local',os.getenv('OLLAMA_MODEL',''),endpoint()+'/api/chat'
     if provider == "openai":
         return (
             provider,
@@ -104,4 +107,15 @@ async def elice_answer(payload: dict) -> dict:
         raise HTTPException(
             422, "이 질문에는 답변할 수 없습니다. 기사 내용에 관한 질문으로 바꿔주세요."
         )
+    from ..ai_pipeline.telemetry import usage
+    tokens=result.get('usage') or {}
+    usage(tokens.get('prompt_tokens'),tokens.get('completion_tokens'))
     return json.loads(message.get("content", ""))
+
+
+async def structured_answer(payload):
+    if settings()[0]=='ollama':
+        from ..ai_pipeline.ollama import answer
+        return await answer(payload)
+    if settings()[0]=='elice':return await elice_answer(payload)
+    raise ValueError('지원하는 요약 제공자는 Elice 또는 Ollama입니다.')

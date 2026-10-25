@@ -13,6 +13,13 @@ class SourcePolicy(BaseModel):
     model_config = ConfigDict(extra='forbid',strict=True)
     key: Literal['khan','sbs','mk']
     enabled: bool = False
+    categories: list[Literal['economy','politics']] = Field(default_factory=lambda:['economy'],min_length=1,max_length=2)
+
+    @field_validator('categories')
+    @classmethod
+    def unique_categories(cls,value):
+        if len(value)!=len(set(value)):raise ValueError('Duplicate feed category')
+        return value
     rights: dict[str,Permission] = Field(default_factory=lambda:{use:'unknown' for use in USES})
 
     @field_validator('rights')

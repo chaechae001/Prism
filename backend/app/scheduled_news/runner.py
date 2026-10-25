@@ -79,7 +79,7 @@ def run_cycle(settings,*,engine=None,repository=None,collector=None,analyzer=Non
                                    before=cutoff,maximum=settings.max_articles)
         # Apply the current source policy conservatively to read-back rows. A
         # saved denial/unknown cannot be promoted by editing the worker config.
-        policies={s.key+'-economy':s for s in settings.active_sources}
+        policies={s.key+'-'+category:s for s in settings.active_sources for category in s.categories}
         eligible=[]
         for row in rows:
             policy=policies.get(row['source_id'])

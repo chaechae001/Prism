@@ -18,7 +18,8 @@ def _require(value):
         raise ClusterContextError('Selected news context is stale or unavailable')
 
 
-def chat_cluster_bodies(story, *, engine=None, namespace=None):
+def chat_cluster_bodies(story, *, engine=None, namespace=None,per_article_limit=12000,total_limit=24000,with_provenance=False):
+    _require(type(per_article_limit) is int and 1<=per_article_limit<=200000 and type(total_limit) is int and 1<=total_limit<=500000)
     namespace = check_namespace(namespace or os.getenv('PRISM_CLUSTER_NAMESPACE', 'scheduled-local-test'))
     with _engine(engine).connect() as c, c.begin():
         c.execute(text('SET TRANSACTION READ ONLY'))
@@ -43,7 +44,6 @@ def chat_cluster_bodies(story, *, engine=None, namespace=None):
         by_id = {r['article_id']:r for r in rows}
         _require(set(by_id) == {a.id for a in story.articles})
         _require(story.articles and story.articles[0].id == group['representative_article_id'])
-        _require(story.title == story.articles[0].title)
         permitted = []
         for article in story.articles:
             row = by_id[article.id]
@@ -55,13 +55,13 @@ def chat_cluster_bodies(story, *, engine=None, namespace=None):
                 permitted.append(article.id)
         _require(permitted)
         # Return only bounded excerpts. Fingerprints are checked inside Postgres.
-        query = text('''SELECT article_id,left(raw_text,12000) AS excerpt,char_length(raw_text) AS body_length,
+        query = text('''SELECT article_id,left(raw_text,:maximum) AS excerpt,char_length(raw_text) AS body_length,
             body_sha256=encode(sha256(convert_to(raw_text,'UTF8')),'hex') AS valid
             FROM private.prism_cluster_articles WHERE batch_id=:batch AND article_id IN :ids''').bindparams(bindparam('ids',expanding=True))
-        bodies = c.execute(query, {'batch':head,'ids':permitted[:50]}).mappings().all()
+        bodies = c.execute(query, {'batch':head,'ids':permitted[:50],'maximum':per_article_limit}).mappings().all()
         _require(len(bodies) == len(permitted[:50]) and all(r['valid'] for r in bodies))
         texts = {r['article_id']:r for r in bodies}
-    remaining, result = 24000, []
+    remaining, result = total_limit, []
     for identity in permitted[:50]:
         if remaining <= 0:
             break
@@ -69,5 +69,7 @@ def chat_cluster_bodies(story, *, engine=None, namespace=None):
         _require(isinstance(row['excerpt'],str) and row['excerpt'].strip())
         excerpt = row['excerpt'][:remaining]
         remaining -= len(excerpt)
-        result.append({'article_id':identity,'text':excerpt,'is_excerpt':len(excerpt)<row['body_length']})
+        value={'article_id':identity,'text':excerpt,'is_excerpt':len(excerpt)<row['body_length']}
+        if with_provenance: value.update(batch_id=head,namespace=namespace,body_sha256=by_id[identity]['body_sha256'],source_length=row['body_length'])
+        result.append(value)
     return result

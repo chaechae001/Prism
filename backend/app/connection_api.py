@@ -29,7 +29,7 @@ if source not in SOURCES:
 app = FastAPI(title="Prism connection API (development)", version="1.0.0",
               responses={code: {"model": ErrorResponse} for code in (404, 422, 500, 503)})
 origins = [value.strip() for value in os.getenv("CORS_ORIGINS", "http://127.0.0.1:5173,http://localhost:5173").split(",") if value.strip()]
-app.add_middleware(CORSMiddleware, allow_origins=origins, allow_methods=["GET", "POST"],
+app.add_middleware(CORSMiddleware, allow_origins=origins, allow_methods=["GET", "POST", "PUT", "DELETE"], allow_credentials=True,
                    allow_headers=["Content-Type", "X-Mock-Scenario"],
                    expose_headers=["X-Request-ID", "X-Prism-Data-Source"])
 
@@ -53,6 +53,7 @@ async def request_id(request: Request, call_next):
     # Add CORS also when an unexpected error occurred outside CORSMiddleware's response.
     if request.headers.get("origin") in origins:
         response.headers["Access-Control-Allow-Origin"] = request.headers["origin"]
+        response.headers['Access-Control-Allow-Credentials'] = 'true'
         response.headers["Access-Control-Expose-Headers"] = "X-Request-ID, X-Prism-Data-Source"
         response.headers.add_vary_header("Origin")
     return response

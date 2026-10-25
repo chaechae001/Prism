@@ -8,6 +8,7 @@ from .article_images.metadata import safe_image_url
 from .cluster_preview import VISUALS,_date
 from .cluster_store.repository import _engine
 from .models import Story
+from .news_topics import display_category, VERSION as TOPIC_VERSION
 from .rss_preview import plain_text
 from .scheduled_news.repository import namespace as check_namespace,_schema
 
@@ -58,6 +59,7 @@ def project_batch(namespace,batch_id,articles,groups,members):
                 framing=('대표기사' if key==primary else '군집 관련 기사')+' · 동일 사건 검토 전',
                 is_demo=article['is_demo'],image_url=safe_image_url(image)))
         category=group['category'];_require(category in VISUALS)
+        category=display_category(category,by_id[primary]['title'])
         unknowns=['자동 군집 후보입니다. 관련 기사들이 같은 사건을 다루는지 확인해주세요.',
                   'AI 요약을 생성하지 않았습니다. 대표기사와 언론사별 원문 링크를 제공합니다.']
         flagged=group.get('quality_review_required',group.get('review',{}).get('quality_review_required',False))
@@ -104,10 +106,15 @@ def load_cluster_feed(*,namespace=None,engine=None,include_aliases=False):
                 _require(record['article_id']==row['article_id'] and record['rights']==row['rights'])
                 articles.append({**record,'image_url':row['image_url']})
         stories,notes=project_batch(namespace,batch,articles,groups,members)
+        from .services.editorial import overlay
+        stories,editorial_version=overlay(stories,namespace,batch,engine=engine,source_rows=article_rows,members=members)
+        ready_count=sum(s.summary.status=='ready' for s in stories)
+        if ready_count:
+            notes[2]=f'승인된 AI 요약 {ready_count}개와 기사별 출처를 제공합니다. 나머지는 대표기사로 표시합니다.'
         notes.append('마지막 분석 완료: '+head['analyzed_at'].isoformat())
         # Head changes can activate an old immutable batch again. Include input
         # identity, not its original insertion timestamp, in cursor invalidation.
-        result = (stories,'cluster-db-'+sha256((namespace+'\0'+batch+'\0'+head['input_sha256']).encode()).hexdigest()[:20],notes)
+        result = (stories,'cluster-db-'+sha256((namespace+'\0'+batch+'\0'+head['input_sha256']+'\0'+editorial_version+'\0'+TOPIC_VERSION).encode()).hexdigest()[:20],notes)
         aliases = {legacy_story_identity(g['group_id']):story_identity(namespace,g['group_id']) for g in groups}
         return (*result, aliases) if include_aliases else result
     except ClusterFeedError:raise

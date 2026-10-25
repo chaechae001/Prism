@@ -20,11 +20,16 @@ import { NewsComments } from "./features/comments/NewsComments";
 import { NewsInbox } from "./features/news-chat/NewsInbox";
 import { useSocialWorkspace } from "./hooks/useSocialWorkspace";
 import { useTheme } from "./hooks/useTheme";
+import { FeedContinuation } from "./components/FeedContinuation";
 import { SocialPost } from "./components/SocialPost";
 import { NewsPhoto } from "./components/NewsPhoto";
 import { NewsReel } from "./components/NewsReel";
 import { isLocalClusterStory } from "./presentation/clusterPreview";
 import { useNewsWorkspace } from "./hooks/useNewsWorkspace";
+import { AccountPanel } from './features/account/AccountPanel';
+import { EditorialPanel } from './features/editorial/EditorialPanel';
+import { AiOpsPanel } from './features/editorial/AiOpsPanel';
+import { useAccount } from './features/account/AccountProvider';
 import { useReaderActivity } from "./hooks/useReaderActivity";
 import {
   categoryNames,
@@ -46,6 +51,7 @@ const navigation = [
 ] as const;
 
 export function App() {
+  const account = useAccount();
   const w = useNewsWorkspace();
   const activity = useReaderActivity();
   const social = useSocialWorkspace();
@@ -61,7 +67,7 @@ export function App() {
   useEffect(() => {
     window.scrollTo({ top: 0 });
     setReel(null);
-  }, [w.view]);
+  }, [w.view,w.category,w.q,w.mode,w.diversity]);
   const navigate = (view: View) =>
     w.update({
       view: view === "timeline" ? null : view,
@@ -243,9 +249,10 @@ export function App() {
                       key={c}
                       aria-pressed={w.category === c}
                       className={w.category === c ? "active" : ""}
-                      onClick={() => w.update({ category: c || null })}
+                      onClick={() => w.update({ category: c || null, q: null })}
                     >
-                      {c ? categoryNames[c] : "전체"}
+                      {c ? categoryNames[c] : "전체"}{' '}
+                      <small>{w.categoryQuery.data ? (c ? w.categoryQuery.data.items.find(item => item.id === c)?.count ?? 0 : w.categoryQuery.data.items.reduce((sum, item) => sum + item.count, 0)) : '…'}</small>
                     </button>
                   ))}
                 </div>
@@ -277,6 +284,7 @@ export function App() {
             )}
             {w.view === "mypage" && (
               <section className="social-profile">
+                <AccountPanel />
                 <div className="profile-identity">
                   <span className="profile-avatar">
                     <UserRound size={34} />
@@ -291,7 +299,7 @@ export function App() {
                 </div>
                 <p>다시 읽고 싶은 이야기를 모아두세요.</p>
                 <small>
-                  북마크는 현재 브라우저에 저장됩니다.
+                  {account.user ? '북마크는 내 계정에 저장됩니다.' : '북마크는 현재 브라우저에 저장됩니다.'}
                   <br />
                   프로필 설정과 독서 통계는 추후 추가 예정입니다.
                 </small>
@@ -312,6 +320,7 @@ export function App() {
                 유지하지 못했습니다.
               </p>
             )}
+            {account.user && account.error && <p className="social-notice" role="alert">{account.error}</p>}
             {w.view === "chat" ? (
               <NewsInbox
                 key={w.dm || "inbox"}
@@ -347,12 +356,12 @@ export function App() {
                     <h2>
                       {w.view === "mypage"
                         ? "아직 저장한 뉴스가 없어요."
-                        : "조건에 맞는 뉴스가 없어요."}
+                        : w.view === 'categories' && w.category ? `${categoryNames[w.category]} 뉴스가 아직 없어요.` : "조건에 맞는 뉴스가 없어요."}
                     </h2>
                     <p>
                       {w.view === "mypage"
                         ? "기사 아래 북마크를 눌러 여기에 모아보세요."
-                        : "다른 날짜나 검색어로 살펴보세요."}
+                        : w.view === 'categories' && w.category ? '현재 불러온 데이터에 해당 분야의 기사가 없습니다. 다른 주제나 전체 뉴스를 확인해주세요.' : "다른 날짜나 검색어로 살펴보세요."}
                     </p>
                     <button
                       className="social-primary"
@@ -370,6 +379,7 @@ export function App() {
                         aria-label={`${story.title} 상세 보기`}
                       >
                         <NewsPhoto story={story} compact />
+                        <span className="explore-photo-title"><span>{story.title}</span></span>
                         {w.view === "mypage" && (
                           <Bookmark size={15} fill="currentColor" />
                         )}
@@ -402,17 +412,16 @@ export function App() {
                     ))}
                   </div>
                 )}
-                {w.view !== "mypage" && w.feed.hasNextPage && (
-                  <button
-                    className="social-load-more"
-                    disabled={w.feed.isFetchingNextPage}
-                    onClick={() => void w.feed.fetchNextPage()}
-                  >
-                    {w.feed.isFetchingNextPage
-                      ? "불러오는 중…"
-                      : "뉴스 더 보기"}
-                  </button>
-                )}
+                {w.view !== "mypage" && w.displayed.length>0 && <FeedContinuation
+                  hasNextPage={!!w.feed.hasNextPage}
+                  fetching={w.feed.isFetching}
+                  loadingNext={w.feed.isFetchingNextPage}
+                  error={w.feed.isFetchNextPageError?w.feed.error:null}
+                  loadedCount={w.displayed.length}
+                  paused={!!w.selected||reel!==null||!!commentStory||settings}
+                  load={w.feed.fetchNextPage}
+                />}
+
               </>
             )}
             {settings && (
@@ -471,6 +480,8 @@ export function App() {
                   </label>
                 )}
                 <ConnectionStatus meta={w.feed.data?.pages[0]?.meta} />
+                {['127.0.0.1','localhost'].includes(location.hostname) && <EditorialPanel stories={[]} />}
+                {['127.0.0.1','localhost'].includes(location.hostname) && <AiOpsPanel />}
               </section>
             )}
           </main>

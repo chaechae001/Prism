@@ -145,12 +145,12 @@ export function StoryDetail({
                 </div>
                 <Tabs.Root value={tab} onValueChange={setTab}>
                   <Tabs.List className="detail-tabs" aria-label="사건 내용">
-                    <Tabs.Trigger value="summary">{clusterPreview ? "대표기사" : "핵심 요약"}</Tabs.Trigger>
+                    <Tabs.Trigger value="summary">{clusterPreview && story.summary.status !== 'ready' ? "대표기사" : "핵심 요약"}</Tabs.Trigger>
                     <Tabs.Trigger value="five_w">팩트 5W</Tabs.Trigger>
                     <Tabs.Trigger value="easy">쉽게 읽기</Tabs.Trigger>
                     <Tabs.Trigger value="sentiment">감정·어조</Tabs.Trigger>
                     <Tabs.Trigger value="perspectives">
-                      관점 비교 <span>{story.perspectives.length}</span>
+                      관점 비교 {story.perspectives.length>0&&<span>{story.perspectives.length}</span>}
                     </Tabs.Trigger>
                     <Tabs.Trigger value="sources">
                       출처 <span>{story.articles.length}</span>
@@ -162,10 +162,10 @@ export function StoryDetail({
                     )}
                     <div className="summary-label">
                       <span className="sparkle">✧</span>{" "}
-                      {isDbClusterStory(story) ? "대표기사 · 원문 출처" : clusterPreview ? "대표기사 본문 발췌" : statusNames[story.summary.status]}
+                      {story.summary.status === "ready" ? "AI 요약" : isDbClusterStory(story) ? "대표기사 · 원문 출처" : clusterPreview ? "대표기사 본문 발췌" : statusNames[story.summary.status]}
                       {story.is_demo && <span className="tiny-tag">데모</span>}
                     </div>
-                    {clusterPreview ? (
+                    {clusterPreview && story.summary.status !== "ready" ? (
                       <div className="notice">
                         <strong>{isDbClusterStory(story) ? "AI 요약 미생성 · 군집 대표기사" : "AI 요약 미생성 · 원문 발췌"}</strong>
                         <p>{story.dek}</p>
@@ -204,7 +204,7 @@ export function StoryDetail({
                     )}
                     <div className="unknowns">
                       <strong>아직 확인할 내용</strong>
-                      {story.summary.unknowns.map((t) => (
+                      {story.summary.unknowns.filter(t=>!t.startsWith("자동 군집 후보")&&!t.includes("군집 품질 점검")).map((t) => (
                         <p key={t}>{t}</p>
                       ))}
                     </div>
@@ -220,41 +220,15 @@ export function StoryDetail({
                       className="detail-panel"
                       key={mode}
                     >
-                      <AnalysisPanel mode={mode} clusterPreview={clusterPreview} />
+                      <AnalysisPanel mode={mode} storyId={story.id} onCite={cited} clusterPreview={clusterPreview} />
                     </Tabs.Content>
                   ))}
                   <Tabs.Content value="perspectives" className="detail-panel">
-                    <p className="muted small">
-                      아래 구분은 기사에서 강조하는 쟁점입니다. 언론사의 정치
-                      성향을 뜻하지 않습니다.{" "}
-                      {story.coverage.label_status === "demo"
-                        ? "데모 라벨이며 검증된 분류가 아닙니다."
-                        : story.coverage.label_status === "unverified"
-                          ? "아직 검토되지 않은 분류입니다."
-                          : "검토된 쟁점 분류입니다."}
-                    </p>
-                    {story.perspectives.length ? (
-                      story.perspectives.map((p, i) => (
-                        <div
-                          className={`perspective perspective-${i}`}
-                          key={p.label}
-                        >
-                          <span className="eyebrow">VIEW 0{i + 1}</span>
-                          <h3>{p.label}</h3>
-                          <p>{p.text}</p>
-                          <button
-                            className="citation-button"
-                            onClick={() => cited(p.article_ids)}
-                          >
-                            근거 기사 보기 ↗
-                          </button>
-                        </div>
-                      ))
-                    ) : (
-                      <div className="state-box">
-                        관점 비교를 위한 자료를 준비하고 있습니다.
-                      </div>
-                    )}
+                    {isDbClusterStory(story) ? <AnalysisPanel mode="perspectives" storyId={story.id} onCite={cited}/> : <>
+                    <p className="muted small">기사에서 강조하는 쟁점을 보여줍니다. 언론사의 정치 성향을 뜻하지 않습니다.</p>
+                    {story.perspectives.map((p,i)=><div className={`perspective perspective-${i}`} key={p.label}><h3>{p.label}</h3><p>{p.text}</p><button className="citation-button" onClick={()=>cited(p.article_ids)}>근거 기사 보기 ↗</button></div>)}
+                    {!story.perspectives.length&&<p>비교 가능한 출처를 확인하고 있습니다.</p>}
+                    </>}
                   </Tabs.Content>
                   <Tabs.Content value="sources" className="detail-panel">
                     <p className="muted small">

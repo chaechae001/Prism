@@ -11,6 +11,7 @@ import { api } from "../../api/client";
 import { socialRequest, type ChatReply, type ChatStatus } from "../../api/social";
 import { categoryNames } from "../../presentation/timeline";
 import type { useSocialWorkspace } from "../../hooks/useSocialWorkspace";
+import { useAccount } from '../account/AccountProvider';
 type Social = ReturnType<typeof useSocialWorkspace>;
 export function NewsInbox({
   social,
@@ -26,6 +27,7 @@ export function NewsInbox({
   onOpen: (id: string) => void;
 }) {
   const thread = social.threads.find((t) => t.id === selected);
+  const account = useAccount();
   const [draft, setDraft] = useState("");
   const [busy, setBusy] = useState(false);
   const inFlight = useRef(false);
@@ -90,7 +92,7 @@ export function NewsInbox({
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             question,
-            history: (retrying ? thread.messages.slice(0, -1) : thread.messages)
+            history: (account.user ? [] : retrying ? thread.messages.slice(0, -1) : thread.messages)
               .slice(-10)
               .map((m) => ({ role: m.role, content: m.text.slice(0, 5000) })),
           }),
@@ -152,7 +154,7 @@ export function NewsInbox({
           </div>
         )}
         <p className="local-only-note">
-          대화 목록과 기록은 이 브라우저에 저장됩니다.
+          {account.user ? '대화 목록과 기록은 내 계정에 저장됩니다.' : '대화 목록과 기록은 이 브라우저에 저장됩니다.'}
         </p>
       </section>
     );
@@ -270,7 +272,7 @@ export function NewsInbox({
       </form>
       <p className="local-only-note dm-disclosure">
         {status.data?.configured
-          ? "전송 시 질문·최근 대화·이 뉴스의 제공 정보를 LLM으로 전달합니다."
+          ? account.user ? "현재 질문과 이 뉴스의 제공 정보를 LLM으로 전달합니다. 저장된 대화 이력은 전송하지 않습니다." : "전송 시 질문·최근 대화·이 뉴스의 제공 정보를 LLM으로 전달합니다."
           : "AI 대화 연결을 기다리고 있습니다."}
       </p>
     </section>

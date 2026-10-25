@@ -21,7 +21,7 @@ def local_secrets():
         if not path.exists():
             continue
         settings = dotenv_values(path, interpolate=False, encoding="utf-8-sig")
-        for name in ("ELICE_API_KEY", "OPENAI_API_KEY", "DB_PASSWORD"):
+        for name in ("ELICE_API_KEY", "OPENAI_API_KEY", "DB_PASSWORD", "AZURE_SPEECH_KEY"):
             value = settings.get(name)
             if value and len(value) >= 8:
                 values.append(value.encode("utf-8"))

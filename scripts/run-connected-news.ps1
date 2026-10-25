@@ -3,7 +3,11 @@ param(
     [ValidateRange(1024, 65535)]
     [int]$Port = 8006,
     [string]$Python = 'python',
-    [string]$FrontendOrigin = 'http://127.0.0.1:5186'
+    [string]$FrontendOrigin = 'http://127.0.0.1:5186',
+    [switch]$EnableAccounts,
+    [switch]$DisableAccounts,
+    [switch]$EnableAIExtensions,
+    [switch]$EnableRag
 )
 
 $ErrorActionPreference = 'Stop'
@@ -13,6 +17,12 @@ $settings = @{
     PRISM_CLUSTER_NAMESPACE = $Namespace
     PRISM_CHAT_ENABLED = '1'
     PRISM_CLUSTER_CHAT_ENABLED = '1'
+    PRISM_EDITORIAL_ENABLED = '1'
+    PRISM_BODY_PREVIEW_ENABLED = '1'
+    PRISM_ACCOUNTS_ENABLED = $(if ($DisableAccounts) { '0' } else { '1' })
+    PRISM_LANGCHAIN_ENABLED = $(if ($EnableAIExtensions) { '1' } else { '0' })
+    PRISM_LLM_METRICS_ENABLED = $(if ($EnableAIExtensions) { '1' } else { '0' })
+    PRISM_RAG_ENABLED = $(if ($EnableRag) { '1' } else { '0' })
     CORS_ORIGINS = $FrontendOrigin
 }
 $previous = @{}

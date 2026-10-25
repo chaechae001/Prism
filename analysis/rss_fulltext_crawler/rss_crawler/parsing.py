@@ -28,6 +28,20 @@ SOURCES = {
 }
 
 
+def feed_source(key: str, category: str = 'economy') -> Source:
+    """Publisher identity stays stable even when its RSS section changes."""
+    from dataclasses import replace
+    source = SOURCES[key]
+    if category == 'economy':
+        return source
+    if category != 'politics':
+        raise ValueError('unsupported_feed_category')
+    feeds = {'sbs': 'https://news.sbs.co.kr/news/SectionRssFeed.do?sectionId=01&plink=RSSREADER',
+             'mk': 'https://www.mk.co.kr/rss/30200030/',
+             'khan': 'https://www.khan.co.kr/rss/rssdata/politic_news.xml'}
+    return replace(source, category=category, feed_url=feeds[key])
+
+
 def checked_url(url: str) -> str:
     """Validate URL syntax. Domain and DNS checks are enforced before HTTP."""
     value = url.strip()
