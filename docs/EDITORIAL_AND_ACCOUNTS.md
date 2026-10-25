@@ -1,8 +1,10 @@
 # 군집 요약·품질 평가·계정 저장
 
+현재 실행은 비회원 모드입니다. 로그인·회원가입·인증 메일은 후속 개발로 보류했습니다. 아래 계정 API·검증 절차는 추후 재개용이며 현재 사용자 화면에는 인증 폼을 표시하지 않습니다. 북마크·개인 댓글·DM은 브라우저 저장소를 사용하며 다른 기기와 자동 동기화되지 않습니다.
+
 ## 실행
 
-기존 DB·Elice 설정과 활성 군집 배치를 사용합니다. 로그인에는 루트 `.env`의 `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`가 추가로 필요합니다. publishable 또는 anon 공개 키를 사용하고 service_role/secret 키는 사용하지 않습니다.
+기존 DB·Elice 설정과 활성 군집 배치를 사용합니다. 기본 비회원 실행에는 Supabase Auth 공개 설정이 필요하지 않습니다. 추후 계정 개발 재개 시 `-EnableAccounts`와 루트 `.env`의 `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`가 필요합니다. publishable 또는 anon 공개 키를 사용하고 service_role/secret 키는 사용하지 않습니다.
 
 새 환경에 한해 추가 스키마를 설치합니다. 먼저 기존 이름과 충돌하지 않는지 확인하고, 기존 기사·군집 테이블은 변경하지 않습니다.
 

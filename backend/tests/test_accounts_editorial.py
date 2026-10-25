@@ -9,6 +9,20 @@ from backend.app.services.cluster_quality import evaluate
 
 
 class AuthTests(unittest.TestCase):
+    def setUp(self):
+        enabled=patch.dict('os.environ',{'PRISM_ACCOUNTS_ENABLED':'1'})
+        enabled.start()
+        self.addCleanup(enabled.stop)
+
+    def test_accounts_require_explicit_opt_in(self):
+        import os
+        with patch.dict(os.environ):
+            os.environ.pop('PRISM_ACCOUNTS_ENABLED',None)
+            self.assertFalse(account_auth.accounts_enabled())
+            with patch('httpx.AsyncClient.request',new_callable=AsyncMock) as external:
+                self.assertEqual(TestClient(app).get('/api/account/session').json(),{'enabled':False,'configured':False,'user':None})
+                external.assert_not_awaited()
+
     def test_disabled_accounts_hide_session_and_never_call_supabase(self):
         import httpx
         with patch.dict('os.environ',{'PRISM_ACCOUNTS_ENABLED':'0'}),patch('httpx.AsyncClient.request',new_callable=AsyncMock) as external:

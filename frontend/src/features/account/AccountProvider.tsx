@@ -19,7 +19,8 @@ const Context = createContext<Account>({ enabled:false,user: null, configured: f
 export const useAccount = () => useContext(Context);
 
 export function AccountProvider({ children }: { children: ReactNode }) {
-  const [enabled,setEnabled]=useState(apiMode==='http');
+  // 서버가 명시적으로 허용한 경우에만 계정 화면을 엽니다.
+  const [enabled,setEnabled]=useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [configured, setConfigured] = useState(false);
   const [loading, setLoading] = useState(apiMode === 'http');

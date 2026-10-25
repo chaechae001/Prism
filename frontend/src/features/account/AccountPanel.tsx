@@ -15,7 +15,7 @@ export function AccountPanel() {
     return result === 'return' ? '인증 링크에서 돌아왔습니다. 가입한 이메일과 비밀번호로 로그인해주세요.'
       : result === 'error' ? '인증 링크가 만료되었거나 처리되지 않았습니다. 이미 인증했다면 로그인해보세요.' : '';
   });
-  if(!account.enabled&&!account.loading) return <section className="account-panel" aria-label="테스트 모드"><h2>로그인 없이 둘러보기</h2><p>계정 기능은 추후 제공할 예정입니다. 지금은 북마크·댓글·대화를 이 브라우저에 저장합니다.</p></section>;
+  if(!account.enabled) return <section className="account-panel" aria-label="비회원 모드"><h2>나의 뉴스 보관함</h2><p>북마크·댓글·뉴스 대화는 이 브라우저에 저장합니다. 로그인·회원가입은 추후 제공할 예정입니다.</p><p>다른 기기와 자동 동기화되지 않으며, 브라우저 데이터를 삭제하면 저장 기록도 지워집니다.</p></section>;
   return <section className="account-panel" aria-label="내 계정">
     {account.user ? <>
       <strong>{account.user.email}</strong>

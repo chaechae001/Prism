@@ -52,7 +52,7 @@ class SignupResult(LoginResult):
 
 
 def accounts_enabled():
-    return os.getenv('PRISM_ACCOUNTS_ENABLED','1')=='1'
+    return os.getenv('PRISM_ACCOUNTS_ENABLED','0')=='1'
 
 
 def config():
