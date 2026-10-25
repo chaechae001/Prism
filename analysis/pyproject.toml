@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "prism-news-clustering"
+version = "0.1.0"
+description = "Local RSS/fulltext clustering and representative selection for PRISM"
+requires-python = ">=3.12"
+dependencies = ["numpy>=2,<3", "scikit-learn>=1.5,<2"]
+
+[project.optional-dependencies]
+semantic = ["onnxruntime>=1.20,<2", "tokenizers>=0.20,<1", "huggingface-hub>=0.25,<3"]
+
+[tool.setuptools.packages.find]
+include = ["news_clustering*", "rss_fulltext_crawler*"]

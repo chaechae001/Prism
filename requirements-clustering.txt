@@ -1,0 +1,4 @@
+# The existing backend requirements remain unchanged.
+-r backend/requirements.txt
+-r analysis/requirements-lock.txt
+-e ./analysis[semantic]

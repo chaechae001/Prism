@@ -11,6 +11,7 @@
     "preview": "vite preview --host 127.0.0.1",
     "test": "vitest run",
     "types:api": "openapi-typescript ../contracts/openapi.json -o src/api/schema.d.ts",
+    "types:workspace": "openapi-typescript ../contracts/workspace-openapi.json -o src/api/workspace-schema.d.ts",
     "mock:init": "msw init public --save"
   },
   "dependencies": {

@@ -6,6 +6,8 @@ __pycache__/
 .env
 .env.local
 .env.*.local
+*.pem
+*.key
 !.env.example
 .pytest_cache/
 *.log
@@ -24,6 +26,7 @@ docs/architecture/*-table-counts.txt
 
 # Machine-local observations and generated tooling state
 database/supabase/.temp/
+database/supabase/supabase/.temp/
 docs/screenshots/
 docs/architecture/*observ*
 docs/architecture/*-validation.json
@@ -36,3 +39,24 @@ docs/worklogs/*
 
 # Generated private workflow exports
 work/
+
+# Local clustering models, intermediate results and package metadata
+.models/
+clustering-input/
+clustering-output/
+*.egg-info/
+analysis/data/
+
+# Generated portfolio reading guide (Markdown is the source)
+docs/portfolio/site/
+
+# Personal study and portfolio material stays in Notion/local storage
+docs/portfolio/
+docs/TECHNOLOGY_AND_PIPELINE.md
+docs/NEXT_STEPS.md
+docs/SPEECH_AND_LOGIN.md
+requirements-docs.txt
+scripts/build_portfolio_guide.py
+.vercel/
+.vercel
+.env*

@@ -10,7 +10,7 @@ export const apiMode = import.meta.env.VITE_API_MODE || "mock";
 export const apiVersion = "v1";
 export const apiOrigin =
   apiMode === "http"
-    ? (import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000").replace(/\/$/, "")
+    ? (import.meta.env.VITE_API_BASE_URL ?? "http://127.0.0.1:8000").replace(/\/$/, "")
     : "";
 
 export class ApiError extends Error {

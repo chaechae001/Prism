@@ -6,11 +6,13 @@ import {
   MessageCircle,
   Send,
   Sparkles,
+  Trash2,
 } from "lucide-react";
 import { api } from "../../api/client";
 import { socialRequest, type ChatReply, type ChatStatus } from "../../api/social";
 import { categoryNames } from "../../presentation/timeline";
 import type { useSocialWorkspace } from "../../hooks/useSocialWorkspace";
+import { useAccount } from '../account/AccountProvider';
 type Social = ReturnType<typeof useSocialWorkspace>;
 export function NewsInbox({
   social,
@@ -26,10 +28,12 @@ export function NewsInbox({
   onOpen: (id: string) => void;
 }) {
   const thread = social.threads.find((t) => t.id === selected);
+  const account = useAccount();
   const [draft, setDraft] = useState("");
   const [busy, setBusy] = useState(false);
   const inFlight = useRef(false);
   const [error, setError] = useState("");
+  const [pendingDelete,setPendingDelete]=useState<string|null>(null);
   const end = useRef<HTMLDivElement>(null);
   const controller = useRef<AbortController | null>(null);
   const story = useQuery({
@@ -50,6 +54,7 @@ export function NewsInbox({
   useEffect(() => {
     setDraft("");
     setError("");
+    setPendingDelete(null);
     return () => {
       controller.current?.abort();
       inFlight.current = false;
@@ -90,7 +95,7 @@ export function NewsInbox({
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             question,
-            history: (retrying ? thread.messages.slice(0, -1) : thread.messages)
+            history: (account.user ? [] : retrying ? thread.messages.slice(0, -1) : thread.messages)
               .slice(-10)
               .map((m) => ({ role: m.role, content: m.text.slice(0, 5000) })),
           }),
@@ -129,7 +134,7 @@ export function NewsInbox({
         {social.threads.length ? (
           <div className="inbox-list">
             {social.threads.map((t) => (
-              <button key={t.id} onClick={() => onSelect(t.id)}>
+              <div className="inbox-thread" key={t.id}><button className="inbox-thread-open" onClick={() => onSelect(t.id)}>
                 <span className={`dm-avatar dm-${t.category}`}>
                   {categoryNames[t.category].slice(0, 1)}
                 </span>
@@ -142,6 +147,7 @@ export function NewsInbox({
                 </span>
                 <MessageCircle size={18} />
               </button>
+              <button className="thread-delete" aria-label={`${t.title} 대화 삭제`} aria-pressed={pendingDelete===t.id} onClick={()=>setPendingDelete(t.id)}><Trash2 size={18}/></button></div>
             ))}
           </div>
         ) : (
@@ -151,8 +157,9 @@ export function NewsInbox({
             <p>홈에서 궁금한 뉴스의 DM 아이콘을 눌러보세요.</p>
           </div>
         )}
+        {pendingDelete&&<div className="thread-delete-confirm" role="group" aria-label="대화 삭제 확인"><p>이 대화와 메시지를 삭제할까요?</p><button onClick={()=>{social.removeThread(pendingDelete);setPendingDelete(null);}}>삭제</button><button onClick={()=>setPendingDelete(null)}>취소</button></div>}
         <p className="local-only-note">
-          대화 목록과 기록은 이 브라우저에 저장됩니다.
+          {account.user ? '대화 목록과 기록은 내 계정에 저장됩니다.' : '대화 목록과 기록은 이 브라우저에 저장됩니다.'}
         </p>
       </section>
     );
@@ -186,9 +193,8 @@ export function NewsInbox({
           </button>
         </div>
         <p className="chat-context-note">
-          {story.data?.story.is_demo ? "가상 뉴스 · " : ""}현재 제목·제공된
-          요약·관련 기사 정보를 참고합니다. 원문 전문은 아직 연결되지
-          않았습니다.
+          {story.data?.story.is_demo ? "가상 뉴스 · " : ""}
+          {status.data?.context_notice || "기사 정보와 AI 연결 상태를 확인하고 있습니다."}
         </p>
         {status.isPending ? (
           <p className="chat-context-note">AI 연결 확인 중…</p>
@@ -213,7 +219,7 @@ export function NewsInbox({
               "초등학생도 이해할 수 있게 설명해줘",
               "이 기사에서 확인된 사실은 무엇이야?",
             ].map((p) => (
-              <button key={p} disabled={busy} onClick={() => void send(p)}>
+              <button key={p} disabled={busy || !status.data?.configured} onClick={() => void send(p)}>
                 <Sparkles size={14} />
                 {p}
               </button>
@@ -258,19 +264,21 @@ export function NewsInbox({
           placeholder="메시지 입력…"
           value={draft}
           onChange={(e) => setDraft(e.target.value)}
-          disabled={busy}
+          disabled={busy || !status.data?.configured}
           maxLength={2000}
         />
         <button
           type="submit"
-          disabled={!draft.trim() || busy}
+          disabled={!draft.trim() || busy || !status.data?.configured}
           aria-label="메시지 보내기"
         >
           <Send size={20} />
         </button>
       </form>
       <p className="local-only-note dm-disclosure">
-        전송 시 질문·최근 대화·이 뉴스의 제공 정보를 LLM으로 전달합니다.
+        {status.data?.configured
+          ? account.user ? "현재 질문과 이 뉴스의 제공 정보를 LLM으로 전달합니다. 저장된 대화 이력은 전송하지 않습니다." : "전송 시 질문·최근 대화·이 뉴스의 제공 정보를 LLM으로 전달합니다."
+          : "AI 대화 연결을 기다리고 있습니다."}
       </p>
     </section>
   );

@@ -1,0 +1,9 @@
+# Standalone runtime manifest for the Vercel Python function.
+# Keep pins aligned with backend/requirements.txt.
+fastapi==0.141.1
+pydantic==2.13.5
+uvicorn==0.54.0
+httpx==0.28.1
+sqlalchemy==2.1.1
+psycopg[binary]==3.3.6
+python-dotenv==1.2.4

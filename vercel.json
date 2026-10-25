@@ -1,0 +1,27 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "npm ci --prefix frontend",
+  "buildCommand": "npm run build --prefix frontend",
+  "outputDirectory": "frontend/dist",
+  "regions": ["icn1"],
+  "functions": {
+    "api/index.py": {
+      "maxDuration": 120,
+      "includeFiles": "{backend/**,contracts/**,database/migrations/**}",
+      "excludeFiles": "{backend/tests/**,backend/.env*,**/__pycache__/**}"
+    }
+  },
+  "rewrites": [
+    {"source": "/api/:path*", "destination": "/api/index.py"},
+    {"source": "/health", "destination": "/api/index.py"},
+    {"source": "/((?!assets/).*)", "destination": "/index.html"}
+  ],
+  "headers": [
+    {"source": "/api/:path*", "headers": [{"key": "Cache-Control", "value": "no-store"}]},
+    {"source": "/:path*", "headers": [
+      {"key": "X-Content-Type-Options", "value": "nosniff"},
+      {"key": "Referrer-Policy", "value": "strict-origin-when-cross-origin"}
+    ]}
+  ]
+}
