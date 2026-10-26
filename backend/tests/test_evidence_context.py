@@ -81,6 +81,15 @@ class VisionTests(unittest.TestCase):
             external.assert_not_called()
 
 class RoleTests(unittest.TestCase):
+    def test_institution_purpose_does_not_supply_event_reason(self):
+        def item(quote):return {'label':'왜','text':'기관 목적을 사건 이유로 변환한 설명','evidence':[{'article_id':'a','quote':quote}]}
+        background='가상 협의회는 연구기관 간 협력을 촉진하는 기구입니다.'
+        explicit='일정 지연의 원인은 추가 검토가 필요했기 때문입니다.'
+        result=reading_modes.checked({'items':[item(background)]},[{'article_id':'a','text':background}],'five_w')
+        self.assertEqual(result.items,[])
+        result=reading_modes.checked({'items':[item(explicit)]},[{'article_id':'a','text':explicit}],'five_w')
+        self.assertEqual([i.label for i in result.items],['왜'])
+
     def test_origin_publication_and_inference_are_excluded_without_losing_action(self):
         quote={'q1':{'article_id':'a','quote':'인물의 출신지는 광주다. 위원회가 정책을 논의했다.'}}
         roles=[('어디서','person_origin'),('언제','publication_time'),('왜','inferred_reason'),('무엇','event_action')]

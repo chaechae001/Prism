@@ -430,6 +430,72 @@
         "어디서",
         "무엇"
       ]
+    },
+    {
+      "id": "purpose-is-not-event-reason",
+      "bodies": [
+        {
+          "article_id": "a",
+          "text": "가상 협의회는 연구기관 간 협력을 촉진하는 기구입니다."
+        }
+      ],
+      "catalog": {
+        "q1": {
+          "article_id": "a",
+          "quote": "가상 협의회는 연구기관 간 협력을 촉진하는 기구입니다."
+        }
+      },
+      "draft": {
+        "items": [
+          {
+            "label": "왜",
+            "semantic_role": "explicit_reason",
+            "text": "합성 이유 설명",
+            "evidence": [
+              {
+                "article_id": "a",
+                "quote_id": "q1"
+              }
+            ]
+          }
+        ],
+        "limitations": []
+      },
+      "expected_labels": []
+    },
+    {
+      "id": "explicit-causal-support",
+      "bodies": [
+        {
+          "article_id": "a",
+          "text": "일정 지연의 원인은 추가 검토가 필요했기 때문입니다."
+        }
+      ],
+      "catalog": {
+        "q1": {
+          "article_id": "a",
+          "quote": "일정 지연의 원인은 추가 검토가 필요했기 때문입니다."
+        }
+      },
+      "draft": {
+        "items": [
+          {
+            "label": "왜",
+            "semantic_role": "explicit_reason",
+            "text": "합성 이유 설명",
+            "evidence": [
+              {
+                "article_id": "a",
+                "quote_id": "q1"
+              }
+            ]
+          }
+        ],
+        "limitations": []
+      },
+      "expected_labels": [
+        "왜"
+      ]
     }
   ]
 }
