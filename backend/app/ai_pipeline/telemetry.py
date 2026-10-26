@@ -66,8 +66,13 @@ def report(*,engine=None):
     with _engine(engine).connect() as c,c.begin():
         c.execute(text('SET TRANSACTION READ ONLY'))
         summary=dict(c.execute(text('''SELECT count(*) AS calls,count(*) FILTER(WHERE status='error') AS errors,
-            round(avg(elapsed_ms)) AS average_ms,sum(input_tokens) AS input_tokens,sum(output_tokens) AS output_tokens,
+            round(avg(elapsed_ms)) AS average_ms,
+            percentile_cont(0.5) WITHIN GROUP (ORDER BY elapsed_ms) AS p50_ms,
+            percentile_cont(0.95) WITHIN GROUP (ORDER BY elapsed_ms) AS p95_ms,
+            sum(input_tokens) AS input_tokens,sum(output_tokens) AS output_tokens,
             sum(estimated_cost_usd) AS estimated_cost_usd,count(*) FILTER(WHERE estimated_cost_usd IS NOT NULL) AS cost_known_calls
             FROM private.prism_llm_runs WHERE created_at>now()-interval '24 hours' ''')).mappings().one())
         rows=c.execute(text('SELECT task,provider,model,prompt_version,status,error_type,elapsed_ms,input_tokens,output_tokens,estimated_cost_usd,created_at FROM private.prism_llm_runs ORDER BY created_at DESC LIMIT 30')).mappings().all()
-    return {'last_24_hours':summary,'recent':[dict(r) for r in rows],'notice':'질문·기사 본문·답변·사용자 식별정보는 저장하지 않습니다. 비용은 설정한 단가에 따른 추정치이며 미설정은 null입니다.'}
+    summary['error_rate']=summary['errors']/summary['calls'] if summary['calls'] else None
+    summary['cost_coverage']=summary['cost_known_calls']/summary['calls'] if summary['calls'] else None
+    return {'last_24_hours':summary,'recent':[dict(r) for r in rows],'notice':'질문·기사 본문·답변·사용자 식별정보는 저장하지 않습니다. 비용은 설정한 단가에 따른 추정치이며 미설정은 null입니다. 분위수는 최근 24시간 전체 호출의 보간값이며 호출 수·비용 확인 비율과 함께 해석합니다.'}

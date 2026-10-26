@@ -21,3 +21,5 @@ app.include_router(ai_router)
 
 from .reading_api import router as reading_router
 app.include_router(reading_router)
+from .evidence.router import router as evidence_router
+app.include_router(evidence_router)

@@ -2,7 +2,7 @@ import {useMutation,useQuery,useQueryClient} from '@tanstack/react-query';
 import {requestReading,type ReadingMode} from '../api/reading';
 
 export function readingQueryOptions(storyId:string,mode:ReadingMode,revision?:string){
- return {queryKey:['reading-mode',storyId,mode,mode==='five_w'?'five-w-v3':mode==='perspectives'?'contrast-v5':mode==='sentiment'?'article-tone-v3':'v1',revision],
+ return {queryKey:['reading-mode',storyId,mode,mode==='five_w'?'five-w-v4':mode==='perspectives'?'contrast-v5':mode==='sentiment'?'article-tone-v3':'v1',revision],
   queryFn:()=>requestReading(storyId,mode),retry:false as const,staleTime:Infinity};
 }
 

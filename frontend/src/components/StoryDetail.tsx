@@ -15,6 +15,7 @@ import { api, ApiError } from "../api/client";
 import type { FeedbackRequest, Story } from "../api/types";
 import type { DetailTab } from "../presentation/timeline";
 import { AnalysisPanel } from "./AnalysisPanel";
+import { ContextPanel } from "./ContextPanel";
 import { isLocalClusterStory, clusterSourceLabel } from "../presentation/clusterPreview";
 
 const categoryNames = {
@@ -149,6 +150,7 @@ export function StoryDetail({
                     <Tabs.Trigger value="five_w">팩트 5W</Tabs.Trigger>
                     <Tabs.Trigger value="easy">쉽게 읽기</Tabs.Trigger>
                     <Tabs.Trigger value="sentiment">감정·어조</Tabs.Trigger>
+                    <Tabs.Trigger value="context">자료 확인</Tabs.Trigger>
                     <Tabs.Trigger value="sources">
                       출처 <span>{story.articles.length}</span>
                     </Tabs.Trigger>
@@ -165,6 +167,7 @@ export function StoryDetail({
                       <AnalysisPanel mode={mode} storyId={story.id} revision={story.updated_at} onCite={cited} clusterPreview={clusterPreview} />
                     </Tabs.Content>
                   ))}
+                  <Tabs.Content value="context" className="detail-panel"><ContextPanel key={story.id} storyId={story.id}/></Tabs.Content>
                   <Tabs.Content value="sources" className="detail-panel">
                     <p className="muted small">
                       {story.is_demo

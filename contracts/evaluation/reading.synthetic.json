@@ -1,0 +1,435 @@
+{
+  "schema_version": "prism-reading-regression/v1",
+  "provenance": "synthetic",
+  "notice": "Hand-specified synthetic draft fixtures, not real news or human quality labels.",
+  "cases": [
+    {
+      "id": "explicit-action",
+      "bodies": [
+        {
+          "article_id": "a",
+          "text": "위원회가 서울에서 정책을 논의했습니다."
+        }
+      ],
+      "catalog": {
+        "q1": {
+          "article_id": "a",
+          "quote": "위원회가 서울에서 정책을 논의했습니다."
+        }
+      },
+      "draft": {
+        "items": [
+          {
+            "label": "무엇",
+            "semantic_role": "event_action",
+            "text": "합성 회귀 사례",
+            "evidence": [
+              {
+                "article_id": "a",
+                "quote_id": "q1"
+              }
+            ]
+          }
+        ],
+        "limitations": []
+      },
+      "expected_labels": [
+        "무엇"
+      ]
+    },
+    {
+      "id": "origin-is-not-location",
+      "bodies": [
+        {
+          "article_id": "a",
+          "text": "위원회가 서울에서 정책을 논의했습니다."
+        }
+      ],
+      "catalog": {
+        "q1": {
+          "article_id": "a",
+          "quote": "위원회가 서울에서 정책을 논의했습니다."
+        }
+      },
+      "draft": {
+        "items": [
+          {
+            "label": "어디서",
+            "semantic_role": "person_origin",
+            "text": "합성 회귀 사례",
+            "evidence": [
+              {
+                "article_id": "a",
+                "quote_id": "q1"
+              }
+            ]
+          }
+        ],
+        "limitations": []
+      },
+      "expected_labels": []
+    },
+    {
+      "id": "publication-is-not-event-time",
+      "bodies": [
+        {
+          "article_id": "a",
+          "text": "위원회가 서울에서 정책을 논의했습니다."
+        }
+      ],
+      "catalog": {
+        "q1": {
+          "article_id": "a",
+          "quote": "위원회가 서울에서 정책을 논의했습니다."
+        }
+      },
+      "draft": {
+        "items": [
+          {
+            "label": "언제",
+            "semantic_role": "publication_time",
+            "text": "합성 회귀 사례",
+            "evidence": [
+              {
+                "article_id": "a",
+                "quote_id": "q1"
+              }
+            ]
+          }
+        ],
+        "limitations": []
+      },
+      "expected_labels": []
+    },
+    {
+      "id": "inference-is-not-reason",
+      "bodies": [
+        {
+          "article_id": "a",
+          "text": "위원회가 서울에서 정책을 논의했습니다."
+        }
+      ],
+      "catalog": {
+        "q1": {
+          "article_id": "a",
+          "quote": "위원회가 서울에서 정책을 논의했습니다."
+        }
+      },
+      "draft": {
+        "items": [
+          {
+            "label": "왜",
+            "semantic_role": "inferred_reason",
+            "text": "합성 회귀 사례",
+            "evidence": [
+              {
+                "article_id": "a",
+                "quote_id": "q1"
+              }
+            ]
+          }
+        ],
+        "limitations": []
+      },
+      "expected_labels": []
+    },
+    {
+      "id": "background-is-not-reason",
+      "bodies": [
+        {
+          "article_id": "a",
+          "text": "위원회가 서울에서 정책을 논의했습니다."
+        }
+      ],
+      "catalog": {
+        "q1": {
+          "article_id": "a",
+          "quote": "위원회가 서울에서 정책을 논의했습니다."
+        }
+      },
+      "draft": {
+        "items": [
+          {
+            "label": "왜",
+            "semantic_role": "background",
+            "text": "합성 회귀 사례",
+            "evidence": [
+              {
+                "article_id": "a",
+                "quote_id": "q1"
+              }
+            ]
+          }
+        ],
+        "limitations": []
+      },
+      "expected_labels": []
+    },
+    {
+      "id": "unknown-abstains",
+      "bodies": [
+        {
+          "article_id": "a",
+          "text": "위원회가 서울에서 정책을 논의했습니다."
+        }
+      ],
+      "catalog": {
+        "q1": {
+          "article_id": "a",
+          "quote": "위원회가 서울에서 정책을 논의했습니다."
+        }
+      },
+      "draft": {
+        "items": [
+          {
+            "label": "왜",
+            "semantic_role": "unknown",
+            "text": "합성 회귀 사례",
+            "evidence": [
+              {
+                "article_id": "a",
+                "quote_id": "q1"
+              }
+            ]
+          }
+        ],
+        "limitations": []
+      },
+      "expected_labels": []
+    },
+    {
+      "id": "preserve-valid-among-invalid",
+      "bodies": [
+        {
+          "article_id": "a",
+          "text": "위원회가 서울에서 정책을 논의했습니다."
+        }
+      ],
+      "catalog": {
+        "q1": {
+          "article_id": "a",
+          "quote": "위원회가 서울에서 정책을 논의했습니다."
+        }
+      },
+      "draft": {
+        "items": [
+          {
+            "label": "어디서",
+            "semantic_role": "person_origin",
+            "text": "합성 회귀 사례",
+            "evidence": [
+              {
+                "article_id": "a",
+                "quote_id": "q1"
+              }
+            ]
+          },
+          {
+            "label": "무엇",
+            "semantic_role": "event_action",
+            "text": "합성 회귀 사례",
+            "evidence": [
+              {
+                "article_id": "a",
+                "quote_id": "q1"
+              }
+            ]
+          }
+        ],
+        "limitations": []
+      },
+      "expected_labels": [
+        "무엇"
+      ]
+    },
+    {
+      "id": "missing-citation",
+      "bodies": [
+        {
+          "article_id": "a",
+          "text": "위원회가 서울에서 정책을 논의했습니다."
+        }
+      ],
+      "catalog": {
+        "q1": {
+          "article_id": "a",
+          "quote": "위원회가 서울에서 정책을 논의했습니다."
+        }
+      },
+      "draft": {
+        "items": [
+          {
+            "label": "무엇",
+            "semantic_role": "event_action",
+            "text": "합성 회귀 사례",
+            "evidence": [
+              {
+                "article_id": "a",
+                "quote_id": "missing"
+              }
+            ]
+          }
+        ],
+        "limitations": []
+      },
+      "expected_labels": []
+    },
+    {
+      "id": "duplicate-fields",
+      "bodies": [
+        {
+          "article_id": "a",
+          "text": "위원회가 서울에서 정책을 논의했습니다."
+        }
+      ],
+      "catalog": {
+        "q1": {
+          "article_id": "a",
+          "quote": "위원회가 서울에서 정책을 논의했습니다."
+        }
+      },
+      "draft": {
+        "items": [
+          {
+            "label": "무엇",
+            "semantic_role": "event_action",
+            "text": "합성 회귀 사례",
+            "evidence": [
+              {
+                "article_id": "a",
+                "quote_id": "q1"
+              }
+            ]
+          },
+          {
+            "label": "무엇",
+            "semantic_role": "event_action",
+            "text": "합성 회귀 사례",
+            "evidence": [
+              {
+                "article_id": "a",
+                "quote_id": "q1"
+              }
+            ]
+          }
+        ],
+        "limitations": []
+      },
+      "expected_labels": [
+        "무엇"
+      ]
+    },
+    {
+      "id": "alias-normalized",
+      "bodies": [
+        {
+          "article_id": "a",
+          "text": "위원회가 서울에서 정책을 논의했습니다."
+        }
+      ],
+      "catalog": {
+        "q1": {
+          "article_id": "a",
+          "quote": "위원회가 서울에서 정책을 논의했습니다."
+        }
+      },
+      "draft": {
+        "items": [
+          {
+            "label": "What",
+            "semantic_role": "event_action",
+            "text": "합성 회귀 사례",
+            "evidence": [
+              {
+                "article_id": "a",
+                "quote_id": "q1"
+              }
+            ]
+          }
+        ],
+        "limitations": []
+      },
+      "expected_labels": [
+        "무엇"
+      ]
+    },
+    {
+      "id": "empty-is-valid",
+      "bodies": [
+        {
+          "article_id": "a",
+          "text": "위원회가 서울에서 정책을 논의했습니다."
+        }
+      ],
+      "catalog": {
+        "q1": {
+          "article_id": "a",
+          "quote": "위원회가 서울에서 정책을 논의했습니다."
+        }
+      },
+      "draft": {
+        "items": [],
+        "limitations": []
+      },
+      "expected_labels": []
+    },
+    {
+      "id": "canonical-order",
+      "bodies": [
+        {
+          "article_id": "a",
+          "text": "위원회가 서울에서 정책을 논의했습니다."
+        }
+      ],
+      "catalog": {
+        "q1": {
+          "article_id": "a",
+          "quote": "위원회가 서울에서 정책을 논의했습니다."
+        }
+      },
+      "draft": {
+        "items": [
+          {
+            "label": "무엇",
+            "semantic_role": "event_action",
+            "text": "합성 회귀 사례",
+            "evidence": [
+              {
+                "article_id": "a",
+                "quote_id": "q1"
+              }
+            ]
+          },
+          {
+            "label": "어디서",
+            "semantic_role": "event_location",
+            "text": "합성 회귀 사례",
+            "evidence": [
+              {
+                "article_id": "a",
+                "quote_id": "q1"
+              }
+            ]
+          },
+          {
+            "label": "누가",
+            "semantic_role": "event_actor",
+            "text": "합성 회귀 사례",
+            "evidence": [
+              {
+                "article_id": "a",
+                "quote_id": "q1"
+              }
+            ]
+          }
+        ],
+        "limitations": []
+      },
+      "expected_labels": [
+        "누가",
+        "어디서",
+        "무엇"
+      ]
+    }
+  ]
+}
