@@ -1993,6 +1993,176 @@
           }
         }
       }
+    },
+    "/api/local/stories/{story_id}/public-context": {
+      "get": {
+        "tags": [
+          "evidence-context"
+        ],
+        "summary": "Context",
+        "operationId": "context_api_local_stories__story_id__public_context_get",
+        "parameters": [
+          {
+            "name": "story_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Story Id"
+            }
+          },
+          {
+            "name": "indicator",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "kosis_cpi",
+                "inflation",
+                "population",
+                "gdp"
+              ],
+              "type": "string",
+              "default": "kosis_cpi",
+              "title": "Indicator"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContextResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
+    "/api/local/stories/{story_id}/image-evidence": {
+      "post": {
+        "tags": [
+          "evidence-context"
+        ],
+        "summary": "Image Evidence",
+        "operationId": "image_evidence_api_local_stories__story_id__image_evidence_post",
+        "parameters": [
+          {
+            "name": "story_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Story Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VisionInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisionResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -2296,6 +2466,28 @@
           "relation"
         ],
         "title": "ComparisonOutput"
+      },
+      "ContextResponse": {
+        "properties": {
+          "story_id": {
+            "type": "string",
+            "title": "Story Id"
+          },
+          "selection": {
+            "type": "string",
+            "title": "Selection",
+            "default": "user_selected_background"
+          },
+          "data": {
+            "$ref": "#/components/schemas/PublicData"
+          }
+        },
+        "type": "object",
+        "required": [
+          "story_id",
+          "data"
+        ],
+        "title": "ContextResponse"
       },
       "Contrast": {
         "properties": {
@@ -2793,6 +2985,24 @@
         ],
         "title": "Message"
       },
+      "Observation": {
+        "properties": {
+          "period": {
+            "type": "string",
+            "title": "Period"
+          },
+          "value": {
+            "type": "number",
+            "title": "Value"
+          }
+        },
+        "type": "object",
+        "required": [
+          "period",
+          "value"
+        ],
+        "title": "Observation"
+      },
       "Perspective": {
         "properties": {
           "label": {
@@ -2840,6 +3050,89 @@
           "text"
         ],
         "title": "Position"
+      },
+      "PublicData": {
+        "properties": {
+          "provider": {
+            "type": "string",
+            "title": "Provider",
+            "default": "World Bank Indicators API"
+          },
+          "indicator": {
+            "type": "string",
+            "enum": [
+              "kosis_cpi",
+              "inflation",
+              "population",
+              "gdp"
+            ],
+            "title": "Indicator"
+          },
+          "indicator_code": {
+            "type": "string",
+            "title": "Indicator Code"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "country": {
+            "type": "string",
+            "title": "Country",
+            "default": "대한민국 (KOR)"
+          },
+          "unit": {
+            "type": "string",
+            "title": "Unit"
+          },
+          "frequency": {
+            "type": "string",
+            "title": "Frequency",
+            "default": "연간"
+          },
+          "retrieved_at": {
+            "type": "string",
+            "title": "Retrieved At"
+          },
+          "source_updated_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Updated At"
+          },
+          "source_url": {
+            "type": "string",
+            "title": "Source Url"
+          },
+          "observations": {
+            "items": {
+              "$ref": "#/components/schemas/Observation"
+            },
+            "type": "array",
+            "title": "Observations"
+          },
+          "notice": {
+            "type": "string",
+            "title": "Notice"
+          }
+        },
+        "type": "object",
+        "required": [
+          "indicator",
+          "indicator_code",
+          "title",
+          "unit",
+          "retrieved_at",
+          "source_url",
+          "observations",
+          "notice"
+        ],
+        "title": "PublicData"
       },
       "PublicUser": {
         "properties": {
@@ -3306,6 +3599,113 @@
           "unknowns"
         ],
         "title": "Summary"
+      },
+      "VisionInput": {
+        "properties": {
+          "image_base64": {
+            "type": "string",
+            "maxLength": 1333336,
+            "minLength": 16,
+            "title": "Image Base64"
+          },
+          "media_type": {
+            "type": "string",
+            "enum": [
+              "image/png",
+              "image/jpeg"
+            ],
+            "title": "Media Type"
+          },
+          "consent_external": {
+            "type": "boolean",
+            "title": "Consent External",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "image_base64",
+          "media_type"
+        ],
+        "title": "VisionInput"
+      },
+      "VisionOutput": {
+        "properties": {
+          "observation": {
+            "type": "string",
+            "maxLength": 600,
+            "minLength": 1,
+            "title": "Observation"
+          },
+          "visible_text": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Visible Text"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 6,
+            "minItems": 1,
+            "title": "Limitations"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "observation",
+          "visible_text",
+          "limitations"
+        ],
+        "title": "VisionOutput"
+      },
+      "VisionResponse": {
+        "properties": {
+          "story_id": {
+            "type": "string",
+            "title": "Story Id"
+          },
+          "output": {
+            "$ref": "#/components/schemas/VisionOutput"
+          },
+          "image_sha256": {
+            "type": "string",
+            "title": "Image Sha256"
+          },
+          "model": {
+            "type": "string",
+            "title": "Model"
+          },
+          "prompt_version": {
+            "type": "string",
+            "title": "Prompt Version",
+            "default": "image-evidence-v1"
+          },
+          "external_processing": {
+            "type": "boolean",
+            "title": "External Processing"
+          },
+          "notice": {
+            "type": "string",
+            "title": "Notice",
+            "default": "사용자가 선택한 이미지의 관찰 결과입니다. 기사와의 관련성·인물 신원·진위는 판정하지 않습니다. 원본과 함께 확인하세요."
+          }
+        },
+        "type": "object",
+        "required": [
+          "story_id",
+          "output",
+          "image_sha256",
+          "model",
+          "external_processing"
+        ],
+        "title": "VisionResponse"
       },
       "WorkflowInput": {
         "properties": {

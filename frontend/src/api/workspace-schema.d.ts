@@ -449,6 +449,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/local/stories/{story_id}/public-context": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Context */
+        get: operations["context_api_local_stories__story_id__public_context_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/local/stories/{story_id}/image-evidence": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Image Evidence */
+        post: operations["image_evidence_api_local_stories__story_id__image_evidence_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -564,6 +598,17 @@ export interface components {
              * @enum {string}
              */
             relation: "comparable" | "different_events" | "insufficient_context";
+        };
+        /** ContextResponse */
+        ContextResponse: {
+            /** Story Id */
+            story_id: string;
+            /**
+             * Selection
+             * @default user_selected_background
+             */
+            selection: string;
+            data: components["schemas"]["PublicData"];
         };
         /** Contrast */
         Contrast: {
@@ -748,6 +793,13 @@ export interface components {
             /** Content */
             content: string;
         };
+        /** Observation */
+        Observation: {
+            /** Period */
+            period: string;
+            /** Value */
+            value: number;
+        };
         /** Perspective */
         Perspective: {
             /** Label */
@@ -763,6 +815,45 @@ export interface components {
             article_id: string;
             /** Text */
             text: string;
+        };
+        /** PublicData */
+        PublicData: {
+            /**
+             * Provider
+             * @default World Bank Indicators API
+             */
+            provider: string;
+            /**
+             * Indicator
+             * @enum {string}
+             */
+            indicator: "kosis_cpi" | "inflation" | "population" | "gdp";
+            /** Indicator Code */
+            indicator_code: string;
+            /** Title */
+            title: string;
+            /**
+             * Country
+             * @default 대한민국 (KOR)
+             */
+            country: string;
+            /** Unit */
+            unit: string;
+            /**
+             * Frequency
+             * @default 연간
+             */
+            frequency: string;
+            /** Retrieved At */
+            retrieved_at: string;
+            /** Source Updated At */
+            source_updated_at?: string | null;
+            /** Source Url */
+            source_url: string;
+            /** Observations */
+            observations: components["schemas"]["Observation"][];
+            /** Notice */
+            notice: string;
         };
         /** PublicUser */
         PublicUser: {
@@ -933,6 +1024,52 @@ export interface components {
             model_version?: string | null;
             /** Prompt Version */
             prompt_version?: string | null;
+        };
+        /** VisionInput */
+        VisionInput: {
+            /** Image Base64 */
+            image_base64: string;
+            /**
+             * Media Type
+             * @enum {string}
+             */
+            media_type: "image/png" | "image/jpeg";
+            /**
+             * Consent External
+             * @default false
+             */
+            consent_external: boolean;
+        };
+        /** VisionOutput */
+        VisionOutput: {
+            /** Observation */
+            observation: string;
+            /** Visible Text */
+            visible_text: string[];
+            /** Limitations */
+            limitations: string[];
+        };
+        /** VisionResponse */
+        VisionResponse: {
+            /** Story Id */
+            story_id: string;
+            output: components["schemas"]["VisionOutput"];
+            /** Image Sha256 */
+            image_sha256: string;
+            /** Model */
+            model: string;
+            /**
+             * Prompt Version
+             * @default image-evidence-v1
+             */
+            prompt_version: string;
+            /** External Processing */
+            external_processing: boolean;
+            /**
+             * Notice
+             * @default 사용자가 선택한 이미지의 관찰 결과입니다. 기사와의 관련성·인물 신원·진위는 판정하지 않습니다. 원본과 함께 확인하세요.
+             */
+            notice: string;
         };
         /** WorkflowInput */
         WorkflowInput: {
@@ -2596,6 +2733,128 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ReadingResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    context_api_local_stories__story_id__public_context_get: {
+        parameters: {
+            query?: {
+                indicator?: "kosis_cpi" | "inflation" | "population" | "gdp";
+            };
+            header?: never;
+            path: {
+                story_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ContextResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    image_evidence_api_local_stories__story_id__image_evidence_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                story_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["VisionInput"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["VisionResponse"];
                 };
             };
             /** @description Not Found */

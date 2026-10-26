@@ -13,8 +13,8 @@ class ReadingTests(unittest.TestCase):
 
  def test_five_w_invalid_references_do_not_discard_valid_model_fields(self):
   from backend.app.services.reading_modes import materialize
-  value={'items':[{'label':'무엇 (What)','text':'정책 논의','evidence':[{'article_id':'a','quote_id':'q1'}]},
-                  {'label':'왜','text':'잘못된 근거','evidence':[{'article_id':'a','quote_id':'missing'}]}],'limitations':[]}
+  value={'items':[{'label':'무엇 (What)','semantic_role':'event_action','text':'정책 논의','evidence':[{'article_id':'a','quote_id':'q1'}]},
+                  {'label':'왜','semantic_role':'explicit_reason','text':'잘못된 근거','evidence':[{'article_id':'a','quote_id':'missing'}]}],'limitations':[]}
   result=checked(materialize(value,{'q1':{'article_id':'a','quote':'정책을 논의했습니다.'}},mode='five_w'),[{'article_id':'a','text':'정책을 논의했습니다.'}],'five_w')
   self.assertEqual([i.label for i in result.items],['무엇'])
   empty=checked({'items':[{'label':'어떻게'}],'limitations':[]},[],'five_w')

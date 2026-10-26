@@ -36,6 +36,8 @@ jobs:
       - run: python -m unittest backend.tests.test_connected_news -q
       - run: python -m unittest backend.tests.test_accounts_editorial -q
       - run: python -m unittest backend.tests.test_local_reading backend.tests.test_news_topics backend.tests.test_reading_modes -q
+      - run: python -m unittest backend.tests.test_evidence_context backend.tests.test_evidence_evaluation -q
+      - run: python scripts/evaluate_evidence.py --suite contracts/evaluation/reading.synthetic.json --fail-on-regression
       - run: python -m unittest discover -s backend/tests/rss -p 'test_*.py' -q
       - run: python -m unittest discover -s backend/tests/llm -p 'test_*.py' -q
       - run: python -m unittest backend.tests.test_database_integration -q
