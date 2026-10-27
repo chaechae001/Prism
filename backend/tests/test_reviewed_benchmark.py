@@ -121,6 +121,11 @@ class ReviewedBenchmarkTests(unittest.TestCase):
         self.assertNotIn('reviewer-a', text)
 
     def test_declared_local_route_and_actual_input_hash_are_checked(self):
+        with self.assertRaises(ValueError): evaluate([])
+        d = packet(); d['cases'] = [None]
+        with self.assertRaises(ValueError): evaluate(d)
+        d = packet(); d['cases'][0]['predictions'] = [None]
+        with self.assertRaises(ValueError): evaluate(d)
         d = packet(); d['cases'][0]['predictions'][-1]['external_processing'] = True
         with self.assertRaises(ValueError): evaluate(d)
         d = packet(); d['cases'][0]['input'] = 'changed original'

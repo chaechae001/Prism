@@ -53,6 +53,8 @@ def template():
 
 
 def evaluate(data):
+    if not isinstance(data, dict):
+        raise ValueError('평가 입력은 객체여야 합니다.')
     if data.get('schema_version') != VERSION or data.get('provenance') not in {'human', 'synthetic'}:
         raise ValueError('평가 버전과 자료 출처가 필요합니다.')
     protocol = data['protocol']
@@ -78,6 +80,8 @@ def evaluate(data):
     ids = set(); events = {}; hashes = {}; all_rows = {}; paired = []
     excluded = Counter(); attempts = {name: [] for name in names}; versions = {}
     for case in cases:
+        if not isinstance(case, dict):
+            raise ValueError('평가 사례는 객체여야 합니다.')
         cid = identity(case['id']); event = identity(case['event_id'])
         if cid in ids:
             raise ValueError('중복 평가 사례입니다.')
@@ -105,6 +109,8 @@ def evaluate(data):
             raise ValueError('실행 결과 목록이 필요합니다.')
         observed = set(); valid = {}
         for pred in predictions:
+            if not isinstance(pred, dict):
+                raise ValueError('실행 결과는 객체여야 합니다.')
             name = pred['variant']
             if name not in names or name in observed:
                 raise ValueError('실행 조건이 없거나 중복됐습니다.')
